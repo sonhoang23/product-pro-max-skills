@@ -1,0 +1,34 @@
+name: idea-to-mvp
+version: 0.1.0
+description: Move from a raw idea to an evidence-bounded MVP scope.
+steps:
+  - id: pressure-test
+    skill: idea-pressure-test
+    on_pass: validate-problem
+    on_warn: validate-problem
+    on_fail: stop
+  - id: validate-problem
+    skill: problem-validation
+    on_pass: research-customer
+    on_warn: research-customer
+    on_fail: stop
+  - id: research-customer
+    skill: customer-research
+    on_pass: map-market
+    on_warn: map-market
+    on_fail: stop
+  - id: map-market
+    skill: market-landscape
+    on_pass: define-icp
+    on_warn: define-icp
+    on_fail: stop
+  - id: define-icp
+    skill: icp-positioning
+    on_pass: scope-mvp
+    on_warn: scope-mvp
+    on_fail: stop
+  - id: scope-mvp
+    skill: mvp-scope
+    on_pass: complete
+    on_warn: complete
+    on_fail: stop
