@@ -1,0 +1,7 @@
+assumptions:
+  - id: asm-001
+    statement: Replace with the most important unverified belief.
+    status: open
+    evidence_for: []
+    evidence_against: []
+    revisit_when: Before committing major build scope.

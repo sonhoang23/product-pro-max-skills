@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Pro Max Project State",
+  "type": "object",
+  "required": [
+    "project",
+    "stage",
+    "status",
+    "updated_at"
+  ],
+  "properties": {
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stage": {
+      "enum": [
+        "discover",
+        "validate",
+        "define",
+        "design",
+        "build",
+        "verify",
+        "launch",
+        "revenue",
+        "grow"
+      ]
+    },
+    "status": {
+      "enum": [
+        "active",
+        "blocked",
+        "deferred",
+        "pivoted",
+        "stopped",
+        "launched"
+      ]
+    },
+    "current_workflow": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_skill": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "critical_assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "open_risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

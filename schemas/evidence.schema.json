@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Pro Max Evidence Item",
+  "type": "object",
+  "required": [
+    "id",
+    "claim",
+    "class",
+    "confidence"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "claim": {
+      "type": "string",
+      "minLength": 1
+    },
+    "class": {
+      "enum": [
+        "provided",
+        "observed",
+        "researched",
+        "measured",
+        "inferred",
+        "assumed"
+      ]
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "supports": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "captured_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

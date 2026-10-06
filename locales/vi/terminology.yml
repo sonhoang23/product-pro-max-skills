@@ -1,0 +1,13 @@
+locale: vi
+terms:
+  evidence: Bằng chứng
+  assumption: Giả định
+  inference: Suy luận
+  quality_gate: Cổng chất lượng
+  decision: Quyết định
+  pass: Đạt
+  warn: Cảnh báo
+  fail: Không đạt
+  stop: Dừng
+  pivot: Chuyển hướng
+  defer: Hoãn

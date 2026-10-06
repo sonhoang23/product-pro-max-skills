@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Pro Max Workflow",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "steps"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "skill"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "skill": {
+            "type": "string"
+          },
+          "on_pass": {
+            "type": "string"
+          },
+          "on_warn": {
+            "type": "string"
+          },
+          "on_fail": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

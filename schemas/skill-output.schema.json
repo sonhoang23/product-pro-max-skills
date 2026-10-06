@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Pro Max Skill Output",
+  "type": "object",
+  "required": [
+    "skill",
+    "gate",
+    "decision",
+    "evidence",
+    "assumptions",
+    "risks",
+    "next_actions"
+  ],
+  "properties": {
+    "skill": {
+      "type": "string"
+    },
+    "gate": {
+      "enum": [
+        "pass",
+        "warn",
+        "fail"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "continue",
+        "research",
+        "revise",
+        "pivot",
+        "defer",
+        "stop"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

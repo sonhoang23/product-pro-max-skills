@@ -1,0 +1,13 @@
+locale: en
+terms:
+  evidence: Evidence
+  assumption: Assumption
+  inference: Inference
+  quality_gate: Quality gate
+  decision: Decision
+  pass: Pass
+  warn: Warn
+  fail: Fail
+  stop: Stop
+  pivot: Pivot
+  defer: Defer
