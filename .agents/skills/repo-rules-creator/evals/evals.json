@@ -1,0 +1,23 @@
+{
+  "skill_name": "repo-rules-creator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Phân tích repo Next.js + NestJS monorepo này và tạo skill rules ngắn gọn để dùng khi vibe coding.",
+      "expected_output": "Tạo một repo rules skill ngắn, có rule về purpose, architecture, folder, stack, design system nếu có, change discipline, validation và Git safety; không bịa convention.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Repo frontend này đã có components/ui, Tailwind theme và design tokens. Hãy tạo repo rules để model không tự tạo component và style ngoài system.",
+      "expected_output": "Repo rules ưu tiên reuse component, token trước hard-code, system trước custom, tránh inline CSS trái convention và giữ output ngắn.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Tạo rules cho một repo nhỏ chỉ có CLI Python, không có frontend và rất ít tài liệu.",
+      "expected_output": "Chỉ tạo các nhóm rules có bằng chứng và giá trị; không ép đủ 9 nhóm, không thêm design-system rules, giữ SKILL.md ngắn.",
+      "files": []
+    }
+  ]
+}
