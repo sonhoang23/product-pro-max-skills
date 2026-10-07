@@ -1,11 +1,13 @@
 # Skill Contract
 
-Every canonical skill lives at `skills/<skill-name>/SKILL.md`.
+Every canonical distributable skill lives at `skills/<skill-name>/SKILL.md`.
 
 ## Required frontmatter
 
 - `name`
 - `description`
+
+Metadata expansion is intentionally deferred to the dedicated skill manifest/registry foundation spec.
 
 ## Required sections
 
@@ -45,7 +47,11 @@ Outputs should distinguish:
 - gate;
 - next action.
 
-The rendering may be Markdown, YAML or JSON, but the semantic fields stay stable.
+Canonical gate and decision IDs come from `model/product-model.json` and are explained in `PRODUCT-MODEL.md`.
+
+Gate and decision MUST remain separate fields when a structured output contains both. A gate is a readiness/evidence judgment; a decision is the next action selected from context.
+
+The rendering may be Markdown, YAML, or JSON, but the semantic distinction stays stable.
 
 ## Contribution rule
 

@@ -4,6 +4,11 @@
 
 <p align="center">Hệ thống sản phẩm mã nguồn mở, dựa trên bằng chứng, dành cho những người xây sản phẩm bằng AI.</p>
 
+<p align="center">
+  <a href="./PRODUCT-MODEL.md">Product Model (English canonical)</a> ·
+  <a href="./README.md">English</a>
+</p>
+
 ## Tại sao
 
 AI có thể biến ý tưởng thành phần mềm rất nhanh. Nhưng "chạy được" không đồng nghĩa với giải quyết đúng vấn đề, đủ an toàn, có UX tốt, có người dùng hay tạo được doanh thu.
@@ -16,25 +21,21 @@ thay vì:
 
 **Ý tưởng → Prompt → Code → Deploy**
 
-Nguyên tắc chính:
+## Product Model canonical
 
-- có bằng chứng rồi mới tăng mức độ tin cậy;
-- chưa xác minh thì chưa được gọi là hoàn tất;
-- người dùng quan trọng hơn số lượng tính năng;
-- distribution là một phần của sản phẩm;
-- STOP, PIVOT và DEFER đều là kết quả hợp lệ.
+Toàn bộ lifecycle dùng một nguồn machine-readable duy nhất:
 
-## MVP
+`model/product-model.json`
 
-MVP gồm 13 skill:
+Giải thích dành cho con người nằm tại [`PRODUCT-MODEL.md`](./PRODUCT-MODEL.md).
 
-`idea-pressure-test`, `problem-validation`, `customer-research`, `market-landscape`, `icp-positioning`, `mvp-scope`, `ux-flow`, `architecture-plan`, `engineering-readiness`, `runtime-verification`, `launch-readiness`, `distribution-plan`, `pricing-experiment`.
+README, schema, workflow, example, diagram và bản dịch chỉ là các view dẫn xuất; không được tự tạo định nghĩa lifecycle cạnh tranh.
 
-Ba workflow:
+Các machine ID luôn giữ nguyên tiếng Anh, ví dụ:
 
-- `workflows/idea-to-mvp`
-- `workflows/pre-launch-audit`
-- `workflows/idea-to-first-users`
+`opportunity`, `go-to-market`, `runtime-verification`, `pass`, `pivot`.
+
+Nhãn hiển thị cho người dùng có thể được dịch.
 
 ## Mô hình lõi
 
@@ -50,7 +51,22 @@ GATE
 DECISION
 ```
 
-Tạo ra tài liệu chưa phải là tiến bộ. Tiến bộ xảy ra khi artifact giúp đưa ra quyết định tốt hơn và bằng chứng phía sau quyết định có thể kiểm tra được.
+Gate và decision là hai khái niệm khác nhau:
+
+- gate đánh giá mức độ đủ của bằng chứng/readiness: `pass`, `warn`, `fail`;
+- decision quyết định bước tiếp theo, ví dụ `continue`, `research`, `revise`, `pivot`, `defer`, `stop`.
+
+## MVP
+
+MVP gồm 13 skill:
+
+`idea-pressure-test`, `problem-validation`, `customer-research`, `market-landscape`, `icp-positioning`, `mvp-scope`, `ux-flow`, `architecture-plan`, `engineering-readiness`, `runtime-verification`, `launch-readiness`, `distribution-plan`, `pricing-experiment`.
+
+Ba workflow:
+
+- `workflows/idea-to-mvp`
+- `workflows/pre-launch-audit`
+- `workflows/idea-to-first-users`
 
 ## Cài đặt
 
@@ -60,11 +76,25 @@ cd product-pro-max-skills
 python scripts/install.py --target /duong-dan/project/.agents/skills --all
 ```
 
-Logic skill dùng English làm canonical để tránh translation drift. Output cho người dùng phải theo ngôn ngữ người dùng yêu cầu.
+## Project state
+
+Project state canonical dùng:
+
+- `cycle`
+- `phase`
+- `status`
+
+Giá trị hợp lệ lấy từ `model/product-model.json`, không lấy từ bản dịch.
+
+## Ngôn ngữ
+
+English là canonical cho logic skill, shared product semantics và machine identifier. Output gửi người dùng theo ngôn ngữ người dùng yêu cầu.
 
 ## Trạng thái
 
-**MVP / nền tảng v0.1.** Useful > Large.
+**MVP / nền tảng v0.1.**
+
+Các foundation tiếp theo được quản lý trong `specs/ROADMAP-foundation.md`.
 
 ## License
 
