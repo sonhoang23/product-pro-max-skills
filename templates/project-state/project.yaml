@@ -1,5 +1,6 @@
 project: replace-me
-stage: discover
+cycle: opportunity
+phase: discovery
 status: active
 current_workflow: null
 current_skill: null

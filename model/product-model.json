@@ -1,0 +1,437 @@
+{
+  "model_version": "1.0.0",
+  "canonical_language": "en",
+  "lifecycle": {
+    "ordered": true,
+    "cycles": [
+      {
+        "id": "opportunity",
+        "label": "Opportunity",
+        "purpose": "Explore ideas, problems, and evidence worth pursuing.",
+        "phases": [
+          {
+            "id": "discovery",
+            "label": "Discovery",
+            "purpose": "Explore problems, users, context, and unknowns."
+          },
+          {
+            "id": "validation",
+            "label": "Validation",
+            "purpose": "Test whether the problem and opportunity are supported by sufficient evidence."
+          }
+        ]
+      },
+      {
+        "id": "product-strategy",
+        "label": "Product Strategy",
+        "purpose": "Choose the market, customer, positioning, and business direction.",
+        "phases": [
+          {
+            "id": "positioning",
+            "label": "Positioning",
+            "purpose": "Define who the product is for and why it should be chosen."
+          },
+          {
+            "id": "business-model",
+            "label": "Business Model",
+            "purpose": "Define how value creation and value capture are expected to work."
+          }
+        ]
+      },
+      {
+        "id": "product-definition",
+        "label": "Product Definition",
+        "purpose": "Turn validated strategy into a bounded, measurable product definition.",
+        "phases": [
+          {
+            "id": "scope",
+            "label": "Scope",
+            "purpose": "Choose the smallest coherent product scope that tests the critical hypothesis."
+          },
+          {
+            "id": "requirements",
+            "label": "Requirements",
+            "purpose": "Define required behavior, boundaries, and acceptance outcomes."
+          },
+          {
+            "id": "experience-design",
+            "label": "Experience Design",
+            "purpose": "Define end-to-end user flows, states, and recovery paths."
+          },
+          {
+            "id": "measurement-design",
+            "label": "Measurement Design",
+            "purpose": "Define how product behavior and outcomes will be measured."
+          }
+        ]
+      },
+      {
+        "id": "delivery",
+        "label": "Delivery",
+        "purpose": "Design, plan, build, and integrate the product.",
+        "phases": [
+          {
+            "id": "technical-design",
+            "label": "Technical Design",
+            "purpose": "Choose proportionate architecture and technical trade-offs."
+          },
+          {
+            "id": "implementation-planning",
+            "label": "Implementation Planning",
+            "purpose": "Turn intended design into executable, dependency-aware work."
+          },
+          {
+            "id": "build",
+            "label": "Build",
+            "purpose": "Implement the intended product behavior and supporting systems."
+          },
+          {
+            "id": "integration",
+            "label": "Integration",
+            "purpose": "Connect components and dependencies into a coherent working system."
+          }
+        ]
+      },
+      {
+        "id": "verification",
+        "label": "Verification",
+        "purpose": "Establish evidence that the product works, is usable, and is safe enough for its intended exposure.",
+        "phases": [
+          {
+            "id": "product-qa",
+            "label": "Product QA",
+            "purpose": "Check product behavior against requirements and acceptance expectations."
+          },
+          {
+            "id": "runtime-verification",
+            "label": "Runtime Verification",
+            "purpose": "Verify behavior in the actual running environment rather than from static inspection alone."
+          },
+          {
+            "id": "security-reliability",
+            "label": "Security & Reliability",
+            "purpose": "Evaluate security, resilience, recovery, and operational failure modes."
+          },
+          {
+            "id": "ux-validation",
+            "label": "UX Validation",
+            "purpose": "Validate that intended users can complete important flows successfully."
+          }
+        ]
+      },
+      {
+        "id": "go-to-market",
+        "label": "Go-to-Market",
+        "purpose": "Prepare and expose the product to intended users with a deliberate distribution path.",
+        "phases": [
+          {
+            "id": "launch-preparation",
+            "label": "Launch Preparation",
+            "purpose": "Prepare product, support, analytics, messaging, and rollback for launch."
+          },
+          {
+            "id": "distribution",
+            "label": "Distribution",
+            "purpose": "Choose and execute realistic paths to reach intended users."
+          }
+        ]
+      },
+      {
+        "id": "growth",
+        "label": "Growth",
+        "purpose": "Improve acquisition, value realization, monetization, retention, and expansion.",
+        "phases": [
+          {
+            "id": "acquisition",
+            "label": "Acquisition",
+            "purpose": "Bring qualified users into the product."
+          },
+          {
+            "id": "activation",
+            "label": "Activation",
+            "purpose": "Help new users reach the first meaningful value moment."
+          },
+          {
+            "id": "engagement",
+            "label": "Engagement",
+            "purpose": "Increase meaningful repeated product usage."
+          },
+          {
+            "id": "monetization",
+            "label": "Monetization",
+            "purpose": "Convert delivered value into sustainable revenue."
+          },
+          {
+            "id": "retention",
+            "label": "Retention",
+            "purpose": "Keep users who continue receiving meaningful value."
+          },
+          {
+            "id": "referral",
+            "label": "Referral",
+            "purpose": "Turn satisfied users into an acquisition channel where appropriate."
+          },
+          {
+            "id": "expansion",
+            "label": "Expansion",
+            "purpose": "Increase value and adoption within existing users or accounts."
+          }
+        ]
+      },
+      {
+        "id": "operations",
+        "label": "Operations",
+        "purpose": "Run, support, optimize, and maintain the product over time.",
+        "phases": [
+          {
+            "id": "product-operations",
+            "label": "Product Operations",
+            "purpose": "Operate support, monitoring, incident response, and routine product processes."
+          },
+          {
+            "id": "optimization",
+            "label": "Optimization",
+            "purpose": "Improve performance, cost, reliability, usability, or conversion using evidence."
+          },
+          {
+            "id": "maintenance",
+            "label": "Maintenance",
+            "purpose": "Keep the product healthy while managing technical and operational debt."
+          }
+        ]
+      },
+      {
+        "id": "learning-evolution",
+        "label": "Learning & Evolution",
+        "purpose": "Turn accumulated evidence into revised product and portfolio decisions.",
+        "phases": [
+          {
+            "id": "evidence-review",
+            "label": "Evidence Review",
+            "purpose": "Review accumulated qualitative and quantitative evidence."
+          },
+          {
+            "id": "strategy-review",
+            "label": "Strategy Review",
+            "purpose": "Reassess product strategy in light of new evidence."
+          },
+          {
+            "id": "portfolio-decision",
+            "label": "Portfolio Decision",
+            "purpose": "Decide whether to scale, maintain, pivot, defer, or stop the product or bet."
+          }
+        ]
+      },
+      {
+        "id": "end-of-life",
+        "label": "End of Life",
+        "purpose": "Reduce or remove product exposure safely when continued operation is no longer justified.",
+        "phases": [
+          {
+            "id": "deprecation",
+            "label": "Deprecation",
+            "purpose": "Announce and manage the transition away from a capability or product."
+          },
+          {
+            "id": "migration",
+            "label": "Migration",
+            "purpose": "Move users, data, or dependencies to the supported destination."
+          },
+          {
+            "id": "sunset",
+            "label": "Sunset",
+            "purpose": "End operation safely after migration and obligations are complete."
+          }
+        ]
+      }
+    ]
+  },
+  "tracks": [
+    {
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "id": "engineering",
+      "label": "Engineering"
+    },
+    {
+      "id": "ux",
+      "label": "UX"
+    },
+    {
+      "id": "research",
+      "label": "Research"
+    },
+    {
+      "id": "data",
+      "label": "Data"
+    },
+    {
+      "id": "marketing",
+      "label": "Marketing"
+    },
+    {
+      "id": "growth",
+      "label": "Growth"
+    },
+    {
+      "id": "sales",
+      "label": "Sales"
+    },
+    {
+      "id": "revenue",
+      "label": "Revenue"
+    },
+    {
+      "id": "operations",
+      "label": "Operations"
+    },
+    {
+      "id": "security",
+      "label": "Security"
+    },
+    {
+      "id": "support",
+      "label": "Support"
+    }
+  ],
+  "loops": [
+    {
+      "id": "evidence-loop",
+      "label": "Evidence Loop",
+      "motion": "Assumption → Research → Evidence → Decision → New assumption"
+    },
+    {
+      "id": "discovery-loop",
+      "label": "Discovery Loop",
+      "motion": "Problem → Research → Hypothesis → Prototype → Feedback"
+    },
+    {
+      "id": "delivery-loop",
+      "label": "Delivery Loop",
+      "motion": "Define → Design → Plan → Build → Verify → Fix"
+    },
+    {
+      "id": "experiment-loop",
+      "label": "Experiment Loop",
+      "motion": "Observation → Hypothesis → Experiment → Measurement → Decision"
+    },
+    {
+      "id": "growth-loop",
+      "label": "Growth Loop",
+      "motion": "Acquire → Activate → Retain → Monetize → Refer"
+    },
+    {
+      "id": "gtm-loop",
+      "label": "GTM Loop",
+      "motion": "ICP → Message → Channel → Exposure → Response → Revision"
+    },
+    {
+      "id": "revenue-loop",
+      "label": "Revenue Loop",
+      "motion": "Value → Offer → Pricing → Purchase → Usage → Expansion"
+    },
+    {
+      "id": "reliability-loop",
+      "label": "Reliability Loop",
+      "motion": "Observe → Detect → Respond → Recover → Prevent"
+    },
+    {
+      "id": "strategy-loop",
+      "label": "Strategy Loop",
+      "motion": "Product evidence → Market evidence → Revenue evidence → Strategic bet"
+    }
+  ],
+  "gates": [
+    {
+      "id": "pass",
+      "label": "PASS",
+      "meaning": "Evidence is sufficient to continue without a known blocking condition."
+    },
+    {
+      "id": "warn",
+      "label": "WARN",
+      "meaning": "Work may continue, but material uncertainty or risk remains visible."
+    },
+    {
+      "id": "fail",
+      "label": "FAIL",
+      "meaning": "A blocking condition exists or required evidence is missing."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "continue",
+      "label": "Continue",
+      "meaning": "Proceed to the next intended activity."
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "meaning": "Gather evidence before making a stronger commitment."
+    },
+    {
+      "id": "revise",
+      "label": "Revise",
+      "meaning": "Change the current artifact, plan, or approach and reassess."
+    },
+    {
+      "id": "pivot",
+      "label": "Pivot",
+      "meaning": "Change a material product assumption, direction, or target."
+    },
+    {
+      "id": "repeat",
+      "label": "Repeat",
+      "meaning": "Run the current learning or operating loop again with updated evidence."
+    },
+    {
+      "id": "backtrack",
+      "label": "Backtrack",
+      "meaning": "Return to an earlier phase because downstream evidence invalidated an upstream assumption."
+    },
+    {
+      "id": "defer",
+      "label": "Defer",
+      "meaning": "Pause the work intentionally without treating it as completed or rejected."
+    },
+    {
+      "id": "stop",
+      "label": "Stop",
+      "meaning": "End the current work or bet because continuation is not justified."
+    },
+    {
+      "id": "escalate",
+      "label": "Escalate",
+      "meaning": "Raise the decision to a higher-authority reviewer when local authority or evidence is insufficient."
+    }
+  ],
+  "project_statuses": [
+    {
+      "id": "active",
+      "label": "Active",
+      "meaning": "Work is currently progressing."
+    },
+    {
+      "id": "blocked",
+      "label": "Blocked",
+      "meaning": "Progress is prevented by an unresolved dependency or condition."
+    },
+    {
+      "id": "deferred",
+      "label": "Deferred",
+      "meaning": "Work is intentionally paused for later reconsideration."
+    },
+    {
+      "id": "stopped",
+      "label": "Stopped",
+      "meaning": "Work has intentionally ended without being completed."
+    },
+    {
+      "id": "completed",
+      "label": "Completed",
+      "meaning": "The intended scope has been completed and verified."
+    }
+  ]
+}

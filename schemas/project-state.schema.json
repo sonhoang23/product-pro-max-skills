@@ -1,10 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://product-pro-max.dev/schemas/project-state.schema.json",
   "title": "Product Pro Max Project State",
   "type": "object",
   "required": [
     "project",
-    "stage",
+    "cycle",
+    "phase",
     "status",
     "updated_at"
   ],
@@ -13,17 +15,56 @@
       "type": "string",
       "minLength": 1
     },
-    "stage": {
+    "cycle": {
       "enum": [
-        "discover",
-        "validate",
-        "define",
-        "design",
+        "opportunity",
+        "product-strategy",
+        "product-definition",
+        "delivery",
+        "verification",
+        "go-to-market",
+        "growth",
+        "operations",
+        "learning-evolution",
+        "end-of-life"
+      ]
+    },
+    "phase": {
+      "enum": [
+        "discovery",
+        "validation",
+        "positioning",
+        "business-model",
+        "scope",
+        "requirements",
+        "experience-design",
+        "measurement-design",
+        "technical-design",
+        "implementation-planning",
         "build",
-        "verify",
-        "launch",
-        "revenue",
-        "grow"
+        "integration",
+        "product-qa",
+        "runtime-verification",
+        "security-reliability",
+        "ux-validation",
+        "launch-preparation",
+        "distribution",
+        "acquisition",
+        "activation",
+        "engagement",
+        "monetization",
+        "retention",
+        "referral",
+        "expansion",
+        "product-operations",
+        "optimization",
+        "maintenance",
+        "evidence-review",
+        "strategy-review",
+        "portfolio-decision",
+        "deprecation",
+        "migration",
+        "sunset"
       ]
     },
     "status": {
@@ -31,9 +72,8 @@
         "active",
         "blocked",
         "deferred",
-        "pivoted",
         "stopped",
-        "launched"
+        "completed"
       ]
     },
     "current_workflow": {
@@ -70,5 +110,241 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "opportunity"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "discovery",
+              "validation"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "product-strategy"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "positioning",
+              "business-model"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "product-definition"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "scope",
+              "requirements",
+              "experience-design",
+              "measurement-design"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "delivery"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "technical-design",
+              "implementation-planning",
+              "build",
+              "integration"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "verification"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "product-qa",
+              "runtime-verification",
+              "security-reliability",
+              "ux-validation"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "go-to-market"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "launch-preparation",
+              "distribution"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "growth"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "acquisition",
+              "activation",
+              "engagement",
+              "monetization",
+              "retention",
+              "referral",
+              "expansion"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "operations"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "product-operations",
+              "optimization",
+              "maintenance"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "learning-evolution"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "evidence-review",
+              "strategy-review",
+              "portfolio-decision"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cycle": {
+            "const": "end-of-life"
+          }
+        },
+        "required": [
+          "cycle"
+        ]
+      },
+      "then": {
+        "properties": {
+          "phase": {
+            "enum": [
+              "deprecation",
+              "migration",
+              "sunset"
+            ]
+          }
+        }
+      }
+    }
+  ],
   "additionalProperties": true
 }
