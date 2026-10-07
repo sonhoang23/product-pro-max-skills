@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "spec": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "spec.md": "90fb0c38256618e9f7f85518d3227560c39f8c0d"
+      },
+      "outputs": []
+    },
+    "plan": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "plan.md": "5d9cd7ecacbe0b81b6045bee24c9657617cf76d3",
+        "research.md": "3dce6a96883ed922575e1d77d6aa8aabbb9fcf6a",
+        "data-model.md": "c6cc273abb46200bae42b56378903fd4820d3e7b",
+        "quickstart.md": "70b1efd29c5b13800acb84fc8073815bc9308d2e",
+        "contracts/product-model-v1.md": "8fab995a42e5330b7dbf87479c52a53a79f1c506"
+      },
+      "outputs": []
+    },
+    "tasks": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "ff8e77638866c48ebcd63f1c06b591209173711a"
+      },
+      "outputs": []
+    }
+  }
+}
