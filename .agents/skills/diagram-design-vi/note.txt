@@ -1,0 +1,65 @@
+skills/diagram-design-vi/SKILL.md quy trình chính:
+
+  1. Kiểm tra style guide
+     Tìm marker .diagram-design ở thư mục gốc project. Nếu chưa có, đọc references/style-guide.md. Nếu token còn mặc
+     định, chọn: tùy biến brand hoặc dùng mặc định. Nên lưu kết quả thành client profile.
+
+  2. Xác định có cần vẽ không
+     Nếu bảng, bullet hoặc đoạn văn truyền đạt tốt hơn, không dùng diagram.
+
+  3. Chọn semantic pattern
+     Nếu nội dung có hành vi, trạng thái, luồng, rủi ro: đọc references/semantic-patterns.md, chọn pattern trước.
+
+  4. Chọn visual type
+     Chọn architecture, flowchart, sequence, ER, timeline, swimlane, tree, bar chart… theo nội dung.
+
+  5. Đọc type reference
+     Luôn đọc file references/type-<type>.md tương ứng trước khi vẽ.
+
+  6. Chọn output dial
+     Xác định:
+      - Format: html, svg, png, html+png
+      - Size: tài liệu, slide, social, print
+      - Detail: faithful, balanced, simplified
+      - Audience: engineer, mixed, executive
+
+  7. Chốt kế hoạch trước khi render
+     Nêu type, pattern, size, phần sẽ loại bỏ vì complexity budget. Chỉ bỏ qua khi người dùng đã chốt rõ.
+
+  8. Dựng diagram
+     Copy template phù hợp trong assets/, thay eyebrow, title, SVG body, <title>, <desc>. Mặc định dùng static HTML,
+     CSS inline, SVG inline.
+
+  9. Tuân thủ design system
+     Dùng grid 4px, tối đa 9 node / 12 arrow, coral tối đa 1–2 focal element, connector vuông góc, arrow label có mask,
+     không shadow, không layout Mermaid mặc định.
+
+  10. Kiểm tra accessibility
+     SVG cần role="img", aria-labelledby, <title> đứng đầu, <desc> mô tả nội dung.
+
+  11. Chạy Taste Gate
+     Kiểm tra type, layout, density, connector, typography, legend, accessibility, animation.
+
+  12. Nếu import draw.io/Mermaid
+     Extract structural digest trước; redraw lại, không convert trực tiếp. Giữ component, quan hệ, grouping, direction.
+     Báo cáo phần merge/collapse/drop.
+
+  13. Nếu dùng social
+     Thiết kế ngay theo canvas đích: portrait 1080×1350, square 1080×1080, story 1080×1920. Giữ safe area 40px, không
+     crop nội dung.
+
+  14. Export
+     Chỉ export khi được yêu cầu:
+
+  python scripts/export_diagram.py path/to/diagram.html
+
+  Bước đầu tiên cần làm ngay:
+
+  Kiểm tra thư mục gốc project có `.diagram-design` chưa.
+
+  Sau đó đọc:
+
+  references/profiles.md
+  references/style-guide.md
+
+  Nếu chưa có profile và style guide vẫn mặc định, cần quyết định: tùy biến theo brand hoặc tạm dùng mặc định.
