@@ -1,0 +1,7 @@
+{
+  "ai": "codex",
+  "ai_skills": true,
+  "feature_numbering": "sequential",
+  "here": true,
+  "script": "ps"
+}
