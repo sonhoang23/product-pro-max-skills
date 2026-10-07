@@ -4,7 +4,7 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 
 | Spec | Feature | Goal | Dependency | Status |
 | --- | --- | --- | --- | --- |
-| 001 | `canonical-product-model` | Establish one canonical ontology for lifecycle, cycles, phases, tracks, loops, gates, decisions, and project status | None | Active |
+| 001 | `canonical-product-model` | Establish one canonical ontology for lifecycle, cycles, phases, tracks, loops, gates, decisions, and project status | None | Complete |
 | 002 | `skill-manifest-registry` | Define skill metadata and a machine-readable registry for human and agent discovery | 001 | Backlog |
 | 003 | `versioning-compatibility` | Define versioning, compatibility, breaking-change, migration, and deprecation rules | 001 | Backlog |
 | 004 | `quality-validation-evals` | Expand validation into schema, semantic, workflow, and standardized skill evaluation gates | 002, 003 | Backlog |
@@ -15,7 +15,7 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 ## Dependency Graph
 
 ```text
-001 Canonical Product Model
+001 Canonical Product Model ✅
         |
         +--> 002 Skill Manifest & Registry
         |        |
@@ -35,3 +35,5 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 ## Execution Rule
 
 Do not create the next numbered spec until its required upstream foundation is implemented, verified, and converged. Backlog entries are not authoritative feature requirements until their own `spec.md` exists.
+
+**Next recommended feature**: Spec 002 — `skill-manifest-registry`.

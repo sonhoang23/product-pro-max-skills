@@ -22,7 +22,59 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "ff8e77638866c48ebcd63f1c06b591209173711a"
+        "tasks.md": "8ba0b9cf6c9d3f30fab990e9a280d4647659d827"
+      },
+      "outputs": []
+    },
+    "implementation:phase-01": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "8ba0b9cf6c9d3f30fab990e9a280d4647659d827",
+        "model/product-model.json": "3957480abb7c0de4d73450a0e966ce00c7088819",
+        "schemas/product-model.schema.json": "d89e123b1885d14863ecc5d8bc8783cef1ae5ce3",
+        "PRODUCT-MODEL.md": "5d541426e34b77c4c8afb06a4bffef874e6cb609"
+      },
+      "outputs": []
+    },
+    "implementation:phase-02": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "8ba0b9cf6c9d3f30fab990e9a280d4647659d827",
+        "schemas/skill-output.schema.json": "ae80d1fd4389e1b84d2108aaac64934548e82951",
+        "schemas/project-state.schema.json": "e8e32e8285141b5396e857a1d233c4318055ad44",
+        "templates/project-state/project.yaml": "dea3cf191a734812cf80b2698bde8022822faaec",
+        "scripts/validate_repo.py": "5dcd2be2f29d7c268cb7bdda510c98cfa60bf504"
+      },
+      "outputs": []
+    },
+    "implementation:phase-03": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "8ba0b9cf6c9d3f30fab990e9a280d4647659d827",
+        "README.md": "70c77da65e1be4d3eded1edc6ca7043f68f8de07",
+        "README.vi.md": "12f3b8328b617d62e8566de6e5bca904d2c10b96",
+        "docs/ARCHITECTURE.md": "cbf595f39cf434e79c27c82e9197e5b952cbb853",
+        "QUALITY-GATES.md": "3c3756af093f6242ae94365e716d966567655de1",
+        "SKILL-CONTRACT.md": "2c84686ffc1c2f31d52c728997a004ded7ff1bb2"
+      },
+      "outputs": []
+    },
+    "converge": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "8ba0b9cf6c9d3f30fab990e9a280d4647659d827",
+        "model/product-model.json": "3957480abb7c0de4d73450a0e966ce00c7088819",
+        "schemas/product-model.schema.json": "d89e123b1885d14863ecc5d8bc8783cef1ae5ce3",
+        "schemas/skill-output.schema.json": "ae80d1fd4389e1b84d2108aaac64934548e82951",
+        "schemas/project-state.schema.json": "e8e32e8285141b5396e857a1d233c4318055ad44",
+        "templates/project-state/project.yaml": "dea3cf191a734812cf80b2698bde8022822faaec",
+        "scripts/validate_repo.py": "5dcd2be2f29d7c268cb7bdda510c98cfa60bf504",
+        "PRODUCT-MODEL.md": "5d541426e34b77c4c8afb06a4bffef874e6cb609",
+        "README.md": "70c77da65e1be4d3eded1edc6ca7043f68f8de07",
+        "README.vi.md": "12f3b8328b617d62e8566de6e5bca904d2c10b96",
+        "docs/ARCHITECTURE.md": "cbf595f39cf434e79c27c82e9197e5b952cbb853",
+        "QUALITY-GATES.md": "3c3756af093f6242ae94365e716d966567655de1",
+        "SKILL-CONTRACT.md": "2c84686ffc1c2f31d52c728997a004ded7ff1bb2"
       },
       "outputs": []
     }
