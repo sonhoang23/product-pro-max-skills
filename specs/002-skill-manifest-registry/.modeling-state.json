@@ -22,9 +22,9 @@
       "status": "no-diagram-needed",
       "source_hashes": {
         "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
-        "research.md": "e83a1869b5805edd6880cb160289d76b59cfaec3",
+        "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
         "data-model.md": "574d27ee2f36664bd44ef77ae24dd487fff3888b",
-        "quickstart.md": "2f9836ec794e480433f1c3d9f9e69c310be42532",
+        "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede",
         "contracts/manifest-and-registry.md": "2ce10b69f5caa794562b38a405695583eb8dd85b"
       },
       "outputs": [],
@@ -42,13 +42,15 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "4bdb6d25ec2ba7c9617a384ff632476a6da2676d",
-        "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc"
+        "tasks.md": "e2553343bc69b008b2aa179295b926839bef7ff8",
+        "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
+        "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
+        "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede"
       },
       "outputs": [],
       "diagram_check": {
         "result": "negative",
-        "reason": "Dependency and handoff structure, including the deferred T013 completion checkpoint, is explicitly traceable in tasks.md. A separate diagram would duplicate this textual execution model."
+        "reason": "Task ordering and migration dependencies remain explicit in tasks.md after Phase 1 setup; no additional diagram clarifies the existing graph."
       },
       "qa": {
         "source_set": "verified",
