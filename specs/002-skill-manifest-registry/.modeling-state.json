@@ -42,7 +42,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "9247cde75135f18165eeef0d6ddbdbe763132628",
+        "tasks.md": "9ee4266ef065d10cc001879354efbc2480b3443c",
         "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
         "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
         "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede"
@@ -119,15 +119,15 @@
     "implementation:phase-05": {
       "status": "in-progress",
       "source_hashes": {
-        "tasks.md": "64f6b4f2b37242879b73b8688c62a20ca7087a66",
-        "scripts/generate_skill_registry.py": "3f556d35cb46b5d3b2b17e652acfa7c6a5459f6b",
-        "scripts/skill_registry_common.py": "db16709659a79d559b19fb283c70858f78718b12"
+        "tasks.md": "9ee4266ef065d10cc001879354efbc2480b3443c",
+        "scripts/skill_registry_common.py": "8ba55c78ed150413c0e2b895e54c5b246ea0b16d",
+        "scripts/generate_skill_registry.py": "45ace1fb7a2645458d614c1e66df5f3f3855a86c"
       },
       "outputs": [],
       "qa": {
         "source_review": "completed",
-        "test_execution": "passed_subset_user_windows",
-        "evidence": "Windows Python 3.13.3, commit b89abe8: registry suite 15/15 PASS including malformed-input preservation and read-only drift, T022 evidenced. T020 semantic verification and T021 exhaustive negative matrix pending."
+        "test_execution": "pending_new_changes",
+        "evidence": "15/15 previous Windows PASS at b89abe8; new negative cases and semantic checks committed, rerun needed before marking T012/T021."
       }
     }
   }
