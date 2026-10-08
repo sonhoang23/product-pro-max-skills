@@ -1,0 +1,115 @@
+{
+  "id": "ppmax-architecture-plan",
+  "namespace": "product-pro-max",
+  "slug": "architecture-plan",
+  "description": "Create a proportionate software architecture plan from product constraints, risks and verification needs. Use before significant implementation or when architecture choices need explicit trade-offs.",
+  "primary_cycle": "delivery",
+  "lifecycle": [
+    {
+      "cycle": "delivery",
+      "phase": "technical-design"
+    }
+  ],
+  "tracks": [
+    "engineering"
+  ],
+  "triggers": {
+    "include": [
+      "Use after MVP scope and core flows are sufficiently defined."
+    ],
+    "exclude": [
+      "Do not introduce enterprise patterns, microservices or infrastructure without a constraint that justifies them."
+    ]
+  },
+  "inputs": [
+    {
+      "name": "mvp-scope",
+      "description": "MVP scope.",
+      "required": true
+    },
+    {
+      "name": "core-flows",
+      "description": "Core flows.",
+      "required": true
+    },
+    {
+      "name": "known-technical-constraints",
+      "description": "Known technical constraints.",
+      "required": true
+    },
+    {
+      "name": "existing-stack",
+      "description": "Existing stack.",
+      "required": false
+    },
+    {
+      "name": "team-skills",
+      "description": "Team skills.",
+      "required": false
+    },
+    {
+      "name": "compliance-security-requirements",
+      "description": "Compliance/security requirements.",
+      "required": false
+    },
+    {
+      "name": "expected-load",
+      "description": "Expected load.",
+      "required": false
+    },
+    {
+      "name": "integration-constraints",
+      "description": "Integration constraints.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "drivers",
+      "description": "Drivers"
+    },
+    {
+      "name": "proposed-architecture",
+      "description": "Proposed architecture"
+    },
+    {
+      "name": "boundaries",
+      "description": "Boundaries"
+    },
+    {
+      "name": "data-model-direction",
+      "description": "Data model direction"
+    },
+    {
+      "name": "key-decisions-trade-offs",
+      "description": "Key decisions/trade-offs"
+    },
+    {
+      "name": "rejected-alternatives",
+      "description": "Rejected alternatives"
+    },
+    {
+      "name": "risks",
+      "description": "Risks"
+    },
+    {
+      "name": "verification-plan",
+      "description": "Verification plan"
+    },
+    {
+      "name": "gate",
+      "description": "Gate"
+    }
+  ],
+  "related_skills": [],
+  "workflows": [
+    {
+      "workflow_id": "idea-to-first-users",
+      "role": "step"
+    },
+    {
+      "workflow_id": "pre-launch-audit",
+      "role": "step"
+    }
+  ]
+}

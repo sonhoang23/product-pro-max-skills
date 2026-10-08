@@ -1,0 +1,111 @@
+{
+  "id": "ppmax-launch-readiness",
+  "namespace": "product-pro-max",
+  "slug": "launch-readiness",
+  "description": "Run a cross-functional launch gate over product, UX, engineering, analytics, onboarding, support, discoverability and rollback. Use immediately before exposing an MVP to target users.",
+  "primary_cycle": "go-to-market",
+  "lifecycle": [
+    {
+      "cycle": "go-to-market",
+      "phase": "launch-preparation"
+    }
+  ],
+  "tracks": [
+    "operations"
+  ],
+  "triggers": {
+    "include": [
+      "Use after core MVP functionality exists and runtime verification has begun."
+    ],
+    "exclude": [
+      "Do not require enterprise polish for a small controlled beta; readiness must match launch scope."
+    ]
+  },
+  "inputs": [
+    {
+      "name": "launch-scope-audience",
+      "description": "Launch scope/audience.",
+      "required": true
+    },
+    {
+      "name": "current-product-state",
+      "description": "Current product state.",
+      "required": true
+    },
+    {
+      "name": "known-verification-evidence",
+      "description": "Known verification evidence.",
+      "required": true
+    },
+    {
+      "name": "analytics-plan",
+      "description": "Analytics plan.",
+      "required": false
+    },
+    {
+      "name": "support-path",
+      "description": "Support path.",
+      "required": false
+    },
+    {
+      "name": "onboarding",
+      "description": "Onboarding.",
+      "required": false
+    },
+    {
+      "name": "seo-discovery-needs",
+      "description": "SEO/discovery needs.",
+      "required": false
+    },
+    {
+      "name": "rollback-plan",
+      "description": "Rollback plan.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "launch-scope",
+      "description": "Launch scope"
+    },
+    {
+      "name": "pass-items",
+      "description": "PASS items"
+    },
+    {
+      "name": "warn-items",
+      "description": "WARN items"
+    },
+    {
+      "name": "block-items",
+      "description": "BLOCK items"
+    },
+    {
+      "name": "evidence-gaps",
+      "description": "Evidence gaps"
+    },
+    {
+      "name": "rollback-containment",
+      "description": "Rollback/containment"
+    },
+    {
+      "name": "go-no-go-decision",
+      "description": "Go/no-go decision"
+    },
+    {
+      "name": "next-actions",
+      "description": "Next actions"
+    }
+  ],
+  "related_skills": [],
+  "workflows": [
+    {
+      "workflow_id": "idea-to-first-users",
+      "role": "step"
+    },
+    {
+      "workflow_id": "pre-launch-audit",
+      "role": "step"
+    }
+  ]
+}

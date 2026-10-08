@@ -1,0 +1,110 @@
+{
+  "id": "ppmax-pricing-experiment",
+  "namespace": "product-pro-max",
+  "slug": "pricing-experiment",
+  "description": "Turn pricing into a falsifiable hypothesis about value metric, package, segment and willingness to pay. Use before choosing or changing a monetization model.",
+  "primary_cycle": "growth",
+  "lifecycle": [
+    {
+      "cycle": "growth",
+      "phase": "monetization"
+    },
+    {
+      "cycle": "product-strategy",
+      "phase": "business-model"
+    }
+  ],
+  "tracks": [
+    "revenue"
+  ],
+  "triggers": {
+    "include": [
+      "Use when a target segment and meaningful product outcome are defined."
+    ],
+    "exclude": [
+      "Do not present a precise price as validated without willingness-to-pay or transaction evidence."
+    ]
+  },
+  "inputs": [
+    {
+      "name": "icp",
+      "description": "ICP.",
+      "required": true
+    },
+    {
+      "name": "product-outcome-value-proposition",
+      "description": "Product outcome/value proposition.",
+      "required": true
+    },
+    {
+      "name": "current-pricing",
+      "description": "Current pricing.",
+      "required": false
+    },
+    {
+      "name": "competitor-pricing",
+      "description": "Competitor pricing.",
+      "required": false
+    },
+    {
+      "name": "customer-interviews",
+      "description": "Customer interviews.",
+      "required": false
+    },
+    {
+      "name": "usage-data",
+      "description": "Usage data.",
+      "required": false
+    },
+    {
+      "name": "cost-constraints",
+      "description": "Cost constraints.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "value-metric-hypothesis",
+      "description": "Value metric hypothesis"
+    },
+    {
+      "name": "pricing-model-hypotheses",
+      "description": "Pricing model hypotheses"
+    },
+    {
+      "name": "packaging-hypothesis",
+      "description": "Packaging hypothesis"
+    },
+    {
+      "name": "evidence",
+      "description": "Evidence"
+    },
+    {
+      "name": "experiment-design",
+      "description": "Experiment design"
+    },
+    {
+      "name": "success-threshold",
+      "description": "Success threshold"
+    },
+    {
+      "name": "failure-threshold",
+      "description": "Failure threshold"
+    },
+    {
+      "name": "risks",
+      "description": "Risks"
+    },
+    {
+      "name": "gate",
+      "description": "Gate"
+    }
+  ],
+  "related_skills": [],
+  "workflows": [
+    {
+      "workflow_id": "idea-to-first-users",
+      "role": "step"
+    }
+  ]
+}

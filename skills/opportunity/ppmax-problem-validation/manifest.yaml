@@ -1,0 +1,102 @@
+{
+  "id": "ppmax-problem-validation",
+  "namespace": "product-pro-max",
+  "slug": "problem-validation",
+  "description": "Evaluate whether a customer problem has enough real evidence to justify product investment. Use before committing MVP scope or when a team is unsure whether observed pain is real, frequent and consequential.",
+  "primary_cycle": "opportunity",
+  "lifecycle": [
+    {
+      "cycle": "opportunity",
+      "phase": "validation"
+    }
+  ],
+  "tracks": [
+    "research"
+  ],
+  "triggers": {
+    "include": [
+      "Use after an idea has a reasonably specific problem hypothesis and before major solution commitment."
+    ],
+    "exclude": [
+      "Do not fabricate interviews, demand, metrics or willingness-to-pay evidence."
+    ]
+  },
+  "inputs": [
+    {
+      "name": "problem-hypothesis",
+      "description": "Problem hypothesis.",
+      "required": true
+    },
+    {
+      "name": "target-customer-or-segment-hypothesis",
+      "description": "Target customer or segment hypothesis.",
+      "required": true
+    },
+    {
+      "name": "interview-notes",
+      "description": "Interview notes.",
+      "required": false
+    },
+    {
+      "name": "behavioral-data",
+      "description": "Behavioral data.",
+      "required": false
+    },
+    {
+      "name": "support-tickets",
+      "description": "Support tickets.",
+      "required": false
+    },
+    {
+      "name": "community-search-evidence",
+      "description": "Community/search evidence.",
+      "required": false
+    },
+    {
+      "name": "payment-or-switching-signals",
+      "description": "Payment or switching signals.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "problem-statement",
+      "description": "Problem statement"
+    },
+    {
+      "name": "evidence-table",
+      "description": "Evidence table"
+    },
+    {
+      "name": "contradictory-evidence",
+      "description": "Contradictory evidence"
+    },
+    {
+      "name": "open-assumptions",
+      "description": "Open assumptions"
+    },
+    {
+      "name": "validation-verdict",
+      "description": "Validation verdict"
+    },
+    {
+      "name": "gate",
+      "description": "Gate"
+    },
+    {
+      "name": "decision",
+      "description": "Decision"
+    },
+    {
+      "name": "next-evidence-action",
+      "description": "Next evidence action"
+    }
+  ],
+  "related_skills": [],
+  "workflows": [
+    {
+      "workflow_id": "idea-to-mvp",
+      "role": "step"
+    }
+  ]
+}

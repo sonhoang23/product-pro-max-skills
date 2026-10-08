@@ -1,0 +1,100 @@
+{
+  "id": "ppmax-customer-research",
+  "namespace": "product-pro-max",
+  "slug": "customer-research",
+  "description": "Plan or synthesize customer research into traceable observations, pains, workarounds and buying signals. Use for interviews, notes, support conversations or qualitative research before product decisions.",
+  "primary_cycle": "opportunity",
+  "lifecycle": [
+    {
+      "cycle": "opportunity",
+      "phase": "discovery"
+    }
+  ],
+  "tracks": [
+    "research"
+  ],
+  "triggers": {
+    "include": [
+      "Use to design interviews or synthesize existing qualitative customer material."
+    ],
+    "exclude": [
+      "Do not use leading questions to seek confirmation of a preferred solution."
+    ]
+  },
+  "inputs": [
+    {
+      "name": "research-objective-or-existing-research-material",
+      "description": "Research objective or existing research material.",
+      "required": true
+    },
+    {
+      "name": "icp-hypothesis",
+      "description": "ICP hypothesis.",
+      "required": false
+    },
+    {
+      "name": "interview-transcripts-or-notes",
+      "description": "Interview transcripts or notes.",
+      "required": false
+    },
+    {
+      "name": "current-product-behavior",
+      "description": "Current product behavior.",
+      "required": false
+    },
+    {
+      "name": "decision-the-research-should-inform",
+      "description": "Decision the research should inform.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "research-objective",
+      "description": "Research objective"
+    },
+    {
+      "name": "observations",
+      "description": "Observations"
+    },
+    {
+      "name": "repeated-patterns",
+      "description": "Repeated patterns"
+    },
+    {
+      "name": "workarounds",
+      "description": "Workarounds"
+    },
+    {
+      "name": "buying-switching-signals",
+      "description": "Buying/switching signals"
+    },
+    {
+      "name": "contradictions",
+      "description": "Contradictions"
+    },
+    {
+      "name": "inferences",
+      "description": "Inferences"
+    },
+    {
+      "name": "open-questions",
+      "description": "Open questions"
+    },
+    {
+      "name": "next-action",
+      "description": "Next action"
+    },
+    {
+      "name": "gate",
+      "description": "Gate"
+    }
+  ],
+  "related_skills": [],
+  "workflows": [
+    {
+      "workflow_id": "idea-to-mvp",
+      "role": "step"
+    }
+  ]
+}
