@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "diagrams": [
+    {
+      "id": "feature-002-skill-metadata-relations",
+      "title": "Quan hệ khái niệm skill và metadata",
+      "scope": "feature",
+      "truth": "planned",
+      "phase": "spec",
+      "topic": "feature",
+      "feature": "002-skill-manifest-registry",
+      "path": "specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html",
+      "source": "specs/002-skill-manifest-registry/spec.md",
+      "parent": "feature-002-ledger",
+      "children": [],
+      "related": []
+    }
+  ]
+}
