@@ -80,6 +80,17 @@ def build_registry(root: Path) -> bytes:
             if relation["workflow_id"] not in workflow_ids:
                 _fail(path, f"unknown workflow {relation['workflow_id']}")
         entries.append({"path": skill_path.parent.relative_to(root).as_posix(), **data})
+    relation_index = {
+        entry["id"]: {(relation["skill_id"], relation["type"]) for relation in entry["related_skills"]}
+        for entry in entries
+    }
+    for entry in entries:
+        for relation in entry["related_skills"]:
+            target, kind = relation["skill_id"], relation["type"]
+            if kind == "prerequisite" and (entry["id"], "prerequisite") in relation_index.get(target, set()):
+                _fail(root / entry["path"] / "manifest.yaml", "contradictory reciprocal prerequisite")
+            if kind == "produces-input-for" and (entry["id"], "produces-input-for") in relation_index.get(target, set()):
+                _fail(root / entry["path"] / "manifest.yaml", "contradictory reciprocal produces-input-for")
     for entry in entries:
         for relation in entry["related_skills"]:
             if relation["skill_id"] not in seen_ids:
