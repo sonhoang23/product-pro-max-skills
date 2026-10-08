@@ -143,9 +143,10 @@
         "parity": "13 GitHub frontmatter/H1-only diff hunks; no other removed SKILL.md behavior lines; static parity only",
         "test_execution": "passed_user_windows",
         "test_evidence": "2026-10-08 Windows Python unittest discover -s tests -p test_skill*.py: 28 tests OK at 83f0ac3",
-        "registry": "13 entries committed at 6b4040a; local generate and check passed before commit; post-commit byte check pending",
+        "registry": "User Windows at ef6de19: committed 13-entry registry `generate_skill_registry.py check` returned Registry check OK; PASS for read-only drift check.",
         "runtime_invocation": "not_run",
-        "modeling": "T030 promotion requires fresh gate; not declared complete"
+        "modeling": "implementation:phase-06 remains in-progress; ensure-model before T030 promotion.",
+        "installer_dry_run": "User Windows at ef6de19: `install.py --target .agents/skills --all --dry-run` displayed 13 canonical source/destination pairs and Selected 13 skill(s); no install write or invocation tested."
       }
     }
   }
