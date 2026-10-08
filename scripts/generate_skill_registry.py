@@ -32,30 +32,6 @@ def _fail(source: Path, message: str) -> None:
     raise RegistryValidationError(f"{source}: {message}")
 
 
-def _named_items(value: object, source: Path, field: str, keys: set[str],
-                 required: set[str]) -> None:
-    if not isinstance(value, list):
-        _fail(source, f"{field} must be a list")
-    seen = set()
-    for item in value:
-        if not isinstance(item, dict) or not required <= item.keys() or set(item) - keys:
-            _fail(source, f"invalid {field} entry")
-        for key in required:
-            if key == "required":
-                if not isinstance(item[key], bool):
-                    _fail(source, f"{field}.required must be boolean")
-            elif not isinstance(item[key], str) or not item[key].strip():
-                _fail(source, f"{field}.{key} must be a nonempty string")
-        if "description" in item and (not isinstance(item["description"], str) or not item["description"].strip()):
-            _fail(source, f"{field}.description must be nonempty")
-        if "semantic_kind" in item and item["semantic_kind"] not in KINDS:
-            _fail(source, f"{field}: unknown semantic_kind")
-        identity = item.get("name", item.get("skill_id", item.get("workflow_id")))
-        if identity in seen:
-            _fail(source, f"{field}: duplicate {identity}")
-        seen.add(identity)
-
-
 def _frontmatter_name(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
     if not text.startswith("---\n") or "\n---\n" not in text[4:]:
@@ -96,19 +72,9 @@ def build_registry(root: Path) -> bytes:
         if _frontmatter_name(skill_path) != sid:
             _fail(skill_path, "SKILL.md name mismatch")
         validate_cycle_association(cycle, data["lifecycle"], data["tracks"], vocabulary, path)
-        triggers = data["triggers"]
-        if not isinstance(triggers, dict) or set(triggers) != {"include", "exclude"}:
-            _fail(path, "invalid triggers")
-        for key in ("include", "exclude"):
-            if not isinstance(triggers[key], list) or any(not isinstance(v, str) or not v.strip() for v in triggers[key]):
-                _fail(path, f"triggers.{key} must contain descriptions")
         validate_discovery_metadata(data, path)
-        _named_items(data["inputs"], path, "inputs", {"name", "description", "required"}, {"name", "description", "required"})
-        _named_items(data["outputs"], path, "outputs", {"name", "description", "semantic_kind"}, {"name", "description"})
-        _named_items(data["related_skills"], path, "related_skills", {"skill_id", "type"}, {"skill_id", "type"})
-        _named_items(data["workflows"], path, "workflows", {"workflow_id", "role"}, {"workflow_id", "role"})
         for relation in data["related_skills"]:
-            if relation["type"] not in RELATION_TYPES or relation["skill_id"] == sid:
+            if relation["skill_id"] == sid:
                 _fail(path, "unknown or self-referential relation")
         for relation in data["workflows"]:
             if relation["workflow_id"] not in workflow_ids:
