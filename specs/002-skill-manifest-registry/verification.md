@@ -14,7 +14,7 @@
 - Python interpreter and PyYAML installed version for this exact run were not printed.
 - Full `quickstart.md` validation matrix, byte hashes, exact negative-case process exit statuses and fresh filesystem fingerprints not recorded as a single end-to-end run.
 - Ubuntu GitHub Actions job execution and exact logs unverified. Combined commit-status API for `b03bea1` returned no statuses; this does **not** establish CI PASS or FAIL.
-- Phase implementation modeling gates are stale or in-progress; promotion tasks T030/T034/T037 and T040 remain pending.
+- Phase 6–8 implementation modeling gates were refreshed with current source fingerprints and negative Diagram Checks after prior Windows evidence; T030/T034/T037 source documentation promotions are complete. Phase 9 final converge/Diagram Check T040 remains pending consolidated validation.
 
 Do not treat these missing checks as PASS or mark T038–T041 complete.
 
@@ -44,3 +44,9 @@ python scripts/verify_skill_registry_release.py
 ```
 
 Capture complete output, source HEAD, GitHub Actions Ubuntu run/check logs and negative-case process exit codes before marking T038–T041 complete. This section is a planned checklist, not a passing result.
+
+## Final source-preparation notes
+
+The previous repository-wide validator still assumed flat skill paths and would reject canonical migration in the original `Validate` GitHub Actions workflow. `scripts/validate_repo.py` has now been updated to inspect `skills/*/ppmax-*/SKILL.md`, require sibling manifests and compare against canonical 13 IDs. The consolidated verifier explicitly runs this validator as well as the registry checker, all skill tests and installer dry-run. These changes have **not** received a post-change Python execution log and must be validated in the one-shot final run.
+
+Phase 6–8 documentation/authoring/global-first implementation has been subject to a source-based negative Diagram Check; the final repo-wide Diagram Check remains a separate T040 evidence gate. No project-level diagram was created prematurely.
