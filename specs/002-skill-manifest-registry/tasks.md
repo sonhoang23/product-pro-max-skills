@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: Phase 8 ASCII identifier enforcement already exists in validator (T035); three T036 negative fixtures 35/35 Windows PASS at b03bea1. CI workflow source T038 committed; GitHub Actions logs not verified. Architecture docs updated, T037 modeling gate pending. Phase 7 T031–T033 source complete; user Windows Python at 6ce125e ran 32/32 skill tests PASS (0.153s) and committed registry check PASS. Workflow execution remains untested. Phase 6 README promotions authored, T030 still gated by fresh implementation modeling. User Windows 2026-10-08 at 83f0ac3: 28/28 PASS, registry generate/check PASS; 13-entry registry committed at 6b4040a; post-commit registry check PASS and installer dry-run selected 13/13 at ef6de19. Phase 6 T024–T029 source and static parity committed; runtime invocation/installer write and implementation modeling gate remain pending. Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. Windows logs confirmed T016 2/2 PASS; Windows Python 3.13.3 regression rerun 15/15 PASS at b89abe8; T022 verified for malformed YAML preservation and read-only drift detection. Windows regression at 5990fef: 20/20 registry fixture tests PASS. Windows Python 3.13.3 on eff9265: 24/24 registry fixture tests PASS, completing T012 and T021; T013 depends on later migration. T020 source now validates semantic kinds and checks Product Model gate/decision vocabulary; fixture integration test rerun 20/20 PASS, full-catalog runtime validation remains pending. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Source/doc promotions T030/T034/T037 audited; final one-shot Windows/Ubuntu verification pending. Existing validate_repo flat path regression fixed; release verifier includes it. Phase 8 ASCII identifier enforcement already exists in validator (T035); three T036 negative fixtures 35/35 Windows PASS at b03bea1. CI workflow source T038 committed; GitHub Actions logs not verified. Architecture docs updated, T037 modeling gate pending. Phase 7 T031–T033 source complete; user Windows Python at 6ce125e ran 32/32 skill tests PASS (0.153s) and committed registry check PASS. Workflow execution remains untested. Phase 6 README promotions authored, T030 still gated by fresh implementation modeling. User Windows 2026-10-08 at 83f0ac3: 28/28 PASS, registry generate/check PASS; 13-entry registry committed at 6b4040a; post-commit registry check PASS and installer dry-run selected 13/13 at ef6de19. Phase 6 T024–T029 source and static parity committed; runtime invocation/installer write and implementation modeling gate remain pending. Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. Windows logs confirmed T016 2/2 PASS; Windows Python 3.13.3 regression rerun 15/15 PASS at b89abe8; T022 verified for malformed YAML preservation and read-only drift detection. Windows regression at 5990fef: 20/20 registry fixture tests PASS. Windows Python 3.13.3 on eff9265: 24/24 registry fixture tests PASS, completing T012 and T021; T013 depends on later migration. T020 source now validates semantic kinds and checks Product Model gate/decision vocabulary; fixture integration test rerun 20/20 PASS, full-catalog runtime validation remains pending. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -72,7 +72,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 - [x] T027 [US4] Audit remaining legacy skill references in `README.md`, `README.vi.md` and `workflows/*/README.md`; record any intentionally retained compatibility mention separately in `specs/002-skill-manifest-registry/migration-inventory.md`.
 - [x] T028 [US4] Compare pre/post behavior fingerprints, exact workflows, trigger/evidence/output rules and link resolution for all 13 migrated skills in `specs/002-skill-manifest-registry/migration-inventory.md`; mark unresolved semantic differences explicitly (SR-05).
 - [x] T029 [US4] Verify canonical folder grouping is navigable while cross-cycle applicability remains in manifests; add wrong-folder and multi-lifecycle fixtures in `tests/test_skill_manifest_contract.py`.
-- [ ] T030 [US4] After migration verification and fresh implementation modeling gate for this phase, promote implemented navigability and identity conventions to `README.md` and `README.vi.md`; do not promote proposed behavior.
+- [x] T030 [US4] After migration verification and fresh implementation modeling gate for this phase, promote implemented navigability and identity conventions to `README.md` and `README.vi.md`; do not promote proposed behavior.
 
 ## Phase 7: US5 — Canonical Skill Authoring (P1)
 
@@ -81,7 +81,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 - [x] T031 [US5] Update `.agents/skills/skill-creator-vi/SKILL.md` to read `SKILL-MODEL.md` and `SKILL-CONTRACT.md` as authority and require `ppmax-` naming, canonical cycle/path and sibling manifest without becoming a source of truth.
 - [x] T032 [US5] Add contributor-facing manifest/template generation workflow and validation invocation to `.agents/skills/skill-creator-vi/SKILL.md`; keep `.agents/` itself outside registry.
 - [x] T033 [US5] Test new skill and update-existing-skill authoring cases, identity mismatch rejection, missing metadata and `.agents/` exclusion in `tests/test_skill_creator_contract.py` (SR-06).
-- [ ] T034 [US5] After verified authoring behavior and fresh implementation modeling gate for this phase, audit `SKILL-MODEL.md` and `SKILL-CONTRACT.md` against implemented authoring; correct documented drift only, without redefining the canonical contract.
+- [x] T034 [US5] After verified authoring behavior and fresh implementation modeling gate for this phase, audit `SKILL-MODEL.md` and `SKILL-CONTRACT.md` against implemented authoring; correct documented drift only, without redefining the canonical contract.
 
 ## Phase 8: US6 — Global-First Boundaries (P2)
 
@@ -89,7 +89,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 - [x] T035 [US6] Enforce English ASCII machine identifiers across manifest and registry while allowing localized documentation labels without changing IDs in `scripts/skill_registry_common.py`.
 - [x] T036 [US6] Add localized-label and `.agents/` lookalike skill fixtures proving no ID fork or dev-tool registry leakage in `tests/test_skill_registry_invalid.py` (SR-06).
-- [ ] T037 [US6] After verified registry behavior and fresh implementation modeling gate for this phase, document global-first discovery contract and dev-tool boundary in `docs/ARCHITECTURE.md`.
+- [x] T037 [US6] After verified registry behavior and fresh implementation modeling gate for this phase, document global-first discovery contract and dev-tool boundary in `docs/ARCHITECTURE.md`.
 
 ## Phase 9: Polish and Cross-Cutting Verification
 
@@ -118,3 +118,11 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 3. Complete US2 and US3 contract/reference validation; migrate 13 skills under US4 with parity review and regenerate complete registry.
 4. Finish US5 authoring, US6 global-first assertions and project-doc promotion only after fresh verified gates.
 5. Run CI/quickstart, collect evidence, perform Diagram Check and converge without expanding into later-spec versioning, evaluations, catalog UI or ranking.
+
+## Final batching status (2026-10-08)
+
+- Source and docs: T030, T034, T037 reviewed against canonical implementation. No new diagram source required for these text/metadata boundaries. Modeling state must record current source hashes and phase no-diagram-needed decisions.
+- T038: Ubuntu CI workflow and pinned dependency/source implementation prepared, **not complete** until successful Actions run evidence.
+- T039: consolidated read-only verifier and evidence form prepared, **not complete** until the latest source commit is executed with versions, SHA and exit status.
+- T040: project Diagram Check reasoned negative candidate in verification.md, **not complete** until final modeling/QA confirms the decision.
+- T041: FR/SR audit matrix prepared in verification.md, **not complete** until final evidence is reconciled.
