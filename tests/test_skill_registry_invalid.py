@@ -18,6 +18,29 @@ import test_skill_registry as fixture_module
 class InvalidRegistryTests(unittest.TestCase):
     # Reuse fixture setup without inheriting and rerunning positive test methods.
     setUp = fixture_module.RegistryTest.setUp
+    def test_localized_description_does_not_fork_canonical_id(self):
+        data = self.manifest.read_text(encoding="utf-8")
+        data = data.replace("A bounded research capability.", "Nghiên cứu vấn đề khách hàng.")
+        self.manifest.write_text(data, encoding="utf-8")
+        payload = json.loads(build_registry(self.root))
+        self.assertEqual(payload["skills"][0]["id"], "ppmax-example")
+
+    def test_non_ascii_machine_id_rejected(self):
+        data = self.manifest.read_text(encoding="utf-8")
+        data = data.replace("id: ppmax-example", "id: ppmax-ví-dụ")
+        self.manifest.write_text(data, encoding="utf-8")
+        with self.assertRaisesRegex(RegistryValidationError, "invalid canonical skill ID"):
+            build_registry(self.root)
+
+    def test_agent_development_lookalike_not_in_registry(self):
+        dev = self.root / ".agents" / "skills" / "ppmax-example"
+        dev.mkdir(parents=True)
+        (dev / "SKILL.md").write_text("---\\nname: ppmax-example\\n---\\n", encoding="utf-8")
+        (dev / "manifest.yaml").write_text("id: ppmax-example\\n", encoding="utf-8")
+        registry = json.loads(build_registry(self.root))
+        self.assertEqual(len(registry["skills"]), 1)
+        self.assertEqual(registry["skills"][0]["id"], "ppmax-example")
+
     def test_frontmatter_mismatch(self):
         skill = self.skill / "SKILL.md"
         skill.write_text(skill.read_text(encoding="utf-8").replace("name: ppmax-example", "name: ppmax-other"), encoding="utf-8")
