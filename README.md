@@ -7,6 +7,13 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/sonhoang23/product-pro-max-skills/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/sonhoang23/product-pro-max-skills?style=flat-square"></a>
+  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/github/license/sonhoang23/product-pro-max-skills?style=flat-square"></a>
+  <a href="./registry/skills.json"><img alt="Canonical Skills: 13" src="https://img.shields.io/badge/skills-13-blue?style=flat-square"></a>
+  <a href="./requirements-registry.txt"><img alt="Python 3.12+" src="https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
+</p>
+
+<p align="center">
   <a href="./PRODUCT-MODEL.md">Product Model</a> ·
   <a href="./README.vi.md">Tiếng Việt</a> ·
   <a href="./CONTRIBUTING.md">Contributing</a> ·
