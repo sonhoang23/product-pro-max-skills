@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: Phase 1 setup artifacts committed; T001–T003 source-reviewed, no implementation-runtime PASS implied. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Phase 1–2 source artifacts committed (T001–T008). Runtime/CI verification is not yet evidenced; later user-story checks remain open. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -26,11 +26,11 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 ## Phase 2: Foundational
 
-- [ ] T004 Define only foundational canonical entities, relation types (`prerequisite`, `complements`, `produces-input-for`), workflow authority and manifest-vs-SKILL.md responsibility in `SKILL-MODEL.md`, preserving `model/product-model.json` as lifecycle/gate/decision authority.
-- [ ] T005 Specify required sibling `manifest.yaml` contract, field types, ASCII identity, uniqueness, `primary_cycle` membership, phase ownership, optional gate/decision `semantic_kind`, error policy and exact path rules in `SKILL-CONTRACT.md`.
-- [ ] T006 Create shared safe YAML decoding, duplicate-key/unsafe-tag rejection, normalized UTF-8/JSON output and actionable error structures in `scripts/skill_registry_common.py`; validate all input before any output mutation.
-- [ ] T007 Implement repository inventory for distributable `skills/<cycle>/<id>/SKILL.md` + `manifest.yaml`, explicitly excluding `.agents/`, in `scripts/skill_registry_common.py`; reject legacy/unpaired paths rather than silently ignoring them.
-- [ ] T008 Implement Product Model cycle/phase ownership, track, gate/decision vocabulary loaders and workflow ID discovery from `workflows/*/workflow.yaml` in `scripts/skill_registry_common.py`; unknown and ambiguous workflow IDs must fail closed.
+- [x] T004 Define only foundational canonical entities, relation types (`prerequisite`, `complements`, `produces-input-for`), workflow authority and manifest-vs-SKILL.md responsibility in `SKILL-MODEL.md`, preserving `model/product-model.json` as lifecycle/gate/decision authority.
+- [x] T005 Specify required sibling `manifest.yaml` contract, field types, ASCII identity, uniqueness, `primary_cycle` membership, phase ownership, optional gate/decision `semantic_kind`, error policy and exact path rules in `SKILL-CONTRACT.md`.
+- [x] T006 Create shared safe YAML decoding, duplicate-key/unsafe-tag rejection, normalized UTF-8/JSON output and actionable error structures in `scripts/skill_registry_common.py`; validate all input before any output mutation.
+- [x] T007 Implement repository inventory for distributable `skills/<cycle>/<id>/SKILL.md` + `manifest.yaml`, explicitly excluding `.agents/`, in `scripts/skill_registry_common.py`; reject legacy/unpaired paths rather than silently ignoring them.
+- [x] T008 Implement Product Model cycle/phase ownership, track, gate/decision vocabulary loaders and workflow ID discovery from `workflows/*/workflow.yaml` in `scripts/skill_registry_common.py`; unknown and ambiguous workflow IDs must fail closed.
 
 ## Phase 3: US1 — Discover the Right Skill (P1, MVP)
 
