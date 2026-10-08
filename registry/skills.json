@@ -1,0 +1,1407 @@
+{
+  "registry_version": 1,
+  "skills": [
+    {
+      "path": "skills/delivery/ppmax-architecture-plan",
+      "id": "ppmax-architecture-plan",
+      "namespace": "product-pro-max",
+      "slug": "architecture-plan",
+      "description": "Create a proportionate software architecture plan from product constraints, risks and verification needs. Use before significant implementation or when architecture choices need explicit trade-offs.",
+      "primary_cycle": "delivery",
+      "lifecycle": [
+        {
+          "cycle": "delivery",
+          "phase": "technical-design"
+        }
+      ],
+      "tracks": [
+        "engineering"
+      ],
+      "triggers": {
+        "include": [
+          "Use after MVP scope and core flows are sufficiently defined."
+        ],
+        "exclude": [
+          "Do not introduce enterprise patterns, microservices or infrastructure without a constraint that justifies them."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "mvp-scope",
+          "description": "MVP scope.",
+          "required": true
+        },
+        {
+          "name": "core-flows",
+          "description": "Core flows.",
+          "required": true
+        },
+        {
+          "name": "known-technical-constraints",
+          "description": "Known technical constraints.",
+          "required": true
+        },
+        {
+          "name": "existing-stack",
+          "description": "Existing stack.",
+          "required": false
+        },
+        {
+          "name": "team-skills",
+          "description": "Team skills.",
+          "required": false
+        },
+        {
+          "name": "compliance-security-requirements",
+          "description": "Compliance/security requirements.",
+          "required": false
+        },
+        {
+          "name": "expected-load",
+          "description": "Expected load.",
+          "required": false
+        },
+        {
+          "name": "integration-constraints",
+          "description": "Integration constraints.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "drivers",
+          "description": "Drivers"
+        },
+        {
+          "name": "proposed-architecture",
+          "description": "Proposed architecture"
+        },
+        {
+          "name": "boundaries",
+          "description": "Boundaries"
+        },
+        {
+          "name": "data-model-direction",
+          "description": "Data model direction"
+        },
+        {
+          "name": "key-decisions-trade-offs",
+          "description": "Key decisions/trade-offs"
+        },
+        {
+          "name": "rejected-alternatives",
+          "description": "Rejected alternatives"
+        },
+        {
+          "name": "risks",
+          "description": "Risks"
+        },
+        {
+          "name": "verification-plan",
+          "description": "Verification plan"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        },
+        {
+          "workflow_id": "pre-launch-audit",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/opportunity/ppmax-customer-research",
+      "id": "ppmax-customer-research",
+      "namespace": "product-pro-max",
+      "slug": "customer-research",
+      "description": "Plan or synthesize customer research into traceable observations, pains, workarounds and buying signals. Use for interviews, notes, support conversations or qualitative research before product decisions.",
+      "primary_cycle": "opportunity",
+      "lifecycle": [
+        {
+          "cycle": "opportunity",
+          "phase": "discovery"
+        }
+      ],
+      "tracks": [
+        "research"
+      ],
+      "triggers": {
+        "include": [
+          "Use to design interviews or synthesize existing qualitative customer material."
+        ],
+        "exclude": [
+          "Do not use leading questions to seek confirmation of a preferred solution."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "research-objective-or-existing-research-material",
+          "description": "Research objective or existing research material.",
+          "required": true
+        },
+        {
+          "name": "icp-hypothesis",
+          "description": "ICP hypothesis.",
+          "required": false
+        },
+        {
+          "name": "interview-transcripts-or-notes",
+          "description": "Interview transcripts or notes.",
+          "required": false
+        },
+        {
+          "name": "current-product-behavior",
+          "description": "Current product behavior.",
+          "required": false
+        },
+        {
+          "name": "decision-the-research-should-inform",
+          "description": "Decision the research should inform.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "research-objective",
+          "description": "Research objective"
+        },
+        {
+          "name": "observations",
+          "description": "Observations"
+        },
+        {
+          "name": "repeated-patterns",
+          "description": "Repeated patterns"
+        },
+        {
+          "name": "workarounds",
+          "description": "Workarounds"
+        },
+        {
+          "name": "buying-switching-signals",
+          "description": "Buying/switching signals"
+        },
+        {
+          "name": "contradictions",
+          "description": "Contradictions"
+        },
+        {
+          "name": "inferences",
+          "description": "Inferences"
+        },
+        {
+          "name": "open-questions",
+          "description": "Open questions"
+        },
+        {
+          "name": "next-action",
+          "description": "Next action"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-mvp",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/go-to-market/ppmax-distribution-plan",
+      "id": "ppmax-distribution-plan",
+      "namespace": "product-pro-max",
+      "slug": "distribution-plan",
+      "description": "Create a concrete distribution plan from ICP behavior, reachable channels, message, asset, CTA and measurement. Use before or immediately after launch to acquire the first users intentionally.",
+      "primary_cycle": "go-to-market",
+      "lifecycle": [
+        {
+          "cycle": "go-to-market",
+          "phase": "distribution"
+        },
+        {
+          "cycle": "growth",
+          "phase": "acquisition"
+        }
+      ],
+      "tracks": [
+        "marketing"
+      ],
+      "triggers": {
+        "include": [
+          "Use when ICP and product promise are specific enough to identify where prospects already gather."
+        ],
+        "exclude": [
+          "Do not choose channels because they are popular with founders rather than used by the target segment."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "icp",
+          "description": "ICP.",
+          "required": true
+        },
+        {
+          "name": "positioning-value-proposition",
+          "description": "Positioning/value proposition.",
+          "required": true
+        },
+        {
+          "name": "product-stage",
+          "description": "Product stage.",
+          "required": true
+        },
+        {
+          "name": "existing-audience",
+          "description": "Existing audience.",
+          "required": false
+        },
+        {
+          "name": "channel-access",
+          "description": "Channel access.",
+          "required": false
+        },
+        {
+          "name": "budget",
+          "description": "Budget.",
+          "required": false
+        },
+        {
+          "name": "geography",
+          "description": "Geography.",
+          "required": false
+        },
+        {
+          "name": "content-or-sales-capabilities",
+          "description": "Content or sales capabilities.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "channel-thesis",
+          "description": "Channel thesis"
+        },
+        {
+          "name": "priority-channels",
+          "description": "Priority channels"
+        },
+        {
+          "name": "message",
+          "description": "Message"
+        },
+        {
+          "name": "distribution-asset",
+          "description": "Distribution asset"
+        },
+        {
+          "name": "cta",
+          "description": "CTA"
+        },
+        {
+          "name": "experiment",
+          "description": "Experiment"
+        },
+        {
+          "name": "metrics",
+          "description": "Metrics"
+        },
+        {
+          "name": "failure-criteria",
+          "description": "Failure criteria"
+        },
+        {
+          "name": "feedback-loop",
+          "description": "Feedback loop"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/verification/ppmax-engineering-readiness",
+      "id": "ppmax-engineering-readiness",
+      "namespace": "product-pro-max",
+      "slug": "engineering-readiness",
+      "description": "Audit implementation readiness across security, testing, observability, data safety, migration, rollback and operational risk. Use before declaring a build production-ready.",
+      "primary_cycle": "verification",
+      "lifecycle": [
+        {
+          "cycle": "verification",
+          "phase": "security-reliability"
+        }
+      ],
+      "tracks": [
+        "engineering"
+      ],
+      "triggers": {
+        "include": [
+          "Use during late implementation, before launch readiness, or when inheriting AI-generated code."
+        ],
+        "exclude": [
+          "Do not mark checks complete from plans alone when runtime or test evidence is required."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "implemented-system-or-implementation-plan",
+          "description": "Implemented system or implementation plan.",
+          "required": true
+        },
+        {
+          "name": "deployment-context",
+          "description": "Deployment context.",
+          "required": true
+        },
+        {
+          "name": "test-results",
+          "description": "Test results.",
+          "required": false
+        },
+        {
+          "name": "threat-model",
+          "description": "Threat model.",
+          "required": false
+        },
+        {
+          "name": "runbooks",
+          "description": "Runbooks.",
+          "required": false
+        },
+        {
+          "name": "migration-plan",
+          "description": "Migration plan.",
+          "required": false
+        },
+        {
+          "name": "observability-setup",
+          "description": "Observability setup.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "readiness-matrix",
+          "description": "Readiness matrix"
+        },
+        {
+          "name": "security-risks",
+          "description": "Security risks"
+        },
+        {
+          "name": "testing-gaps",
+          "description": "Testing gaps"
+        },
+        {
+          "name": "observability-gaps",
+          "description": "Observability gaps"
+        },
+        {
+          "name": "data-migration-risks",
+          "description": "Data/migration risks"
+        },
+        {
+          "name": "rollback-status",
+          "description": "Rollback status"
+        },
+        {
+          "name": "evidence-state",
+          "description": "Evidence state"
+        },
+        {
+          "name": "blockers",
+          "description": "Blockers"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        },
+        {
+          "workflow_id": "pre-launch-audit",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/product-strategy/ppmax-icp-positioning",
+      "id": "ppmax-icp-positioning",
+      "namespace": "product-pro-max",
+      "slug": "icp-positioning",
+      "description": "Define a narrow ideal customer profile and positioning from validated problem evidence. Use when a product needs a specific audience, value proposition and reason to choose it.",
+      "primary_cycle": "product-strategy",
+      "lifecycle": [
+        {
+          "cycle": "product-strategy",
+          "phase": "positioning"
+        }
+      ],
+      "tracks": [
+        "product"
+      ],
+      "triggers": {
+        "include": [
+          "Use after initial problem/customer evidence exists and before broad MVP scope or launch messaging."
+        ],
+        "exclude": [
+          "Do not define an ICP using only broad firmographics such as “small businesses”."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "problem-evidence",
+          "description": "Problem evidence.",
+          "required": true
+        },
+        {
+          "name": "candidate-customer-segment",
+          "description": "Candidate customer segment.",
+          "required": true
+        },
+        {
+          "name": "market-landscape",
+          "description": "Market landscape.",
+          "required": false
+        },
+        {
+          "name": "existing-users",
+          "description": "Existing users.",
+          "required": false
+        },
+        {
+          "name": "distribution-access",
+          "description": "Distribution access.",
+          "required": false
+        },
+        {
+          "name": "buying-roles",
+          "description": "Buying roles.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "icp",
+          "description": "ICP"
+        },
+        {
+          "name": "exclusions",
+          "description": "Exclusions"
+        },
+        {
+          "name": "trigger",
+          "description": "Trigger"
+        },
+        {
+          "name": "job-to-be-done",
+          "description": "Job to be done"
+        },
+        {
+          "name": "pain-consequence",
+          "description": "Pain/consequence"
+        },
+        {
+          "name": "current-alternative",
+          "description": "Current alternative"
+        },
+        {
+          "name": "buyer-user-roles",
+          "description": "Buyer/user roles"
+        },
+        {
+          "name": "value-proposition",
+          "description": "Value proposition"
+        },
+        {
+          "name": "positioning-statement",
+          "description": "Positioning statement"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-mvp",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/opportunity/ppmax-idea-pressure-test",
+      "id": "ppmax-idea-pressure-test",
+      "namespace": "product-pro-max",
+      "slug": "idea-pressure-test",
+      "description": "Stress-test a product idea before implementation by exposing assumptions, risks, alternatives and missing evidence. Use when a builder has an idea and is deciding whether it deserves deeper validation.",
+      "primary_cycle": "opportunity",
+      "lifecycle": [
+        {
+          "cycle": "opportunity",
+          "phase": "discovery"
+        }
+      ],
+      "tracks": [
+        "product"
+      ],
+      "triggers": {
+        "include": [
+          "Use when a user presents a product idea, feature concept or venture and wants to know whether it deserves deeper validation."
+        ],
+        "exclude": [
+          "Do not use as a substitute for customer research, market research or runtime verification."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "a-concise-idea-or-proposed-solution",
+          "description": "A concise idea or proposed solution.",
+          "required": true
+        },
+        {
+          "name": "target-customer-hypothesis",
+          "description": "Target customer hypothesis.",
+          "required": false
+        },
+        {
+          "name": "known-evidence",
+          "description": "Known evidence.",
+          "required": false
+        },
+        {
+          "name": "constraints-unfair-advantages-or-distribution-access",
+          "description": "Constraints, unfair advantages or distribution access.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "problem-hypothesis",
+          "description": "Problem hypothesis"
+        },
+        {
+          "name": "solution-hypothesis",
+          "description": "Solution hypothesis"
+        },
+        {
+          "name": "critical-assumptions-ranked-by-risk",
+          "description": "Critical assumptions ranked by risk"
+        },
+        {
+          "name": "known-evidence",
+          "description": "Known evidence"
+        },
+        {
+          "name": "unknowns",
+          "description": "Unknowns"
+        },
+        {
+          "name": "failure-modes",
+          "description": "Failure modes"
+        },
+        {
+          "name": "cheapest-next-test",
+          "description": "Cheapest next test"
+        },
+        {
+          "name": "gate-and-decision",
+          "description": "Gate and decision"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-mvp",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/go-to-market/ppmax-launch-readiness",
+      "id": "ppmax-launch-readiness",
+      "namespace": "product-pro-max",
+      "slug": "launch-readiness",
+      "description": "Run a cross-functional launch gate over product, UX, engineering, analytics, onboarding, support, discoverability and rollback. Use immediately before exposing an MVP to target users.",
+      "primary_cycle": "go-to-market",
+      "lifecycle": [
+        {
+          "cycle": "go-to-market",
+          "phase": "launch-preparation"
+        }
+      ],
+      "tracks": [
+        "operations"
+      ],
+      "triggers": {
+        "include": [
+          "Use after core MVP functionality exists and runtime verification has begun."
+        ],
+        "exclude": [
+          "Do not require enterprise polish for a small controlled beta; readiness must match launch scope."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "launch-scope-audience",
+          "description": "Launch scope/audience.",
+          "required": true
+        },
+        {
+          "name": "current-product-state",
+          "description": "Current product state.",
+          "required": true
+        },
+        {
+          "name": "known-verification-evidence",
+          "description": "Known verification evidence.",
+          "required": true
+        },
+        {
+          "name": "analytics-plan",
+          "description": "Analytics plan.",
+          "required": false
+        },
+        {
+          "name": "support-path",
+          "description": "Support path.",
+          "required": false
+        },
+        {
+          "name": "onboarding",
+          "description": "Onboarding.",
+          "required": false
+        },
+        {
+          "name": "seo-discovery-needs",
+          "description": "SEO/discovery needs.",
+          "required": false
+        },
+        {
+          "name": "rollback-plan",
+          "description": "Rollback plan.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "launch-scope",
+          "description": "Launch scope"
+        },
+        {
+          "name": "pass-items",
+          "description": "PASS items"
+        },
+        {
+          "name": "warn-items",
+          "description": "WARN items"
+        },
+        {
+          "name": "block-items",
+          "description": "BLOCK items"
+        },
+        {
+          "name": "evidence-gaps",
+          "description": "Evidence gaps"
+        },
+        {
+          "name": "rollback-containment",
+          "description": "Rollback/containment"
+        },
+        {
+          "name": "go-no-go-decision",
+          "description": "Go/no-go decision"
+        },
+        {
+          "name": "next-actions",
+          "description": "Next actions"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        },
+        {
+          "workflow_id": "pre-launch-audit",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/opportunity/ppmax-market-landscape",
+      "id": "ppmax-market-landscape",
+      "namespace": "product-pro-max",
+      "slug": "market-landscape",
+      "description": "Map direct competitors, indirect competitors, substitutes, manual workarounds and do-nothing behavior for a product problem. Use when positioning, differentiation or market understanding is needed.",
+      "primary_cycle": "opportunity",
+      "lifecycle": [
+        {
+          "cycle": "opportunity",
+          "phase": "discovery"
+        }
+      ],
+      "tracks": [
+        "research"
+      ],
+      "triggers": {
+        "include": [
+          "Use after a problem and customer segment are specific enough to define a market context."
+        ],
+        "exclude": [
+          "Do not treat a list of companies as a market analysis."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "problem-definition",
+          "description": "Problem definition.",
+          "required": true
+        },
+        {
+          "name": "target-segment",
+          "description": "Target segment.",
+          "required": true
+        },
+        {
+          "name": "known-competitors",
+          "description": "Known competitors.",
+          "required": false
+        },
+        {
+          "name": "research-sources",
+          "description": "Research sources.",
+          "required": false
+        },
+        {
+          "name": "geography-or-industry-constraints",
+          "description": "Geography or industry constraints.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "market-frame",
+          "description": "Market frame"
+        },
+        {
+          "name": "alternative-categories",
+          "description": "Alternative categories"
+        },
+        {
+          "name": "comparison-dimensions",
+          "description": "Comparison dimensions"
+        },
+        {
+          "name": "evidence-source-notes",
+          "description": "Evidence/source notes"
+        },
+        {
+          "name": "crowded-claims",
+          "description": "Crowded claims"
+        },
+        {
+          "name": "possible-whitespace",
+          "description": "Possible whitespace"
+        },
+        {
+          "name": "risks",
+          "description": "Risks"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        },
+        {
+          "name": "next-action",
+          "description": "Next action"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-mvp",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/product-definition/ppmax-mvp-scope",
+      "id": "ppmax-mvp-scope",
+      "namespace": "product-pro-max",
+      "slug": "mvp-scope",
+      "description": "Reduce a product idea to the smallest coherent MVP that tests the critical product hypothesis. Use when deciding what to build now, later or explicitly not at all.",
+      "primary_cycle": "product-definition",
+      "lifecycle": [
+        {
+          "cycle": "product-definition",
+          "phase": "scope"
+        }
+      ],
+      "tracks": [
+        "product"
+      ],
+      "triggers": {
+        "include": [
+          "Use after a problem/ICP hypothesis is clear enough to define the product test."
+        ],
+        "exclude": [
+          "Do not use MVP as shorthand for low quality or a miniature full roadmap."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "critical-product-hypothesis",
+          "description": "Critical product hypothesis.",
+          "required": true
+        },
+        {
+          "name": "target-user-icp",
+          "description": "Target user/ICP.",
+          "required": true
+        },
+        {
+          "name": "desired-user-outcome",
+          "description": "Desired user outcome.",
+          "required": true
+        },
+        {
+          "name": "constraints",
+          "description": "Constraints.",
+          "required": false
+        },
+        {
+          "name": "ux-flow",
+          "description": "UX flow.",
+          "required": false
+        },
+        {
+          "name": "existing-product-code",
+          "description": "Existing product/code.",
+          "required": false
+        },
+        {
+          "name": "validation-evidence",
+          "description": "Validation evidence.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "critical-hypothesis",
+          "description": "Critical hypothesis"
+        },
+        {
+          "name": "mvp-outcome",
+          "description": "MVP outcome"
+        },
+        {
+          "name": "must-build-now",
+          "description": "Must build now"
+        },
+        {
+          "name": "later",
+          "description": "Later"
+        },
+        {
+          "name": "explicitly-not-building",
+          "description": "Explicitly not building"
+        },
+        {
+          "name": "success-criteria",
+          "description": "Success criteria"
+        },
+        {
+          "name": "failure-kill-criteria",
+          "description": "Failure/kill criteria"
+        },
+        {
+          "name": "risks",
+          "description": "Risks"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-mvp",
+          "role": "step"
+        },
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/growth/ppmax-pricing-experiment",
+      "id": "ppmax-pricing-experiment",
+      "namespace": "product-pro-max",
+      "slug": "pricing-experiment",
+      "description": "Turn pricing into a falsifiable hypothesis about value metric, package, segment and willingness to pay. Use before choosing or changing a monetization model.",
+      "primary_cycle": "growth",
+      "lifecycle": [
+        {
+          "cycle": "growth",
+          "phase": "monetization"
+        },
+        {
+          "cycle": "product-strategy",
+          "phase": "business-model"
+        }
+      ],
+      "tracks": [
+        "revenue"
+      ],
+      "triggers": {
+        "include": [
+          "Use when a target segment and meaningful product outcome are defined."
+        ],
+        "exclude": [
+          "Do not present a precise price as validated without willingness-to-pay or transaction evidence."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "icp",
+          "description": "ICP.",
+          "required": true
+        },
+        {
+          "name": "product-outcome-value-proposition",
+          "description": "Product outcome/value proposition.",
+          "required": true
+        },
+        {
+          "name": "current-pricing",
+          "description": "Current pricing.",
+          "required": false
+        },
+        {
+          "name": "competitor-pricing",
+          "description": "Competitor pricing.",
+          "required": false
+        },
+        {
+          "name": "customer-interviews",
+          "description": "Customer interviews.",
+          "required": false
+        },
+        {
+          "name": "usage-data",
+          "description": "Usage data.",
+          "required": false
+        },
+        {
+          "name": "cost-constraints",
+          "description": "Cost constraints.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "value-metric-hypothesis",
+          "description": "Value metric hypothesis"
+        },
+        {
+          "name": "pricing-model-hypotheses",
+          "description": "Pricing model hypotheses"
+        },
+        {
+          "name": "packaging-hypothesis",
+          "description": "Packaging hypothesis"
+        },
+        {
+          "name": "evidence",
+          "description": "Evidence"
+        },
+        {
+          "name": "experiment-design",
+          "description": "Experiment design"
+        },
+        {
+          "name": "success-threshold",
+          "description": "Success threshold"
+        },
+        {
+          "name": "failure-threshold",
+          "description": "Failure threshold"
+        },
+        {
+          "name": "risks",
+          "description": "Risks"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/opportunity/ppmax-problem-validation",
+      "id": "ppmax-problem-validation",
+      "namespace": "product-pro-max",
+      "slug": "problem-validation",
+      "description": "Evaluate whether a customer problem has enough real evidence to justify product investment. Use before committing MVP scope or when a team is unsure whether observed pain is real, frequent and consequential.",
+      "primary_cycle": "opportunity",
+      "lifecycle": [
+        {
+          "cycle": "opportunity",
+          "phase": "validation"
+        }
+      ],
+      "tracks": [
+        "research"
+      ],
+      "triggers": {
+        "include": [
+          "Use after an idea has a reasonably specific problem hypothesis and before major solution commitment."
+        ],
+        "exclude": [
+          "Do not fabricate interviews, demand, metrics or willingness-to-pay evidence."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "problem-hypothesis",
+          "description": "Problem hypothesis.",
+          "required": true
+        },
+        {
+          "name": "target-customer-or-segment-hypothesis",
+          "description": "Target customer or segment hypothesis.",
+          "required": true
+        },
+        {
+          "name": "interview-notes",
+          "description": "Interview notes.",
+          "required": false
+        },
+        {
+          "name": "behavioral-data",
+          "description": "Behavioral data.",
+          "required": false
+        },
+        {
+          "name": "support-tickets",
+          "description": "Support tickets.",
+          "required": false
+        },
+        {
+          "name": "community-search-evidence",
+          "description": "Community/search evidence.",
+          "required": false
+        },
+        {
+          "name": "payment-or-switching-signals",
+          "description": "Payment or switching signals.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "problem-statement",
+          "description": "Problem statement"
+        },
+        {
+          "name": "evidence-table",
+          "description": "Evidence table"
+        },
+        {
+          "name": "contradictory-evidence",
+          "description": "Contradictory evidence"
+        },
+        {
+          "name": "open-assumptions",
+          "description": "Open assumptions"
+        },
+        {
+          "name": "validation-verdict",
+          "description": "Validation verdict"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        },
+        {
+          "name": "decision",
+          "description": "Decision"
+        },
+        {
+          "name": "next-evidence-action",
+          "description": "Next evidence action"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-mvp",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/verification/ppmax-runtime-verification",
+      "id": "ppmax-runtime-verification",
+      "namespace": "product-pro-max",
+      "slug": "runtime-verification",
+      "description": "Verify a running product and distinguish implementation claims from test, runtime, browser and production evidence. Use after implementation or whenever an agent claims something works.",
+      "primary_cycle": "verification",
+      "lifecycle": [
+        {
+          "cycle": "verification",
+          "phase": "runtime-verification"
+        },
+        {
+          "cycle": "delivery",
+          "phase": "integration"
+        }
+      ],
+      "tracks": [
+        "engineering"
+      ],
+      "triggers": {
+        "include": [
+          "Use after code changes, before task completion, before launch, or when a runtime issue needs evidence."
+        ],
+        "exclude": [
+          "Do not claim commands, tests, browser flows or production checks were executed unless they actually were."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "claim-or-behavior-to-verify",
+          "description": "Claim or behavior to verify.",
+          "required": true
+        },
+        {
+          "name": "available-code-runtime-context",
+          "description": "Available code/runtime context.",
+          "required": true
+        },
+        {
+          "name": "commands",
+          "description": "Commands.",
+          "required": false
+        },
+        {
+          "name": "urls",
+          "description": "URLs.",
+          "required": false
+        },
+        {
+          "name": "test-suite",
+          "description": "Test suite.",
+          "required": false
+        },
+        {
+          "name": "logs",
+          "description": "Logs.",
+          "required": false
+        },
+        {
+          "name": "screenshots",
+          "description": "Screenshots.",
+          "required": false
+        },
+        {
+          "name": "acceptance-criteria",
+          "description": "Acceptance criteria.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "claim",
+          "description": "Claim"
+        },
+        {
+          "name": "acceptance-criteria",
+          "description": "Acceptance criteria"
+        },
+        {
+          "name": "evidence-level",
+          "description": "Evidence level"
+        },
+        {
+          "name": "checks-performed",
+          "description": "Checks performed"
+        },
+        {
+          "name": "observed-results",
+          "description": "Observed results"
+        },
+        {
+          "name": "failures",
+          "description": "Failures"
+        },
+        {
+          "name": "unverified-items",
+          "description": "Unverified items"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        },
+        {
+          "name": "decision-next-action",
+          "description": "Decision/next action"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        },
+        {
+          "workflow_id": "pre-launch-audit",
+          "role": "step"
+        }
+      ]
+    },
+    {
+      "path": "skills/product-definition/ppmax-ux-flow",
+      "id": "ppmax-ux-flow",
+      "namespace": "product-pro-max",
+      "slug": "ux-flow",
+      "description": "Design or audit an end-to-end product flow including success, error, empty, loading, permission and recovery states. Use before UI implementation or when an existing flow feels incomplete.",
+      "primary_cycle": "product-definition",
+      "lifecycle": [
+        {
+          "cycle": "product-definition",
+          "phase": "experience-design"
+        },
+        {
+          "cycle": "verification",
+          "phase": "ux-validation"
+        }
+      ],
+      "tracks": [
+        "ux"
+      ],
+      "triggers": {
+        "include": [
+          "Use when a concrete user goal and MVP scope exist."
+        ],
+        "exclude": [
+          "Do not turn the skill into visual styling or brand design unless explicitly requested."
+        ]
+      },
+      "inputs": [
+        {
+          "name": "user-goal",
+          "description": "User goal.",
+          "required": true
+        },
+        {
+          "name": "mvp-scope-or-feature-boundary",
+          "description": "MVP scope or feature boundary.",
+          "required": true
+        },
+        {
+          "name": "existing-screens",
+          "description": "Existing screens.",
+          "required": false
+        },
+        {
+          "name": "platform-constraints",
+          "description": "Platform constraints.",
+          "required": false
+        },
+        {
+          "name": "accessibility-requirements",
+          "description": "Accessibility requirements.",
+          "required": false
+        },
+        {
+          "name": "known-error-cases",
+          "description": "Known error cases.",
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "name": "user-goal",
+          "description": "User goal"
+        },
+        {
+          "name": "happy-path",
+          "description": "Happy path"
+        },
+        {
+          "name": "state-matrix",
+          "description": "State matrix"
+        },
+        {
+          "name": "error-recovery-paths",
+          "description": "Error/recovery paths"
+        },
+        {
+          "name": "edge-cases",
+          "description": "Edge cases"
+        },
+        {
+          "name": "accessibility-notes",
+          "description": "Accessibility notes"
+        },
+        {
+          "name": "open-questions",
+          "description": "Open questions"
+        },
+        {
+          "name": "gate",
+          "description": "Gate"
+        }
+      ],
+      "related_skills": [],
+      "workflows": [
+        {
+          "workflow_id": "idea-to-first-users",
+          "role": "step"
+        },
+        {
+          "workflow_id": "pre-launch-audit",
+          "role": "step"
+        }
+      ]
+    }
+  ]
+}
