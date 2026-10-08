@@ -3,42 +3,42 @@ version: 0.1.0
 description: Compose definition, build readiness, verification, launch, distribution and pricing toward first users.
 steps:
   - id: scope-mvp
-    skill: mvp-scope
+    skill: ppmax-mvp-scope
     on_pass: design-flow
     on_warn: design-flow
     on_fail: stop
   - id: design-flow
-    skill: ux-flow
+    skill: ppmax-ux-flow
     on_pass: plan-architecture
     on_warn: plan-architecture
     on_fail: stop
   - id: plan-architecture
-    skill: architecture-plan
+    skill: ppmax-architecture-plan
     on_pass: check-engineering
     on_warn: check-engineering
     on_fail: stop
   - id: check-engineering
-    skill: engineering-readiness
+    skill: ppmax-engineering-readiness
     on_pass: verify-runtime
     on_warn: verify-runtime
     on_fail: stop
   - id: verify-runtime
-    skill: runtime-verification
+    skill: ppmax-runtime-verification
     on_pass: launch-gate
     on_warn: launch-gate
     on_fail: stop
   - id: launch-gate
-    skill: launch-readiness
+    skill: ppmax-launch-readiness
     on_pass: plan-distribution
     on_warn: plan-distribution
     on_fail: stop
   - id: plan-distribution
-    skill: distribution-plan
+    skill: ppmax-distribution-plan
     on_pass: test-pricing
     on_warn: test-pricing
     on_fail: stop
   - id: test-pricing
-    skill: pricing-experiment
+    skill: ppmax-pricing-experiment
     on_pass: complete
     on_warn: complete
     on_fail: stop
