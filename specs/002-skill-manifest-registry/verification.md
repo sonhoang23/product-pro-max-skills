@@ -50,3 +50,23 @@ Capture complete output, source HEAD, GitHub Actions Ubuntu run/check logs and n
 The previous repository-wide validator still assumed flat skill paths and would reject canonical migration in the original `Validate` GitHub Actions workflow. `scripts/validate_repo.py` has now been updated to inspect `skills/*/ppmax-*/SKILL.md`, require sibling manifests and compare against canonical 13 IDs. The consolidated verifier explicitly runs this validator as well as the registry checker, all skill tests and installer dry-run. These changes have **not** received a post-change Python execution log and must be validated in the one-shot final run.
 
 Phase 6–8 documentation/authoring/global-first implementation has been subject to a source-based negative Diagram Check; the final repo-wide Diagram Check remains a separate T040 evidence gate. No project-level diagram was created prematurely.
+
+## Consolidated Windows release verification — 2026-10-08
+
+User-provided PowerShell run after fast-forward `b03bea1 → 9679b10`:
+
+- `python -m pip install -r requirements-registry.txt`: PyYAML==6.0.2 satisfied.
+- `python scripts/verify_skill_registry_release.py`: exit was successful; final marker `RELEASE VERIFICATION PASS (read-only, no runtime skill invocation)`.
+- Interpreter Python 3.13.3; PyYAML 6.0.2.
+- 13 canonical skill entries, 3 workflow files; `registry/skills.json` SHA-256 `d1e25c6166be01627d05156162796ad54b82857feb4c535d0d26d67a4e229e29`.
+- Repository validator PASS: 13 canonical skills, 3 workflows, 5 JSON schemas, 10 cycles, 34 phases.
+- Derived-registry read-only `check`: `Registry check OK`.
+- All **35 unittest cases PASS** in 0.196 seconds, including negative validation, duplicate YAML, missing manifests, malformed identity and read-only/no-write fixtures.
+- Installer `--all --dry-run` resolved 13 distinct skill paths and reported `Selected 13 skill(s)`.
+- This establishes **Windows source and read-only verification** for T039. The one-shot run does not print per-negative-case OS exit codes individually, and no actual installer write, agent-skill invocation, or workflow runtime was executed.
+
+### CI and final modeling boundary
+
+GitHub connector lookup of workflow runs for commit `9679b10` returned an empty result (the connector's lookup is limited to PR-triggered runs). Combined commit statuses also returned empty. **Ubuntu GitHub Actions success is not established**. T038 must remain unchecked until explicit workflow/job evidence is available.
+
+Project-level Diagram Check: file-only manifest/registry and declarative lifecycle grouping add no project-level state machine, sequence or boundary beyond documented text and the existing Spec 002 planned metadata diagram. Reasoned **no new project diagram needed** for the verified source scope. Avoid duplicating the planned conceptual diagram. CI Ubuntu runtime remains separately unverified.
