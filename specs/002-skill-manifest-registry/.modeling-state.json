@@ -38,6 +38,24 @@
         "diagram_rendering": "not_applicable",
         "browser_visual": "not_applicable"
       }
+    },
+    "tasks": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "4bdb6d25ec2ba7c9617a384ff632476a6da2676d",
+        "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc"
+      },
+      "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "Dependency and handoff structure, including the deferred T013 completion checkpoint, is explicitly traceable in tasks.md. A separate diagram would duplicate this textual execution model."
+      },
+      "qa": {
+        "source_set": "verified",
+        "source_hashes": "recorded",
+        "diagram_rendering": "not_applicable",
+        "browser_visual": "not_applicable"
+      }
     }
   }
 }
