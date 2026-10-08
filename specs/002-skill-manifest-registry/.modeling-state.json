@@ -42,7 +42,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "68263f7774c4538856f35988df1bc2f85e8d18b7",
+        "tasks.md": "081384c5d564ad39f271b4f76eb01d25666c3da5",
         "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
         "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
         "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede"
@@ -103,8 +103,8 @@
       "outputs": [],
       "qa": {
         "source_review": "completed",
-        "test_execution": "passed_subset_user_windows",
-        "evidence": "Windows Python 3.13.3, commit 5990fef: 20/20 registry tests PASS; full filesystem snapshot requirement T012 remains open; T013 migration pending."
+        "test_execution": "passed_user_windows",
+        "evidence": "2026-10-08 user Windows Python 3.13.3 commit eff9265: 24/24 registry tests PASS including deterministic output and full-tree read-only snapshot. T012 complete; T013 awaits migration."
       }
     },
     "implementation:phase-04": {
@@ -126,8 +126,8 @@
       "outputs": [],
       "qa": {
         "source_review": "completed",
-        "test_execution": "failed_pre_fix",
-        "evidence": "User Windows Python 3.13.3 at 3b22d80: 24 registry tests, 22 PASS and 2 FAIL. Failures were malformed fixture YAML caused by escaped newline literals in self-reference and duplicate-lifecycle tests. Source fix committed at f4d499c; rerun pending. T012 and T021 remain open."
+        "test_execution": "passed_user_windows",
+        "evidence": "2026-10-08 user Windows Python 3.13.3 commit eff9265: 24/24 registry tests PASS including negative identity/lifecycle/references, corrupted YAML and no-write cases. T021 complete; real 13-skill catalog remains unmigrated."
       }
     },
     "implementation:phase-06": {
