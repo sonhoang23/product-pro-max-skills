@@ -42,7 +42,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "4edfbe7c13819328077bed57e2760b3ac99fba30",
+        "tasks.md": "64f6b4f2b37242879b73b8688c62a20ca7087a66",
         "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
         "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
         "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede"
@@ -114,6 +114,20 @@
         "source_review": "completed",
         "test_execution": "blocked",
         "reason": "Runtime repository checkout unavailable; T016 remains open"
+      }
+    },
+    "implementation:phase-05": {
+      "status": "in-progress",
+      "source_hashes": {
+        "tasks.md": "64f6b4f2b37242879b73b8688c62a20ca7087a66",
+        "scripts/generate_skill_registry.py": "3f556d35cb46b5d3b2b17e652acfa7c6a5459f6b",
+        "scripts/skill_registry_common.py": "db16709659a79d559b19fb283c70858f78718b12"
+      },
+      "outputs": [],
+      "qa": {
+        "source_review": "completed",
+        "test_execution": "not_run",
+        "pending": "T020, T021, T022; gate/decision semantic checks and runtime fixture proof"
       }
     }
   }
