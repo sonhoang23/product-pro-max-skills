@@ -173,6 +173,8 @@ def validate_cycle_association(
         if not isinstance(item, dict) or set(item) - {"cycle", "phase"} or "cycle" not in item:
             raise RegistryValidationError(f"{source}: invalid lifecycle association")
         cycle, phase = item["cycle"], item.get("phase")
+        if not isinstance(cycle, str) or (phase is not None and not isinstance(phase, str)):
+            raise RegistryValidationError(f"{source}: lifecycle cycle/phase must be strings")
         if cycle not in vocabulary["cycles"]:
             raise RegistryValidationError(f"{source}: unknown lifecycle cycle {cycle}")
         if phase is not None and phase not in vocabulary["phase_map"][cycle]:
@@ -183,7 +185,7 @@ def validate_cycle_association(
         seen.add(entry)
     if not any(cycle == primary_cycle for cycle, _ in seen):
         raise RegistryValidationError(f"{source}: primary_cycle missing from lifecycle")
-    if not isinstance(tracks, list) or len(tracks) != len(set(tracks)):
+    if not isinstance(tracks, list) or any(not isinstance(t, str) for t in tracks) or len(tracks) != len(set(tracks)):
         raise RegistryValidationError(f"{source}: tracks must be a unique list")
     for track in tracks:
         if track not in vocabulary["tracks"]:
