@@ -1,0 +1,27 @@
+id: ppmax-idea-pressure-test
+namespace: product-pro-max
+slug: idea-pressure-test
+description: Stress-test a product idea before implementation.
+primary_cycle: opportunity
+lifecycle:
+  - cycle: opportunity
+    phase: discovery
+tracks:
+  - product
+triggers:
+  include:
+    - User wants to examine product idea assumptions.
+  exclude:
+    - User needs customer research rather than an idea stress-test.
+inputs:
+  - name: idea
+    description: Concise proposed idea or solution.
+    required: true
+outputs:
+  - name: assumptions
+    description: Critical assumptions and risk analysis.
+    semantic_kind: evidence
+related_skills: []
+workflows:
+  - workflow_id: idea-to-mvp
+    role: step
