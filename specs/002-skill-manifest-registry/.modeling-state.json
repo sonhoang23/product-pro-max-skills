@@ -57,7 +57,8 @@
         "source_hashes": "recorded",
         "diagram_rendering": "not_applicable",
         "browser_visual": "not_applicable",
-        "gate_freshness": "stale_after_tasks_changes; needs re-model"
+        "gate_freshness": "stale_after_tasks_changes; needs re-model",
+        "freshness": "stale after tasks.md updates, needs ensure-model(tasks) before any new implementation phase"
       }
     },
     "implementation:phase-01": {
@@ -137,13 +138,14 @@
       "status": "in-progress",
       "outputs": [],
       "qa": {
-        "source_review": "migration_committed",
-        "migration": "13 canonical SKILL.md and manifests, 3 workflows, README references and installer source committed; T024-T027 source complete",
-        "source_parity": "reversible two-field source transform asserted before git tree write; post-commit hashes/complete behavioral parity audit pending",
-        "cross_cycle": "source fixtures added, not executed",
-        "runtime_execution": "not_run",
-        "registry": "not_generated",
-        "notes": "T028-T030 and T013 pending; do not claim full Phase 6 PASS."
+        "source_review": "completed",
+        "migration": "13 SKILL.md and manifests, 3 workflows, README refs and installer committed",
+        "parity": "13 GitHub frontmatter/H1-only diff hunks; no other removed SKILL.md behavior lines; static parity only",
+        "test_execution": "passed_user_windows",
+        "test_evidence": "2026-10-08 Windows Python unittest discover -s tests -p test_skill*.py: 28 tests OK at 83f0ac3",
+        "registry": "13 entries committed at 6b4040a; local generate and check passed before commit; post-commit byte check pending",
+        "runtime_invocation": "not_run",
+        "modeling": "T030 promotion requires fresh gate; not declared complete"
       }
     }
   }
