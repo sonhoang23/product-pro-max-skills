@@ -11,13 +11,13 @@
       ],
       "qa": {
         "self_check": "passed",
-        "atlas": "unavailable",
-        "layout": "unavailable",
+        "atlas": "passed",
+        "layout": "passed",
         "browser_visual": "unavailable",
         "structural_checks": "passed"
       },
       "blockers": [
-        "Atlas/layout validators have been added to the repository but have not yet been executed in the user's local checkout; browser visual QA remains unavailable."
+        "Browser visual QA has not been performed; do not claim browser visual PASS or close the modeling gate until its requirement is resolved."
       ]
     }
   }
