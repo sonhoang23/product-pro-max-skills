@@ -81,6 +81,22 @@ workflows:
             run("check", self.root)
         self.assertEqual(path.read_bytes(), b"{}\n")
 
+    def test_check_is_read_only_for_missing_or_tampered_registry(self):
+        run("generate", self.root)
+        target = self.root / "registry" / "skills.json"
+        original = target.read_bytes()
+        self.assertEqual(run("check", self.root), 0)
+        self.assertEqual(target.read_bytes(), original)
+        target.write_bytes(b"tampered\\n")
+        tampered = target.read_bytes()
+        with self.assertRaisesRegex(RegistryValidationError, "drift"):
+            run("check", self.root)
+        self.assertEqual(target.read_bytes(), tampered)
+        target.unlink()
+        with self.assertRaisesRegex(RegistryValidationError, "missing"):
+            run("check", self.root)
+        self.assertFalse(target.exists())
+
     def test_duplicate_yaml_key_never_overwrites_registry(self):
         run("generate", self.root)
         path = self.root / "registry" / "skills.json"
