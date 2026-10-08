@@ -38,6 +38,7 @@ def main() -> int:
     print("Workflow inventory:", len(workflows), flush=True)
     if len(workflows) != 3:
         raise SystemExit("Workflow cardinality mismatch: expected 3")
+    run("scripts/validate_repo.py")
     run("scripts/generate_skill_registry.py", "check")
     if registry_path.read_bytes() != before:
         raise SystemExit("Read-only check unexpectedly changed registry")
