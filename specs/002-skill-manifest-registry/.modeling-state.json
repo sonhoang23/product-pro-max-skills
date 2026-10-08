@@ -168,8 +168,9 @@
       "outputs": [],
       "qa": {
         "source_review": "T035 ASCII identifier validator preexisting; T036 negative fixtures committed, execution pending; architecture boundary source updated, promotion gate pending",
-        "test_execution": "not_run_after_changes",
-        "ci": "skill-registry.yml committed; GitHub Actions result not verified"
+        "test_execution": "passed_user_windows",
+        "ci": "skill-registry.yml committed; GitHub Actions result not verified",
+        "evidence": "2026-10-08 Windows at b03bea1: 35/35 unittest PASS (0.169s); committed registry check OK; Ubuntu CI not verified."
       }
     }
   }
