@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. T012, T016, T021 and T022 tests are authored but remain unchecked until executable test evidence; T013 depends on later migration; T020 still needs complete Product Model gate/decision semantic verification. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. Windows logs confirmed T016 2/2 PASS; T012, T021 and T022 remain open pending cross-platform rerun after test fixes; T013 depends on later migration; T020 still needs complete Product Model gate/decision semantic verification. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -48,7 +48,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 - [x] T014 [US2] Extend the foundational model (T004) with precise, nonduplicative trigger include/exclude, semantic input `{name, description, required: boolean}`, output `{name, description, semantic_kind?}`, typed skill/workflow relationship interpretation in `SKILL-MODEL.md` without defining execution logic.
 - [x] T015 [US2] Implement manifest field/schema checks for required nonempty English description, positive/negative trigger arrays, unique semantic input/output names, booleans, canonical relationship types and workflow roles in `scripts/skill_registry_common.py`.
-- [ ] T016 [US2] Add two contrasting manifest contract fixtures and assert uniform interpretation of required/optional inputs, outputs, triggers and typed relations in `tests/test_skill_manifest_contract.py`.
+- [x] T016 [US2] Add two contrasting manifest contract fixtures and assert uniform interpretation of required/optional inputs, outputs, triggers and typed relations in `tests/test_skill_manifest_contract.py`.
 
 ## Phase 5: US3 — Registry Integrity (P1)
 
