@@ -50,6 +50,39 @@ class InvalidRegistryTests(unittest.TestCase):
         with self.assertRaisesRegex(RegistryValidationError, "duplicate inputs"):
             build_registry(self.root)
 
+    def test_duplicate_identity_across_two_canonical_paths(self):
+        other = self.root / "skills" / "delivery" / "ppmax-example"
+        other.mkdir(parents=True)
+        (other / "SKILL.md").write_bytes((self.skill / "SKILL.md").read_bytes())
+        second = self.manifest.read_text(encoding="utf-8").replace("primary_cycle: opportunity", "primary_cycle: delivery").replace("cycle: opportunity", "cycle: delivery").replace("phase: discovery", "phase: build")
+        (other / "manifest.yaml").write_text(second, encoding="utf-8")
+        model = self.root / "model" / "product-model.json"
+        data = json.loads(model.read_text(encoding="utf-8"))
+        data["lifecycle"]["cycles"].append({"id": "delivery", "phases": [{"id": "build"}]})
+        model.write_text(json.dumps(data), encoding="utf-8")
+        with self.assertRaisesRegex(RegistryValidationError, "duplicate skill identity"):
+            build_registry(self.root)
+
+    def test_wrong_slug_and_self_reference(self):
+        original = self.manifest.read_text(encoding="utf-8")
+        with self.subTest("slug mismatch"):
+            self.manifest.write_text(original.replace("slug: example", "slug: another"), encoding="utf-8")
+            with self.assertRaisesRegex(RegistryValidationError, "slug/id mismatch"):
+                build_registry(self.root)
+        with self.subTest("self reference"):
+            self.manifest.write_text(original.replace("related_skills: []", "related_skills:\\n  - skill_id: ppmax-example\\n    type: prerequisite"), encoding="utf-8")
+            with self.assertRaisesRegex(RegistryValidationError, "self-referential"):
+                build_registry(self.root)
+
+    def test_missing_primary_cycle_and_repeated_lifecycle(self):
+        original = self.manifest.read_text(encoding="utf-8")
+        self.manifest.write_text(original.replace("cycle: opportunity", "cycle: delivery"), encoding="utf-8")
+        with self.assertRaises(RegistryValidationError):
+            build_registry(self.root)
+        self.manifest.write_text(original.replace("tracks:", "  - cycle: opportunity\\n    phase: discovery\\ntracks:"), encoding="utf-8")
+        with self.assertRaisesRegex(RegistryValidationError, "duplicate lifecycle"):
+            build_registry(self.root)
+
     def test_bad_id(self):
         self.manifest.write_text(self.manifest.read_text().replace("id: ppmax-example", "id: wrong"), encoding="utf-8")
         with self.assertRaisesRegex(RegistryValidationError, "canonical skill ID"):
