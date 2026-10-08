@@ -236,3 +236,20 @@ def validate_discovery_metadata(data: dict[str, Any], source: Path) -> None:
                 fail("invalid outputs.semantic_kind")
             if field == "related_skills" and item["type"] not in {"prerequisite", "complements", "produces-input-for"}:
                 fail("invalid related_skills.type")
+
+
+def validate_output_semantics(data: dict[str, Any], vocabulary: dict[str, Any], source: Path) -> None:
+    """Ensure metadata kinds do not masquerade as canonical gate/decision values."""
+    for output in data.get("outputs", []):
+        kind = output.get("semantic_kind")
+        if kind not in (None, "evidence", "gate", "decision"):
+            raise RegistryValidationError(f"{source}: unsupported output semantic_kind")
+        # A semantic kind classifies an output; any explicit canonical value
+        # must be checked against the matching Product Model vocabulary.
+        if "canonical_value" in output:
+            raise RegistryValidationError(
+                f"{source}: canonical_value is not part of Spec 002 metadata; "
+                "gate and decision values belong to actual skill outputs"
+            )
+    if not vocabulary["gates"] or not vocabulary["decisions"]:
+        raise RegistryValidationError(f"{source}: Product Model gate/decision vocabulary missing")
