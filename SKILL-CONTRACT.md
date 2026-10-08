@@ -1,13 +1,38 @@
 # Skill Contract
 
-Every canonical distributable skill lives at `skills/<skill-name>/SKILL.md`.
+Every canonical distributable skill lives at `skills/<primary_cycle>/ppmax-<slug>/SKILL.md`, with a sibling `manifest.yaml`. **Migration status:** Spec 002 is being implemented; the existing flat skill paths remain legacy until T024–T029 complete.
 
 ## Required frontmatter
 
 - `name`
 - `description`
 
-Metadata expansion is intentionally deferred to the dedicated skill manifest/registry foundation spec.
+## Machine metadata — sibling `manifest.yaml`
+
+`SKILL.md` continues to own behavior. The manifest owns discovery metadata and cannot redefine behavior. `model/product-model.json` owns canonical cycle/phase/track/gate/decision values.
+
+| Field | Constraint |
+|---|---|
+| `id` | required, unique `ppmax-<slug>`, lowercase ASCII kebab-case |
+| `namespace` | exactly `product-pro-max` |
+| `slug` | required, unique unprefixed lowercase ASCII kebab-case |
+| `description` | required nonempty English summary |
+| `primary_cycle` | exactly one valid Product Model cycle; path grouping matches |
+| `lifecycle` | nonempty list of `{cycle, phase?}`; primary cycle included, phase belongs to cycle |
+| `tracks` | list of unique Product Model track IDs |
+| `triggers` | object with semantic `include` and `exclude` lists |
+| `inputs` | list of unique `{name, description, required: boolean}` |
+| `outputs` | list of unique `{name, description, semantic_kind?}` |
+| `related_skills` | list of unique `{skill_id, type}`, target must exist |
+| `workflows` | list of unique `{workflow_id, role}`, workflow ID must exist |
+
+Unknown fields and wrong types must be rejected rather than silently ignored. Duplicate YAML keys and unsafe tags must fail safe parsing; errors must identify a path and reason. Canonical skill directory, manifest ID and `SKILL.md` frontmatter name must be identical. `semantic_kind` vocabulary for Spec 002 is `evidence`, `gate`, `decision`; gates and decisions stay distinct and canonical IDs (if referenced) come from Product Model.
+
+Relation types are only `prerequisite`, `complements`, `produces-input-for` as defined in `SKILL-MODEL.md`. Self-links, unknown references, duplicates and contradictory relations fail. Workflow membership is discovery-only, not orchestration.
+
+Only `skills/` is distributable. `.agents/` development skills are excluded. `registry/skills.json` is generated deterministically from all valid manifests, sorted by ID. `generate` validates everything before an atomic write; `check` compares byte-for-byte without writing. Missing manifests and incomplete coverage fail validation.
+
+General compatibility/deprecation/version policy, evaluations, release policy, catalog UI and ranking are outside Spec 002.
 
 ## Required sections
 
