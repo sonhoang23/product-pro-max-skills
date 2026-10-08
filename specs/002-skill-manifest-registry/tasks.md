@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: Source/doc promotions T030/T034/T037 audited; final one-shot Windows/Ubuntu verification pending. Existing validate_repo flat path regression fixed; release verifier includes it. Phase 8 ASCII identifier enforcement already exists in validator (T035); three T036 negative fixtures 35/35 Windows PASS at b03bea1. CI workflow source T038 committed; GitHub Actions logs not verified. Architecture docs updated, T037 modeling gate pending. Phase 7 T031–T033 source complete; user Windows Python at 6ce125e ran 32/32 skill tests PASS (0.153s) and committed registry check PASS. Workflow execution remains untested. Phase 6 README promotions authored, T030 still gated by fresh implementation modeling. User Windows 2026-10-08 at 83f0ac3: 28/28 PASS, registry generate/check PASS; 13-entry registry committed at 6b4040a; post-commit registry check PASS and installer dry-run selected 13/13 at ef6de19. Phase 6 T024–T029 source and static parity committed; runtime invocation/installer write and implementation modeling gate remain pending. Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. Windows logs confirmed T016 2/2 PASS; Windows Python 3.13.3 regression rerun 15/15 PASS at b89abe8; T022 verified for malformed YAML preservation and read-only drift detection. Windows regression at 5990fef: 20/20 registry fixture tests PASS. Windows Python 3.13.3 on eff9265: 24/24 registry fixture tests PASS, completing T012 and T021; T013 depends on later migration. T020 source now validates semantic kinds and checks Product Model gate/decision vocabulary; fixture integration test rerun 20/20 PASS, full-catalog runtime validation remains pending. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Spec 002 source and local verification complete. Windows Python 3.13.3 / PyYAML 6.0.2 release verifier PASS (35/35 tests, canonical registry check, repository validator, 13-skill dry-run). Real installer wrote 13 skills into temporary folder and returned success; temporary folder removed. User explicitly chose local-only acceptance, replacing required Ubuntu CI evidence. GitHub Actions remains optional, not an acceptance gate. Runtime agent workflow invocation not covered.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -93,10 +93,10 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 ## Phase 9: Polish and Cross-Cutting Verification
 
-- [ ] T038 Wire pinned parser installation and safe `generate --check` / fixture tests into `.github/workflows/skill-registry.yml`; require exact CI logs before marking runtime tests complete.
+- [x] T038 Wire pinned parser installation and safe `generate --check` / fixture tests into `.github/workflows/skill-registry.yml`; require exact CI logs before marking runtime tests complete.
 - [x] T039 Run all planned commands from `specs/002-skill-manifest-registry/quickstart.md`, record Python/parser versions, inventory count, byte hashes, negative-case exit statuses and logs in `specs/002-skill-manifest-registry/verification.md`; no unsupported PASS claims.
 - [x] T040 After verified implementation and fresh implementation modeling, run project-level Diagram Check; update `docs/diagrams/` and any index only if semantic change merits an architecture diagram, recording a reasoned no-diagram-needed decision otherwise in `specs/002-skill-manifest-registry/verification.md`.
-- [ ] T041 Audit FR-001–FR-032, SR-01–SR-07 and unresolved migration/CI evidence against `specs/002-skill-manifest-registry/spec.md`, `plan.md` and `tasks.md`; leave unverified tasks unchecked.
+- [x] T041 Audit FR-001–FR-032, SR-01–SR-07 and unresolved migration/CI evidence against `specs/002-skill-manifest-registry/spec.md`, `plan.md` and `tasks.md`; leave unverified tasks unchecked.
 
 ## Dependencies and Execution Order
 
@@ -122,7 +122,11 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 ## Final batching status (2026-10-08)
 
 - Source and docs: T030, T034, T037 reviewed against canonical implementation. No new diagram source required for these text/metadata boundaries. Modeling state must record current source hashes and phase no-diagram-needed decisions.
-- T038: Ubuntu CI workflow and pinned dependency/source implementation prepared, **not complete** until successful Actions run evidence.
+- T038: Local-only acceptance confirmed by user; Windows consolidated verification and actual installer write PASS. GitHub Actions optional.
 - T039: consolidated Windows read-only release verifier executed at 9679b10: Python 3.13.3, PyYAML 6.0.2, 35/35 PASS, SHA-256 and 13-skill inventory captured.
 - T040: project Diagram Check reviewed against implemented file-only catalog and existing planned spec diagram; no new project diagram needed. Ubuntu CI evidence remains separate.
-- T041: FR/SR audit matrix prepared in verification.md, **not complete** until final evidence is reconciled.
+- T041: FR/SR source audit reconciled with Windows verification; unresolved runtime agent invocation explicitly out of scope for the file-only registry acceptance.
+
+## Closure decision (local-only, 2026-10-08)
+
+User explicitly selected local testing rather than GitHub Actions. T038 local replacement evidence: Python 3.13.3, PyYAML 6.0.2, 35/35 tests, registry byte-check PASS, repository validator PASS, installer 13/13 real copies to `.tmp-skills` (then removed). T041 final audit reconciled, with no unsupported Ubuntu CI PASS or runtime agent invocation PASS. Workflow YAML source remains available as optional check only.

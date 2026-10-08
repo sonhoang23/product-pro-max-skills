@@ -70,3 +70,11 @@ User-provided PowerShell run after fast-forward `b03bea1 → 9679b10`:
 GitHub connector lookup of workflow runs for commit `9679b10` returned an empty result (the connector's lookup is limited to PR-triggered runs). Combined commit statuses also returned empty. **Ubuntu GitHub Actions success is not established**. T038 must remain unchecked until explicit workflow/job evidence is available.
 
 Project-level Diagram Check: file-only manifest/registry and declarative lifecycle grouping add no project-level state machine, sequence or boundary beyond documented text and the existing Spec 002 planned metadata diagram. Reasoned **no new project diagram needed** for the verified source scope. Avoid duplicating the planned conceptual diagram. CI Ubuntu runtime remains separately unverified.
+
+## Final local-only acceptance and installer write evidence
+
+The user explicitly rejected GitHub Actions as an acceptance requirement. T038 is satisfied by the previously recorded Windows release verification (35/35 PASS, registry check PASS, 13-skill discovery) plus the latest PowerShell real installation:
+
+`python scripts/install.py --target .tmp-skills --all` printed 13 distinct source→destination copies and `Selected 13 skill(s).` Subsequently `Remove-Item .tmp-skills -Recurse -Force` returned without an error. This supports installer success and cleanup but **does not provide independent file-byte parity** or actual agent workflow invocation. 
+
+T041: FR-001–FR-032 and SR-01–SR-07 have been source-audited in the sections above and matched against the local verification results. No unverified Ubuntu CI PASS or actual AI skill invocation claimed. Spec 002 local file-contract acceptance is complete under this stated scope.

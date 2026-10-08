@@ -207,9 +207,12 @@
         "source_review": "completed",
         "test_execution": "passed_user_windows",
         "evidence": "2026-10-08 Windows on 9679b10: Python 3.13.3 PyYAML 6.0.2; 13 skills 3 workflows 5 schemas 10 cycles 34 phases; SHA256 d1e25c6166be01627d05156162796ad54b82857feb4c535d0d26d67a4e229e29; 35 tests PASS; registry check PASS; installer dry-run 13/13; final marker RELEASE VERIFICATION PASS.",
-        "ci_ubuntu": "not_verified",
+        "ci_ubuntu": "optional_not_run",
         "runtime_skill_invocation": "not_run",
-        "converge": "not_claimed_complete"
+        "converge": "local file-contract verified; no project diagram needed",
+        "acceptance": "local-only per explicit user decision",
+        "installer_write": "user Windows: 13/13 copied to disposable .tmp-skills; cleanup command completed without reported error",
+        "final_audit": "FR-001–FR-032 and SR-01–SR-07 reconciled against source audit and local tests; actual skill invocation not tested"
       }
     }
   }

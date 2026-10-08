@@ -52,3 +52,7 @@ After implementation with verification and fresh implementation modeling: evalua
 
 ## Scope guard
 Only planning artifacts. No modeling(plan), tasks, implementation, compatibility/deprecation policy, eval scoring, catalog UI, release policy or ranking contract.
+
+## Verification acceptance (2026-10-08 decision)
+
+The user explicitly selected **local Windows validation** as the required release acceptance gate for Spec 002. The GitHub Actions Ubuntu workflow is optional and is not a dependency for closure. Required checks: pinned PyYAML, repository validator, registry byte-for-byte checker, registry/authoring fixtures, installer dry-run and actual install into a disposable directory, with source HEAD and output recorded. Do not claim actual agent invocation or Ubuntu CI execution from these checks.
