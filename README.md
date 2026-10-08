@@ -76,6 +76,24 @@ Canonical cycles:
 
 The complete canonical phase IDs and relationships live in the Product Model, not in this README.
 
+
+### Lifecycle navigation order
+
+Numbers below are for README navigation only, following the cycle order in `model/product-model.json`. Canonical IDs, directory names and registry paths remain unchanged.
+
+| Order | Cycle |
+| --- | --- |
+| 01 | `opportunity` |
+| 02 | `product-strategy` |
+| 03 | `product-definition` |
+| 04 | `delivery` |
+| 05 | `verification` |
+| 06 | `go-to-market` |
+| 07 | `growth` |
+| 08 | `operations` |
+| 09 | `learning-evolution` |
+| 10 | `end-of-life` |
+
 ## Core operating primitive
 
 Every useful step should move through the same primitives:

@@ -37,6 +37,24 @@ Các machine ID luôn giữ nguyên tiếng Anh, ví dụ:
 
 Nhãn hiển thị cho người dùng có thể được dịch.
 
+
+### Thứ tự điều hướng lifecycle
+
+Số thứ tự chỉ dùng để hiển thị trong README, theo thứ tự cycle ở `model/product-model.json`. Không thay đổi canonical ID, tên thư mục hay đường dẫn registry.
+
+| STT | Cycle |
+| --- | --- |
+| 01 | `opportunity` |
+| 02 | `product-strategy` |
+| 03 | `product-definition` |
+| 04 | `delivery` |
+| 05 | `verification` |
+| 06 | `go-to-market` |
+| 07 | `growth` |
+| 08 | `operations` |
+| 09 | `learning-evolution` |
+| 10 | `end-of-life` |
+
 ## Mô hình lõi
 
 ```text
