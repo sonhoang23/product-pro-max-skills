@@ -146,7 +146,10 @@
         "registry": "User Windows at ef6de19: committed 13-entry registry `generate_skill_registry.py check` returned Registry check OK; PASS for read-only drift check.",
         "runtime_invocation": "not_run",
         "modeling": "implementation:phase-06 remains in-progress; ensure-model before T030 promotion.",
-        "installer_dry_run": "User Windows at ef6de19: `install.py --target .agents/skills --all --dry-run` displayed 13 canonical source/destination pairs and Selected 13 skill(s); no install write or invocation tested."
+        "installer_dry_run": "User Windows at ef6de19: `install.py --target .agents/skills --all --dry-run` displayed 13 canonical source/destination pairs and Selected 13 skill(s); no install write or invocation tested.",
+        "docs_source": "README.md and README.vi.md canonical discovery documented at 82ac3ca; T030 awaiting fresh implementation gate",
+        "new_tests": "test_skill_creator_contract.py added at e945cf3; not executed",
+        "new_authoring": "T031–T032 source complete; Phase 7 runtime verification pending"
       }
     }
   }
