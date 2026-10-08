@@ -4,12 +4,12 @@ Move from a raw idea to an evidence-bounded MVP scope.
 
 ## Steps
 
-1. `idea-pressure-test` — pressure-test
-2. `problem-validation` — validate-problem
-3. `customer-research` — research-customer
-4. `market-landscape` — map-market
-5. `icp-positioning` — define-icp
-6. `mvp-scope` — scope-mvp
+1. `ppmax-idea-pressure-test` — pressure-test
+2. `ppmax-problem-validation` — validate-problem
+3. `ppmax-customer-research` — research-customer
+4. `ppmax-market-landscape` — map-market
+5. `ppmax-icp-positioning` — define-icp
+6. `ppmax-mvp-scope` — scope-mvp
 
 ## Gate behavior
 

@@ -144,19 +144,19 @@ The current v0.1 foundation ships 13 composable Agent Skills:
 
 | Stage | Skill | Outcome |
 | --- | --- | --- |
-| Discover | `idea-pressure-test` | Expose assumptions, risks and unknowns before building |
-| Validate | `problem-validation` | Decide whether the problem has enough evidence |
-| Validate | `customer-research` | Turn customer conversations into traceable evidence |
-| Validate | `market-landscape` | Map direct competitors, substitutes and do-nothing |
-| Define | `icp-positioning` | Define a specific ICP and positioning |
-| Define | `mvp-scope` | Cut scope to the smallest test of the critical hypothesis |
-| Design | `ux-flow` | Cover happy, error, empty, loading and recovery paths |
-| Build | `architecture-plan` | Make proportionate architecture decisions with trade-offs |
-| Build | `engineering-readiness` | Check security, testing, observability, migration and rollback |
-| Verify | `runtime-verification` | Separate implemented, tested and runtime-verified claims |
-| Launch | `launch-readiness` | Produce PASS/WARN/BLOCK launch evidence |
-| Launch | `distribution-plan` | Turn ICP into concrete channels, messages and experiments |
-| Revenue | `pricing-experiment` | Test pricing hypotheses instead of guessing a price |
+| Discover | `ppmax-idea-pressure-test` | Expose assumptions, risks and unknowns before building |
+| Validate | `ppmax-problem-validation` | Decide whether the problem has enough evidence |
+| Validate | `ppmax-customer-research` | Turn customer conversations into traceable evidence |
+| Validate | `ppmax-market-landscape` | Map direct competitors, substitutes and do-nothing |
+| Define | `ppmax-icp-positioning` | Define a specific ICP and positioning |
+| Define | `ppmax-mvp-scope` | Cut scope to the smallest test of the critical hypothesis |
+| Design | `ppmax-ux-flow` | Cover happy, error, empty, loading and recovery paths |
+| Build | `ppmax-architecture-plan` | Make proportionate architecture decisions with trade-offs |
+| Build | `ppmax-engineering-readiness` | Check security, testing, observability, migration and rollback |
+| Verify | `ppmax-runtime-verification` | Separate implemented, tested and runtime-verified claims |
+| Launch | `ppmax-launch-readiness` | Produce PASS/WARN/BLOCK launch evidence |
+| Launch | `ppmax-distribution-plan` | Turn ICP into concrete channels, messages and experiments |
+| Revenue | `ppmax-pricing-experiment` | Test pricing hypotheses instead of guessing a price |
 
 These stage labels are navigation shorthand for the current MVP skill set. Canonical lifecycle phase IDs live in `model/product-model.json`.
 
@@ -181,7 +181,7 @@ Install selected skills:
 ```bash
 python scripts/install.py \
   --target /path/to/project/.agents/skills \
-  --skills problem-validation,mvp-scope,runtime-verification
+  --skills ppmax-problem-validation,ppmax-mvp-scope,ppmax-runtime-verification
 ```
 
 Preview without writing:
@@ -201,7 +201,7 @@ I want to build an AI meeting notes SaaS. Pressure-test the idea before we write
 Or invoke a skill explicitly:
 
 ```text
-Use problem-validation. Separate evidence from assumptions and stop if the gate fails.
+Use ppmax-problem-validation. Separate evidence from assumptions and stop if the gate fails.
 ```
 
 ## Project state
@@ -259,7 +259,7 @@ specs/        Spec Kit feature work and foundation backlog
 
 English is canonical for skill logic, shared product semantics, and machine identifiers. User-facing output should follow the user's preferred language.
 
-Machine IDs such as `go-to-market`, `runtime-verification`, `pass`, and `pivot` are not translated when used as contract values.
+Machine IDs such as `go-to-market`, `ppmax-runtime-verification`, `pass`, and `pivot` are not translated when used as contract values.
 
 ## Status
 

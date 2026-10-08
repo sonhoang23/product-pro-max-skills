@@ -4,14 +4,14 @@ Compose definition, build readiness, verification, launch, distribution and pric
 
 ## Steps
 
-1. `mvp-scope` — scope-mvp
-2. `ux-flow` — design-flow
-3. `architecture-plan` — plan-architecture
-4. `engineering-readiness` — check-engineering
-5. `runtime-verification` — verify-runtime
-6. `launch-readiness` — launch-gate
-7. `distribution-plan` — plan-distribution
-8. `pricing-experiment` — test-pricing
+1. `ppmax-mvp-scope` — scope-mvp
+2. `ppmax-ux-flow` — design-flow
+3. `ppmax-architecture-plan` — plan-architecture
+4. `ppmax-engineering-readiness` — check-engineering
+5. `ppmax-runtime-verification` — verify-runtime
+6. `ppmax-launch-readiness` — launch-gate
+7. `ppmax-distribution-plan` — plan-distribution
+8. `ppmax-pricing-experiment` — test-pricing
 
 ## Gate behavior
 

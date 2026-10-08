@@ -33,7 +33,7 @@ README, schema, workflow, example, diagram và bản dịch chỉ là các view 
 
 Các machine ID luôn giữ nguyên tiếng Anh, ví dụ:
 
-`opportunity`, `go-to-market`, `runtime-verification`, `pass`, `pivot`.
+`opportunity`, `go-to-market`, `ppmax-runtime-verification`, `pass`, `pivot`.
 
 Nhãn hiển thị cho người dùng có thể được dịch.
 
@@ -60,7 +60,7 @@ Gate và decision là hai khái niệm khác nhau:
 
 MVP gồm 13 skill:
 
-`idea-pressure-test`, `problem-validation`, `customer-research`, `market-landscape`, `icp-positioning`, `mvp-scope`, `ux-flow`, `architecture-plan`, `engineering-readiness`, `runtime-verification`, `launch-readiness`, `distribution-plan`, `pricing-experiment`.
+`ppmax-idea-pressure-test`, `ppmax-problem-validation`, `ppmax-customer-research`, `ppmax-market-landscape`, `ppmax-icp-positioning`, `ppmax-mvp-scope`, `ppmax-ux-flow`, `ppmax-architecture-plan`, `ppmax-engineering-readiness`, `ppmax-runtime-verification`, `ppmax-launch-readiness`, `ppmax-distribution-plan`, `ppmax-pricing-experiment`.
 
 Ba workflow:
 
