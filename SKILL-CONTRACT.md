@@ -1,6 +1,6 @@
 # Skill Contract
 
-Every canonical distributable skill lives at `skills/<primary_cycle>/ppmax-<slug>/SKILL.md`, with a sibling `manifest.yaml`. **Migration status:** Spec 002 is being implemented; the existing flat skill paths remain legacy until T024–T029 complete.
+Every canonical distributable skill lives at `skills/<primary_cycle>/ppmax-<slug>/SKILL.md`, with a sibling `manifest.yaml`. **Migration status:** All 13 distributable skills have moved to canonical lifecycle directories, with sibling manifests. Migration static parity and registry validation were confirmed; end-to-end runtime invocation is separately evidenced.
 
 ## Required frontmatter
 
