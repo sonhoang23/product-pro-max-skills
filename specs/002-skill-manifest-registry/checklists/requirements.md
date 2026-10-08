@@ -6,9 +6,9 @@
 
 ## Content Quality
 
-- [x] No implementation details (languages, frameworks, APIs)
-- [x] Focused on user value and business needs
-- [x] Written for non-technical stakeholders
+- [x] No implementation-stack details (languages, frameworks, APIs) leak into the specification
+- [x] Focused on user, maintainer, contributor, and agent value
+- [x] Written so the foundation rules are understandable without prior chat history
 - [x] All mandatory sections completed
 
 ## Requirement Completeness
@@ -16,7 +16,7 @@
 - [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
-- [x] Success criteria are technology-agnostic (no implementation details)
+- [x] Success criteria are technology-agnostic beyond explicitly approved repository contract paths/formats
 - [x] All acceptance scenarios are defined
 - [x] Edge cases are identified
 - [x] Scope is clearly bounded
@@ -27,13 +27,17 @@
 ## Feature Readiness
 
 - [x] All functional requirements have clear acceptance criteria
-- [x] User scenarios cover primary flows
+- [x] User scenarios cover primary discovery, integrity, organization, authoring, and global-first flows
 - [x] Feature meets measurable outcomes defined in Success Criteria
-- [x] No implementation details leak into specification
+- [x] Repository contract decisions do not prescribe unrelated implementation technology
 
 ## Notes
 
-- No material ambiguity requires formal clarification before system modeling/planning.
+- No material ambiguity requires formal clarification before system modeling.
+- User-approved foundation decisions are now explicit: canonical `product-pro-max` namespace with `ppmax-` IDs, one `primary_cycle` for physical grouping, `skills/<primary-cycle>/ppmax-<skill-slug>/`, sibling `SKILL.md` + `manifest.yaml`, canonical manifests as metadata authority, and a derived aggregate registry.
+- `SKILL-MODEL.md` defines shared skill semantics; `SKILL-CONTRACT.md` remains the compliance/behavior contract.
+- `.agents/skills/skill-creator-vi` is explicitly a consumer/enforcer of the canonical contract, not a source of truth and not a distributable registry entry.
+- Skill-to-skill relations must use a controlled canonical vocabulary; the detailed vocabulary can be resolved during system modeling without allowing per-skill ad hoc relation names.
 - The repository-development runtime-verification companion referenced by `speckit-specify-vi` is not installed under `.agents/skills/runtime-verification/`; therefore there are no additional requirement-stage runtime signals to incorporate.
-- Spec 002 explicitly preserves Spec 001 as lifecycle authority and defers versioning, eval policy, governance, final catalog/docs architecture, and release lifecycle to Specs 003–007.
-- Storage layout, schema format, registry derivation/generation, and validator mechanics remain planning decisions.
+- Spec 002 preserves Spec 001 as Product Model authority and defers general versioning/deprecation, standardized eval policy, governance, final catalog/docs/search architecture, and release lifecycle to Specs 003–007.
+- Registry generation mechanics and validator implementation remain planning decisions.
