@@ -126,8 +126,8 @@
       "outputs": [],
       "qa": {
         "source_review": "completed",
-        "test_execution": "new_cases_pending",
-        "evidence": "User Windows Python 3.13.3: prior registry 20/20 PASS at 5990fef. Newly authored T012 filesystem snapshot and T021 negative fixtures not yet run."
+        "test_execution": "failed_pre_fix",
+        "evidence": "User Windows Python 3.13.3 at 3b22d80: 24 registry tests, 22 PASS and 2 FAIL. Failures were malformed fixture YAML caused by escaped newline literals in self-reference and duplicate-lifecycle tests. Source fix committed at f4d499c; rerun pending. T012 and T021 remain open."
       }
     },
     "implementation:phase-06": {
