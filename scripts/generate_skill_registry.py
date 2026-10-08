@@ -16,7 +16,7 @@ from pathlib import Path
 from skill_registry_common import (
     ROOT, SKILL_ID_RE, RegistryValidationError, parse_yaml,
     product_vocabulary, skill_inventory, validate_cycle_association,
-    workflow_inventory, validate_discovery_metadata,
+    workflow_inventory, validate_discovery_metadata, validate_output_semantics,
 )
 
 FIELDS = (
@@ -73,6 +73,7 @@ def build_registry(root: Path) -> bytes:
             _fail(skill_path, "SKILL.md name mismatch")
         validate_cycle_association(cycle, data["lifecycle"], data["tracks"], vocabulary, path)
         validate_discovery_metadata(data, path)
+        validate_output_semantics(data, vocabulary, path)
         for relation in data["related_skills"]:
             if relation["skill_id"] == sid:
                 _fail(path, "unknown or self-referential relation")
