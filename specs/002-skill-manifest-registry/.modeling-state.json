@@ -56,7 +56,8 @@
         "source_set": "verified",
         "source_hashes": "recorded",
         "diagram_rendering": "not_applicable",
-        "browser_visual": "not_applicable"
+        "browser_visual": "not_applicable",
+        "gate_freshness": "stale_after_tasks_changes; needs re-model"
       }
     },
     "implementation:phase-01": {
@@ -127,17 +128,22 @@
       "qa": {
         "source_review": "completed",
         "test_execution": "passed_user_windows",
-        "evidence": "2026-10-08 user Windows Python 3.13.3 commit eff9265: 24/24 registry tests PASS including negative identity/lifecycle/references, corrupted YAML and no-write cases. T021 complete; real 13-skill catalog remains unmigrated."
+        "evidence": "2026-10-08 user Windows Python 3.13.3 commit eff9265: 24/24 registry tests PASS including negative identity/lifecycle/references, corrupted YAML and no-write cases. T021 complete; real 13-skill catalog remains unmigrated.",
+        "gate_freshness": "stale_after_tasks_changes; re-model before next phase",
+        "runtime_execution": "not_run"
       }
     },
     "implementation:phase-06": {
       "status": "in-progress",
       "outputs": [],
       "qa": {
-        "source_review": "mapping_only",
+        "source_review": "migration_committed",
+        "migration": "13 canonical SKILL.md and manifests, 3 workflows, README references and installer source committed; T024-T027 source complete",
+        "source_parity": "reversible two-field source transform asserted before git tree write; post-commit hashes/complete behavioral parity audit pending",
+        "cross_cycle": "source fixtures added, not executed",
         "runtime_execution": "not_run",
-        "migration": "not_started",
-        "evidence": "T023 mapping covers 13 distinct old/new locations and seven canonical cycles; no skill files moved."
+        "registry": "not_generated",
+        "notes": "T028-T030 and T013 pending; do not claim full Phase 6 PASS."
       }
     }
   }
