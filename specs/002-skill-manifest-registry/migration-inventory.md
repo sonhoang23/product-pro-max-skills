@@ -145,3 +145,9 @@ All three workflow YAMLs use legacy unprefixed `skill:` references. Update these
 - T023: formally review exact mapping and collisions; target paths above are proposals.
 - T024–T025: compare before/after skill behavior, triggers, negative triggers, Required/Optional inputs, Evidence rules, Output contract, Quality gate and Stop conditions, not merely file names.
 - T026–T028: verify workflow links and gate transitions, then record parity results with exact source/target hashes; currently **NOT VERIFIED**.
+
+## T023 mapping review — before file movement
+
+Source-to-target mapping above is injective: all 13 legacy names map to distinct `ppmax-` skill IDs and canonical directory paths. The proposed seven primary cycles (`opportunity`, `product-strategy`, `product-definition`, `delivery`, `verification`, `go-to-market`, `growth`) are canonical cycle IDs in `model/product-model.json`. No collisions are apparent in the baseline table. The primary cycle is one physical placement; cross-cycle discovery must be added via manifest lifecycle associations rather than moving a skill to two directories.
+
+Behavior parity is **not** established by this table: T024–T028 must preserve behavioral sections and compare original blob fingerprints against migrated copies, allowing only explicitly reviewed metadata/path differences. Workflow files still contain legacy skill references and must be changed together with skill migration. No rename is performed as part of T023 preparation.
