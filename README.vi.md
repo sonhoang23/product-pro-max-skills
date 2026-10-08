@@ -68,6 +68,12 @@ Ba workflow:
 - `workflows/pre-launch-audit`
 - `workflows/idea-to-first-users`
 
+## Khám phá skill canonical
+
+13 skill phân phối được nhóm tại `skills/<primary-cycle>/ppmax-<slug>/`. Mỗi skill có `SKILL.md` chứa hành vi và `manifest.yaml` chứa metadata khám phá. Các cycle bổ sung được khai báo trong manifest, không suy ra chỉ từ thư mục.
+
+`registry/skills.json` được sinh từ manifest và không chỉnh thủ công. Chạy `python scripts/generate_skill_registry.py check` để phát hiện drift; `.agents/` chỉ chứa công cụ phát triển repo, không thuộc catalog phân phối.
+
 ## Cài đặt
 
 ```bash

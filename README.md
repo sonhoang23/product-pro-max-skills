@@ -235,6 +235,12 @@ See:
 
 Repository validation checks structural skill requirements plus canonical Product Model drift in dependent schemas/templates.
 
+## Canonical skill discovery
+
+Distributable skills are organized by their **primary lifecycle cycle** at `skills/<primary-cycle>/ppmax-<slug>/`. Every skill has a `SKILL.md` behavioral contract and sibling `manifest.yaml` discovery metadata. Multi-cycle applicability is declared in the manifest rather than inferred from its folder.
+
+`registry/skills.json` is generated from those manifests, not edited manually. Check drift with `python scripts/generate_skill_registry.py check`; install with the canonical `ppmax-` IDs using `scripts/install.py`. Repository-development tooling under `.agents/` is excluded.
+
 ## Repository structure
 
 ```text

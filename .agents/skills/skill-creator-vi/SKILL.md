@@ -39,6 +39,15 @@ Không biến quy trình kỹ thuật thành rào cản. Mục tiêu là giúp n
 
 ---
 
+## Hợp đồng riêng của Product Pro Max (khi làm việc trong repo này)
+
+Trước khi tạo hoặc chỉnh sửa **distributable** skill tại `skills/`, đọc `SKILL-MODEL.md`, `SKILL-CONTRACT.md` và `model/product-model.json` từ root repo; đây là nguồn thẩm quyền, không dùng hướng dẫn tổng quát bên dưới để thay thế. Phần này không áp dụng cho skill phát triển nội bộ tại `.agents/skills/` và không đưa skill nội bộ vào registry.
+
+1. Chốt slug tiếng Anh ASCII kebab-case, đặt `id = ppmax-<slug>` và `namespace = product-pro-max`. Chọn đúng một `primary_cycle` thuộc Product Model; đặt cặp `SKILL.md` và `manifest.yaml` tại `skills/<primary-cycle>/ppmax-<slug>/`. Frontmatter `SKILL.md.name`, thư mục skill và manifest `id` phải trùng nhau. Skill đang có: giữ stable ID, cập nhật cả cặp file và không tự ý đổi hành vi chỉ để hợp thức hóa metadata.
+2. Giữ instruction, trigger và evidence rules thực thi tại `SKILL.md`. Tạo hoặc cập nhật manifest discovery với **đầy đủ** `id`, `namespace`, `slug`, `description`, `primary_cycle`, `lifecycle`, `tracks`, `triggers.include/exclude`, `inputs`, `outputs`, `related_skills`, `workflows`. Mỗi input gồm `name`, `description`, `required` boolean; mỗi output có `name`, `description` và `semantic_kind` tùy chọn. Quan hệ và workflow phải tham chiếu ID canonical hiện hữu. Không thêm schema field ngoài contract.
+3. Có thể lấy **mẫu cấu trúc** từ `specs/002-skill-manifest-registry/contracts/manifest-and-registry.md`, nhưng không copy ngữ nghĩa của ví dụ sang skill thực. Lấy cycle/phase/track từ Product Model; phản ánh trigger, input, output thực sự từ SKILL.md. Nếu applicable trên nhiều cycle, chỉ thêm lifecycle associations; không nhân bản thư mục.
+4. Trước khi chốt bản tạo mới/sửa đổi: chạy `python -m unittest discover -s tests -p "test_skill*.py"`, `python scripts/generate_skill_registry.py generate`, rồi `python scripts/generate_skill_registry.py check`. Kiểm tra `git diff -- registry/skills.json`, commit manifest, SKILL.md và registry đã sinh cùng thay đổi khi tất cả validation PASS. Nếu test không chạy được hoặc fail, ghi PENDING/FAIL; không tuyên bố runtime PASS. Không sửa tay registry.
+
 ## Tạo một skill
 
 ### Thu thập ý định
