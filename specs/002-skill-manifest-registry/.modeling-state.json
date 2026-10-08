@@ -147,7 +147,7 @@
         "runtime_invocation": "not_run",
         "modeling": "implementation:phase-06 remains in-progress; ensure-model before T030 promotion.",
         "installer_dry_run": "User Windows at ef6de19: `install.py --target .agents/skills --all --dry-run` displayed 13 canonical source/destination pairs and Selected 13 skill(s); no install write or invocation tested.",
-        "docs_source": "README.md and README.vi.md canonical discovery documented at 82ac3ca; T030 awaiting fresh implementation gate",
+        "docs_source": "README.md and README.vi.md source already updated; implementation gate still in-progress, T030 pending.",
         "new_tests": "test_skill_creator_contract.py added at e945cf3; not executed",
         "new_authoring": "T031–T032 source complete; Phase 7 runtime verification pending"
       }
@@ -161,6 +161,15 @@
         "evidence": "2026-10-08 local HEAD 6ce125e: python -m unittest discover -s tests -p 'test_skill*.py' -v: Ran 32 tests in 0.153s OK; python scripts/generate_skill_registry.py check: Registry check OK",
         "modeling": "Phase 6 freshness and T030 promotion unresolved; T034 must remain pending",
         "runtime_authoring_journey": "not_run"
+      }
+    },
+    "implementation:phase-08": {
+      "status": "in-progress",
+      "outputs": [],
+      "qa": {
+        "source_review": "T035 ASCII identifier validator preexisting; T036 negative fixtures committed, execution pending; architecture boundary source updated, promotion gate pending",
+        "test_execution": "not_run_after_changes",
+        "ci": "skill-registry.yml committed; GitHub Actions result not verified"
       }
     }
   }
