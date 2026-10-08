@@ -40,19 +40,19 @@ REQUIRED_SECTIONS = [
 ]
 
 EXPECTED_SKILLS = {
-    "idea-pressure-test",
-    "problem-validation",
-    "customer-research",
-    "market-landscape",
-    "icp-positioning",
-    "mvp-scope",
-    "ux-flow",
-    "architecture-plan",
-    "engineering-readiness",
-    "runtime-verification",
-    "launch-readiness",
-    "distribution-plan",
-    "pricing-experiment",
+    "ppmax-idea-pressure-test",
+    "ppmax-problem-validation",
+    "ppmax-customer-research",
+    "ppmax-market-landscape",
+    "ppmax-icp-positioning",
+    "ppmax-mvp-scope",
+    "ppmax-ux-flow",
+    "ppmax-architecture-plan",
+    "ppmax-engineering-readiness",
+    "ppmax-runtime-verification",
+    "ppmax-launch-readiness",
+    "ppmax-distribution-plan",
+    "ppmax-pricing-experiment",
 }
 
 ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -243,18 +243,19 @@ def main() -> int:
         if not (ROOT / rel).exists():
             errors.append(f"Missing required file: {rel}")
 
-    actual_skills = {
-        p.name
-        for p in SKILLS.iterdir()
-        if p.is_dir() and (p / "SKILL.md").exists()
-    } if SKILLS.exists() else set()
+    skill_paths = sorted(SKILLS.glob("*/ppmax-*/SKILL.md")) if SKILLS.exists() else []
+    actual_skills = {p.parent.name for p in skill_paths}
+    if len(skill_paths) != len(actual_skills):
+        errors.append("Duplicate canonical skill directory names across primary cycles")
 
     missing = EXPECTED_SKILLS - actual_skills
     if missing:
         errors.append(f"Missing MVP skills: {', '.join(sorted(missing))}")
 
-    for name in sorted(actual_skills):
-        path = SKILLS / name / "SKILL.md"
+    for path in skill_paths:
+        name = path.parent.name
+        if not (path.parent / "manifest.yaml").is_file():
+            errors.append(f"{path.parent}: missing sibling manifest.yaml")
         text = path.read_text(encoding="utf-8")
         frontmatter = parse_frontmatter(text)
 
