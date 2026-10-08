@@ -6,6 +6,8 @@
 
 **Status**: Draft
 
+**Spec modeling (planned truth)**: [Quan hệ khái niệm skill và metadata](spec-diagram/skill-metadata-relations.html) · [Feature diagram ledger](diagrams.html).
+
 **Input**: Define the canonical Product Pro Max skill model, per-skill machine-readable manifest contract, physical organization, namespace, and derived registry so humans and AI agents can discover, inspect, relate, author, and compose skills consistently. Canonical distributable skills use the `ppmax-` namespace, are physically grouped by one primary lifecycle cycle, retain many-to-many lifecycle metadata, and remain compatible with the Product Model established by Spec 001.
 
 ## User Scenarios & Testing
