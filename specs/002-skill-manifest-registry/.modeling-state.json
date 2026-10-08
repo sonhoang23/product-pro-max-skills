@@ -17,6 +17,27 @@
         "structural_checks": "passed",
         "browser_visual_evidence": "User-provided Edge desktop screenshot, 2026-10-08: layout, text readability, arrows and containment inspected; responsive, link behavior and exact zoom not verified."
       }
+    },
+    "plan": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
+        "research.md": "e83a1869b5805edd6880cb160289d76b59cfaec3",
+        "data-model.md": "574d27ee2f36664bd44ef77ae24dd487fff3888b",
+        "quickstart.md": "2f9836ec794e480433f1c3d9f9e69c310be42532",
+        "contracts/manifest-and-registry.md": "2ce10b69f5caa794562b38a405695583eb8dd85b"
+      },
+      "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "Spec diagram already explains authority boundaries; plan-specific generator/checker responsibilities, data mapping and migration verification are traceable through plan.md, data-model.md, research.md, contracts and quickstart without a meaningful additional visual."
+      },
+      "qa": {
+        "source_set": "verified",
+        "source_hashes": "recorded",
+        "diagram_rendering": "not_applicable",
+        "browser_visual": "not_applicable"
+      }
     }
   }
 }
