@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: planning tasks only; all checkboxes intentionally open. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Phase 1 setup artifacts committed; T001–T003 source-reviewed, no implementation-runtime PASS implied. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -20,9 +20,9 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 ## Phase 1: Setup
 
-- [ ] T001 Inventory 13 existing `skills/*/SKILL.md` and 3 `workflows/*/workflow.yaml`, record baseline paths, names, triggers, evidence/output semantics, internal links and migration fingerprints in `specs/002-skill-manifest-registry/migration-inventory.md`.
-- [ ] T002 Inspect existing Python/CI tooling, select supported Python version, and pin a safe YAML parser with duplicate-key rejection in `requirements-registry.txt`; record the CI installation approach in `specs/002-skill-manifest-registry/research.md` without creating the workflow until T038.
-- [ ] T003 Document exact generator/checker entrypoints and their non-mutating vs atomic-write modes in `specs/002-skill-manifest-registry/quickstart.md`.
+- [x] T001 Inventory 13 existing `skills/*/SKILL.md` and 3 `workflows/*/workflow.yaml`, record baseline paths, names, triggers, evidence/output semantics, internal links and migration fingerprints in `specs/002-skill-manifest-registry/migration-inventory.md`.
+- [x] T002 Inspect existing Python/CI tooling, select supported Python version, and pin a safe YAML parser with duplicate-key rejection in `requirements-registry.txt`; record the CI installation approach in `specs/002-skill-manifest-registry/research.md` without creating the workflow until T038.
+- [x] T003 Document exact generator/checker entrypoints and their non-mutating vs atomic-write modes in `specs/002-skill-manifest-registry/quickstart.md`.
 
 ## Phase 2: Foundational
 
