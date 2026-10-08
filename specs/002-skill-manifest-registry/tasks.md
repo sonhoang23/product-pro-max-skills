@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: Phase 1–2 source artifacts committed (T001–T008). Runtime/CI verification is not yet evidenced; later user-story checks remain open. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. T012 tests are authored but remain unchecked until executable test evidence; T013 depends on later migration. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -36,9 +36,9 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 **Independent test**: From `registry/skills.json` alone, locate candidate skills by lifecycle, trigger, inputs/outputs and relation; generator produces identical bytes on repeat and detects hand edits read-only.
 
-- [ ] T009 [US1] Implement canonical manifest-to-registry projection of every FR-025 discovery field, canonical path and deterministic sorting in `scripts/generate_skill_registry.py`, with `registry_version: 1` only as encoding marker.
-- [ ] T010 [US1] Implement `generate` mode of `scripts/generate_skill_registry.py`: prevalidate full catalog, serialize stable UTF-8 JSON and atomically replace `registry/skills.json` only on complete success (SR-04).
-- [ ] T011 [US1] Implement read-only `check` mode in `scripts/generate_skill_registry.py`: regenerate in memory, compare byte-for-byte with `registry/skills.json`, identify drift or incomplete coverage and never write (SR-01).
+- [x] T009 [US1] Implement canonical manifest-to-registry projection of every FR-025 discovery field, canonical path and deterministic sorting in `scripts/generate_skill_registry.py`, with `registry_version: 1` only as encoding marker.
+- [x] T010 [US1] Implement `generate` mode of `scripts/generate_skill_registry.py`: prevalidate full catalog, serialize stable UTF-8 JSON and atomically replace `registry/skills.json` only on complete success (SR-04).
+- [x] T011 [US1] Implement read-only `check` mode in `scripts/generate_skill_registry.py`: regenerate in memory, compare byte-for-byte with `registry/skills.json`, identify drift or incomplete coverage and never write (SR-01).
 - [ ] T012 [US1] Add clean-registry, two-run byte-identical and tampered-registry fixtures plus read-only filesystem snapshot assertions in `tests/test_skill_registry.py`; capture invocation/exit/output evidence (SR-01, SR-04).
 - [ ] T013 [US1] After T023–T029 (US4 migration and verification) and T017–T022 (US3 integrity), produce `registry/skills.json` from fully migrated valid manifests in `registry/skills.json`, with one entry per distributable skill and zero `.agents/` entries; block until migration tasks complete.
 
