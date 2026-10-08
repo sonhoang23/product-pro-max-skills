@@ -18,6 +18,31 @@ import test_skill_registry as fixture_module
 class InvalidRegistryTests(unittest.TestCase):
     # Reuse fixture setup without inheriting and rerunning positive test methods.
     setUp = fixture_module.RegistryTest.setUp
+    def test_frontmatter_mismatch(self):
+        skill = self.skill / "SKILL.md"
+        skill.write_text(skill.read_text(encoding="utf-8").replace("name: ppmax-example", "name: ppmax-other"), encoding="utf-8")
+        with self.assertRaisesRegex(RegistryValidationError, "name mismatch"):
+            build_registry(self.root)
+
+    def test_unsafe_yaml_and_duplicate_keys(self):
+        for text in ("id: !!python/object/apply:os.system ['echo bad']\\n", self.manifest.read_text(encoding="utf-8") + "\\nid: ppmax-other\\n"):
+            with self.subTest(text=text[:35]):
+                self.manifest.write_text(text, encoding="utf-8")
+                with self.assertRaises(RegistryValidationError):
+                    build_registry(self.root)
+
+    def test_unknown_semantic_kind(self):
+        self.manifest.write_text(self.manifest.read_text(encoding="utf-8").replace("semantic_kind: evidence", "semantic_kind: random"), encoding="utf-8")
+        with self.assertRaisesRegex(RegistryValidationError, "semantic_kind"):
+            build_registry(self.root)
+
+    def test_duplicate_input_name(self):
+        text = self.manifest.read_text(encoding="utf-8")
+        text = text.replace("outputs:\\n", "  - name: question\\n    description: duplicate\\n    required: false\\noutputs:\\n")
+        self.manifest.write_text(text, encoding="utf-8")
+        with self.assertRaisesRegex(RegistryValidationError, "duplicate inputs"):
+            build_registry(self.root)
+
     def test_bad_id(self):
         self.manifest.write_text(self.manifest.read_text().replace("id: ppmax-example", "id: wrong"), encoding="utf-8")
         with self.assertRaisesRegex(RegistryValidationError, "canonical skill ID"):
