@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "diagram-design-vi": {
+      "source": "sonhoang23/oh-my-skill",
+      "sourceType": "github",
+      "skillPath": "skills/diagram-design-vi/SKILL.md",
+      "computedHash": "c980645075db28d614c3b3f40abafbe33c44fbd28b6f10c83e59cfff7432f500"
+    }
+  }
+}
