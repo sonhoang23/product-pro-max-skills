@@ -188,3 +188,49 @@ def validate_cycle_association(
     for track in tracks:
         if track not in vocabulary["tracks"]:
             raise RegistryValidationError(f"{source}: unknown track {track}")
+
+
+def validate_discovery_metadata(data: dict[str, Any], source: Path) -> None:
+    """Validate semantic discovery fields without influencing skill execution."""
+    def fail(reason: str) -> None:
+        raise RegistryValidationError(f"{source}: {reason}")
+    if not isinstance(data.get("description"), str) or not data["description"].strip():
+        fail("description must be nonempty")
+    triggers = data.get("triggers")
+    if not isinstance(triggers, dict) or set(triggers) != {"include", "exclude"}:
+        fail("triggers must contain include and exclude")
+    for name in ("include", "exclude"):
+        values = triggers[name]
+        if not isinstance(values, list) or any(not isinstance(x, str) or not x.strip() for x in values):
+            fail(f"triggers.{name} must be nonempty descriptions")
+    required = {
+        "inputs": {"name", "description", "required"},
+        "outputs": {"name", "description"},
+        "related_skills": {"skill_id", "type"},
+        "workflows": {"workflow_id", "role"},
+    }
+    extras = {"outputs": {"semantic_kind"}}
+    identities = {"inputs": "name", "outputs": "name", "related_skills": "skill_id", "workflows": "workflow_id"}
+    for field, keys in required.items():
+        items = data.get(field)
+        if not isinstance(items, list):
+            fail(f"{field} must be a list")
+        seen = set()
+        for item in items:
+            if not isinstance(item, dict) or not keys <= set(item) or set(item) - (keys | extras.get(field, set())):
+                fail(f"invalid {field} item")
+            for key in keys:
+                value = item[key]
+                if key == "required":
+                    if type(value) is not bool:
+                        fail("inputs.required must be boolean")
+                elif not isinstance(value, str) or not value.strip():
+                    fail(f"{field}.{key} must be nonempty")
+            identity = item[identities[field]]
+            if identity in seen:
+                fail(f"duplicate {field} reference: {identity}")
+            seen.add(identity)
+            if field == "outputs" and "semantic_kind" in item and item["semantic_kind"] not in {"evidence", "gate", "decision"}:
+                fail("invalid outputs.semantic_kind")
+            if field == "related_skills" and item["type"] not in {"prerequisite", "complements", "produces-input-for"}:
+                fail("invalid related_skills.type")
