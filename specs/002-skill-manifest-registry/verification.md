@@ -17,3 +17,30 @@
 - Phase implementation modeling gates are stale or in-progress; promotion tasks T030/T034/T037 and T040 remain pending.
 
 Do not treat these missing checks as PASS or mark T038–T041 complete.
+
+## Final source audit prepared (pending consolidated run)
+
+- FR-001–004: `SKILL-MODEL.md`, `SKILL-CONTRACT.md`, `SKILL.md` and sibling manifests are the authoritative/behavioral split.
+- FR-005–012: canonical ID/path/primary-cycle/lifecycle/track restrictions enforced by registry validation and fixtures.
+- FR-013–022: metadata discovery fields, safe semantics and workflow/skill reference checks covered by manifest validation and registry projection.
+- FR-023–027: generated 13-entry registry, byte-exact checker and ASCII/localization fixtures; development-tool exclusion tested.
+- FR-028–029: `skill-creator-vi` authoring instructions and static contract fixture; actual end-to-end AI authoring has not been exercised.
+- FR-030–031: 13 skill source migrations contain only frontmatter/H1 changes, static migration parity checked. Actual invoked behavioral parity remains untested.
+- FR-032: source changes limited to metadata/registry/authoring/CI/verification; no new eval ranking, compatibility policy, or hosted UI.
+- SR-01–04: negative fixtures for read-only drift, identity, references and atomic writes passed in earlier Windows run; rerun in consolidated release verification.
+- SR-05: source static migration diff and manifest mapping reviewed; behavioral invocation not covered.
+- SR-06: `.agents/` lookalike and localized identifier fixtures passed in earlier Windows run.
+- SR-07: file-only implementation remains without new network runtime boundaries; CI runner needs network only for checkout and installing pinned PyYAML.
+
+### Project-level Diagram Check — provisional source assessment
+
+Existing spec diagram represents **planned** metadata/skill relationships. Implemented registry relationships are expressed in `SKILL-MODEL.md`, `SKILL-CONTRACT.md`, `docs/ARCHITECTURE.md`, and `registry/skills.json`. No additional project diagram introduces a clearer boundary or sequence for this small, deterministic file-only contract; **no-diagram-needed is the proposed outcome**, contingent on a fresh implementation modeling pass and final verification. Do not alter Diagram Atlas or duplicate planned semantics.
+
+## Consolidated final run (not executed)
+
+```powershell
+python -m pip install -r requirements-registry.txt
+python scripts/verify_skill_registry_release.py
+```
+
+Capture complete output, source HEAD, GitHub Actions Ubuntu run/check logs and negative-case process exit codes before marking T038–T041 complete. This section is a planned checklist, not a passing result.
