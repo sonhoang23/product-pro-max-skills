@@ -39,6 +39,7 @@ class InvalidRegistryTests(unittest.TestCase):
     def test_duplicate_input_name(self):
         text = self.manifest.read_text(encoding="utf-8")
         text = text.replace("outputs:\\n", "  - name: question\\n    description: duplicate\\n    required: false\\noutputs:\\n")
+        self.assertNotEqual(text, self.manifest.read_text(encoding="utf-8"), "fixture injection must change the manifest")
         self.manifest.write_text(text, encoding="utf-8")
         with self.assertRaisesRegex(RegistryValidationError, "duplicate inputs"):
             build_registry(self.root)
