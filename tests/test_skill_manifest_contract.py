@@ -6,7 +6,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
-from skill_registry_common import RegistryValidationError, validate_discovery_metadata, validate_cycle_association, product_vocabulary, skill_inventory
+from skill_registry_common import RegistryValidationError, validate_discovery_metadata, validate_cycle_association, product_vocabulary
+from generate_skill_registry import build_registry
 
 
 class DiscoveryContractTests(unittest.TestCase):
@@ -45,17 +46,32 @@ class DiscoveryContractTests(unittest.TestCase):
         self.assertEqual({a["cycle"] for a in associations}, {"product-definition", "verification"})
 
     def test_wrong_primary_folder_is_rejected(self):
+        import json
+        import shutil
         from tempfile import TemporaryDirectory
+
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
-            wrong = root / "skills" / "incorrect" / "ppmax-example"
+            model_path = root / "model" / "product-model.json"
+            model_path.parent.mkdir(parents=True)
+            shutil.copyfile(Path(__file__).resolve().parents[1] / "model" / "product-model.json", model_path)
+            wrong = root / "skills" / "delivery" / "ppmax-example"
             wrong.mkdir(parents=True)
             (wrong / "SKILL.md").write_text("---\\nname: ppmax-example\\n---\\n", encoding="utf-8")
-            (wrong / "manifest.yaml").write_text("id: ppmax-example\\n", encoding="utf-8")
-            pairs = skill_inventory(root)
-            self.assertEqual(len(pairs), 1)
-            self.assertNotEqual(pairs[0][0].parent.parent.name, "opportunity")
-            # Folder-cycle contract is enforced by registry validation, not inventory-only discovery.
+            manifest = {
+                "id": "ppmax-example", "namespace": "product-pro-max",
+                "slug": "example", "description": "Tests folder-cycle mismatch.",
+                "primary_cycle": "opportunity",
+                "lifecycle": [{"cycle": "opportunity", "phase": "discovery"}],
+                "tracks": ["product"],
+                "triggers": {"include": ["When testing."], "exclude": ["Otherwise."]},
+                "inputs": [{"name": "context", "description": "Input.", "required": True}],
+                "outputs": [{"name": "evidence", "description": "Output."}],
+                "related_skills": [], "workflows": [],
+            }
+            (wrong / "manifest.yaml").write_text(json.dumps(manifest), encoding="utf-8")
+            with self.assertRaisesRegex(RegistryValidationError, "primary_cycle mismatch"):
+                build_registry(root)
 
     def test_invalid_field_cases(self):
         cases = [
