@@ -162,3 +162,12 @@ Behavior parity is **not** established by this table: T024–T028 must preserve 
 - Six manifests were inspected in the first batch and seven in the second; all 13 include canonical identity and discovery contract fields. JSON manifests use valid YAML syntax; parser and full-catalog runtime still unexecuted.
 - Cross-cycle associations deliberately included for `ux-flow` (verification/ux-validation), `runtime-verification` (delivery/integration), `distribution-plan` (growth/acquisition), and `pricing-experiment` (product-strategy/business-model), without duplicating physical directories.
 - **Pending:** exact per-skill post-migration blob fingerprints, full old/new evidence/triggers/output review, real workflow invocation, installer smoke test, cross-cycle fixture execution, generator/checker execution, and final broken-link audit beyond specified READMEs. None of these are runtime PASS.
+
+## Post-migration verification (user Windows evidence, 2026-10-08)
+
+- User ran `python -m unittest discover -s tests -p "test_skill*.py"` at `83f0ac3`: **28 tests, OK** (0.159 s), including added cross-cycle/wrong-folder cases.
+- User ran `python scripts/generate_skill_registry.py generate` on complete catalog: success. Follow-up `check`: `Registry check OK`.
+- GitHub diff of migration commit `7b283be2` contains **13 frontmatter/H1 rename hunks** and **no other removed SKILL.md behavior lines**; all other SKILL content retained, including triggers, evidence safeguards and outputs. This establishes static behavioral-text parity only.
+- All 13 manifests reference one canonical physical folder each. Cross-cycle associations are expressed in metadata, as exercised in 28-test suite.
+- Derived `registry/skills.json` with 13 entries committed at `6b4040a`; no `.agents/` catalog members included. Local Windows check was executed prior to committing this derived JSON; final branch byte-identical check should be rerun after pulling its commit.
+- Remaining independent checks: actual installed skill invocation, installer smoke test and runtime workflow execution were not supplied. No runtime PASS is claimed for those boundaries.
