@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. T012 and T016 tests are authored but remain unchecked until executable test evidence; T013 depends on later migration. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. T012, T016, T021 and T022 tests are authored but remain unchecked until executable test evidence; T013 depends on later migration; T020 still needs complete Product Model gate/decision semantic verification. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -54,9 +54,9 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 **Independent test**: Valid full catalog passes; each missing/duplicate/invalid identity, phase, reference and modified registry fails with source-specific diagnostics and no mutation.
 
-- [ ] T017 [US3] Enforce ID `ppmax-<slug>`, namespace `product-pro-max`, ASCII kebab-case, manifest/frontmatter/path agreement, unique IDs/slugs, no duplicate mappings and strict missing-manifest errors in `scripts/skill_registry_common.py` (SR-02).
-- [ ] T018 [US3] Validate every lifecycle `{cycle, phase?}` plus `tracks` against `model/product-model.json`, including primary-cycle membership, phase ownership and no repeated associations in `scripts/skill_registry_common.py` (SR-03).
-- [ ] T019 [US3] Validate related skill IDs exist, no self-links/duplicate or contradictory relations, only canonical relation types; validate workflow IDs against `workflows/*/workflow.yaml` without reimplementing orchestration in `scripts/skill_registry_common.py` (SR-03).
+- [x] T017 [US3] Enforce ID `ppmax-<slug>`, namespace `product-pro-max`, ASCII kebab-case, manifest/frontmatter/path agreement, unique IDs/slugs, no duplicate mappings and strict missing-manifest errors in `scripts/skill_registry_common.py` (SR-02).
+- [x] T018 [US3] Validate every lifecycle `{cycle, phase?}` plus `tracks` against `model/product-model.json`, including primary-cycle membership, phase ownership and no repeated associations in `scripts/skill_registry_common.py` (SR-03).
+- [x] T019 [US3] Validate related skill IDs exist, no self-links/duplicate or contradictory relations, only canonical relation types; validate workflow IDs against `workflows/*/workflow.yaml` without reimplementing orchestration in `scripts/skill_registry_common.py` (SR-03).
 - [ ] T020 [US3] Verify gate/decision `semantic_kind` against explicitly documented allowed vocabulary in `specs/002-skill-manifest-registry/contracts/manifest-and-registry.md`: `evidence`, `gate`, `decision` (the example already uses `evidence`); for `gate`/`decision` check compatibility with `model/product-model.json` and do not conflate the two; reject unknown kinds in `scripts/skill_registry_common.py`.
 - [ ] T021 [US3] Add failing fixture matrix for missing manifest, bad YAML/duplicate keys, duplicate ID/slug, mismatched frontmatter, path/cycle mismatch, unknown/incorrect phase, track, related skill, workflow and gate/decision kind in `tests/test_skill_registry_invalid.py` (SR-02, SR-03, SR-04).
 - [ ] T022 [US3] Add tests proving malformed input leaves preexisting `registry/skills.json` unchanged and `check` never writes in `tests/test_skill_registry_invalid.py` (SR-01, SR-04).
