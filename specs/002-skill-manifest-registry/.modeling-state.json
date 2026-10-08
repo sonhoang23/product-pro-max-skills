@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "spec": {
+      "status": "blocked",
+      "source_hashes": {
+        "spec.md": "a639db3dee69780628848efca0668600d613acbd"
+      },
+      "outputs": [
+        "spec-diagram/skill-metadata-relations.html"
+      ],
+      "qa": {
+        "self_check": "unavailable",
+        "atlas": "unavailable",
+        "layout": "unavailable",
+        "browser_visual": "unavailable",
+        "structural_checks": "passed"
+      },
+      "blockers": [
+        "Required diagram-design self_check.py and repository Atlas/layout validators were not executed in a local checkout; cannot mark gate modeled until QA is verified."
+      ]
+    }
+  }
+}
