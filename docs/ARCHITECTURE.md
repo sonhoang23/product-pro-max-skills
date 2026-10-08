@@ -94,9 +94,13 @@ The project-state schema rejects a phase paired with a cycle that does not own i
 
 ## Agent compatibility
 
-Canonical distributable skills remain under `skills/<name>/SKILL.md`. Installation tooling copies them into a target Agent Skills directory.
+Canonical distributable skills live at `skills/<primary-cycle>/ppmax-<slug>/SKILL.md`, beside `manifest.yaml`. `scripts/install.py` discovers these nested canonical directories and copies them into a target Agent Skills directory named by canonical ID.
 
 Platform-specific adapters should transform installation layout rather than duplicate canonical skill logic.
+
+## Registry discovery boundary
+
+`manifest.yaml` is the authoritative per-skill discovery metadata; `registry/skills.json` is its deterministic derived projection. The manifest can declare multiple lifecycle associations while directory placement has exactly one primary cycle. `SKILL.md` owns execution behavior, not the registry. `workflows/*/workflow.yaml` owns orchestration, whereas manifest workflow links expose discovery relationships. `.agents/` tooling is excluded from distributable discovery. The registry checker rejects missing or invalid manifests, identifiers and references, and byte-level drift without writing files.
 
 ## Global-first rule
 
