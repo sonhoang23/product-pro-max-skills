@@ -21,12 +21,12 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 ## Phase 1: Setup
 
 - [ ] T001 Inventory 13 existing `skills/*/SKILL.md` and 3 `workflows/*/workflow.yaml`, record baseline paths, names, triggers, evidence/output semantics, internal links and migration fingerprints in `specs/002-skill-manifest-registry/migration-inventory.md`.
-- [ ] T002 Inspect existing Python/CI tooling and pin a safe YAML parser with duplicate-key rejection plus supported Python version in `requirements-registry.txt` and `.github/workflows/skill-registry.yml`; do not claim execution before CI runs.
+- [ ] T002 Inspect existing Python/CI tooling, select supported Python version, and pin a safe YAML parser with duplicate-key rejection in `requirements-registry.txt`; record the CI installation approach in `specs/002-skill-manifest-registry/research.md` without creating the workflow until T038.
 - [ ] T003 Document exact generator/checker entrypoints and their non-mutating vs atomic-write modes in `specs/002-skill-manifest-registry/quickstart.md`.
 
 ## Phase 2: Foundational
 
-- [ ] T004 Define canonical entities, relation types (`prerequisite`, `complements`, `produces-input-for`), workflow authority and manifest-vs-SKILL.md responsibility in `SKILL-MODEL.md`, preserving `model/product-model.json` as lifecycle/gate/decision authority.
+- [ ] T004 Define only foundational canonical entities, relation types (`prerequisite`, `complements`, `produces-input-for`), workflow authority and manifest-vs-SKILL.md responsibility in `SKILL-MODEL.md`, preserving `model/product-model.json` as lifecycle/gate/decision authority.
 - [ ] T005 Specify required sibling `manifest.yaml` contract, field types, ASCII identity, uniqueness, `primary_cycle` membership, phase ownership, optional gate/decision `semantic_kind`, error policy and exact path rules in `SKILL-CONTRACT.md`.
 - [ ] T006 Create shared safe YAML decoding, duplicate-key/unsafe-tag rejection, normalized UTF-8/JSON output and actionable error structures in `scripts/skill_registry_common.py`; validate all input before any output mutation.
 - [ ] T007 Implement repository inventory for distributable `skills/<cycle>/<id>/SKILL.md` + `manifest.yaml`, explicitly excluding `.agents/`, in `scripts/skill_registry_common.py`; reject legacy/unpaired paths rather than silently ignoring them.
@@ -40,13 +40,13 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 - [ ] T010 [US1] Implement `generate` mode of `scripts/generate_skill_registry.py`: prevalidate full catalog, serialize stable UTF-8 JSON and atomically replace `registry/skills.json` only on complete success (SR-04).
 - [ ] T011 [US1] Implement read-only `check` mode in `scripts/generate_skill_registry.py`: regenerate in memory, compare byte-for-byte with `registry/skills.json`, identify drift or incomplete coverage and never write (SR-01).
 - [ ] T012 [US1] Add clean-registry, two-run byte-identical and tampered-registry fixtures plus read-only filesystem snapshot assertions in `tests/test_skill_registry.py`; capture invocation/exit/output evidence (SR-01, SR-04).
-- [ ] T013 [US1] Produce `registry/skills.json` from fully migrated valid manifests in `registry/skills.json`, with one entry per distributable skill and zero `.agents/` entries; block until migration tasks complete.
+- [ ] T013 [US1] After T023–T029 (US4 migration and verification) and T017–T022 (US3 integrity), produce `registry/skills.json` from fully migrated valid manifests in `registry/skills.json`, with one entry per distributable skill and zero `.agents/` entries; block until migration tasks complete.
 
 ## Phase 4: US2 — Understand Contracts and Relationships (P1)
 
 **Independent test**: Two different manifest fixtures expose the same contract and typed relationships without parsing behavioral prose.
 
-- [ ] T014 [US2] Define consistent trigger include/exclude, semantic input `{name, description, required: boolean}`, output `{name, description, semantic_kind?}`, typed skill/workflow relationship interpretation in `SKILL-MODEL.md` without defining execution logic.
+- [ ] T014 [US2] Extend the foundational model (T004) with precise, nonduplicative trigger include/exclude, semantic input `{name, description, required: boolean}`, output `{name, description, semantic_kind?}`, typed skill/workflow relationship interpretation in `SKILL-MODEL.md` without defining execution logic.
 - [ ] T015 [US2] Implement manifest field/schema checks for required nonempty English description, positive/negative trigger arrays, unique semantic input/output names, booleans, canonical relationship types and workflow roles in `scripts/skill_registry_common.py`.
 - [ ] T016 [US2] Add two contrasting manifest contract fixtures and assert uniform interpretation of required/optional inputs, outputs, triggers and typed relations in `tests/test_skill_manifest_contract.py`.
 
@@ -57,7 +57,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 - [ ] T017 [US3] Enforce ID `ppmax-<slug>`, namespace `product-pro-max`, ASCII kebab-case, manifest/frontmatter/path agreement, unique IDs/slugs, no duplicate mappings and strict missing-manifest errors in `scripts/skill_registry_common.py` (SR-02).
 - [ ] T018 [US3] Validate every lifecycle `{cycle, phase?}` plus `tracks` against `model/product-model.json`, including primary-cycle membership, phase ownership and no repeated associations in `scripts/skill_registry_common.py` (SR-03).
 - [ ] T019 [US3] Validate related skill IDs exist, no self-links/duplicate or contradictory relations, only canonical relation types; validate workflow IDs against `workflows/*/workflow.yaml` without reimplementing orchestration in `scripts/skill_registry_common.py` (SR-03).
-- [ ] T020 [US3] Verify gate/decision `semantic_kind` aligns with Product Model semantics, do not conflate gate and decision and reject unsupported semantic kinds in `scripts/skill_registry_common.py`.
+- [ ] T020 [US3] Verify gate/decision `semantic_kind` against explicitly documented allowed vocabulary in `specs/002-skill-manifest-registry/contracts/manifest-and-registry.md`: `evidence`, `gate`, `decision` (the example already uses `evidence`); for `gate`/`decision` check compatibility with `model/product-model.json` and do not conflate the two; reject unknown kinds in `scripts/skill_registry_common.py`.
 - [ ] T021 [US3] Add failing fixture matrix for missing manifest, bad YAML/duplicate keys, duplicate ID/slug, mismatched frontmatter, path/cycle mismatch, unknown/incorrect phase, track, related skill, workflow and gate/decision kind in `tests/test_skill_registry_invalid.py` (SR-02, SR-03, SR-04).
 - [ ] T022 [US3] Add tests proving malformed input leaves preexisting `registry/skills.json` unchanged and `check` never writes in `tests/test_skill_registry_invalid.py` (SR-01, SR-04).
 
@@ -81,7 +81,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 - [ ] T031 [US5] Update `.agents/skills/skill-creator-vi/SKILL.md` to read `SKILL-MODEL.md` and `SKILL-CONTRACT.md` as authority and require `ppmax-` naming, canonical cycle/path and sibling manifest without becoming a source of truth.
 - [ ] T032 [US5] Add contributor-facing manifest/template generation workflow and validation invocation to `.agents/skills/skill-creator-vi/SKILL.md`; keep `.agents/` itself outside registry.
 - [ ] T033 [US5] Test new skill and update-existing-skill authoring cases, identity mismatch rejection, missing metadata and `.agents/` exclusion in `tests/test_skill_creator_contract.py` (SR-06).
-- [ ] T034 [US5] After verified authoring behavior and fresh implementation modeling gate for this phase, promote canonical skill responsibilities and authoring rules into `SKILL-MODEL.md` and `SKILL-CONTRACT.md` (only observed implementation truth).
+- [ ] T034 [US5] After verified authoring behavior and fresh implementation modeling gate for this phase, audit `SKILL-MODEL.md` and `SKILL-CONTRACT.md` against implemented authoring; correct documented drift only, without redefining the canonical contract.
 
 ## Phase 8: US6 — Global-First Boundaries (P2)
 
@@ -100,7 +100,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 ## Dependencies and Execution Order
 
-- Phase 1 → Phase 2 → US1 core generation (T009–T012); the full registry build T013 is blocked by US4 migration T023–T028.
+- Phase 1 → Phase 2 → US1 core generation (T009–T012); the full registry build T013 is blocked by US3 integrity T017–T022 and US4 migration T023–T029; T013 is a deferred US1 completion checkpoint after these workstreams.
 - US2 manifest semantics and US3 integrity must be wired before full-catalog generation; US4 uses their validators and existing inventory.
 - US5 authoring integration begins after contract validation; US6 follows canonical identity enforcement. Phase 9 requires all included stories.
 - Project-document promotion T030, T034, T037 and diagram assessment T040 require verified implementation and fresh `implementation:phase-XX` modeling gate of the corresponding phase; keep unchecked otherwise.
