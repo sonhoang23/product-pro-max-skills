@@ -1,7 +1,7 @@
 # Tasks: Skill Manifest Registry
 
 **Input**: `specs/002-skill-manifest-registry/{spec.md,plan.md,research.md,data-model.md,contracts/manifest-and-registry.md,quickstart.md}`
-**State**: Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. Windows logs confirmed T016 2/2 PASS; Windows Python 3.13.3 regression rerun 15/15 PASS at b89abe8; T022 verified for malformed YAML preservation and read-only drift detection. Windows regression at 5990fef: 20/20 registry fixture tests PASS. T012 remains open for whole-filesystem snapshot assertion; T021 remains open for remaining full invalid-case matrix; T013 depends on later migration. T020 source now validates semantic kinds and checks Product Model gate/decision vocabulary; fixture integration test rerun 20/20 PASS, full-catalog runtime validation remains pending. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
+**State**: Phase 1–2 source artifacts and Phase 3 generator T009–T011 committed. Windows logs confirmed T016 2/2 PASS; Windows Python 3.13.3 regression rerun 15/15 PASS at b89abe8; T022 verified for malformed YAML preservation and read-only drift detection. Windows regression at 5990fef: 20/20 registry fixture tests PASS. T012 whole-fixture snapshot and T021 extra invalid-case fixtures are now authored; new tests have not yet been executed and both remain open; T013 depends on later migration. T020 source now validates semantic kinds and checks Product Model gate/decision vocabulary; fixture integration test rerun 20/20 PASS, full-catalog runtime validation remains pending. Runtime/CI verification is not yet evidenced. Plan gate `no-diagram-needed` with recorded source hashes; no implementation or runtime PASS claimed.
 **Scope**: Canonical skills only (`skills/`); repository tooling `.agents/` is excluded. Product Model in `model/product-model.json` remains authoritative.
 
 ## Runtime Risk Coverage
@@ -65,7 +65,7 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 **Independent test**: Every legacy skill has one canonical path, unchanged bounded behavior and repaired workflow links; a multi-cycle skill remains discoverable beyond its folder.
 
-- [ ] T023 [US4] Create reviewed old-path→canonical-path + primary-cycle mapping for all 13 existing skills in `specs/002-skill-manifest-registry/migration-inventory.md`, resolving collisions before file moves (SR-05).
+- [x] T023 [US4] Create reviewed old-path→canonical-path + primary-cycle mapping for all 13 existing skills in `specs/002-skill-manifest-registry/migration-inventory.md`, resolving collisions before file moves (SR-05).
 - [ ] T024 [US4] Move all 13 distributable `skills/<legacy-name>/SKILL.md` to `skills/<primary-cycle>/ppmax-<slug>/SKILL.md`, updating frontmatter `name` only as required and preserving bounded behavior, evidence, triggers, outputs and workflow responsibilities (SR-05).
 - [ ] T025 [US4] Write sibling `skills/<primary-cycle>/ppmax-<slug>/manifest.yaml` for each of the 13 migrated skills, with one valid primary cycle, optional additional lifecycle associations/tracks and complete trigger/input/output metadata.
 - [ ] T026 [US4] Repair old skill path/name references in `workflows/idea-to-mvp/workflow.yaml`, `workflows/idea-to-first-users/workflow.yaml` and `workflows/pre-launch-audit/workflow.yaml`, preserving invocation order and responsibility.
