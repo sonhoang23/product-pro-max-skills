@@ -14,9 +14,16 @@ SKILLS_DIR = ROOT / "skills"
 def available_skills() -> list[str]:
     return sorted(
         p.name
-        for p in SKILLS_DIR.iterdir()
-        if p.is_dir() and (p / "SKILL.md").exists()
+        for p in SKILLS_DIR.glob("*/ppmax-*")
+        if p.is_dir() and (p / "SKILL.md").is_file() and (p / "manifest.yaml").is_file()
     )
+
+
+def source_path(name: str) -> Path:
+    matches = list(SKILLS_DIR.glob(f"*/{name}"))
+    if len(matches) != 1:
+        raise SystemExit(f"Expected one canonical skill directory for {name}, found {len(matches)}")
+    return matches[0]
 
 
 def parse_args() -> argparse.Namespace:
@@ -47,7 +54,7 @@ def main() -> int:
     target = Path(args.target).expanduser().resolve()
 
     for name in names:
-        src = SKILLS_DIR / name
+        src = source_path(name)
         dst = target / name
         prefix = "[dry-run] " if args.dry_run else ""
         print(f"{prefix}{src} -> {dst}")
