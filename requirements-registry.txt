@@ -1,0 +1,3 @@
+# Skill registry tooling — Python 3.12 (matches .github/workflows/validate.yml)
+# Use yaml.SafeLoader subclass with duplicate-key detection; safe_load alone does not reject duplicate keys.
+PyYAML==6.0.2
