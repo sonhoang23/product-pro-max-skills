@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Static SVG bounds, geometry and accessible label checks for living diagrams."""
 import json
+import re
+import html
 import sys
 import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
@@ -35,11 +37,10 @@ class SVGs(HTMLParser):
 def inspect(path):
     issues = []
     text = path.read_text(encoding="utf-8")
-    parser = SVGs()
-    parser.feed(text)
-    if not parser.chunks:
+    chunks = [html.unescape(m.group()) for m in re.finditer(r'<svg\\b[\\s\\S]*?</svg>', text)]
+    if not chunks:
         return ["no SVG found"]
-    for markup in parser.chunks:
+    for markup in chunks:
         try:
             # HTML SVG markup often omits XML namespace; SVG tree still parses.
             root = ET.fromstring(markup)
