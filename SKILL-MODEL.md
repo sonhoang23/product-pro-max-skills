@@ -45,3 +45,11 @@ A `workflows` relationship names an existing canonical workflow ID and a discove
 ## Change discipline
 
 Changing labels, folder names or metadata for migration must preserve bounded responsibility, trigger intent, evidence requirements, outputs and workflow behavior. Versioning/deprecation, skill evaluation policy, releases, catalog UI and search ranking belong to later foundation specs.
+
+## Comparable discovery contract (US2)
+
+A consumer selects a skill using the manifest, never by guessing from folder location or parsing its instructions. `triggers.include` lists positive situations; `triggers.exclude` lists explicit negative selection boundaries. Both are lists of nonempty semantic descriptions, not executable predicates. Exclusions narrow selection even when inclusion matches; metadata never runs the skill.
+
+Each `inputs` item has a stable semantic `name`, nonempty `description`, and literal boolean `required`; optional inputs use `required: false`, not an absent key. Each `outputs` item has a unique semantic `name`, `description`, and optional `semantic_kind` (`evidence`, `gate`, or `decision`). Output metadata describes expected meaning, not actual verified evidence.
+
+`related_skills` references canonical IDs with typed relationships. `prerequisite` points from the current skill to one that should precede it; `produces-input-for` points toward a downstream consumer; `complements` imposes no order. These discovery hints are not execution commands. `workflows` declares membership as `{workflow_id, role}` with a nonempty human-readable discovery role, never the step order or transition rules. Duplicate semantic names or repeated references are invalid.
