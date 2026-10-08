@@ -1,27 +1,87 @@
-id: ppmax-idea-pressure-test
-namespace: product-pro-max
-slug: idea-pressure-test
-description: Stress-test a product idea before implementation.
-primary_cycle: opportunity
-lifecycle:
-  - cycle: opportunity
-    phase: discovery
-tracks:
-  - product
-triggers:
-  include:
-    - User wants to examine product idea assumptions.
-  exclude:
-    - User needs customer research rather than an idea stress-test.
-inputs:
-  - name: idea
-    description: Concise proposed idea or solution.
-    required: true
-outputs:
-  - name: assumptions
-    description: Critical assumptions and risk analysis.
-    semantic_kind: evidence
-related_skills: []
-workflows:
-  - workflow_id: idea-to-mvp
-    role: step
+{
+  "id": "ppmax-idea-pressure-test",
+  "namespace": "product-pro-max",
+  "slug": "idea-pressure-test",
+  "description": "Stress-test a product idea before implementation by exposing assumptions, risks, alternatives and missing evidence. Use when a builder has an idea and is deciding whether it deserves deeper validation.",
+  "primary_cycle": "opportunity",
+  "lifecycle": [
+    {
+      "cycle": "opportunity",
+      "phase": "discovery"
+    }
+  ],
+  "tracks": [
+    "product"
+  ],
+  "triggers": {
+    "include": [
+      "Use when a user presents a product idea, feature concept or venture and wants to know whether it deserves deeper validation."
+    ],
+    "exclude": [
+      "Do not use as a substitute for customer research, market research or runtime verification."
+    ]
+  },
+  "inputs": [
+    {
+      "name": "a-concise-idea-or-proposed-solution",
+      "description": "A concise idea or proposed solution.",
+      "required": true
+    },
+    {
+      "name": "target-customer-hypothesis",
+      "description": "Target customer hypothesis.",
+      "required": false
+    },
+    {
+      "name": "known-evidence",
+      "description": "Known evidence.",
+      "required": false
+    },
+    {
+      "name": "constraints-unfair-advantages-or-distribution-access",
+      "description": "Constraints, unfair advantages or distribution access.",
+      "required": false
+    }
+  ],
+  "outputs": [
+    {
+      "name": "problem-hypothesis",
+      "description": "Problem hypothesis"
+    },
+    {
+      "name": "solution-hypothesis",
+      "description": "Solution hypothesis"
+    },
+    {
+      "name": "critical-assumptions-ranked-by-risk",
+      "description": "Critical assumptions ranked by risk"
+    },
+    {
+      "name": "known-evidence",
+      "description": "Known evidence"
+    },
+    {
+      "name": "unknowns",
+      "description": "Unknowns"
+    },
+    {
+      "name": "failure-modes",
+      "description": "Failure modes"
+    },
+    {
+      "name": "cheapest-next-test",
+      "description": "Cheapest next test"
+    },
+    {
+      "name": "gate-and-decision",
+      "description": "Gate and decision"
+    }
+  ],
+  "related_skills": [],
+  "workflows": [
+    {
+      "workflow_id": "idea-to-mvp",
+      "role": "step"
+    }
+  ]
+}
