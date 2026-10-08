@@ -37,6 +37,14 @@
 **Decision:** Do not introduce compatibility/deprecation versions, scoring/evals, release states, catalog UI, or ranking semantics.
 **Rationale:** Owned by Specs 003–007 (FR-032).
 
+## Phase 1 Toolchain Discovery (2026-10-08)
+
+- Existing CI `.github/workflows/validate.yml` uses `actions/setup-python@v5` with Python **3.12**, then standard-library `scripts/validate_repo.py` and installer dry-run. No current registry parser or `requirements-registry.txt` existed before Phase 1.
+- Selected `PyYAML==6.0.2` in root `requirements-registry.txt`; the future parser MUST subclass `yaml.SafeLoader` to reject duplicate mapping keys, prohibit unsafe YAML constructors/tags, and report file/line diagnostics. `yaml.safe_load` alone does not reject duplicates.
+- T038 will introduce `.github/workflows/skill-registry.yml` with Python 3.12, `python -m pip install -r requirements-registry.txt`, registry check and negative-fixture tests. The existing workflow is unchanged in Phase 1.
+- `specs/002-skill-manifest-registry/migration-inventory.md` records 13 flat skills and 3 workflow definitions with proposed mappings, source blob fingerprints and baseline trigger/exclusion summaries. Actual migration/semantic-parity verification remains pending.
+- This is a source/configuration review, not proof that dependency installation or tests have run.
+
 ## Open implementation probes (not upstream ambiguity)
 - Confirm existing skills inventory and workflow definitions before implementing migration/reference validation.
 - Confirm Python YAML dependency availability and CI environment before selecting an exact package pin.
