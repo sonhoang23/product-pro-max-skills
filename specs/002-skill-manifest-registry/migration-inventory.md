@@ -171,3 +171,7 @@ Behavior parity is **not** established by this table: T024–T028 must preserve 
 - All 13 manifests reference one canonical physical folder each. Cross-cycle associations are expressed in metadata, as exercised in 28-test suite.
 - Derived `registry/skills.json` with 13 entries committed at `6b4040a`; no `.agents/` catalog members included. Local Windows check was executed prior to committing this derived JSON; final branch byte-identical check should be rerun after pulling its commit.
 - Remaining independent checks: actual installed skill invocation, installer smoke test and runtime workflow execution were not supplied. No runtime PASS is claimed for those boundaries.
+
+## Post-commit Windows verification — 2026-10-08
+
+At repository HEAD `ef6de19`, user executed `python scripts/generate_skill_registry.py check`: `Registry check OK` against committed `registry/skills.json`. User also executed `python scripts/install.py --target .agents/skills --all --dry-run`: all 13 distinct canonical skill paths resolved; terminal output ended `Selected 13 skill(s).` This proves registry byte matching and installer discovery only; dry-run did not copy files or execute workflows.
