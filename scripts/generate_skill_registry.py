@@ -16,7 +16,7 @@ from pathlib import Path
 from skill_registry_common import (
     ROOT, SKILL_ID_RE, RegistryValidationError, parse_yaml,
     product_vocabulary, skill_inventory, validate_cycle_association,
-    workflow_inventory,
+    workflow_inventory, validate_discovery_metadata,
 )
 
 FIELDS = (
@@ -102,6 +102,7 @@ def build_registry(root: Path) -> bytes:
         for key in ("include", "exclude"):
             if not isinstance(triggers[key], list) or any(not isinstance(v, str) or not v.strip() for v in triggers[key]):
                 _fail(path, f"triggers.{key} must contain descriptions")
+        validate_discovery_metadata(data, path)
         _named_items(data["inputs"], path, "inputs", {"name", "description", "required"}, {"name", "description", "required"})
         _named_items(data["outputs"], path, "outputs", {"name", "description", "semantic_kind"}, {"name", "description"})
         _named_items(data["related_skills"], path, "related_skills", {"skill_id", "type"}, {"skill_id", "type"})
