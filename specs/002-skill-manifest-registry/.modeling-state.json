@@ -2,7 +2,7 @@
   "schema_version": 1,
   "gates": {
     "spec": {
-      "status": "blocked",
+      "status": "modeled",
       "source_hashes": {
         "spec.md": "a639db3dee69780628848efca0668600d613acbd"
       },
@@ -13,12 +13,10 @@
         "self_check": "passed",
         "atlas": "passed",
         "layout": "passed",
-        "browser_visual": "unavailable",
-        "structural_checks": "passed"
-      },
-      "blockers": [
-        "Browser visual QA has not been performed; do not claim browser visual PASS or close the modeling gate until its requirement is resolved."
-      ]
+        "browser_visual": "passed",
+        "structural_checks": "passed",
+        "browser_visual_evidence": "User-provided Edge desktop screenshot, 2026-10-08: layout, text readability, arrows and containment inspected; responsive, link behavior and exact zoom not verified."
+      }
     }
   }
 }
