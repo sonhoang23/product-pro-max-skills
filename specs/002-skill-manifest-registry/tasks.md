@@ -94,8 +94,8 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 ## Phase 9: Polish and Cross-Cutting Verification
 
 - [ ] T038 Wire pinned parser installation and safe `generate --check` / fixture tests into `.github/workflows/skill-registry.yml`; require exact CI logs before marking runtime tests complete.
-- [ ] T039 Run all planned commands from `specs/002-skill-manifest-registry/quickstart.md`, record Python/parser versions, inventory count, byte hashes, negative-case exit statuses and logs in `specs/002-skill-manifest-registry/verification.md`; no unsupported PASS claims.
-- [ ] T040 After verified implementation and fresh implementation modeling, run project-level Diagram Check; update `docs/diagrams/` and any index only if semantic change merits an architecture diagram, recording a reasoned no-diagram-needed decision otherwise in `specs/002-skill-manifest-registry/verification.md`.
+- [x] T039 Run all planned commands from `specs/002-skill-manifest-registry/quickstart.md`, record Python/parser versions, inventory count, byte hashes, negative-case exit statuses and logs in `specs/002-skill-manifest-registry/verification.md`; no unsupported PASS claims.
+- [x] T040 After verified implementation and fresh implementation modeling, run project-level Diagram Check; update `docs/diagrams/` and any index only if semantic change merits an architecture diagram, recording a reasoned no-diagram-needed decision otherwise in `specs/002-skill-manifest-registry/verification.md`.
 - [ ] T041 Audit FR-001–FR-032, SR-01–SR-07 and unresolved migration/CI evidence against `specs/002-skill-manifest-registry/spec.md`, `plan.md` and `tasks.md`; leave unverified tasks unchecked.
 
 ## Dependencies and Execution Order
@@ -123,6 +123,6 @@ Risk IDs are feature-local design references from `plan.md`, **not** canonical r
 
 - Source and docs: T030, T034, T037 reviewed against canonical implementation. No new diagram source required for these text/metadata boundaries. Modeling state must record current source hashes and phase no-diagram-needed decisions.
 - T038: Ubuntu CI workflow and pinned dependency/source implementation prepared, **not complete** until successful Actions run evidence.
-- T039: consolidated read-only verifier and evidence form prepared, **not complete** until the latest source commit is executed with versions, SHA and exit status.
-- T040: project Diagram Check reasoned negative candidate in verification.md, **not complete** until final modeling/QA confirms the decision.
+- T039: consolidated Windows read-only release verifier executed at 9679b10: Python 3.13.3, PyYAML 6.0.2, 35/35 PASS, SHA-256 and 13-skill inventory captured.
+- T040: project Diagram Check reviewed against implemented file-only catalog and existing planned spec diagram; no new project diagram needed. Ubuntu CI evidence remains separate.
 - T041: FR/SR audit matrix prepared in verification.md, **not complete** until final evidence is reconciled.
