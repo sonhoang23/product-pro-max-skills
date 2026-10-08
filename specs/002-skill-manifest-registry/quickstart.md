@@ -1,6 +1,6 @@
-# Quickstart — Skill Registry (planned, not executed)
+# Quickstart — Skill Registry
 
-**Current state:** Phase 1 setup only. `scripts/generate_skill_registry.py`, `scripts/skill_registry_common.py` and `registry/skills.json` do not exist yet; commands below are **future interfaces**, not runnable claims.
+**Current state:** Canonical registry, all 13 migrated skills, unit fixtures and Ubuntu CI source have been committed. Windows regression at `b03bea1` passed 35/35 tests and registry check. The current release verification command must still run on the latest commit; no future CI result is presumed.
 
 ## Environment
 
@@ -12,16 +12,16 @@ python -m pip install -r requirements-registry.txt
 
 Parser implementation in `scripts/skill_registry_common.py` must subclass `yaml.SafeLoader` to reject duplicate YAML mapping keys and unsafe tags.
 
-## Future generator/checker interface
+## Generator/checker interface
 
 ```bash
-# Future T009–T011: validate the entire catalog first, then atomically replace derived JSON
+# T009–T011: validate the entire catalog first, then atomically replace derived JSON
 python scripts/generate_skill_registry.py generate
 
-# Future T011: read-only recomputation, byte-for-byte drift/coverage comparison, nonzero on mismatch
+# T011: read-only recomputation, byte-for-byte drift/coverage comparison, nonzero on mismatch
 python scripts/generate_skill_registry.py check
 
-# Future T012/T021/T022: negative fixtures + deterministic/regression checks
+# T012/T021/T022: negative fixtures + deterministic/regression checks
 python -m unittest discover -s tests -p 'test_skill_registry*.py' -v
 ```
 
@@ -37,4 +37,14 @@ python -m unittest discover -s tests -p 'test_skill_registry*.py' -v
 6. Compare migration source blob fingerprints and post-migration behavior/trigger/evidence/output/workflow responsibilities; record repaired links.
 7. Record exact command, tool versions, SHA/commit, input inventory, output hashes, exit codes, logs and tests in `specs/002-skill-manifest-registry/verification.md` (T039).
 
-**Evidence state:** All generator/checker, migration-parity and CI verification steps remain **NOT RUN** in Phase 1.
+**Latest evidence:** Windows 35/35 skill tests PASS, read-only check PASS, installer dry-run 13/13 PASS at earlier commits; CI Ubuntu and full single-run verification still pending.
+
+## One-command final read-only verification
+
+```bash
+python -m pip install -r requirements-registry.txt
+python scripts/verify_skill_registry_release.py
+```
+
+The release verifier prints Python and PyYAML versions, registry SHA-256, exact 13-skill/3-workflow inventory, read-only registry check, test results and dry-run installer paths. It fails fast with nonzero status. It does not generate registry or execute skill workflows. Save the complete terminal output and the Git SHA in `verification.md` before closing T039.
+
