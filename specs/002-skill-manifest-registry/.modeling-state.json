@@ -126,8 +126,8 @@
       "outputs": [],
       "qa": {
         "source_review": "completed",
-        "test_execution": "pending_new_changes",
-        "evidence": "15/15 previous Windows PASS at b89abe8; new negative cases and semantic checks committed, rerun needed before marking T012/T021."
+        "test_execution": "failed_pre_fix",
+        "evidence": "User Windows Python 3.13.3 at a8f0d91: registry 19/20 PASS; failure test_duplicate_input_name due fixture escaped newline; manifest contract 2/2 PASS and validate_repo PASS. Fixed fixture at fa9bf2b; rerun pending. T012/T021 remain unchecked."
       }
     }
   }
