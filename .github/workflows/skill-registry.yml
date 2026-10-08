@@ -1,0 +1,27 @@
+name: Skill Registry
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned YAML parser
+        run: python -m pip install -r requirements-registry.txt
+      - name: Check canonical registry without modification
+        run: python scripts/generate_skill_registry.py check
+      - name: Run registry and authoring fixtures
+        run: python -m unittest discover -s tests -p 'test_skill*.py' -v
+      - name: Verify canonical installer discovery
+        run: python scripts/install.py --target .tmp-skills --all --dry-run
