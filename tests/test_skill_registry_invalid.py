@@ -18,12 +18,13 @@ import test_skill_registry as fixture_module
 class InvalidRegistryTests(unittest.TestCase):
     # Reuse fixture setup without inheriting and rerunning positive test methods.
     setUp = fixture_module.RegistryTest.setUp
-    def test_localized_description_does_not_fork_canonical_id(self):
-        data = self.manifest.read_text(encoding="utf-8")
-        data = data.replace("A bounded research capability.", "Nghiên cứu vấn đề khách hàng.")
-        self.manifest.write_text(data, encoding="utf-8")
+    def test_localized_documentation_does_not_fork_canonical_id(self):
+        (self.root / "README.vi.md").write_text(
+            "Kỹ năng thử nghiệm: ppmax-example.\\n", encoding="utf-8"
+        )
         payload = json.loads(build_registry(self.root))
         self.assertEqual(payload["skills"][0]["id"], "ppmax-example")
+        self.assertEqual(payload["skills"][0]["description"], "A bounded research capability.")
 
     def test_non_ascii_machine_id_rejected(self):
         data = self.manifest.read_text(encoding="utf-8")
