@@ -10,14 +10,14 @@
         "spec-diagram/skill-metadata-relations.html"
       ],
       "qa": {
-        "self_check": "unavailable",
+        "self_check": "passed",
         "atlas": "unavailable",
         "layout": "unavailable",
         "browser_visual": "unavailable",
         "structural_checks": "passed"
       },
       "blockers": [
-        "Required diagram-design self_check.py and repository Atlas/layout validators were not executed in a local checkout; cannot mark gate modeled until QA is verified."
+        "Atlas/layout validators have been added to the repository but have not yet been executed in the user's local checkout; browser visual QA remains unavailable."
       ]
     }
   }
