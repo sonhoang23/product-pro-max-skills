@@ -37,7 +37,7 @@ class SVGs(HTMLParser):
 def inspect(path):
     issues = []
     text = path.read_text(encoding="utf-8")
-    chunks = [html.unescape(m.group()) for m in re.finditer(r'<svg\b[\s\S]*?</svg>', text)]
+    chunks = [m.group() for m in re.finditer(r'<svg\b[\s\S]*?</svg>', text)]
     if not chunks:
         return ["no SVG found"]
     for markup in chunks:
