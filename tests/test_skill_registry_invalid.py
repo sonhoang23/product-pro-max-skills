@@ -70,7 +70,7 @@ class InvalidRegistryTests(unittest.TestCase):
             with self.assertRaisesRegex(RegistryValidationError, "slug/id mismatch"):
                 build_registry(self.root)
         with self.subTest("self reference"):
-            self.manifest.write_text(original.replace("related_skills: []", "related_skills:\\n  - skill_id: ppmax-example\\n    type: prerequisite"), encoding="utf-8")
+            self.manifest.write_text(original.replace("related_skills: []", "related_skills:\n  - skill_id: ppmax-example\n    type: prerequisite"), encoding="utf-8")
             with self.assertRaisesRegex(RegistryValidationError, "self-referential"):
                 build_registry(self.root)
 
@@ -79,7 +79,7 @@ class InvalidRegistryTests(unittest.TestCase):
         self.manifest.write_text(original.replace("cycle: opportunity", "cycle: delivery"), encoding="utf-8")
         with self.assertRaises(RegistryValidationError):
             build_registry(self.root)
-        self.manifest.write_text(original.replace("tracks:", "  - cycle: opportunity\\n    phase: discovery\\ntracks:"), encoding="utf-8")
+        self.manifest.write_text(original.replace("tracks:", "  - cycle: opportunity\n    phase: discovery\ntracks:"), encoding="utf-8")
         with self.assertRaisesRegex(RegistryValidationError, "duplicate lifecycle"):
             build_registry(self.root)
 
