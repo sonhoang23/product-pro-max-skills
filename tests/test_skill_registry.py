@@ -97,6 +97,23 @@ workflows:
             run("check", self.root)
         self.assertFalse(target.exists())
 
+    def test_check_preserves_complete_file_tree(self):
+        run("generate", self.root)
+        def snapshot():
+            return {
+                p.relative_to(self.root).as_posix(): p.read_bytes()
+                for p in self.root.rglob("*") if p.is_file()
+            }
+        before = snapshot()
+        self.assertEqual(run("check", self.root), 0)
+        self.assertEqual(snapshot(), before)
+        target = self.root / "registry" / "skills.json"
+        target.write_bytes(b"tampered")
+        before_drift = snapshot()
+        with self.assertRaisesRegex(RegistryValidationError, "drift"):
+            run("check", self.root)
+        self.assertEqual(snapshot(), before_drift)
+
     def test_duplicate_yaml_key_never_overwrites_registry(self):
         run("generate", self.root)
         path = self.root / "registry" / "skills.json"
