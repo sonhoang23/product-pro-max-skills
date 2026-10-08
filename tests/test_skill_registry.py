@@ -76,7 +76,7 @@ workflows:
     def test_tampered_registry_rejected_without_modification(self):
         run("generate", self.root)
         path = self.root / "registry" / "skills.json"
-        path.write_text("{}\n", encoding="utf-8")
+        path.write_bytes(b"{}\n")
         with self.assertRaisesRegex(RegistryValidationError, "drift"):
             run("check", self.root)
         self.assertEqual(path.read_bytes(), b"{}\n")
