@@ -1,8 +1,8 @@
 # Feature Specification: Product Pro Max Design System
 
-**Feature Branch**: `main` (proposed; no branch created)  
+**Feature Branch**: `main` (Spec Kit artifacts committed at `7e45f67`; implementation not started)  
 **Created**: 2026-10-08  
-**Status**: Draft — specification and review artifacts only  
+**Status**: Reviewed draft — specification and planning artifacts committed; local modeling QA deferred, no implementation  
 **Spec modeling**: [Semantic/presentation boundary](spec-diagram/presentation-boundary.html) · [Feature Diagram Ledger](diagrams.html) (planned truth only).
 
 **Input**: Adopt approved **C — Signal Protocol** visual direction with **Signal Lime** as the prominent accent and a **Signal Path + Wordmark** brand mark, covering **Core + Brand Assets**. Design must remain flexible, self-contained where necessary, and presentation-only.
@@ -82,9 +82,9 @@ As a maintainer, I want a controlled migration of legacy diagrams and generator 
 ### Functional Requirements
 
 - **FR-001**: The system MUST establish one repository-owned authoritative source for presentation tokens with stable semantic role names.
-- **FR-002**: The default visual identity MUST be **Signal Protocol** with a prominently visible **Signal Lime** accent, dark hero treatment, and light-first technical-diagram treatment.
+- **FR-002**: The default visual identity MUST be **Signal Protocol** with a prominently visible **Signal Lime** brand accent, dark hero treatment, and light-first technical-diagram treatment. Brand accent MUST remain distinct from success/warning/danger status meanings, even if colors happen to match.
 - **FR-003**: The visual identity MUST include a consistent **Signal Path symbol + Product Pro Max Skills wordmark**, with compact and full lockups appropriate to context.
-- **FR-004**: The visual system MUST support Light and Dark themes and a deliberately scoped alternate-accent preview without changing content semantics or layout responsibilities.
+- **FR-004**: The visual system MUST support Light and Dark themes, `compact`/`default`/`spacious` density and a deliberately scoped alternate-accent preview without changing content semantics or layout responsibilities. Density changes MUST NOT hide required labels, edges, legends, decision outcomes or source references.
 - **FR-005**: Presentation customization MUST keep source semantics and presentation preferences independent; changes to theme, contrast or density MUST NOT mutate the Canonical Product Model, Skill Model, registry, or diagram source authority.
 - **FR-006**: Token roles MUST cover color/surfaces/text, typography, spacing, borders/radius/strokes, focus/interaction affordances, and semantic status states.
 - **FR-007**: Shared diagram primitives MUST include node, connector, boundary, gate result, decision, evidence, and feedback path, with labels and treatments that can be distinguished without reliance on color alone.
@@ -92,22 +92,22 @@ As a maintainer, I want a controlled migration of legacy diagrams and generator 
 - **FR-009**: Standalone canonical HTML diagrams MUST retain functional layout, labels, and necessary styles without external network access.
 - **FR-010**: The Atlas, Feature Ledger and individual diagrams MUST share visual roles without losing planned/implemented labels, source traceability, navigation or registry semantics.
 - **FR-011**: README hero assets MUST render within GitHub's permitted Markdown/HTML/SVG behaviors and support light/dark reader preference without script dependency.
-- **FR-012**: Documentation and exported brand assets MUST follow the same visual roles while allowing surface-specific hierarchy and composition.
-- **FR-013**: Typography MUST remain readable for English and Vietnamese without remote font prerequisites; a supported fallback stack MUST be provided.
+- **FR-012**: Documentation and exported brand assets MUST follow the same canonical visual roles while allowing surface-specific hierarchy and composition. Surface-specific treatments MUST use documented aliases/overrides of those roles, not independent or untracked token-value forks.
+- **FR-013**: Typography MUST remain readable for English and Vietnamese without remote font prerequisites; a supported fallback stack MUST be provided. Essential browser-diagram labels MUST be at least 12 CSS px at default (100%) presentation scale, and changing density MUST NOT reduce them below that minimum; non-essential decorative labels may use smaller type only when they carry no unique information.
 - **FR-014**: Relevant informative text MUST meet at least WCAG AA contrast (4.5:1 normal text, 3:1 large text), and meaningful non-text visual boundaries/icons MUST meet at least 3:1 where applicable.
-- **FR-015**: Interactive outputs MUST support keyboard navigation, visible focus, programmatic names, sufficient target sizes, and reduced-motion preferences; essential meaning MUST remain available without animation.
+- **FR-015**: Interactive outputs MUST support keyboard navigation, visible focus, programmatic names, sufficiently sized or spaced targets, and reduced-motion preferences; essential meaning MUST remain available without animation. Keyboard order, accessible name, focus visibility and motion fallback MUST be independently verifiable for every interactive control.
 - **FR-016**: Narrow layouts MUST avoid losing content or relationships: responsive reflow and/or clearly accessible diagram scrolling/zooming MUST be provided where needed.
-- **FR-017**: One theme switch MUST consistently affect all target surfaces that are generated from the same token revision, subject to documented output-specific constraints.
+- **FR-017**: One theme switch MUST consistently affect all target surfaces that are generated from the same token revision, subject to documented output-specific constraints. Outputs carrying an older presentation revision MUST be detectable as visually stale without asserting that semantic source content has changed.
 - **FR-018**: Existing diagram semantics, node/edge inventory, authority annotations and links MUST remain intact during visual-only migration unless the authoritative upstream artifact changes separately.
 - **FR-019**: Migration MUST begin with the existing Spec 002 diagram and Atlas as a controlled pilot and preserve a revertible original until verification completes.
-- **FR-020**: The system MUST expose an explicit precedence/fallback rule for theme, profile and token resolution; it MUST NOT silently inherit a developer's unrelated machine-global brand skin.
+- **FR-020**: The system MUST expose an explicit precedence/fallback rule for theme, profile and token resolution; it MUST NOT silently inherit a developer's unrelated machine-global brand skin. Missing, malformed or incomplete repository tokens MUST cause an actionable failure and preserve existing outputs rather than silently falling back to that global skin.
 - **FR-021**: The system MUST validate that required roles exist, supported color values are valid, contrast targets are met, and token resolution is deterministic for equivalent inputs.
 - **FR-022**: Validation results MUST distinguish static validation, screenshot review, browser functional verification, and actual asset publishing; lack of evidence MUST NOT be reported as PASS.
 - **FR-023**: Presentation design documentation MUST be discoverable by repo contributors and consumed consistently by `diagram-design-vi` while leaving `speckit-system-modeling-vi` responsible for **what** to visualize.
 - **FR-024**: The design system MUST NOT introduce a React app, online asset service, database, independent diagram semantics engine, or second product ontology for its initial scope.
 - **FR-025**: Existing generated diagrams MUST remain readable if no migration is performed; migration is opt-in by artifact until validated.
 - **FR-026**: Approved showcase variations MUST be treated as a visual reference, not as executable semantic authority; mock example values MUST not redefine canonical gate/decision terms.
-- **FR-027**: The implementation MUST maintain a clear version or revision identity for theme tokens so changes can be traced and stale generated presentations identified without invalidating semantic evidence.
+- **FR-027**: The implementation MUST maintain a clear version or revision identity for theme tokens in each derived output. An unchanged semantic source combined with changed token revision MUST flag only visual presentation staleness; a re-export from identical semantic and token inputs MUST yield the same presentation revision/identity.
 
 ### Key Entities
 
@@ -152,4 +152,4 @@ As a maintainer, I want a controlled migration of legacy diagrams and generator 
 
 Planned promotion after verified implementation only: `docs/ARCHITECTURE.md` (presentation authority boundary), `docs/diagrams/index.html` and `docs/diagrams/diagram-index.json` (visual navigation without semantic change), README assets/links, `.agents/skills/diagram-design-vi/` integration instructions; no change to `model/product-model.json` or `registry/skills.json`.
 
-**Roadmap compatibility**: Existing backlog row `003-versioning-compatibility` must be renumbered in `specs/ROADMAP-foundation.md` without losing its dependency relations before integration into `main`.
+**Roadmap compatibility**: Renumbering was committed in `specs/ROADMAP-foundation.md` at `7e45f67`: Design System uses 003; former versioning-compatibility uses 004; subsequent backlog moves to 005–008. No Product Model or Skill Registry IDs changed.

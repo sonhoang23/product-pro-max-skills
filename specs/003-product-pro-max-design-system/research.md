@@ -62,4 +62,4 @@
 - Confirm CSS/SVG GitHub rendering in actual light/dark themes before claiming browser/GitHub pass.
 - Confirm English/Vietnamese font fallback metrics, responsive long-label handling, and print capture with chosen visual style.
 - Determine which existing generator reference snippets contain hard-coded hex values and how minimal adapter changes can override them safely.
-- Review any `main` changes before applying this staged design, especially Spec 003 number and Diagram Atlas inventory.
+- Roadmap numbering and Spec 003 Atlas registration were reconciled on `main` at `7e45f67`; review subsequent `main` changes before implementation, especially active feature, diagram inventory and tokens.

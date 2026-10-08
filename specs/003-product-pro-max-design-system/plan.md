@@ -1,6 +1,6 @@
 # Implementation Plan: Product Pro Max Design System
 
-**Branch**: `main` (proposed, no commit) | **Date**: 2026-10-08 | **Spec**: [spec.md](spec.md)  
+**Branch**: `main` (Spec Kit planning committed at `7e45f67`, no implementation) | **Date**: 2026-10-08 | **Spec**: [spec.md](spec.md)  
 **State**: Planned design, not implemented. HTML showcase is an approved aesthetic reference, not a validated renderer.
 
 ## Summary
@@ -67,7 +67,7 @@ specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html  # 
 
 **Structure Decision**: No installed UI runtime, hosted asset service, new modeling skill or duplicated design-token authority. Keep generated outputs self-contained and source tokens centralized. Add additional files only on demonstrated repeated need.
 
-**Plan modeling**: [Technical token-resolution diagram](plan-diagram/token-resolution.html); derived from this plan, not an additional authority.
+**Plan modeling**: [Technical token-resolution diagram](plan-diagram/token-resolution.html); derived from this plan, not an additional authority. **Gate remains `blocked` pending deferred local self-check, Atlas/layout and browser QA.**
 
 ## Phase 0 Research
 
@@ -112,7 +112,7 @@ After implementation and verification, update `docs/ARCHITECTURE.md` with the pr
 
 ## Roadmap / Integration Plan
 
-Stage roadmap migration preserving the old `versioning-compatibility` backlog as new **004**, moving old 004→005, 005→006, 006→007, 007→008 and updating dependency edges. Reverify before applying because `main` may advance. Feature directory and main-branch active pointer are proposed only until write authorization.
+Roadmap numbering and dependencies were reconciled on `main` in commit `7e45f67`: previous 003 `versioning-compatibility` becomes 004, old 004–007 become 005–008. `.specify/feature.json` now selects Spec 003. Recheck current HEAD before implementation; these planning artifacts do not imply the local modeling gates passed.
 
 ## Complexity Tracking
 

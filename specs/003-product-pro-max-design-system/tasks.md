@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Planned implementation tasks, **0 tasks executed**. `main` not modified or committed.  
+**State**: Spec/planning artifacts committed on `main` (`7e45f67`); **0 implementation tasks executed**. Phase 1 repository inventory and integration preflight notes are prepared for review, not execution evidence. Modeling `spec`/`plan` remains `blocked` while local QA is deferred.  
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -21,7 +21,7 @@
 
 ## Phase 1: Setup and baseline
 
-**Goal**: Capture existing truths before any visual implementation.
+**Goal**: Capture existing truths before any visual implementation. Read-only preparatory inventory and integration notes are available in `migration-baseline.md` and `integration-notes.md`; T001–T003 remain unchecked until their complete evidence and implementation prerequisites are met.
 
 - [ ] T001 Inventory current `docs/diagrams/diagram-index.json`, `docs/diagrams/index.html`, `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html` and relevant validation scripts; record pre-migration baseline in `specs/003-product-pro-max-design-system/migration-baseline.md`.
 - [ ] T002 Preserve the approved one-file HTML concept as a non-authoritative design reference and record version/source in `design-system/README.md`, with explicit separation from executable contracts. [FR-026]

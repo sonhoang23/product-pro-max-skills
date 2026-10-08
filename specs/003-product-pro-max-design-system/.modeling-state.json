@@ -4,7 +4,7 @@
     "spec": {
       "status": "blocked",
       "source_hashes": {
-        "spec.md": "f4e774c748f711e3521c84e399726c4fb1183581"
+        "spec.md": "9622757c33861ee83e8df38f664554378e752720"
       },
       "outputs": [
         "spec-diagram/presentation-boundary.html"
@@ -15,14 +15,15 @@
         "self_check": "not_run_no_full_repo_checkout",
         "atlas": "not_run_no_full_repo_checkout",
         "layout": "not_run_no_full_repo_checkout",
-        "browser_navigation": "unavailable_url_loading_blocked"
+        "browser_navigation": "unavailable_url_loading_blocked",
+        "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied"
       },
-      "reason": "Full repository self_check and Atlas/layout QA unavailable; no formal gate PASS"
+      "reason": "Deferred required full-repo self_check, Atlas/layout and browser verification; formal Lazy Modeling Gate still blocked. Revalidate source freshness after latest spec/plan edits."
     },
     "plan": {
       "status": "blocked",
       "source_hashes": {
-        "plan.md": "076944070d59cbd634bf43cdd2b6e4e66907abee",
+        "plan.md": "37bdc5344ee08ecf0eb627285b47338a07e4aaf6",
         "research.md": "ab932197388597a61f942e4bf5a621adc0d5ca82",
         "data-model.md": "a933f4fbeada9f64dcf518cbf0047563da8ea701",
         "quickstart.md": "d3e4bbae5ed169fb167cf9e70ae4fca78c2ebf7a",
@@ -37,9 +38,10 @@
         "self_check": "not_run_no_full_repo_checkout",
         "atlas": "not_run_no_full_repo_checkout",
         "layout": "not_run_no_full_repo_checkout",
-        "browser_navigation": "unavailable_url_loading_blocked"
+        "browser_navigation": "unavailable_url_loading_blocked",
+        "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied"
       },
-      "reason": "Official repo-local visual/Atlas QA outstanding; tasks.md is prepared draft, not gated"
+      "reason": "Deferred required full-repo self_check, Atlas/layout and browser verification; formal Lazy Modeling Gate still blocked. Revalidate source freshness after latest spec/plan edits."
     }
   }
 }
