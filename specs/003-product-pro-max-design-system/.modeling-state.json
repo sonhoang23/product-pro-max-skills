@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "spec": {
+      "status": "blocked",
+      "source_hashes": {
+        "spec.md": "f4e774c748f711e3521c84e399726c4fb1183581"
+      },
+      "outputs": [
+        "spec-diagram/presentation-boundary.html"
+      ],
+      "qa": {
+        "staged_static": "passed",
+        "staged_browser_render": "partial_pass_content_injected_chromium_1360_390",
+        "self_check": "not_run_no_full_repo_checkout",
+        "atlas": "not_run_no_full_repo_checkout",
+        "layout": "not_run_no_full_repo_checkout",
+        "browser_navigation": "unavailable_url_loading_blocked"
+      },
+      "reason": "Full repository self_check and Atlas/layout QA unavailable; no formal gate PASS"
+    },
+    "plan": {
+      "status": "blocked",
+      "source_hashes": {
+        "plan.md": "076944070d59cbd634bf43cdd2b6e4e66907abee",
+        "research.md": "ab932197388597a61f942e4bf5a621adc0d5ca82",
+        "data-model.md": "a933f4fbeada9f64dcf518cbf0047563da8ea701",
+        "quickstart.md": "d3e4bbae5ed169fb167cf9e70ae4fca78c2ebf7a",
+        "contracts/tokens-and-surfaces.md": "b133a3453e6ff893ec742a7c813952669a9939cf"
+      },
+      "outputs": [
+        "plan-diagram/token-resolution.html"
+      ],
+      "qa": {
+        "staged_static": "passed",
+        "staged_browser_render": "partial_pass_content_injected_chromium_1360_390",
+        "self_check": "not_run_no_full_repo_checkout",
+        "atlas": "not_run_no_full_repo_checkout",
+        "layout": "not_run_no_full_repo_checkout",
+        "browser_navigation": "unavailable_url_loading_blocked"
+      },
+      "reason": "Official repo-local visual/Atlas QA outstanding; tasks.md is prepared draft, not gated"
+    }
+  }
+}

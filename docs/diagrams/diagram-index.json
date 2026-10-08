@@ -14,6 +14,34 @@
       "parent": "feature-002-ledger",
       "children": [],
       "related": []
+    },
+    {
+      "id": "feature-003-presentation-boundary",
+      "title": "Ranh giới semantics và presentation",
+      "scope": "feature",
+      "truth": "planned",
+      "phase": "spec",
+      "topic": "feature",
+      "feature": "003-product-pro-max-design-system",
+      "path": "specs/003-product-pro-max-design-system/spec-diagram/presentation-boundary.html",
+      "source": "specs/003-product-pro-max-design-system/spec.md",
+      "parent": "feature-003-ledger",
+      "children": ["feature-003-token-resolution"],
+      "related": ["feature-002-skill-metadata-relations"]
+    },
+    {
+      "id": "feature-003-token-resolution",
+      "title": "Luồng giải quyết token và xuất bản tĩnh",
+      "scope": "feature",
+      "truth": "planned",
+      "phase": "plan",
+      "topic": "feature",
+      "feature": "003-product-pro-max-design-system",
+      "path": "specs/003-product-pro-max-design-system/plan-diagram/token-resolution.html",
+      "source": "specs/003-product-pro-max-design-system/plan.md",
+      "parent": "feature-003-presentation-boundary",
+      "children": [],
+      "related": []
     }
   ]
 }

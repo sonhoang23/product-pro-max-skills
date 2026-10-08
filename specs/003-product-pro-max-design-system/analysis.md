@@ -1,0 +1,47 @@
+# Spec Kit Analyze Report: Product Pro Max Design System
+
+**Date**: 2026-10-08  
+**Scope**: cross-artifact static review of staged `spec.md`, design diagrams, `plan.md`, `research.md`, `data-model.md`, contract, checklists and `tasks.md`.  
+**Important**: This is **not** a claim that the required gated workflow ran against the full repository checkout or that implementation is complete.
+
+## Coverage Summary
+
+| Measure | Result |
+| --- | --- |
+| User journeys | 4 (P1 theme flexibility, P1 diagram/Atlas fidelity, P2 brand, P2 migration) |
+| Functional requirements | 27 numbered FR-001–FR-027, contiguous |
+| Planned implementation tasks | 55 numbered T001–T055, contiguous; 0 implementation tasks checked |
+| Requirements-to-task tracing | 27/27 have intended task coverage; grouping plus task-level references recorded in `tasks.md` |
+| Planned runtime risks | 8 `APPLIES` with assigned prevention/verification tasks; 1 `NOT_APPLICABLE` with scope reason |
+| Custom requirements-quality checklist | 18 CHK items, unchecked pending reviewer evaluation |
+| Feature diagrams | 2 derived `planned` diagrams (spec boundary, plan resolution) |
+| Project-level diagram promotion | None; must wait for implementation verification |
+| QA facts | Staged local HTML structure and restricted Chromium content render checked; **full repo checks not run** |
+
+## Finding Matrix
+
+| ID | Severity | Finding | Impact | Resolution/status |
+| --- | --- | --- | --- | --- |
+| F-01 | HIGH — workflow gate, not a spec defect | The environment cannot check out GitHub `main`; official `self_check.py`, `verify-diagram-atlas.py` and `verify-diagram-layout.py` were not executed against full repo. Browser URL loading is blocked by administrator policy. | Cannot truthfully mark `ensure-model(spec)` or `ensure-model(plan)` PASS/fresh; full formal planning/tasks gate remains pending. | Mark both modeling gates `blocked` with explicit incomplete QA. Treat authored plan/tasks as **prepared drafts** until repo checkout integration and validation. |
+| F-02 | MEDIUM — integration | `specs/ROADMAP-foundation.md` on `main` reserves 003 for `versioning-compatibility` and still lists 002 as Backlog. | Unreconciled numbering and stale status would mislead contributors. | Staged replacement preserves old 003 as 004 and renumbers old 004–007 to 005–008, updates dependencies; compare latest `main` before applying. |
+| F-03 | MEDIUM — implementation design watch | Existing `diagram-design-vi` `references/style-guide.md` contains VibeToolPro-specific presentation and uses local profile resolution. | Brand leakage or shared-style drift if repo tokens do not override it deterministically. | FR-020; tasks T010, T016, T019, T025; fail visibly instead of silently selecting wrong profile. |
+| F-04 | MEDIUM — QA not yet applicable | Official GitHub README theme, offline `file://` behavior, actual 200% browser zoom, screen reader interaction and full WCAG AA audit not executed. | Brand and responsive acceptance cannot be claimed for a design not yet implemented. | Explicit T026, T033, T034, T044–T046; statuses remain pending. |
+| F-05 | LOW — review quality | HTML showcase demonstrates a possible visual direction, but contains example text and preview statuses not necessarily canonical. | Risk of treating aesthetic mockups as product authority. | FR-026 / T002; explicitly documented as visual-only reference. |
+
+## Constitution / Invariant Audit
+
+- **No semantic conflict found**: Product Model owns Gate result and Decision; Design System owns color/geometry/appearance only.
+- **No new skills**: repo scoped token adapter for `diagram-design-vi`, while `speckit-system-modeling-vi` continues to own modeling/source placement and Atlas governance.
+- **No implementation claim**: all 55 task checkboxes are empty, staged diagrams identify `planned truth`, and project-level architecture docs are promotion candidates only.
+- **Scope proportional**: one canonical `tokens.json`, a deterministic export/check adapter, minimal brand assets, a reversible pilot; no frontend framework/backend/database.
+- **Only known workflow blocker**: incomplete repository-level gate/QA evidence (F-01), not an unresolved user design decision.
+
+## Diagram Modeling Decision
+
+- **Spec Diagram Check positive**: Distinct semantic and presentation authorities feed derived renderer/output. Generated at `spec-diagram/presentation-boundary.html`.
+- **Plan Diagram Check positive**: Repo-first resolution, validation, renderer integration and export/proof boundary are distinct technical responsibilities. Generated at `plan-diagram/token-resolution.html`.
+- **Tasks Diagram Check negative/deferred**: Ordered task phases plus `Runtime Risk Coverage` explain dependencies without an extra graph. `ensure-model(tasks)` is implementation-entry work and is not claimed to have passed.
+
+## Acceptance Decision
+
+**Artifacts prepared for review, not gated for implementation.** There are no unresolved user-facing design decisions preventing adoption of these drafts. F-01 blocks formal gate PASS until the staged files are applied to a real checkout and the required validation scripts run; F-02 must be reconciled against `main` concurrently. Do not commit without the user's approval.

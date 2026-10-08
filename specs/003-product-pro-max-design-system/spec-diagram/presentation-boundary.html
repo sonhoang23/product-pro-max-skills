@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spec 003 · Ranh giới semantics và presentation</title><style>
+:root{color-scheme:light;--bg:#f7f9f5;--paper:#fff;--ink:#17201b;--muted:#44574c;--line:#94a69b;--lime:#a3ff47;--dark:#111b16}*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;margin:0;padding:30px}main{max-width:1150px;margin:auto}h1{font-size:clamp(1.35rem,3vw,2rem);margin:.4rem 0}p{color:var(--muted)}nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;margin-bottom:20px}a{color:#174b32;text-underline-offset:3px}.panel:focus-visible{outline:3px solid #4c7e1a;outline-offset:4px}a:focus-visible{outline:3px solid #386e19;outline-offset:3px}.panel{border:1px solid #bdcbc1;background:var(--paper);padding:16px;border-radius:8px;overflow-x:auto}.panel svg{display:block;width:100%;min-width:700px;height:auto}footer{font-size:13px;color:var(--muted);margin-top:16px}.mono{font-family:ui-monospace,"Cascadia Code",monospace}svg text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}svg .node{fill:white;stroke:#50675a;stroke-width:2}svg .accent{fill:#e9f9d8;stroke:#3c6d23;stroke-width:2}svg .name{font-size:22px;font-weight:700;fill:#17201b}svg .small{font-size:16px;fill:#34483b}svg .tag{font-family:ui-monospace,monospace;font-size:13px;letter-spacing:1px;fill:#385a41}svg .edge{stroke:#374f42;stroke-width:2.5;fill:none;marker-end:url(#arrow)}svg .line{stroke:#95a99b;stroke-width:1.2;fill:none}@media(max-width:600px){body{padding:14px}.panel{padding:8px}nav{gap:10px}}
+</style></head><body><main>
+<nav><a href="../../../docs/diagrams/index.html">Diagram Atlas</a><a href="../diagrams.html">Feature Ledger</a><a href="../diagrams.html#spec">Parent: Spec 003</a><a href="../../../specs/002-skill-manifest-registry/diagrams.html">Related: Spec 002</a></nav>
+<h1>Ranh giới ngữ nghĩa và trình bày</h1><p>Spec 003 · <strong>planned truth</strong> · Nguồn thẩm quyền: <span class="mono">specs/003-product-pro-max-design-system/spec.md</span> · FR-001, FR-005, FR-008, FR-023.</p>
+<p class="scroll-help">Trên màn hình nhỏ: cuộn ngang trong khung sơ đồ để xem đầy đủ các thành phần.</p>
+<div class="panel" tabindex="0" role="region" aria-label="Sơ đồ kỹ thuật có thể cuộn ngang"><svg viewBox="0 0 1100 630" role="img" aria-labelledby="ttl desc">
+<title id="ttl">Mô hình khái niệm: hai nguồn thẩm quyền tách biệt cùng cấp dữ liệu cho phép thể hiện</title>
+<desc id="desc">Nguồn semantic như Product Model, đặc tả và tài liệu mô hình hóa ở bên trái; nguồn presentation là theme, token, font và hình học ở bên phải. Cả hai đi đến lớp renderer. Renderer chỉ sinh HTML, README và brand asset, không ghi ngược vào semantic authority.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#374f42"/></marker></defs>
+<rect x="58" y="48" width="448" height="182" rx="7" class="node"/>
+<rect x="594" y="48" width="448" height="182" rx="7" class="accent"/>
+<text x="82" y="78" class="tag">THẨM QUYỀN NỘI DUNG</text><text x="82" y="116" class="name">Ý nghĩa / Semantics</text>
+<text x="82" y="151" class="small">Product Model · spec · plan · tasks</text>
+<text x="82" y="178" class="small">Gate result khác Decision</text><text x="82" y="204" class="small">Source, truth, liên kết nguyên vẹn</text>
+<text x="618" y="78" class="tag">THẨM QUYỀN PRESENTATION</text><text x="618" y="116" class="name">Signal Protocol tokens</text><text x="618" y="151" class="small">Theme · accent · type · spacing</text><text x="618" y="178" class="small">Light / Dark · mật độ</text><text x="618" y="204" class="small">Không định nghĩa semantic mới</text>
+<path class="edge" d="M282 230 V276 H443 V321"/><path class="edge" d="M818 230 V282 H657 V321"/>
+<text x="285" y="263" class="tag">WHAT</text><text x="814" y="264" text-anchor="end" class="tag">HOW</text>
+<rect x="339" y="321" width="422" height="122" rx="7" class="node"/>
+<text x="550" y="353" text-anchor="middle" class="tag">LỚP THỂ HIỆN DẪN XUẤT</text>
+<text x="550" y="389" text-anchor="middle" class="name">Diagram / Brand Renderer</text>
+<text x="550" y="419" text-anchor="middle" class="small">Chỉ đọc nguồn · không ghi ngược</text>
+<path class="edge" d="M550 443 V483"/>
+<rect x="192" y="484" width="716" height="92" rx="7" class="accent"/>
+<text x="550" y="518" text-anchor="middle" class="name">README · HTML diagrams · Docs · Brand</text>
+<text x="550" y="548" text-anchor="middle" class="small">Ảnh/SVG/HTML · giữ nhãn planned/implemented và liên kết nguồn</text>
+</svg></div>
+<p>Đọc từ hai hướng: <strong>WHAT</strong> được định nghĩa bởi nguồn có thẩm quyền; <strong>HOW</strong> được điều khiển bằng token. Đường nối chỉ minh họa ranh giới trách nhiệm, không phải một quy trình lifecycle mới.</p>
+<footer>Children: <a href="../plan-diagram/token-resolution.html">Technical token-resolution diagram (plan)</a> · Related: Spec 002 Skill Manifest Registry · Browser QA phải được ghi riêng, không suy từ static checks.</footer>
+</main></body></html>
