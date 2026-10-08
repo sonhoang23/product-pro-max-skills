@@ -12,10 +12,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from generate_skill_registry import build_registry, run
 from skill_registry_common import RegistryValidationError
-from test_skill_registry import RegistryTest
+import test_skill_registry as fixture_module
 
 
-class InvalidRegistryTests(RegistryTest):
+class InvalidRegistryTests(unittest.TestCase):
+    # Reuse fixture setup without inheriting and rerunning positive test methods.
+    setUp = fixture_module.RegistryTest.setUp
     def test_bad_id(self):
         self.manifest.write_text(self.manifest.read_text().replace("id: ppmax-example", "id: wrong"), encoding="utf-8")
         with self.assertRaisesRegex(RegistryValidationError, "canonical skill ID"):
