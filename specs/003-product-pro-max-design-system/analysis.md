@@ -45,3 +45,10 @@
 ## Acceptance Decision
 
 **Planning artifacts are committed but are not gated for implementation.** No further user-facing design choices are outstanding. F-01 remains a deferred local-QA blocker: do not change `blocked` to PASS, bypass Lazy Modeling Gate or claim implementation readiness. F-02 was resolved by commit `7e45f67`. Current follow-up quality review is documented separately; reviewer-owned checklist markers remain unchecked pending reviewer approval.
+
+## Remote preflight update (2026-10-08)
+
+- Targeted GitHub tree/HTML audit found 3 registered diagrams, 19 resolvable internal HTML links and consistent planned-truth metadata (see `remote-static-preflight.md`).
+- Corrected an unescaped `&` in planned Plan diagram SVG; fixed the stale `research.md` SHA in blocked Plan modeling state. These are source-quality corrections, not implementation or gate completion.
+- WCAG caution: Signal Lime has insufficient text contrast against proposed Light background (about 1.17:1); contract now requires a high-contrast informative role. Full theme-pair/browser testing remains pending.
+- Reviewer checklist remains unchecked, all 55 implementation tasks remain unchecked, and both modeling gates remain `blocked`.

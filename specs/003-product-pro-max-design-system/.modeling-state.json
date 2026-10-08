@@ -16,18 +16,22 @@
         "atlas": "not_run_no_full_repo_checkout",
         "layout": "not_run_no_full_repo_checkout",
         "browser_navigation": "unavailable_url_loading_blocked",
-        "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied"
+        "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied",
+        "remote_static_preflight": "pass_limited_scope_git_tree_html_links_svg_metadata",
+        "repo_local_official_validation": "deferred_not_run",
+        "browser_full": "deferred_not_run",
+        "remote_static_evidence": "remote-static-preflight.md"
       },
-      "reason": "Deferred required full-repo self_check, Atlas/layout and browser verification; formal Lazy Modeling Gate still blocked. Revalidate source freshness after latest spec/plan edits."
+      "reason": "Remote GitHub static preflight available, but official full-repository self_check, Atlas/layout and browser QA remain deferred and required. No Lazy Modeling Gate PASS."
     },
     "plan": {
       "status": "blocked",
       "source_hashes": {
         "plan.md": "37bdc5344ee08ecf0eb627285b47338a07e4aaf6",
-        "research.md": "ab932197388597a61f942e4bf5a621adc0d5ca82",
+        "research.md": "ca139e9d66e5781f921ad7a82f91c85287574b47",
         "data-model.md": "a933f4fbeada9f64dcf518cbf0047563da8ea701",
         "quickstart.md": "d3e4bbae5ed169fb167cf9e70ae4fca78c2ebf7a",
-        "contracts/tokens-and-surfaces.md": "b133a3453e6ff893ec742a7c813952669a9939cf"
+        "contracts/tokens-and-surfaces.md": "a0e0f47df4f30956d1039d5010a8689ffc3079e4"
       },
       "outputs": [
         "plan-diagram/token-resolution.html"
@@ -39,9 +43,13 @@
         "atlas": "not_run_no_full_repo_checkout",
         "layout": "not_run_no_full_repo_checkout",
         "browser_navigation": "unavailable_url_loading_blocked",
-        "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied"
+        "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied",
+        "remote_static_preflight": "pass_limited_scope_git_tree_html_links_svg_metadata",
+        "repo_local_official_validation": "deferred_not_run",
+        "browser_full": "deferred_not_run",
+        "remote_static_evidence": "remote-static-preflight.md"
       },
-      "reason": "Deferred required full-repo self_check, Atlas/layout and browser verification; formal Lazy Modeling Gate still blocked. Revalidate source freshness after latest spec/plan edits."
+      "reason": "Remote GitHub static preflight available, but official full-repository self_check, Atlas/layout and browser QA remain deferred and required. No Lazy Modeling Gate PASS."
     }
   }
 }

@@ -29,6 +29,8 @@ This snippet is deliberately **incomplete** and MUST NOT be copied as the finish
 
 All semantic role IDs are stable machine identifiers, not English display labels and not lifecycle IDs. Signal Lime (`#A3FF47`) is a brand-accent default only; applying it to text requires per-combination contrast checks.
 
+**Contrast guardrail before implementation**: Signal Lime (`#A3FF47`) is **not** an accessible standalone information-bearing foreground on the proposed Light surface (`#F7F9F4`): contrast is approximately **1.17:1**. On proposed Dark surface (`#0B100F`) it is approximately **15.48:1**. On Light, use the Lime as a decorative fill/highlight beside a sufficiently contrasting dark foreground/border/label, or choose a verified darker informative role. Never color-code state/gate/decision with Lime alone. These are calculated design checks, **not** browser/WCAG implementation PASS.
+
 ## Resolution order
 
 1. `design-system/tokens.json` in the **active repo root** is required.
