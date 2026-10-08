@@ -1,6 +1,6 @@
 # Spec 002 — Legacy Skill Migration Baseline
 
-**Status:** Source inventory completed from `main` on 2026-10-08; migration NOT started. Blob SHAs are baseline source fingerprints, not behavioral parity proof.
+**Status:** Source inventory completed from `main` on 2026-10-08; source migration committed; runtime verification pending. Blob SHAs are baseline source fingerprints, not behavioral parity proof.
 
 ## Canonical mapping proposal (review before T024)
 
@@ -20,7 +20,7 @@
 | `skills/runtime-verification/SKILL.md` | `runtime-verification` | `skills/verification/ppmax-runtime-verification/SKILL.md` | `a3934d01aa674dee04ff38e10a45ba52c301d0a0` | idea-to-first-users, pre-launch-audit |
 | `skills/ux-flow/SKILL.md` | `ux-flow` | `skills/product-definition/ppmax-ux-flow/SKILL.md` | `c488f8df579a962b0ee9e01226663d190854e90f` | idea-to-first-users, pre-launch-audit |
 
-Every mapping retains the original slug; proposed primary cycles require semantic review against Product Model before migration. No files have been renamed.
+Every mapping retains the original slug; proposed primary cycles require semantic review against Product Model before migration. All 13 source skill directories have been moved to the mapped canonical paths.
 
 ## Baseline behavior and evidence boundaries
 
@@ -138,7 +138,7 @@ The following is transcribed from each source `SKILL.md` frontmatter and Trigger
 | `workflows/idea-to-first-users/workflow.yaml` | `mvp-scope` → `ux-flow` → `architecture-plan` → `engineering-readiness` → `runtime-verification` → `launch-readiness` → `distribution-plan` → `pricing-experiment` |
 | `workflows/pre-launch-audit/workflow.yaml` | `ux-flow` → `architecture-plan` → `engineering-readiness` → `runtime-verification` → `launch-readiness` |
 
-All three workflow YAMLs use legacy unprefixed `skill:` references. Update these only in T026 after confirming mapping, preserving order and gate transitions. README/docs and other textual references remain to be audited in T027.
+The three workflow YAMLs now reference canonical prefixed skill IDs; step order and gate transitions are preserved. README files and all three workflow READMEs were updated to use prefixed IDs.
 
 ## Migration acceptance evidence required later
 
@@ -151,3 +151,14 @@ All three workflow YAMLs use legacy unprefixed `skill:` references. Update these
 Source-to-target mapping above is injective: all 13 legacy names map to distinct `ppmax-` skill IDs and canonical directory paths. The proposed seven primary cycles (`opportunity`, `product-strategy`, `product-definition`, `delivery`, `verification`, `go-to-market`, `growth`) are canonical cycle IDs in `model/product-model.json`. No collisions are apparent in the baseline table. The primary cycle is one physical placement; cross-cycle discovery must be added via manifest lifecycle associations rather than moving a skill to two directories.
 
 Behavior parity is **not** established by this table: T024–T028 must preserve behavioral sections and compare original blob fingerprints against migrated copies, allowing only explicitly reviewed metadata/path differences. Workflow files still contain legacy skill references and must be changed together with skill migration. No rename is performed as part of T023 preparation.
+
+## Migration execution evidence (2026-10-08)
+
+- `7b283be2`: 13 old `SKILL.md` paths migrated to distinct canonical lifecycle folders, 13 `manifest.yaml` files present. For each moved skill, source transformation asserted exact equality after reversing only frontmatter `name` and H1 identity changes; this is source-level parity, not execution parity.
+- `6f6cd27`: all three workflow YAML `skill:` values prefixed; transformation leaves step IDs, transitions and ordering untouched.
+- `226c567`: English/Vietnamese README and three workflow README references migrated from unprefixed skill names to `ppmax-` IDs.
+- `f7f553c`: installer updated to discover nested canonical skill directories, removing flat-directory assumption. Actual installation was not executed.
+- `f2b433f`: idea-pressure-test manifest normalized to include all required semantic inputs and outputs extracted from its source.
+- Six manifests were inspected in the first batch and seven in the second; all 13 include canonical identity and discovery contract fields. JSON manifests use valid YAML syntax; parser and full-catalog runtime still unexecuted.
+- Cross-cycle associations deliberately included for `ux-flow` (verification/ux-validation), `runtime-verification` (delivery/integration), `distribution-plan` (growth/acquisition), and `pricing-experiment` (product-strategy/business-model), without duplicating physical directories.
+- **Pending:** exact per-skill post-migration blob fingerprints, full old/new evidence/triggers/output review, real workflow invocation, installer smoke test, cross-cycle fixture execution, generator/checker execution, and final broken-link audit beyond specified READMEs. None of these are runtime PASS.
