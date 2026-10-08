@@ -106,6 +106,15 @@
         "test_execution": "unavailable",
         "reason": "Test source committed, but runtime did not have network access to fetch connected repository code; T012/T013 remain open."
       }
+    },
+    "implementation:phase-04": {
+      "status": "in-progress",
+      "outputs": [],
+      "qa": {
+        "source_review": "completed",
+        "test_execution": "blocked",
+        "reason": "Runtime repository checkout unavailable; T016 remains open"
+      }
     }
   }
 }
