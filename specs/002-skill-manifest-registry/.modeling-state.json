@@ -42,7 +42,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "a8e3d4bc12cdde7a658883d5d4dcf5eb2f786c17",
+        "tasks.md": "68263f7774c4538856f35988df1bc2f85e8d18b7",
         "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
         "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
         "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede"
@@ -126,8 +126,18 @@
       "outputs": [],
       "qa": {
         "source_review": "completed",
-        "test_execution": "passed_subset_user_windows",
-        "evidence": "Windows Python 3.13.3, commit 5990fef: 20/20 registry tests PASS; remaining negative matrix requirements for T021 need additional fixtures, full catalog not migrated."
+        "test_execution": "new_cases_pending",
+        "evidence": "User Windows Python 3.13.3: prior registry 20/20 PASS at 5990fef. Newly authored T012 filesystem snapshot and T021 negative fixtures not yet run."
+      }
+    },
+    "implementation:phase-06": {
+      "status": "in-progress",
+      "outputs": [],
+      "qa": {
+        "source_review": "mapping_only",
+        "runtime_execution": "not_run",
+        "migration": "not_started",
+        "evidence": "T023 mapping covers 13 distinct old/new locations and seven canonical cycles; no skill files moved."
       }
     }
   }
