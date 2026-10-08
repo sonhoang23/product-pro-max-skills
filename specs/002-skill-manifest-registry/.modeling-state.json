@@ -24,7 +24,7 @@
         "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
         "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
         "data-model.md": "574d27ee2f36664bd44ef77ae24dd487fff3888b",
-        "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede",
+        "quickstart.md": "338c3876fb5fc0c30c23932f674c06b69c96b2fe",
         "contracts/manifest-and-registry.md": "2ce10b69f5caa794562b38a405695583eb8dd85b"
       },
       "outputs": [],
@@ -42,10 +42,10 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "081384c5d564ad39f271b4f76eb01d25666c3da5",
+        "tasks.md": "451d538b94eb43531ed7071ce065f82e3dacb5e0",
         "plan.md": "2415f7d279d77e4f741be72b3cc95583c3abd4cc",
         "research.md": "32484ba4127ffaa6a808a06f1f8701f14128b990",
-        "quickstart.md": "3a369cc609c7dd2da9ee46afc9ac9d455161aede"
+        "quickstart.md": "338c3876fb5fc0c30c23932f674c06b69c96b2fe"
       },
       "outputs": [],
       "diagram_check": {
@@ -53,12 +53,10 @@
         "reason": "Task ordering and migration dependencies remain explicit in tasks.md after Phase 1 setup; no additional diagram clarifies the existing graph."
       },
       "qa": {
-        "source_set": "verified",
-        "source_hashes": "recorded",
+        "source_set": "verified_from_git_blobs",
         "diagram_rendering": "not_applicable",
         "browser_visual": "not_applicable",
-        "gate_freshness": "stale_after_tasks_changes; needs re-model",
-        "freshness": "stale after tasks.md updates, needs ensure-model(tasks) before any new implementation phase"
+        "freshness": "current at tasks source sha; recheck on later source changes"
       }
     },
     "implementation:phase-01": {
@@ -135,42 +133,77 @@
       }
     },
     "implementation:phase-06": {
-      "status": "in-progress",
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "451d538b94eb43531ed7071ce065f82e3dacb5e0",
+        "README.md": "e90df8e116a83a9d4024df817dfafae4f85c5140",
+        "README.vi.md": "59d3d27a043a8562626546eade659027a88a9a39",
+        "scripts/install.py": "284f62eb5b4c093c6b2bd5927f0ca617879f1ff6"
+      },
       "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "Physical canonical skill folder grouping and metadata associations are declarative and already documented; the spec diagram covers the conceptual relationships. Another visual adds no new understanding."
+      },
       "qa": {
         "source_review": "completed",
-        "migration": "13 SKILL.md and manifests, 3 workflows, README refs and installer committed",
-        "parity": "13 GitHub frontmatter/H1-only diff hunks; no other removed SKILL.md behavior lines; static parity only",
-        "test_execution": "passed_user_windows",
-        "test_evidence": "User Windows at 6ce125e: 32/32 skill tests PASS in 0.153s, including 4 test_skill_creator_contract tests; registry check OK.",
-        "registry": "User Windows at ef6de19: committed 13-entry registry `generate_skill_registry.py check` returned Registry check OK; PASS for read-only drift check.",
-        "runtime_invocation": "not_run",
-        "modeling": "implementation:phase-06 remains in-progress; ensure-model before T030 promotion.",
-        "installer_dry_run": "User Windows at ef6de19: `install.py --target .agents/skills --all --dry-run` displayed 13 canonical source/destination pairs and Selected 13 skill(s); no install write or invocation tested.",
-        "docs_source": "README.md and README.vi.md source already updated; implementation gate still in-progress, T030 pending.",
-        "new_tests": "test_skill_creator_contract.py added at e945cf3; not executed",
-        "new_authoring": "T031–T032 source complete; Phase 7 runtime verification pending"
+        "test_evidence": "User Windows at 6ce125e: 32/32 PASS; registry check at ef6de19 PASS and installer 13/13 dry-run PASS. No actual installer write or skill invocation.",
+        "diagram_rendering": "not_applicable",
+        "runtime_skill_invocation": "not_run",
+        "freshness": "source fingerprints recorded; verify after final source changes"
       }
     },
     "implementation:phase-07": {
-      "status": "in-progress",
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "451d538b94eb43531ed7071ce065f82e3dacb5e0",
+        ".agents/skills/skill-creator-vi/SKILL.md": "03942c6daab9137af1d07a8fcaac74e3d51203f4",
+        "SKILL-MODEL.md": "b43f19d9d816c48ac8d913dd574c89da889e25ac",
+        "SKILL-CONTRACT.md": "b8adc077ea143ed2f3722a1bec88222078a7052c",
+        "tests/test_skill_creator_contract.py": "d36a8209e62a42ddd22ae385aa476c16f4f4ac7f"
+      },
       "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "The authoring contract is a declarative text workflow and canonical rules, with no complex runtime flow requiring a new diagram."
+      },
       "qa": {
-        "source_review": "T031-T032 implemented, T033 test evidence from user Windows PASS",
-        "test_execution": "passed_user_windows",
-        "evidence": "2026-10-08 local HEAD 6ce125e: python -m unittest discover -s tests -p 'test_skill*.py' -v: Ran 32 tests in 0.153s OK; python scripts/generate_skill_registry.py check: Registry check OK",
-        "modeling": "Phase 6 freshness and T030 promotion unresolved; T034 must remain pending",
-        "runtime_authoring_journey": "not_run"
+        "source_review": "completed",
+        "test_evidence": "User Windows 6ce125e: 32/32 PASS including 4 creator contract tests. SKILL-CONTRACT.md subsequent editorial fix removes obsolete migration note; final suite deferred.",
+        "diagram_rendering": "not_applicable",
+        "runtime_skill_invocation": "not_run",
+        "freshness": "source fingerprints recorded; verify after final source changes"
       }
     },
     "implementation:phase-08": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "451d538b94eb43531ed7071ce065f82e3dacb5e0",
+        "scripts/skill_registry_common.py": "8ba55c78ed150413c0e2b895e54c5b246ea0b16d",
+        "tests/test_skill_registry_invalid.py": "3e6430099cdff5c75aeb810023bfeb338c0c05c6",
+        "docs/ARCHITECTURE.md": "3fdb349799a2e8d40b7a655f64a4fa71f1ae2dc6"
+      },
+      "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "Global-first ASCII identifiers and dev-tool exclusion are constraints and inventory boundaries already explained by the existing architecture text/spec diagram."
+      },
+      "qa": {
+        "source_review": "completed",
+        "test_evidence": "User Windows b03bea1: 35/35 PASS including localization and .agents exclusion. New release verification and legacy validator fix still await final consolidated test.",
+        "diagram_rendering": "not_applicable",
+        "runtime_skill_invocation": "not_run",
+        "freshness": "source fingerprints recorded; verify after final source changes"
+      }
+    },
+    "implementation:phase-09": {
       "status": "in-progress",
       "outputs": [],
       "qa": {
-        "source_review": "T035 ASCII identifier validator preexisting; T036 negative fixtures committed, execution pending; architecture boundary source updated, promotion gate pending",
-        "test_execution": "passed_user_windows",
-        "ci": "skill-registry.yml committed; GitHub Actions result not verified",
-        "evidence": "2026-10-08 Windows at b03bea1: 35/35 unittest PASS (0.169s); committed registry check OK; Ubuntu CI not verified."
+        "source_review": "CI and read-only release verification source prepared",
+        "test_execution": "deferred_by_user",
+        "ci": "not_verified",
+        "diagram_check": "proposed no-diagram-needed, final confirmation pending"
       }
     }
   }
