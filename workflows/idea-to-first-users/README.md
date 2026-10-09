@@ -1,5 +1,7 @@
 # idea-to-first-users
 
+> **INACTIVE / HISTORICAL DESIGN REFERENCE.** The named skills were withdrawn from the distributable catalog. No executable `workflow.yaml` exists. This sequence is a conceptual starting point only; do not run it until its skills and workflow are redesigned and validated.
+
 Compose definition, build readiness, verification, launch, distribution and pricing toward first users.
 
 ## Steps

@@ -78,30 +78,30 @@ Gate và decision là hai khái niệm khác nhau:
 - gate đánh giá mức độ đủ của bằng chứng/readiness: `pass`, `warn`, `fail`;
 - decision quyết định bước tiếp theo, ví dụ `continue`, `research`, `revise`, `pivot`, `defer`, `stop`.
 
-## MVP
+## Catalog hiện tại — chỉ có nền tảng
 
-MVP gồm 13 skill:
+**0 skill được phát hành.** 13 skill khởi tạo mang tính demo đã được gỡ khỏi `skills/` để xây dựng lại theo từng cycle và phase. Có thể tham khảo phiên bản cũ trong Git history và hồ sơ migration lịch sử của Spec 002; không được coi các skill này còn khả dụng.
 
-`ppmax-idea-pressure-test`, `ppmax-problem-validation`, `ppmax-customer-research`, `ppmax-market-landscape`, `ppmax-icp-positioning`, `ppmax-mvp-scope`, `ppmax-ux-flow`, `ppmax-architecture-plan`, `ppmax-engineering-readiness`, `ppmax-runtime-verification`, `ppmax-launch-readiness`, `ppmax-distribution-plan`, `ppmax-pricing-experiment`.
+Giữ đủ 10 thư mục cycle, chưa chốt số lượng skill cuối cùng. Skill mới cần phân tích khoảng trống năng lực, tuân thủ contract, có evidence và được đánh giá trước khi phát hành.
 
-Ba workflow:
+Ba workflow `idea-to-mvp`, `pre-launch-audit`, `idea-to-first-users` được **tạm ngừng**: chỉ giữ README làm tài liệu tham khảo, không còn `workflow.yaml` để chạy.
 
-- `workflows/idea-to-mvp`
-- `workflows/pre-launch-audit`
-- `workflows/idea-to-first-users`
+Xem [quyết định dọn catalog](./docs/CATALOG-RESET.md).
 
 ## Khám phá skill canonical
 
-13 skill phân phối được nhóm tại `skills/<primary-cycle>/ppmax-<slug>/`. Mỗi skill có `SKILL.md` chứa hành vi và `manifest.yaml` chứa metadata khám phá. Các cycle bổ sung được khai báo trong manifest, không suy ra chỉ từ thư mục.
+Khi được phát hành, các skill phân phối được nhóm tại `skills/<primary-cycle>/ppmax-<slug>/`. Mỗi skill có `SKILL.md` chứa hành vi và `manifest.yaml` chứa metadata khám phá. Các cycle bổ sung được khai báo trong manifest, không suy ra chỉ từ thư mục.
 
 `registry/skills.json` được sinh từ manifest và không chỉnh thủ công. Chạy `python scripts/generate_skill_registry.py check` để phát hiện drift; `.agents/` chỉ chứa công cụ phát triển repo, không thuộc catalog phân phối.
 
 ## Cài đặt
 
+Installer vẫn được giữ để sử dụng về sau. Hiện không có skill chính thức để cài; `--all` trả về trạng thái không có skill, không tạo dữ liệu.
+
 ```bash
 git clone https://github.com/sonhoang23/product-pro-max-skills.git
 cd product-pro-max-skills
-python scripts/install.py --target /duong-dan/project/.agents/skills --all
+python scripts/install.py --target /duong-dan/project/.agents/skills --all --dry-run
 ```
 
 ## Project state
@@ -120,7 +120,7 @@ English là canonical cho logic skill, shared product semantics và machine iden
 
 ## Trạng thái
 
-**MVP / nền tảng v0.1.**
+**Đang hoàn thiện nền tảng và xây lại catalog.** Product Model, manifest registry, design system và công cụ kiểm tra được giữ nguyên. Hiện có **0 skill phân phối / 0 workflow thực thi**. Báo cáo nghiệm thu 13 skill trong Spec 002 là dữ liệu lịch sử.
 
 Các foundation tiếp theo được quản lý trong `specs/ROADMAP-foundation.md`.
 

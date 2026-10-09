@@ -13,7 +13,7 @@
 <p align="center">
   <a href="https://github.com/sonhoang23/product-pro-max-skills/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/sonhoang23/product-pro-max-skills?style=flat-square"></a>
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/github/license/sonhoang23/product-pro-max-skills?style=flat-square"></a>
-  <a href="./registry/skills.json"><img alt="Canonical Skills: 13" src="https://img.shields.io/badge/skills-13-blue?style=flat-square"></a>
+  <a href="./registry/skills.json"><img alt="Published Skills: 0" src="https://img.shields.io/badge/skills-0-lightgrey?style=flat-square"></a>
   <a href="./requirements-registry.txt"><img alt="Python 3.12+" src="https://img.shields.io/badge/Python-3.12%2B-3776AB?style=flat-square&logo=python&logoColor=white"></a>
 </p>
 
@@ -167,71 +167,31 @@ Canonical decisions include:
 
 A `warn` gate, for example, might lead to `continue`, `research`, or `revise` depending on context. See [Product Model](./PRODUCT-MODEL.md).
 
-## Current foundation
+## Current catalog — foundation only
 
-The current v0.1 foundation ships 13 composable Agent Skills:
+**0 published/distributable skills.** The former 13 starter skills were demo/baseline material and have been withdrawn from `skills/`. Their implementation remains available in Git history and the historical Spec 002 migration inventory. Their former IDs are **not** available for invocation or installation.
 
-| Stage | Skill | Outcome |
-| --- | --- | --- |
-| Discover | `ppmax-idea-pressure-test` | Expose assumptions, risks and unknowns before building |
-| Validate | `ppmax-problem-validation` | Decide whether the problem has enough evidence |
-| Validate | `ppmax-customer-research` | Turn customer conversations into traceable evidence |
-| Validate | `ppmax-market-landscape` | Map direct competitors, substitutes and do-nothing |
-| Define | `ppmax-icp-positioning` | Define a specific ICP and positioning |
-| Define | `ppmax-mvp-scope` | Cut scope to the smallest test of the critical hypothesis |
-| Design | `ppmax-ux-flow` | Cover happy, error, empty, loading and recovery paths |
-| Build | `ppmax-architecture-plan` | Make proportionate architecture decisions with trade-offs |
-| Build | `ppmax-engineering-readiness` | Check security, testing, observability, migration and rollback |
-| Verify | `ppmax-runtime-verification` | Separate implemented, tested and runtime-verified claims |
-| Launch | `ppmax-launch-readiness` | Produce PASS/WARN/BLOCK launch evidence |
-| Launch | `ppmax-distribution-plan` | Turn ICP into concrete channels, messages and experiments |
-| Revenue | `ppmax-pricing-experiment` | Test pricing hypotheses instead of guessing a price |
+The ten canonical cycle directories remain as placeholders. New skills will be added only after cycle/phase gap analysis, contract review, evidence and evaluation. There is no target count of skills.
 
-These stage labels are navigation shorthand for the current MVP skill set. Canonical lifecycle phase IDs live in `model/product-model.json`.
+The previous `idea-to-mvp`, `pre-launch-audit` and `idea-to-first-users` workflows are **inactive design references**. Their README files retain the original concept, but there are no executable `workflow.yaml` files. They must be rebuilt against accepted skills before activation.
 
-Three workflows currently compose those skills:
-
-- `workflows/idea-to-mvp`
-- `workflows/pre-launch-audit`
-- `workflows/idea-to-first-users`
+See [Catalog reset](./docs/CATALOG-RESET.md) for scope and re-entry criteria.
 
 ## Install
 
-The repository uses `SKILL.md` as the canonical skill format.
+Installation tooling is retained, but there are currently no published skills to install.
 
 ```bash
 git clone https://github.com/sonhoang23/product-pro-max-skills.git
 cd product-pro-max-skills
-python scripts/install.py --target /path/to/project/.agents/skills --all
+python scripts/install.py --target /path/to/project/.agents/skills --all --dry-run
 ```
 
-Install selected skills:
-
-```bash
-python scripts/install.py \
-  --target /path/to/project/.agents/skills \
-  --skills ppmax-problem-validation,ppmax-mvp-scope,ppmax-runtime-verification
-```
-
-Preview without writing:
-
-```bash
-python scripts/install.py --target .agents/skills --all --dry-run
-```
+While the catalog is empty, `--all` is a successful no-op. A named skill ID that has not been published is rejected. After skills are accepted, the same installer supports `--all` and `--skills ppmax-<slug>`.
 
 ## Use
 
-Ask naturally:
-
-```text
-I want to build an AI meeting notes SaaS. Pressure-test the idea before we write code.
-```
-
-Or invoke a skill explicitly:
-
-```text
-Use ppmax-problem-validation. Separate evidence from assumptions and stop if the gate fails.
-```
+No `ppmax-*` product skill is currently invocable from this repository. Use the canonical Product Model, contracts and project-state templates to develop and validate new skills. Do not use historical demo skill names as if they were installed.
 
 ## Project state
 
@@ -298,9 +258,7 @@ Machine IDs such as `go-to-market`, `ppmax-runtime-verification`, `pass`, and `p
 
 ## Status
 
-**MVP / v0.1 foundation.**
-
-The repository implements the first slice of the Product Model. Later foundation specs will add skill metadata/registry, compatibility policy, broader quality evaluation, repository governance, global discovery/documentation, and release lifecycle without redefining Product Model v1 implicitly.
+**Foundation development — catalog reset.** The canonical Product Model, manifest contract, derived registry and design system remain in place. Current catalog: **0 published skills / 0 executable workflows**. Historical Spec 002 acceptance evidence documents the former 13-skill baseline, not the current catalog.
 
 ## License
 

@@ -124,6 +124,17 @@ workflows:
             run("generate", self.root)
         self.assertEqual(path.read_bytes(), before)
 
+    def test_empty_catalog_is_valid_and_registry_stays_deterministic(self):
+        (self.skill / "SKILL.md").unlink()
+        self.manifest.unlink()
+        self.skill.rmdir()
+        payload = json.loads(build_registry(self.root))
+        self.assertEqual(payload, {"registry_version": 1, "skills": []})
+        self.assertEqual(run("generate", self.root), 0)
+        expected = b'{\n  "registry_version": 1,\n  "skills": []\n}\n'
+        self.assertEqual((self.root / "registry" / "skills.json").read_bytes(), expected)
+        self.assertEqual(run("check", self.root), 0)
+
     def test_legacy_path_blocks_empty_registry(self):
         (self.root / "skills" / "old-skill").mkdir()
         (self.root / "skills" / "old-skill" / "SKILL.md").write_text("---\nname: old-skill\n---\n", encoding="utf-8")

@@ -26,18 +26,18 @@ def main() -> int:
     before = registry_path.read_bytes()
     registry = json.loads(before)
     names = [entry["id"] for entry in registry["skills"]]
-    if len(names) != 13 or len(set(names)) != 13:
-        raise SystemExit("Catalog cardinality/uniqueness mismatch: expected 13 canonical skills")
+    if len(names) != len(set(names)):
+        raise SystemExit("Catalog has duplicate canonical skill IDs")
     if not all(name.startswith("ppmax-") for name in names):
         raise SystemExit("Unexpected noncanonical skill ID")
     if any(".agents" in entry["path"] for entry in registry["skills"]):
         raise SystemExit("Development tooling leaked into catalog")
-    print("Canonical skill inventory:", len(names), flush=True)
+    print("Canonical skill inventory:", len(names), "(empty catalog is valid)", flush=True)
     print("Registry SHA-256:", hashlib.sha256(before).hexdigest(), flush=True)
     workflows = sorted((ROOT / "workflows").glob("*/workflow.yaml"))
     print("Workflow inventory:", len(workflows), flush=True)
-    if len(workflows) != 3:
-        raise SystemExit("Workflow cardinality mismatch: expected 3")
+    if not names and workflows:
+        raise SystemExit("Inactive catalog cannot publish executable workflows")
     run("scripts/validate_repo.py")
     run("scripts/generate_skill_registry.py", "check")
     if registry_path.read_bytes() != before:
