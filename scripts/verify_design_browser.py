@@ -2,6 +2,7 @@
 """Spec 003 full-checkout Chromium QA. Keeps browser/native zoom and GitHub UI claims separate."""
 from __future__ import annotations
 import argparse
+import base64
 import json
 from pathlib import Path
 
@@ -35,7 +36,11 @@ def run(output: Path, source: Path = CANDIDATE) -> list[dict]:
                     context.route("https://**/*", lambda route: route.abort())
                     page = context.new_page()
                     page.goto(target.resolve().as_uri(), wait_until="load")
-                    page.screenshot(path=str(output / f"{name}-{width}.png"), full_page=True)
+                    # DevTools capture avoids Playwright's font-stability wait on file:// SVG.
+                    session = context.new_cdp_session(page)
+                    captured = session.send("Page.captureScreenshot", {"format": "png", "fromSurface": True, "captureBeyondViewport": False})
+                    (output / f"{name}-{width}.png").write_bytes(base64.b64decode(captured["data"]))
+                    session.detach()
                     metric = page.evaluate("""() => ({
                         width: window.innerWidth,
                         scrollWidth: document.documentElement.scrollWidth,
