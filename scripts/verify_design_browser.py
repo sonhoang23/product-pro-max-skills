@@ -67,7 +67,7 @@ def run(output: Path, source: Path = CANDIDATE) -> list[dict]:
                                 raise RuntimeError(f"keyboard Tab did not focus navigation link: {focused}")
                             metric["keyboardFirstTab"] = focused
                         # Fixture links remain based on the promoted original path, not this preview folder.
-                        metric["linksArePreviewRelative"] = True
+                        metric["linksArePreviewRelative"] = (source != ORIGINAL)
                     if name.startswith("specimen") and metric["nodes"] != 5:
                         raise RuntimeError(f"{name}@{width}: semantic specimen node count changed")
                     results.append({"variant": name, "viewport": [width, height],
