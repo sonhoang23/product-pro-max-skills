@@ -162,8 +162,8 @@
         "design-system/brand-layouts.json": "27bd49d6b2c439e08503704063321babd33a670c",
         "scripts/export_brand_assets.py": "4ccc80d631ddf553523cb26a9a6a5df30e207d86",
         "design-system/tokens.json": "bf07abd8c0e93282c9bb15727fdbe711f4cd45f9",
-        "README.md": "2d7e63093acfed018f3b9535ee10b8dc0f7b90f0",
-        "README.vi.md": "77e7567b00d0a2bf5c8668ac6bb422448c6c9f3f",
+        "README.md": "7e14ab1a8d747fc61e474c68f3ea69760d877b43",
+        "README.vi.md": "591bc673a9d5d8472d2ca24d45b04ecf04bf6ef8",
         "design-system/README.md": "b266df6d7129b2fb0a4fed07ad39148807272390"
       },
       "outputs": [],
@@ -173,7 +173,8 @@
         "offline": "passed_12_CDP_Chromium_143_captures_and_brand_assets",
         "github_render": "passed_actual_github_reader_light_dark_2_images_11592000176",
         "revision_drift": "passed_6_svg_exact_0_1_0",
-        "readme_editorial_hero": "approved_current_asset_assets/brand/hero-process.webp; previous_svg_exports_retained; GitHub_theme_render_requires_new_validation_run"
+        "readme_editorial_hero": "approved_current_asset_assets/brand/hero-process.webp; previous_svg_exports_retained; GitHub_theme_render_requires_new_validation_run",
+        "catalog_reset_refresh": "2026-10-09: README catalog text changed; source fingerprints refreshed; no new browser QA or visual-design acceptance claimed"
       },
       "reason": "Brand elements use canonical repo tokens, no new semantic relations; Phase 5 verified including actual GitHub image selection."
     },
@@ -203,7 +204,7 @@
       "status": "no-diagram-needed",
       "source_hashes": {
         "tasks.md": "c1a67db37dac0029e3c3befc865689f0ccfeec6d",
-        "docs/ARCHITECTURE.md": "d1b5af93c6c7f559948628188f87717088244d8a",
+        "docs/ARCHITECTURE.md": "125fb26d97b969a3052b075895d6060747eb27c2",
         "specs/ROADMAP-foundation.md": "88394ca2980dc25a95240e664cc7896ce988bf47",
         "specs/003-product-pro-max-design-system/qa-evidence.md": "7fc74f5ef733983c5af471bc8e991a275e96c131",
         "specs/003-product-pro-max-design-system/analysis.md": "6c3eef9633edde6a3b58bf0fc94c3d0462f7bf3e",
@@ -232,7 +233,8 @@
         },
         "github_readme_light_dark": "PASS_render_json_github_artifact_11591982558",
         "screen_reader": "NOT_RUN_physical_reader_no_claim",
-        "publishing": "NOT_RUN_hosted_deployment_no_claim"
+        "publishing": "NOT_RUN_hosted_deployment_no_claim",
+        "catalog_reset_refresh": "2026-10-09: architecture workflow status changed; source fingerprint refreshed; no new browser QA or visual-design acceptance claimed"
       },
       "reason": "Phase 7 verified repository presentation delivery with source/static, keyboard, actual native browser zoom and GitHub rendering; no additional relation/flow/state diagram needed. Does not certify a hosted product or physical screen reader."
     },
