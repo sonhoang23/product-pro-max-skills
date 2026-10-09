@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Spec/Plan/Tasks Modeling Gates pass; Phase 1 T001–T003 and Phase 2 T004–T011 implemented with isolated Python unit/contract checks on byte-verified sources (2026-10-09). Full checkout regression, browser and GitHub asset QA remain outside this execution evidence; Phase 3–7 not started.  
+**State**: Spec/Plan/Tasks Modeling Gates PASS. Phase 1 T001–T003, Phase 2 T004–T011 and Phase 3 T012–T017 implemented and scope-limited verified (2026-10-09); 19/19 isolated Python unit tests and 6 Chromium stylesheet-preview captures. Full repo regression, real Edge zoom, screen-reader and Phase 4 renderer/pilot remain pending. Phase 4–7 not started.  
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -44,14 +44,14 @@
 
 ## Phase 3: User Story 1 — flexible token/theme system (P1)
 
-**Independent test**: Same sample semantic input generates Light/Dark and alternate-accent variants while retaining identical semantic inventory, source path and role IDs.
+**Independent test**: Same sample semantic input generates Light/Dark and alternate-accent variants while retaining identical semantic inventory, source path and role IDs. **Phase 3 source and scoped QA complete**: `qa-evidence.md` records reproducible output hashes, 19/19 unit tests and 6 Chromium stylesheet-preview screenshots; this is not a Phase 4 HTML diagram test.
 
-- [ ] T012 [P] [US1] Create complete sample roles/states for theme permutations in `tests/fixtures/design-system/semantic-sample.json`. [FR-004,006]
-- [ ] T013 [US1] Add negative tests for unresolved status, missing state label and insufficient official theme contrast in `tests/test_design_system_tokens.py`. [FR-007,014,021]
-- [ ] T014 [US1] Generate default, Light and alternate-accent output snapshots via `scripts/export_design_tokens.py`; document expected revision/fingerprint behavior in `design-system/README.md`. [FR-004,017,027]
-- [ ] T015 [US1] Confirm visual-token changes do not alter specimen semantic snapshot or Spec Kit source hash in `tests/test_design_system_tokens.py`. [FR-005,027]
-- [ ] T016 [US1] Verify project-specific tokens override global profile without changing installed global preferences; reject absent repo tokens in `tests/test_design_system_tokens.py`. [FR-020]
-- [ ] T017 [US1] Verify contrast/fallback/font/density variants with both automated checks and reviewed screenshots, preserving exact evidence in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-013,014,016]
+- [x] T012 [P] [US1] Create complete sample roles/states for theme permutations in `tests/fixtures/design-system/semantic-sample.json`. [FR-004,006]
+- [x] T013 [US1] Add negative tests for unresolved status, missing state label and insufficient official theme contrast in `tests/test_design_system_tokens.py`. [FR-007,014,021]
+- [x] T014 [US1] Generate default, Light and alternate-accent output snapshots via `scripts/export_design_tokens.py`; document expected revision/fingerprint behavior in `design-system/README.md`. [FR-004,017,027]
+- [x] T015 [US1] Confirm visual-token changes do not alter specimen semantic snapshot or Spec Kit source hash in `tests/test_design_system_tokens.py`. [FR-005,027]
+- [x] T016 [US1] Verify project-specific tokens override global profile without changing installed global preferences; reject absent repo tokens in `tests/test_design_system_tokens.py`. [FR-020]
+- [x] T017 [US1] Verify contrast/fallback/font/density variants with both automated checks and reviewed screenshots, preserving exact evidence in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-013,014,016]
 
 **Checkpoint**: All configured themes and density choices resolve predictably; browser evidence reported separately.
 

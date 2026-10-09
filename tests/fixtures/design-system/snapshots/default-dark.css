@@ -1,0 +1,43 @@
+/* ppmax-design-system revision=0.1.0 fingerprint=2e8e64f6edc41a3c surface=readme theme=dark density=default; generated; do not edit */
+:root {
+  --ppmax-accent-brand: #A3FF47;
+  --ppmax-border-strong: #A6C1B0;
+  --ppmax-boundary: #ACC5B1;
+  --ppmax-danger: #FF9D9D;
+  --ppmax-decision-emphasis: #E2C1FF;
+  --ppmax-edge: #B3C7B8;
+  --ppmax-edge-emphasis: #B8FFB0;
+  --ppmax-evidence-emphasis: #A9D7FF;
+  --ppmax-feedback-path: #A4DBC1;
+  --ppmax-focus-ring: #A3FF47;
+  --ppmax-gate-result-emphasis: #93E8AD;
+  --ppmax-label-muted: #C0D2C3;
+  --ppmax-link: #A4EEC1;
+  --ppmax-neutral: #BCD0C0;
+  --ppmax-node-fill: #14201A;
+  --ppmax-node-outline: #A4B9AA;
+  --ppmax-rule: #42554B;
+  --ppmax-success: #7EE4A3;
+  --ppmax-surface: #0B100F;
+  --ppmax-surface-elevated: #15211D;
+  --ppmax-text-primary: #F2F6F3;
+  --ppmax-text-secondary: #C7D6CA;
+  --ppmax-warning: #FFD179;
+  --ppmax-font-ui: "Segoe UI", "Arial", sans-serif;
+  --ppmax-font-mono: "Consolas", "Liberation Mono", monospace;
+  --ppmax-type-body: 16px;
+  --ppmax-type-caption: 14px;
+  --ppmax-type-label: 14px;
+  --ppmax-type-title: 24px;
+  --ppmax-space-lg: 16px;
+  --ppmax-space-md: 12px;
+  --ppmax-space-sm: 8px;
+  --ppmax-space-xl: 24px;
+  --ppmax-space-xs: 4px;
+  --ppmax-space-xxl: 32px;
+  --ppmax-radius-large: 11px;
+  --ppmax-radius-medium: 7px;
+  --ppmax-radius-small: 3px;
+  --ppmax-stroke-emphasis: 2.5px;
+  --ppmax-stroke-standard: 1.5px;
+}

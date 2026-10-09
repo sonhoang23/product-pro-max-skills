@@ -1,0 +1,43 @@
+/* ppmax-design-system revision=0.1.0 fingerprint=0524ca079864f0c0 surface=diagram theme=light density=default; generated; do not edit */
+:root {
+  --ppmax-accent-brand: #35E2DF;
+  --ppmax-border-strong: #54655B;
+  --ppmax-boundary: #5A6C60;
+  --ppmax-danger: #A0262A;
+  --ppmax-decision-emphasis: #5D3B7B;
+  --ppmax-edge: #536158;
+  --ppmax-edge-emphasis: #274C37;
+  --ppmax-evidence-emphasis: #20567B;
+  --ppmax-feedback-path: #3D6655;
+  --ppmax-focus-ring: #25581E;
+  --ppmax-gate-result-emphasis: #245A39;
+  --ppmax-label-muted: #405748;
+  --ppmax-link: #1B5D3A;
+  --ppmax-neutral: #4A5B53;
+  --ppmax-node-fill: #FFFFFF;
+  --ppmax-node-outline: #54655B;
+  --ppmax-rule: #A6B3A6;
+  --ppmax-success: #1F6A3C;
+  --ppmax-surface: #F7F9F4;
+  --ppmax-surface-elevated: #FFFFFF;
+  --ppmax-text-primary: #17201B;
+  --ppmax-text-secondary: #3D5146;
+  --ppmax-warning: #7C4800;
+  --ppmax-font-ui: "Segoe UI", "Arial", sans-serif;
+  --ppmax-font-mono: "Consolas", "Liberation Mono", monospace;
+  --ppmax-type-body: 16px;
+  --ppmax-type-caption: 14px;
+  --ppmax-type-label: 14px;
+  --ppmax-type-title: 24px;
+  --ppmax-space-lg: 16px;
+  --ppmax-space-md: 12px;
+  --ppmax-space-sm: 8px;
+  --ppmax-space-xl: 24px;
+  --ppmax-space-xs: 4px;
+  --ppmax-space-xxl: 32px;
+  --ppmax-radius-large: 11px;
+  --ppmax-radius-medium: 7px;
+  --ppmax-radius-small: 3px;
+  --ppmax-stroke-emphasis: 2.5px;
+  --ppmax-stroke-standard: 1.5px;
+}

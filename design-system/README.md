@@ -57,3 +57,21 @@ Never treat a check in one layer as proof of another. For each artifact/claim, r
 A missing run or missing run-specific log remains `NOT_RUN`, never PASS. The isolated Phase 2 Python evidence is [here](../specs/003-product-pro-max-design-system/phase-02-evidence.md); it is **not** a full checkout suite, browser review, GitHub README rendering or production verification.
 
 **Next phase (not started):** T012–T017 user story skin permutations, semantic sample and screenshot verification.
+
+
+## Phase 3 — reproducible visual variants (T012–T017)
+
+The [semantic sample](../tests/fixtures/design-system/semantic-sample.json) is an **illustrative test fixture**, not a second canonical ontology. It contains stable node/edge IDs, source provenance, visible Gate-result/Decision labels and explicit presentation-only visual state roles. The source `warn` result does not automatically choose `REPEAT`.
+
+Three committed, deterministic **CSS snapshots** live in [tests/fixtures/design-system/snapshots/](../tests/fixtures/design-system/snapshots/):
+
+```bash
+python scripts/export_design_tokens.py --surface readme --theme dark --output tests/fixtures/design-system/snapshots/default-dark.css --check
+python scripts/export_design_tokens.py --surface diagram --theme light --output tests/fixtures/design-system/snapshots/light.css --check
+python scripts/export_design_tokens.py --surface diagram --theme light --accent-preview '#35E2DF' --output tests/fixtures/design-system/snapshots/light-accent-preview.css --check
+python -m unittest discover -s tests -p 'test_design_system_tokens.py' -v
+```
+
+`--accent-preview` is **only a decorative export-time alternate**. It does not edit `tokens.json`, choose business states, overwrite a machine-global profile, or create an official brand. Invalid hex is rejected. Outputs embed the canonical token revision and a content fingerprint; identical semantic + token inputs yield byte-identical presentation, while modified presentation values change the visual fingerprint alone. A stale snapshot makes read-only `--check` fail instead of rewriting bytes. Snapshot refresh is an explicit non-`--check` operation.
+
+The validator checks token role completeness, specified informative contrast pairs and local font fallbacks; samples cover all four visual states and three density values. **Browser QA is independently scoped**: see [Phase 3 QA evidence](../specs/003-product-pro-max-design-system/qa-evidence.md). Six preview screenshots prove only a temporary CSS/typography/status-card harness at 1366/390px; they do **not** prove final diagrams, 200% browser zoom, screen-reader interaction, SVG/GitHub rendering or production publishing.

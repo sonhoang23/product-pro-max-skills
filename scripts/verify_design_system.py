@@ -21,6 +21,7 @@ success warning danger neutral""".split())
 THEMES = ("light", "dark")
 DENSITIES = ("compact", "default", "spacious")
 SURFACES = {"readme": "dark", "brand": "dark", "diagram": "light", "docs": "light"}
+VISUAL_STATES = frozenset({"success", "warning", "danger", "neutral"})
 
 
 class TokenError(ValueError):
@@ -129,6 +130,18 @@ def resolve(data: dict, surface: str, theme: str | None, density: str) -> tuple[
     require(selected in THEMES, f"theme {selected!r} unsupported; allowed: {', '.join(THEMES)}")
     require(density in DENSITIES, f"density {density!r} unsupported; allowed: {', '.join(DENSITIES)}")
     return selected, data["themes"][selected], data["densities"][density]
+
+
+def resolve_visual_state(data: dict, theme: str, role: str, visible_label: str) -> str:
+    """Resolve only a *presentation* state; never derive a workflow decision."""
+    require(theme in THEMES, f"theme {theme!r} unsupported")
+    require(role in VISUAL_STATES, f"visual state role {role!r} unresolved")
+    require(isinstance(visible_label, str) and bool(visible_label.strip()),
+            f"visual state {role!r}: required visible label missing")
+    try:
+        return data["themes"][theme][role]
+    except KeyError as exc:
+        raise TokenError(f"themes.{theme}.{role}: visual state role missing") from exc
 
 
 def main() -> int:

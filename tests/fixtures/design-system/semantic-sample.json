@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "path": "specs/003-product-pro-max-design-system/spec.md",
+    "scope": "feature",
+    "truth": "planned",
+    "requirement_refs": [
+      "FR-004",
+      "FR-005",
+      "FR-007",
+      "FR-008",
+      "FR-027"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "evidence-input",
+      "kind": "evidence",
+      "visible_type": "Evidence",
+      "label": "Dữ liệu xác minh",
+      "visual_state": {
+        "role": "neutral",
+        "label": "Đã ghi nhận"
+      }
+    },
+    {
+      "id": "gate-result",
+      "kind": "gate-result",
+      "visible_type": "Gate result",
+      "label": "Kết quả đánh giá: warn",
+      "value": "warn",
+      "visual_state": {
+        "role": "warning",
+        "label": "Cần xem xét"
+      }
+    },
+    {
+      "id": "decision-selected",
+      "kind": "decision",
+      "visible_type": "Decision",
+      "label": "Quyết định độc lập: REPEAT",
+      "value": "REPEAT",
+      "visual_state": {
+        "role": "neutral",
+        "label": "Cần rà soát"
+      }
+    },
+    {
+      "id": "next-step",
+      "kind": "activity",
+      "visible_type": "Activity",
+      "label": "Thu thập thêm bằng chứng",
+      "visual_state": {
+        "role": "success",
+        "label": "Đã lên kế hoạch"
+      }
+    },
+    {
+      "id": "evidence-gap",
+      "kind": "evidence",
+      "visible_type": "Evidence",
+      "label": "Chưa đủ bằng chứng",
+      "visual_state": {
+        "role": "danger",
+        "label": "Chưa đạt"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "evidence-to-gate",
+      "source": "evidence-input",
+      "target": "gate-result",
+      "label": "Bằng chứng đầu vào"
+    },
+    {
+      "id": "decision-to-step",
+      "source": "decision-selected",
+      "target": "next-step",
+      "label": "Thực hiện quyết định đã chọn"
+    }
+  ],
+  "display": {
+    "description": "Fixture example only: the Gate result does not imply or determine the Decision.",
+    "states_are_visual_only": true
+  }
+}

@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import os
 import tempfile
 from pathlib import Path
 
-from verify_design_system import ROOT, TokenError, load_tokens, resolve
+from verify_design_system import ROOT, COLOR, TokenError, load_tokens, resolve
 
 
 def canonical(data: dict) -> bytes:
@@ -21,7 +22,15 @@ def css_font(fonts: list[str]) -> str:
 
 
 def render(data: dict, *, surface: str = "diagram", theme: str | None = None,
-           density: str = "default", format: str = "css") -> str:
+           density: str = "default", format: str = "css", accent_preview: str | None = None) -> str:
+    # Alternate accent is an ephemeral *visual preview*, not an official brand or
+    # mutation of the canonical repository tokens.
+    if accent_preview is not None:
+        if not COLOR.fullmatch(accent_preview):
+            raise TokenError(f"accent-preview {accent_preview!r}: expected #RRGGBB")
+        data = copy.deepcopy(data)
+        for values in data["themes"].values():
+            values["accent-brand"] = accent_preview.upper()
     selected, roles, multipliers = resolve(data, surface, theme, density)
     if format not in ("css", "svg-css"):
         raise TokenError("format must be css or svg-css")
@@ -64,12 +73,14 @@ def main() -> int:
     p.add_argument("--theme")
     p.add_argument("--density", default="default")
     p.add_argument("--format", default="css", choices=("css", "svg-css"))
+    p.add_argument("--accent-preview", help="decorative #RRGGBB preview only; never changes repo tokens")
     p.add_argument("--output", type=Path)
     p.add_argument("--check", action="store_true")
     args = p.parse_args()
     try:
         data = load_tokens(args.root)
-        generated = render(data, surface=args.surface, theme=args.theme, density=args.density, format=args.format)
+        generated = render(data, surface=args.surface, theme=args.theme, density=args.density,
+                           format=args.format, accent_preview=args.accent_preview)
         if args.check:
             if args.output is not None:
                 try:

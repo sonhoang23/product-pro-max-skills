@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import os
 import subprocess
@@ -13,7 +14,7 @@ from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from verify_design_system import TokenError, contrast, load_tokens, resolve, validate
+from verify_design_system import TokenError, contrast, load_tokens, resolve, resolve_visual_state, validate
 from export_design_tokens import render
 
 
@@ -137,6 +138,95 @@ class DesignTokenTests(unittest.TestCase):
         roles = self.data["themes"]["light"]
         self.assertLess(contrast(roles["accent-brand"], roles["surface"]), 4.5)
         self.assertGreaterEqual(contrast(roles["text-primary"], roles["surface"]), 4.5)
+
+    def test_fixture_has_stable_semantic_inventory_and_all_state_roles(self):
+        fixture = ROOT / "tests/fixtures/design-system/semantic-sample.json"
+        sample = json.loads(fixture.read_text(encoding="utf-8"))
+        self.assertEqual(sample["provenance"]["truth"], "planned")
+        self.assertEqual(sample["provenance"]["scope"], "feature")
+        node_ids = [node["id"] for node in sample["nodes"]]
+        self.assertEqual(len(set(node_ids)), len(node_ids))
+        self.assertEqual({node["visual_state"]["role"] for node in sample["nodes"]},
+                         {"success", "warning", "danger", "neutral"})
+        for node in sample["nodes"]:
+            self.assertTrue(node["label"] and node["visible_type"])
+            for theme in ("light", "dark"):
+                state = node["visual_state"]
+                color = resolve_visual_state(self.data, theme, state["role"], state["label"])
+                self.assertRegex(color, r"^#[0-9A-Fa-f]{6}$")
+        for edge in sample["edges"]:
+            self.assertIn(edge["source"], node_ids)
+            self.assertIn(edge["target"], node_ids)
+        self.assertNotIn(("gate-result", "decision-selected"),
+                         [(edge["source"], edge["target"]) for edge in sample["edges"]])
+
+    def test_unknown_visual_state_rejected_not_guessed(self):
+        with self.assertRaisesRegex(TokenError, "unresolved"):
+            resolve_visual_state(self.data, "light", "pass", "Passed")
+        with self.assertRaisesRegex(TokenError, "unresolved"):
+            resolve_visual_state(self.data, "dark", "pending-magic", "Pending")
+
+    def test_missing_visual_state_label_rejected(self):
+        for label in ("", "  ", None):
+            with self.subTest(label=label), self.assertRaisesRegex(TokenError, "required visible label missing"):
+                resolve_visual_state(self.data, "light", "warning", label)
+
+    def test_official_theme_contrast_and_density_font_floors(self):
+        self.assertIs(validate(self.data), self.data)
+        for theme in ("light", "dark"):
+            palette = self.data["themes"][theme]
+            for role in ("text-primary", "text-secondary", "link"):
+                self.assertGreaterEqual(contrast(palette[role], palette["surface"]), 4.5)
+            for role in ("warning", "danger", "success", "focus-ring", "node-outline"):
+                bg = "node-fill" if role == "node-outline" else "surface"
+                self.assertGreaterEqual(contrast(palette[role], palette[bg]), 3)
+        for density, multipliers in self.data["densities"].items():
+            for name in ("body", "label", "caption"):
+                self.assertGreaterEqual(self.data["typography"]["size_px"][name] * multipliers["type_multiplier"], 14, density)
+        for role in ("ui", "mono"):
+            self.assertIn(self.data["typography"][role][-1], ("sans-serif", "monospace", "serif"))
+
+    def test_tampered_official_theme_contrast_rejected(self):
+        self.data["themes"]["dark"]["text-secondary"] = self.data["themes"]["dark"]["surface"]
+        with self.assertRaisesRegex(TokenError, "contrast"):
+            validate(self.data)
+
+    def test_preview_is_presentation_only_and_does_not_mutate_semantic_source(self):
+        fixture_path = ROOT / "tests/fixtures/design-system/semantic-sample.json"
+        canonical_before = json.dumps(self.data, sort_keys=True)
+        fixture_before = fixture_path.read_bytes()
+        semantic_hash = hashlib.sha256(fixture_before).hexdigest()
+        original = render(self.data, surface="diagram", theme="light")
+        alternate = render(self.data, surface="diagram", theme="light", accent_preview="#35e2df")
+        self.assertNotEqual(original, alternate)
+        self.assertIn("--ppmax-accent-brand: #35E2DF;", alternate)
+        self.assertNotEqual(original.splitlines()[0], alternate.splitlines()[0])
+        self.assertEqual(json.dumps(self.data, sort_keys=True), canonical_before)
+        self.assertEqual(hashlib.sha256(fixture_path.read_bytes()).hexdigest(), semantic_hash)
+        sample = json.loads(fixture_before)
+        self.assertEqual(next(n for n in sample["nodes"] if n["id"] == "gate-result")["value"], "warn")
+        self.assertEqual(next(n for n in sample["nodes"] if n["id"] == "decision-selected")["value"], "REPEAT")
+
+    def test_invalid_accent_preview_is_rejected(self):
+        with self.assertRaisesRegex(TokenError, "accent-preview"):
+            render(self.data, accent_preview="red;display:none")
+
+    def test_all_three_official_snapshots_are_exact_and_readonly(self):
+        fixtures = ROOT / "tests/fixtures/design-system/snapshots"
+        cases = [
+            ("default-dark.css", ["--surface", "readme", "--theme", "dark"]),
+            ("light.css", ["--surface", "diagram", "--theme", "light"]),
+            ("light-accent-preview.css", ["--surface", "diagram", "--theme", "light", "--accent-preview", "#35E2DF"]),
+        ]
+        for name, args in cases:
+            with self.subTest(snapshot=name):
+                file = fixtures / name
+                original = file.read_bytes()
+                proc = subprocess.run([sys.executable, str(ROOT / "scripts/export_design_tokens.py"),
+                                       *args, "--output", str(file), "--check"], capture_output=True, text=True)
+                self.assertEqual(proc.returncode, 0, proc.stderr)
+                self.assertEqual(file.read_bytes(), original)
+                self.assertIn("fingerprint=", original.decode("utf-8").splitlines()[0])
 
 
 if __name__ == "__main__":
