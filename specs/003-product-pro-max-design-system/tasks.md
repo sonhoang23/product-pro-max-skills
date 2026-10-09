@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Spec/Plan/Tasks Modeling Gates PASS. Phase 1 T001–T003, Phase 2 T004–T011 and Phase 3 T012–T017 implemented and scope-limited verified (2026-10-09); 19/19 isolated Python unit tests and 6 Chromium stylesheet-preview captures. Full repo regression, real Edge zoom, screen-reader and Phase 4 renderer/pilot remain pending. Phase 4–7 not started.  
+**State**: Phase 1 T001–T003, Phase 2 T004–T011, Phase 3 T012–T017 completed. Phase 4 T018–T025 source implementation and bounded local tests completed 2026-10-09; **T026 pending** real 200% browser zoom, complete navigation/browser acceptance and official full-checkout diagram validators. Do not mark Phase 4 or implementation modeling gate pass. Phase 5–7 not started.  
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -57,16 +57,16 @@
 
 ## Phase 4: User Story 2 — readable HTML diagrams and Atlas (P1)
 
-**Independent test**: A standalone specimen and a source-equivalent Spec 002 pilot preserve labels, direction, planned state and navigation while changing only presentation.
+**Independent test**: Self-contained Light/Dark specimen fixtures preserve node/edge inventory and source truth; Spec 002 **migration pilot remains Phase 6**. Phase 4 T018–T025 implemented with 26/26 isolated tests and scoped browser evidence. T026 remains unchecked for unverified native zoom and complete browser/navigation QA. See `qa-evidence.md`.
 
-- [ ] T018 [P] [US2] Specify Signal Protocol visual primitives/limits and orthogonal connector geometry in `design-system/components.md`, reusing `diagram-design-vi` instead of replacing it. [FR-007,023,024]
-- [ ] T019 [US2] Implement a repo-aware style resolution adapter in `.agents/skills/diagram-design-vi/SKILL.md` and the smallest necessary mapping reference(s), leaving generic global profiles untouched. [FR-020,023]
-- [ ] T020 [P] [US2] Add gate-result vs decision and semantic inventory tests in `tests/test_design_system_diagrams.py` using authoritative example values. [FR-005,008]
-- [ ] T021 [US2] Build offline-capable self-contained HTML/SVG sample from `design-system/tokens.json` following visual primitives and source metadata rules, saving only as a test artifact under `tests/fixtures/design-system/`. [FR-007,009]
-- [ ] T022 [US2] Add accessible SVG title/desc, status text/icons, visible keyboard focus and reduced-motion affordances in the sample generator and `design-system/components.md`. [FR-013–016]
-- [ ] T023 [US2] Audit the sample's edges and gate/result labels against its source inventory in `tests/test_design_system_diagrams.py`. [FR-005,008,018]
-- [ ] T024 [P] [US2] Prepare Atlas/Feature Ledger navigation styling as a derived view without changing scope/truth/parent/related semantics, scoped to `docs/diagrams/index.html` and `specs/002-skill-manifest-registry/diagrams.html`. [FR-010]
-- [ ] T025 [US2] Validate a second environment with different `~/.diagram-design` profile still chooses Product Pro Max repo tokens; document results in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-020]
+- [x] T018 [P] [US2] Specify Signal Protocol visual primitives/limits and orthogonal connector geometry in `design-system/components.md`, reusing `diagram-design-vi` instead of replacing it. [FR-007,023,024]
+- [x] T019 [US2] Implement a repo-aware style resolution adapter in `.agents/skills/diagram-design-vi/SKILL.md` and the smallest necessary mapping reference(s), leaving generic global profiles untouched. [FR-020,023]
+- [x] T020 [P] [US2] Add gate-result vs decision and semantic inventory tests in `tests/test_design_system_diagrams.py` using authoritative example values. [FR-005,008]
+- [x] T021 [US2] Build offline-capable self-contained HTML/SVG sample from `design-system/tokens.json` following visual primitives and source metadata rules, saving only as a test artifact under `tests/fixtures/design-system/`. [FR-007,009]
+- [x] T022 [US2] Add accessible SVG title/desc, status text/icons, visible keyboard focus and reduced-motion affordances in the sample generator and `design-system/components.md`. [FR-013–016]
+- [x] T023 [US2] Audit the sample's edges and gate/result labels against its source inventory in `tests/test_design_system_diagrams.py`. [FR-005,008,018]
+- [x] T024 [P] [US2] Prepare Atlas/Feature Ledger navigation styling as a derived view without changing scope/truth/parent/related semantics, scoped to `docs/diagrams/index.html` and `specs/002-skill-manifest-registry/diagrams.html`. [FR-010]
+- [x] T025 [US2] Validate a second environment with different `~/.diagram-design` profile still chooses Product Pro Max repo tokens; document results in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-020]
 - [ ] T026 [US2] Run visual QA of HTML diagrams at Light/Dark, 390px, 200% zoom and keyboard focus; record screenshot/test evidence and failures without force-PASS. [FR-014–016,022]
 
 **Checkpoint**: Existing modeling/Atlas authority remains unchanged.

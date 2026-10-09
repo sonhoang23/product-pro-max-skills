@@ -22,3 +22,14 @@ These are presentation instructions, not a product ontology. `model/product-mode
 ## Presentation guarantees
 
 Use repository-local `design-system/tokens.json`, with Light for diagrams/docs and Dark for README/brand by default. Fallback fonts are local/system only. Density changes spacing/stroke/type treatment, not element presence or semantic ordering. Long labels must wrap or allow scrolling; no hiding necessary nodes/edges. Source/Atlas links must retain actual targets. Concrete orthogonal connector/geometry guidance and piloted specimen belong to Phase 4 (T018–T026), not this foundation.
+
+## Phase 4: bounded geometric and accessibility treatments (T018/T022)
+
+- **Node:** stable source `data-node-id`, `data-kind`, visible kind and source label; rectangle border >= 1.5px; 14px minimum meaningful caption. Evidence, Gate result and Decision have distinct kind labels, status icons and emphasis tokens; never infer workflow behavior from decorative color.
+- **Edge:** emit only source `id/source/target`; preserve directed path and visible source edge label. Use orthogonal `M/H/V/H` segments with arrow markers. Connector labels belong in free gutter above nodes, not beneath later node fills; route away from all other node rectangles. No phantom connection between Gate result and Decision.
+- **Boundary/feedback:** dashed shape and appropriate `boundary`/`feedback-path` roles only when source provides that relation. Do not invent loops from a decorative Signal Path line.
+- **Mobile:** technical SVG retains its full viewBox inside a focusable `overflow-x:auto` region, with visible keyboard outline, ArrowRight scroll, source/title/desc metadata. Horizontal scroll **inside the SVG panel** is allowed; document-level horizontal overflow is not.
+- **Visual/accessibility:** both Light and Dark use validated informational contrast roles; Signal Lime never substitutes for semantic text. No external fonts/styles/scripts in standalone output. Honor `prefers-reduced-motion:reduce`; static diagram remains complete with JavaScript unavailable. Keep source navigation in real HTML links, scoped only to test fixture when prototyping.
+- **Separation:** styling the Atlas or ledger may change CSS and presentation only. All links, IDs, parent/child/related references and `truth=planned` remain byte-/semantic-equivalent after stripping style/formatting.
+
+The fixed five-node sample in `tests/fixtures/design-system/` is a **test fixture** with fixed positions, not a new general-purpose renderer or product ontology. Its generator and tests belong to the test verification surface. The core 39 visual types remain provided by `diagram-design-vi`.

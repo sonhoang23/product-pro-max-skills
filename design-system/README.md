@@ -1,7 +1,6 @@
 # Product Pro Max Design System
 
-**Status:** Phase 1 documentation and design-reference registration only (Spec 003).
-No token contract, exporter, renderer integration or production brand asset has been implemented.
+**Status:** Phase 1–3 design-token foundation implemented. Phase 4 diagram specimen + repository style adapter under verification; brand assets remain Phase 5.
 
 ## Approved concept (reference only)
 
@@ -15,7 +14,7 @@ No token contract, exporter, renderer integration or production brand asset has 
 
 1. [Constitution](../.specify/memory/constitution.md) and [Spec 003 requirements](../specs/003-product-pro-max-design-system/spec.md) govern constraints and intended behavior.
 2. [Implementation plan](../specs/003-product-pro-max-design-system/plan.md), [data model](../specs/003-product-pro-max-design-system/data-model.md) and [tokens/surfaces contract](../specs/003-product-pro-max-design-system/contracts/tokens-and-surfaces.md) govern planned design and validation.
-3. `design-system/tokens.json` will be the **only canonical machine-readable presentation-token value source** after Phase 2 creates it. This README and the approved showcase must not independently define or override token values.
+3. `design-system/tokens.json` is the **only canonical machine-readable presentation-token value source**. This README and the approved showcase must not independently define or override token values.
 4. Product Model/Skill Registry and Spec Kit artifacts continue to own product semantics. `speckit-system-modeling-vi` decides what a diagram represents; `diagram-design-vi` decides how the derived presentation looks.
 
 ## Repository-local token workflow (Phase 2)
@@ -75,3 +74,17 @@ python -m unittest discover -s tests -p 'test_design_system_tokens.py' -v
 `--accent-preview` is **only a decorative export-time alternate**. It does not edit `tokens.json`, choose business states, overwrite a machine-global profile, or create an official brand. Invalid hex is rejected. Outputs embed the canonical token revision and a content fingerprint; identical semantic + token inputs yield byte-identical presentation, while modified presentation values change the visual fingerprint alone. A stale snapshot makes read-only `--check` fail instead of rewriting bytes. Snapshot refresh is an explicit non-`--check` operation.
 
 The validator checks token role completeness, specified informative contrast pairs and local font fallbacks; samples cover all four visual states and three density values. **Browser QA is independently scoped**: see [Phase 3 QA evidence](../specs/003-product-pro-max-design-system/qa-evidence.md). Six preview screenshots prove only a temporary CSS/typography/status-card harness at 1366/390px; they do **not** prove final diagrams, 200% browser zoom, screen-reader interaction, SVG/GitHub rendering or production publishing.
+
+## Phase 4 — repository adapter and diagram specimen
+
+- [Repository style resolver](../scripts/resolve_repo_style.py) maps existing `diagram-design-vi` paper/ink/accent/link primitive roles to validated local token roles, with **no fallback to home profiles**. The repo-specific instruction is documented at [adapter reference](../.agents/skills/diagram-design-vi/references/product-pro-max-adapter.md). Generic style-guide/profile files remain unchanged.
+- [Specimen source](../tests/fixtures/design-system/semantic-sample.json), [light preview](../tests/fixtures/design-system/specimen-light.html) and [dark preview](../tests/fixtures/design-system/specimen-dark.html) are fixtures only, not living diagrams registered in Atlas. [Generator](../scripts/render_design_system_sample.py) preserves all source node/edge IDs and exact Gate vs Decision values; its geometry is fixed to this source sample, not a second general renderer.
+- [Semantic/diagram tests](../tests/test_design_system_diagrams.py) enforce node/edge inventory, arrow direction, accessible title/desc, reduced-motion, source/truth labels, and tamper/no-write checks. See [QA evidence](../specs/003-product-pro-max-design-system/qa-evidence.md) for which browser checks were actually executed.
+- Atlas and Spec 002 Feature Ledger have presentation-only token styling. Pilot migration of the *Spec 002 diagram itself* is reserved for Phase 6, after explicit approval. A derived style revision is not new implemented product architecture.
+
+```bash
+python scripts/resolve_repo_style.py --theme light
+python scripts/render_design_system_sample.py --theme light --output tests/fixtures/design-system/specimen-light.html --check
+python scripts/render_design_system_sample.py --theme dark --output tests/fixtures/design-system/specimen-dark.html --check
+python -m unittest discover -s tests -p 'test_design_system_*.py' -v
+```

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi" data-theme="dark" data-density="default">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Spec 003 · Signal Protocol specimen · dark</title>
+<style>
+/* ppmax-design-system revision=0.1.0 fingerprint=2e8e64f6edc41a3c surface=diagram theme=dark density=default; generated; do not edit */
+:root {
+  --ppmax-accent-brand: #A3FF47;
+  --ppmax-border-strong: #A6C1B0;
+  --ppmax-boundary: #ACC5B1;
+  --ppmax-danger: #FF9D9D;
+  --ppmax-decision-emphasis: #E2C1FF;
+  --ppmax-edge: #B3C7B8;
+  --ppmax-edge-emphasis: #B8FFB0;
+  --ppmax-evidence-emphasis: #A9D7FF;
+  --ppmax-feedback-path: #A4DBC1;
+  --ppmax-focus-ring: #A3FF47;
+  --ppmax-gate-result-emphasis: #93E8AD;
+  --ppmax-label-muted: #C0D2C3;
+  --ppmax-link: #A4EEC1;
+  --ppmax-neutral: #BCD0C0;
+  --ppmax-node-fill: #14201A;
+  --ppmax-node-outline: #A4B9AA;
+  --ppmax-rule: #42554B;
+  --ppmax-success: #7EE4A3;
+  --ppmax-surface: #0B100F;
+  --ppmax-surface-elevated: #15211D;
+  --ppmax-text-primary: #F2F6F3;
+  --ppmax-text-secondary: #C7D6CA;
+  --ppmax-warning: #FFD179;
+  --ppmax-font-ui: "Segoe UI", "Arial", sans-serif;
+  --ppmax-font-mono: "Consolas", "Liberation Mono", monospace;
+  --ppmax-type-body: 16px;
+  --ppmax-type-caption: 14px;
+  --ppmax-type-label: 14px;
+  --ppmax-type-title: 24px;
+  --ppmax-space-lg: 16px;
+  --ppmax-space-md: 12px;
+  --ppmax-space-sm: 8px;
+  --ppmax-space-xl: 24px;
+  --ppmax-space-xs: 4px;
+  --ppmax-space-xxl: 32px;
+  --ppmax-radius-large: 11px;
+  --ppmax-radius-medium: 7px;
+  --ppmax-radius-small: 3px;
+  --ppmax-stroke-emphasis: 2.5px;
+  --ppmax-stroke-standard: 1.5px;
+}
+
+*{box-sizing:border-box}html{color-scheme:dark;font-family:var(--ppmax-font-ui)}body{background:var(--ppmax-surface);color:var(--ppmax-text-primary);margin:0;padding:clamp(14px,4vw,36px)}
+main{max-width:1216px;margin:auto}nav{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:24px}a{color:var(--ppmax-link)}a:focus-visible,.diagram-region:focus-visible{outline:3px solid var(--ppmax-focus-ring);outline-offset:4px}h1{font-size:clamp(22px,3vw,32px)}p,footer{color:var(--ppmax-text-secondary);line-height:1.5}.diagram-region{overflow-x:auto;border:2px solid var(--ppmax-border-strong);border-radius:var(--ppmax-radius-large);background:var(--ppmax-surface-elevated);scrollbar-width:auto}svg{display:block;width:100%;min-width:840px;height:auto}.node-box{fill:var(--ppmax-node-fill);stroke:var(--ppmax-node-outline);stroke-width:2}.ppmax-edge{fill:none;stroke:var(--ppmax-edge);stroke-width:2.5}.kind-label{font-size:16px;font-weight:650;fill:var(--ppmax-text-primary)}.node-title{font-size:18px;fill:var(--ppmax-text-primary)}.node-value{font-size:16px;font-weight:bold;fill:var(--ppmax-text-primary)}.status-label{font-size:15px;font-weight:650}.edge-label{font-size:14px;fill:var(--ppmax-text-secondary);paint-order:stroke;stroke:var(--ppmax-surface-elevated);stroke-width:8px;stroke-linejoin:round}@media(max-width:700px){nav{gap:14px}svg{min-width:1120px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media print{.diagram-region{overflow:visible}}
+</style></head>
+<body><main><nav aria-label="Điều hướng"><a href="../../../docs/diagrams/index.html">Diagram Atlas</a><a href="../../../specs/003-product-pro-max-design-system/diagrams.html">Feature Ledger</a></nav>
+<h1>Signal Protocol · specimen (dark)</h1><p>Test fixture · <strong>planned truth</strong> · Source: <code>specs/003-product-pro-max-design-system/spec.md</code>. Sample illustration; Gate result is independent of Decision.</p>
+<p id="diagram-hint">Có thể dùng Tab để chọn vùng sơ đồ, sau đó dùng phím mũi tên để cuộn ngang trên màn hình hẹp.</p>
+<div class="diagram-region" tabindex="0" role="region" aria-label="Sơ đồ thử nghiệm về bằng chứng, Gate result và Decision" aria-describedby="diagram-hint">
+<svg class="ppmax-design-system" viewBox="0 0 1140 680" role="img" aria-labelledby="ppmax-specimen-title ppmax-specimen-desc" xmlns="http://www.w3.org/2000/svg"><title id="ppmax-specimen-title">Bằng chứng, Gate result và Decision</title><desc id="ppmax-specimen-desc">Sơ đồ planned test fixture; kết quả Gate warn không tự quyết định REPEAT. Hai cạnh nguồn được giữ nguyên hướng.</desc><defs><marker id="ppmax-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ppmax-edge)"/></marker></defs>
+<path class="ppmax-edge" data-edge-id="evidence-to-gate" data-source="evidence-input" data-target="gate-result" d="M 360 178 H 399 V 178 H 438" marker-end="url(#ppmax-arrow)"/>
+<text class="edge-label" x="399" y="78" text-anchor="middle">Bằng chứng đầu vào</text>
+<path class="ppmax-edge" data-edge-id="decision-to-step" data-source="decision-selected" data-target="next-step" d="M 748 482 H 778 V 482 H 808" marker-end="url(#ppmax-arrow)"/>
+<text class="edge-label" x="778" y="382" text-anchor="middle">Thực hiện quyết định đã chọn</text>
+<g class="semantic-node" data-node-id="evidence-input" data-kind="evidence" data-status="neutral"><rect class="node-box" x="60" y="96" width="300" height="164" rx="12"/><rect x="60" y="96" width="5" height="164" rx="2" fill="var(--ppmax-evidence-emphasis)"/><text class="kind-label" x="80" y="128">Evidence</text><text class="node-title" x="80" y="166">Dữ liệu xác minh</text><text class="status-label" x="80" y="232" fill="#BCD0C0">•  Đã ghi nhận</text></g>
+<g class="semantic-node" data-node-id="gate-result" data-kind="gate-result" data-status="warning"><rect class="node-box" x="438" y="96" width="310" height="164" rx="12"/><rect x="438" y="96" width="5" height="164" rx="2" fill="var(--ppmax-gate-result-emphasis)"/><text class="kind-label" x="458" y="128">Gate result</text><text class="node-title" x="458" y="166">Kết quả đánh giá: warn</text><text class="node-value" x="458" y="195">warn</text><text class="status-label" x="458" y="232" fill="#FFD179">!  Cần xem xét</text></g>
+<g class="semantic-node" data-node-id="decision-selected" data-kind="decision" data-status="neutral"><rect class="node-box" x="438" y="400" width="310" height="164" rx="12"/><rect x="438" y="400" width="5" height="164" rx="2" fill="var(--ppmax-decision-emphasis)"/><text class="kind-label" x="458" y="432">Decision</text><text class="node-title" x="458" y="470">Quyết định độc lập: REPEAT</text><text class="node-value" x="458" y="499">REPEAT</text><text class="status-label" x="458" y="536" fill="#BCD0C0">•  Cần rà soát</text></g>
+<g class="semantic-node" data-node-id="next-step" data-kind="activity" data-status="success"><rect class="node-box" x="808" y="400" width="278" height="164" rx="12"/><rect x="808" y="400" width="5" height="164" rx="2" fill="var(--ppmax-edge-emphasis)"/><text class="kind-label" x="828" y="432">Activity</text><text class="node-title" x="828" y="470">Thu thập thêm bằng chứng</text><text class="status-label" x="828" y="536" fill="#7EE4A3">✓  Đã lên kế hoạch</text></g>
+<g class="semantic-node" data-node-id="evidence-gap" data-kind="evidence" data-status="danger"><rect class="node-box" x="60" y="400" width="300" height="164" rx="12"/><rect x="60" y="400" width="5" height="164" rx="2" fill="var(--ppmax-evidence-emphasis)"/><text class="kind-label" x="80" y="432">Evidence</text><text class="node-title" x="80" y="470">Chưa đủ bằng chứng</text><text class="status-label" x="80" y="536" fill="#FF9D9D">×  Chưa đạt</text></g>
+</svg></div><footer><p>Visual preview only · Token revision: 0.1.0 · Source: specs/003-product-pro-max-design-system/spec.md · No inferred semantics.</p></footer></main></body></html>
