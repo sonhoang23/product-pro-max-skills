@@ -60,4 +60,5 @@ jobs:
         with:
           name: spec003-browser-qa
           path: .tmp-spec003-browser/
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true

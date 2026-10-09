@@ -77,6 +77,39 @@ def run(output: Path, source: Path = CANDIDATE) -> list[dict]:
                                     "native_zoom_200": "not_tested",
                                     "github_markdown_render": "not_tested"})
                     context.close()
+            github_checks = []
+            # Test *actual GitHub README rendering* separately from offline assets.
+            # This intentionally does not turn a network failure into a false PASS.
+            for scheme in ("light", "dark"):
+                public = browser.new_context(viewport={"width": 1366, "height": 900},
+                                             color_scheme=scheme, reduced_motion="reduce")
+                try:
+                    tab = public.new_page()
+                    tab.goto("https://github.com/sonhoang23/product-pro-max-skills",
+                             wait_until="domcontentloaded", timeout=20000)
+                    img = tab.locator('img[alt*="Product Pro Max Skills"]').first
+                    img.wait_for(state="visible", timeout=12000)
+                    img.evaluate("""node => new Promise((resolve,reject) => {
+                      if(node.complete) return node.naturalWidth ? resolve() : reject(Error('image failed'));
+                      node.addEventListener('load', resolve, {once:true});
+                      node.addEventListener('error', () => reject(Error('image failed')), {once:true});
+                    })""", timeout=18000)
+                    info = img.evaluate("node=>({url:node.currentSrc,width:node.naturalWidth,alt:node.alt})")
+                    if f"hero-{scheme}.svg" not in info["url"] or not info["width"]:
+                        raise RuntimeError(f"GitHub hero wrong skin/asset: {info}")
+                    ss = public.new_cdp_session(tab)
+                    saved = ss.send("Page.captureScreenshot",
+                                    {"format":"png","fromSurface":True,"captureBeyondViewport":False})
+                    (output / f"github-{scheme}.png").write_bytes(base64.b64decode(saved["data"]))
+                    ss.detach()
+                    github_checks.append({"scheme":scheme,"status":"PASS","image":info})
+                except Exception as exc:
+                    github_checks.append({"scheme":scheme,"status":"NOT_VERIFIED",
+                                          "detail":str(exc)[:400]})
+                finally:
+                    public.close()
+            (output / "github-render.json").write_text(
+                json.dumps(github_checks, ensure_ascii=False, indent=2), encoding="utf-8")
         finally:
             browser.close()
     (output / "metrics.json").write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
