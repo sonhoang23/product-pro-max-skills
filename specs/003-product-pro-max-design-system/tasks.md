@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Spec/planning artifacts committed on `main` (`7e45f67`); **0 implementation tasks executed**. Phase 1 repository inventory and integration preflight notes are prepared for review, not execution evidence. Modeling `spec`/`plan` remains `blocked` while local QA is deferred.  
+**State**: Spec and Plan Modeling Gates `modeled`; Tasks Modeling Diagram Check `no-diagram-needed` (2026-10-09). Phase 1 T001–T003 source-inventory work completed on GitHub `main`; Phase 2–7 not started. Source-only evidence is distinct from local execution/browser QA.
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -21,11 +21,11 @@
 
 ## Phase 1: Setup and baseline
 
-**Goal**: Capture existing truths before any visual implementation. Read-only preparatory inventory and integration notes are available in `migration-baseline.md` and `integration-notes.md`; T001–T003 remain unchecked until their complete evidence and implementation prerequisites are met.
+**Goal**: Capture existing truths before any visual implementation. T001–T003 were completed by an evidence-linked GitHub source inventory, preservation of the approved concept reference and current-HEAD reconciliation. No local validator/browser execution or visual implementation is claimed.
 
-- [ ] T001 Inventory current `docs/diagrams/diagram-index.json`, `docs/diagrams/index.html`, `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html` and relevant validation scripts; record pre-migration baseline in `specs/003-product-pro-max-design-system/migration-baseline.md`.
-- [ ] T002 Preserve the approved one-file HTML concept as a non-authoritative design reference and record version/source in `design-system/README.md`, with explicit separation from executable contracts. [FR-026]
-- [ ] T003 Confirm the current `main` HEAD, actual existing 003 directories, active feature pointer, roadmap numbering and any existing `.diagram-design` marker before writing to the repo; document reconciliation in `specs/003-product-pro-max-design-system/integration-notes.md`.
+- [x] T001 Inventory current `docs/diagrams/diagram-index.json`, `docs/diagrams/index.html`, `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html` and relevant validation scripts; record pre-migration baseline in `specs/003-product-pro-max-design-system/migration-baseline.md`.
+- [x] T002 Preserve the approved one-file HTML concept as a non-authoritative design reference and record version/source in `design-system/README.md`, with explicit separation from executable contracts. [FR-026]
+- [x] T003 Confirm the current `main` HEAD, actual existing 003 directories, active feature pointer, roadmap numbering and any existing `.diagram-design` marker before writing to the repo; document reconciliation in `specs/003-product-pro-max-design-system/integration-notes.md`.
 
 ## Phase 2: Foundations — shared and blocking
 
@@ -136,4 +136,4 @@
 | FR-017–FR-021 | T006, T009–T010, T014–T016, T035–T043, T047 |
 | FR-022–FR-027 | T002, T007, T011, T019, T034, T042, T045, T051–T055 |
 
-**Implementation note**: None of these task checkboxes may be ticked from specification/planning work. Future modeling `ensure-model(tasks)` is triggered by the implement command, not required to create this task list.
+**Implementation note**: T001–T003 were checked for actual source-inventory and documentation changes, not for earlier specification/planning alone. All other implementation tasks remain unchecked; `ensure-model(tasks)` was completed with a negative Diagram Check before Phase 1. Browser/runtime verification is not implied.
