@@ -109,3 +109,7 @@ python scripts/export_navigation_styles.py          # explicit regeneration if c
 ```
 
 The Atlas/ledgers are navigation surfaces, not semantic sources or product-status monitors. They may show `planned` for a spec-time diagram even when an implementation has since been committed and verified.
+
+## Spec 003 closure
+
+The repository-native Signal Protocol design system is implemented with 55/55 verified tasks, immutable canonical token authority, native Chromium 200% keyboard zoom evidence, GitHub Light/Dark README previews, and a reversible CSS-only pilot. The final modeling/converge gate is `no-diagram-needed` (no unresolved semantic gap requiring an additional diagram). Full evidence and QA limits: [Spec 003 acceptance record](../specs/003-product-pro-max-design-system/qa-evidence.md).

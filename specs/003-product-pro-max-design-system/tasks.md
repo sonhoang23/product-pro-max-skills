@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Source complete through Phase 6 and Phase 7 documentation; reviewed pilot promoted with exact CSS-only parity and rollback. Full GitHub CI validated 33/33 tests, 3 registered diagrams, official layout/self_check, 12 offline Chromium captures, actual GitHub README Light/Dark and CDP browser compositor zoom 200%. **52/55 complete**. Native Ctrl+Plus zoom acceptance (T026/T045) and final Spec Kit convergence (T055) remain unchecked; never conflate compositor zoom with native browser zoom.  
+**State**: 55/55 tasks verified and checked. Source, CI, native Chromium Ctrl+Plus 200% zoom, static/browser/README/Atlas checks complete; final analyze/converge Diagram Check = negative, modeled as `no-diagram-needed`. Manual physical screen-reader and production publishing are not claimed.
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -57,7 +57,7 @@
 
 ## Phase 4: User Story 2 — readable HTML diagrams and Atlas (P1)
 
-**Independent test**: Self-contained Light/Dark specimen fixtures preserve node/edge inventory and source truth; Spec 002 **migration pilot remains Phase 6**. Phase 4 T018–T025 implemented with 26/26 isolated tests and scoped browser evidence. T026 remains unchecked for unverified native zoom and complete browser/navigation QA. See `qa-evidence.md`.
+**Independent test**: Self-contained Light/Dark specimen fixtures preserve node/edge inventory and source truth; Spec 002 **migration pilot remains Phase 6**. Phase 4 T018–T025 implemented with 26/26 isolated tests and scoped browser evidence. T026 now verified: real native Chromium keyboard Ctrl+Plus zoom (4/4) and browser/navigation scope. See QA evidence. See `qa-evidence.md`.
 
 - [x] T018 [P] [US2] Specify Signal Protocol visual primitives/limits and orthogonal connector geometry in `design-system/components.md`, reusing `diagram-design-vi` instead of replacing it. [FR-007,023,024]
 - [x] T019 [US2] Implement a repo-aware style resolution adapter in `.agents/skills/diagram-design-vi/SKILL.md` and the smallest necessary mapping reference(s), leaving generic global profiles untouched. [FR-020,023]
@@ -67,9 +67,9 @@
 - [x] T023 [US2] Audit the sample's edges and gate/result labels against its source inventory in `tests/test_design_system_diagrams.py`. [FR-005,008,018]
 - [x] T024 [P] [US2] Prepare Atlas/Feature Ledger navigation styling as a derived view without changing scope/truth/parent/related semantics, scoped to `docs/diagrams/index.html` and `specs/002-skill-manifest-registry/diagrams.html`. [FR-010]
 - [x] T025 [US2] Validate a second environment with different `~/.diagram-design` profile still chooses Product Pro Max repo tokens; document results in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-020]
-- [ ] T026 [US2] Run visual QA of HTML diagrams at Light/Dark, 390px, 200% zoom and keyboard focus; record screenshot/test evidence and failures without force-PASS. [FR-014–016,022]
+- [x] T026 [US2] Run visual QA of HTML diagrams at Light/Dark, 390px, 200% zoom and keyboard focus; record screenshot/test evidence and failures without force-PASS. [FR-014–016,022]
 
-**Checkpoint**: Existing modeling/Atlas authority remains unchanged. T026 still pending native browser UI 200% zoom; Chromium CDP compositor scale is documented separately in `qa-evidence.md`.
+**Checkpoint**: Existing modeling/Atlas authority remains unchanged. T026 completed with native X11 keyboard Chromium zoom 200%; CDP compositor zoom documented separately in `qa-evidence.md`.
 
 ## Phase 5: User Story 3 — Core + Brand Assets (P2)
 
@@ -104,10 +104,10 @@
 
 ## Phase 7: QA, documentation and convergence preparation
 
-**Completed scope:** automated static, offline-browser/GitHub render, provenance, source diff and documentation. T045 remains pending native Edge/Chrome 200% browser UI zoom and comprehensive manual accessibility; T055 convergence cannot truthfully PASS until that acceptance is complete.
+**Completed scope:** automated static, offline-browser/GitHub render, provenance, source diff and documentation. T045 completed with Chromium native Ctrl+Plus 200% zoom, automated Light/Dark/mobile, focus and reduced-motion checks. T055 completed with Spec Kit source analyze, zero actionable convergence gaps and final `no-diagram-needed` gate. Physical screen-reader/manual Edge audit is not claimed.
 
 - [x] T044 [P] Run per-theme contrast checks with text and meaningful non-text elements, including warning/danger/focus states; attach actual numbers and evidence in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-014]
-- [ ] T045 Run browser screenshot, responsive (390px), 200% zoom, keyboard and reduced-motion tests of target surfaces; report evidence dimensions separately from static checks. [FR-015,016,022]
+- [x] T045 Run browser screenshot, responsive (390px), 200% zoom, keyboard and reduced-motion tests of target surfaces; report evidence dimensions separately from static checks. [FR-015,016,022]
 - [x] T046 [P] Validate all standalone outputs in network-off mode and README SVG variants in GitHub-compatible rendering. [FR-009,011,013]
 - [x] T047 [P] Run token/asset deterministic drift checks and revision audits after changes; record result. [FR-017,021,027]
 - [x] T048 Run full diagram Atlas/layout/self_check suites against actual checkout; verify source/registry reachability and no unlisted living diagram. [FR-010,018,022]
@@ -117,7 +117,7 @@
 - [x] T052 Audit final diff for scope violations (new frontend framework, DB/network service, Product Model/Registry edits, new semantics engine) before any commit. [FR-024]
 - [x] T053 After implementation verification, promote truthful architecture guidance to `docs/ARCHITECTURE.md`, local design docs and README without claiming project-level implemented truth prematurely. [FR-023]
 - [x] T054 Reconcile `specs/ROADMAP-foundation.md` numbering and dependencies before integration; update `.specify/feature.json` when Spec 003 is selected as active; re-check current `main` head. [FR-023]
-- [ ] T055 Run Spec Kit analyze/converge and recheck stale design/modeling gates with real artifacts; do not label runtime/browser PASS without evidence. [FR-022,027]
+- [x] T055 Run Spec Kit analyze/converge and recheck stale design/modeling gates with real artifacts; do not label runtime/browser PASS without evidence. [FR-022,027]
 
 ## Dependencies & Execution Order
 
