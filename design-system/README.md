@@ -113,3 +113,7 @@ The Atlas/ledgers are navigation surfaces, not semantic sources or product-statu
 ## Spec 003 closure
 
 The repository-native Signal Protocol design system is implemented with 55/55 verified tasks, immutable canonical token authority, native Chromium 200% keyboard zoom evidence, GitHub Light/Dark README previews, and a reversible CSS-only pilot. The final modeling/converge gate is `no-diagram-needed` (no unresolved semantic gap requiring an additional diagram). Full evidence and QA limits: [Spec 003 acceptance record](../specs/003-product-pro-max-design-system/qa-evidence.md).
+
+## Current README hero: process overview
+
+The approved `assets/brand/hero-process.webp` is the GitHub README banner in **both** reader color schemes. It has its own dark background, is self-contained, requires no script or remote font, and presents six illustrative milestones: Discover, Define, Build, Verify, Launch, Improve. This graphic is an editorial overview rather than a second canonical lifecycle or new semantics: the complete official cycles remain in [model/product-model.json](../model/product-model.json). The earlier `hero-light.svg` and `hero-dark.svg` remain available as token-derived brand examples, but are no longer displayed as the README cover. See `tests/test_design_system_release.py` and the GitHub browser capture check for asset acceptance.
