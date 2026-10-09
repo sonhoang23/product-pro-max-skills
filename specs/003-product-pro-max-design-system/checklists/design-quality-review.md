@@ -2,7 +2,7 @@
 
 **Reviewed against**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `tasks.md` on `main`.  
 **Scope**: Requirements completeness and coherence only; no implementation, diagram gate, browser QA or GitHub-render PASS implied.  
-**Reviewer ownership**: The 18 checkboxes in `checklists/design-quality.md` remain unchecked until the reviewer approves them; this document is a traceable author-side assessment, not permission to tick their markers.
+**Reviewer ownership**: The user explicitly requested a complete checklist review on 2026-10-09. The assistant evaluated all 18 existing requirements-quality criteria and marked them `[x]`. Acceptance does not imply implemented/runtime verification.
 
 | Criterion | Author-side assessment | Evidence / resolution |
 | --- | --- | --- |
@@ -37,7 +37,13 @@
 ## Approval and test boundaries
 
 1. **Author-side static mapping:** 18 of 18 checklist questions have an identified source answer, after the clarifications above. This is not a passed human-review gate.
-2. **Reviewer-owned custom checklist:** 0 of 18 are checked; reviewer approval remains outstanding.
-3. **Lazy Modeling Gates:** `spec=blocked`, `plan=blocked`; user deferred local QA because a local machine is unavailable. No PASS/status override.
+2. **Reviewer-owned custom checklist:** 18 of 18 checked after the user's explicit review request; the FR/contract mapping above records evidence for each criterion.
+3. **Lazy Modeling Gates:** Spec and Plan accepted as `modeled` at the diagram-modeling scope; see `../modeling-acceptance.md`. This does not imply implementation QA.
 4. **Implementation:** no `design-system/tokens.json` or new brand export has been implemented or tested; all T001–T055 remain unchecked.
-5. **Once local runtime is available:** run the self-check, Atlas, layout, browser and GitHub visual reviews listed in `quickstart.md`; record outputs and only then update the gate with source-fresh hashes.
+5. **QA boundaries:** local static validation has passed; focused Chromium 390px/keyboard and desktop CSS-zoom checks completed on SHA-matched HTML. Real Edge 200% browser zoom, file-link activation, screen reader, README publishing and implementation behavior remain separate future acceptance checks.
+
+## Review completion (2026-10-09)
+
+- All CHK001–CHK018 accepted solely for the **quality and coverage of existing requirement statements**.
+- Reviewer action was explicitly requested by the user; this is not automatic completion at checklist generation.
+- The 55 implementation tasks remain unchecked. Machine-readable token values, shipped brand assets and runtime behavior are not verified.

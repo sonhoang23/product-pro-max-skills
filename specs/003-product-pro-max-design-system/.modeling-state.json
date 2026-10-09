@@ -2,7 +2,7 @@
   "schema_version": 1,
   "gates": {
     "spec": {
-      "status": "blocked",
+      "status": "modeled",
       "source_hashes": {
         "spec.md": "9622757c33861ee83e8df38f664554378e752720"
       },
@@ -12,27 +12,30 @@
       "qa": {
         "staged_static": "passed",
         "staged_browser_render": "partial_pass_content_injected_chromium_1360_390",
-        "self_check": "passed_local_windows_3_diagrams_on_341f952",
-        "atlas": "passed_local_windows_3_registered_diagrams_on_341f952",
-        "layout": "passed_local_windows_3_diagrams_on_341f952",
-        "browser_navigation": "pending_user_chrome_keyboard_link_activation",
-        "deferral": "previously deferred due no local machine; local static QA now performed; outstanding browser checks pending",
+        "self_check": "passed_user_windows_all_3_diagrams_341f952",
+        "atlas": "passed_user_windows_3_registered_diagrams_341f952",
+        "layout": "passed_user_windows_3_diagrams_341f952",
+        "browser_navigation": "not_tested_runtime_file_url_blocked_in_tool; windows_atlas_link_static_pass",
+        "deferral": "superseded_by_windows_local_QA_and_focused_chromium_modeling_review",
         "remote_static_preflight": "pass_limited_scope_git_tree_html_links_svg_metadata",
-        "repo_local_official_validation": "passed_static_subset_on_341f952",
-        "browser_full": "pending_browser_acceptance",
+        "repo_local_official_validation": "passed_from_user_windows_2026_10_09",
+        "browser_full": "not_claimed_pending_implementation_acceptance",
         "remote_static_evidence": "remote-static-preflight.md",
         "local_qa_2026_10_09": "see local-qa-evidence.md: rerun at 341f952 passed 3/3 self-check plus atlas/layout",
         "local_tested_head": "341f952ef80713927fa35ea24e8acc450815e667",
         "registry_regression": "passed_prior_run_35_tests_on_1ab9a6c_not_rerun_after_fix",
         "browser_desktop": "visual_screenshots_2026_10_09_spec_and_plan_readable",
-        "browser_mobile_390": "pending_no_evidence",
-        "browser_zoom_200": "pending_no_evidence",
-        "browser_keyboard_navigation": "pending_no_evidence"
+        "browser_mobile_390": "passed_exact_html_chromium_panel_keyboard_scroll_no_document_overflow",
+        "browser_zoom_200": "passed_css_zoom_simulation_not_real_browser_zoom",
+        "browser_keyboard_navigation": "focused_links_visible_panel_arrow_scroll_works; link_activation_not_tested",
+        "browser_visual": "passed_focused_modeling_diagram_review_user_edge_desktop_and_headless_chromium_exact_git_blob",
+        "browser_visual_scope": "390px_panel_scroll_and_keyboard_focus; desktop_css_zoom200_simulation; local file navigation and exact Edge zoom not tested",
+        "review_evidence": "modeling-acceptance.md"
       },
-      "reason": "Local Windows official self_check/Atlas/layout checks PASSED at 341f952. Desktop screenshot review provided. Browser viewport 390px, 200% zoom, keyboard/link functional evidence still required before claiming full Modeling Gate PASS."
+      "reason": "Diagram-modeling verification completed: user Windows self_check/Atlas/layout PASS, user Edge desktop screenshots reviewed, exact-blob Chromium 390px and keyboard focus tested; CSS 200% zoom simulation only. Full implementation and real browser navigation acceptance remain pending."
     },
     "plan": {
-      "status": "blocked",
+      "status": "modeled",
       "source_hashes": {
         "plan.md": "37bdc5344ee08ecf0eb627285b47338a07e4aaf6",
         "research.md": "ca139e9d66e5781f921ad7a82f91c85287574b47",
@@ -46,24 +49,27 @@
       "qa": {
         "staged_static": "passed",
         "staged_browser_render": "partial_pass_content_injected_chromium_1360_390",
-        "self_check": "passed_local_windows_3_diagrams_on_341f952",
-        "atlas": "passed_local_windows_3_registered_diagrams_on_341f952",
-        "layout": "passed_local_windows_3_diagrams_on_341f952",
-        "browser_navigation": "pending_user_chrome_keyboard_link_activation",
-        "deferral": "previously deferred due no local machine; local static QA now performed; outstanding browser checks pending",
+        "self_check": "passed_user_windows_all_3_diagrams_341f952",
+        "atlas": "passed_user_windows_3_registered_diagrams_341f952",
+        "layout": "passed_user_windows_3_diagrams_341f952",
+        "browser_navigation": "not_tested_runtime_file_url_blocked_in_tool; windows_atlas_link_static_pass",
+        "deferral": "superseded_by_windows_local_QA_and_focused_chromium_modeling_review",
         "remote_static_preflight": "pass_limited_scope_git_tree_html_links_svg_metadata",
-        "repo_local_official_validation": "passed_static_subset_on_341f952",
-        "browser_full": "pending_browser_acceptance",
+        "repo_local_official_validation": "passed_from_user_windows_2026_10_09",
+        "browser_full": "not_claimed_pending_implementation_acceptance",
         "remote_static_evidence": "remote-static-preflight.md",
         "local_qa_2026_10_09": "see local-qa-evidence.md: rerun at 341f952 passed 3/3 self-check plus atlas/layout",
         "local_tested_head": "341f952ef80713927fa35ea24e8acc450815e667",
         "registry_regression": "passed_prior_run_35_tests_on_1ab9a6c_not_rerun_after_fix",
         "browser_desktop": "visual_screenshots_2026_10_09_spec_and_plan_readable",
-        "browser_mobile_390": "pending_no_evidence",
-        "browser_zoom_200": "pending_no_evidence",
-        "browser_keyboard_navigation": "pending_no_evidence"
+        "browser_mobile_390": "passed_exact_html_chromium_panel_keyboard_scroll_no_document_overflow",
+        "browser_zoom_200": "passed_css_zoom_simulation_not_real_browser_zoom",
+        "browser_keyboard_navigation": "focused_links_visible_panel_arrow_scroll_works; link_activation_not_tested",
+        "browser_visual": "passed_focused_modeling_diagram_review_user_edge_desktop_and_headless_chromium_exact_git_blob",
+        "browser_visual_scope": "390px_panel_scroll_and_keyboard_focus; desktop_css_zoom200_simulation; local file navigation and exact Edge zoom not tested",
+        "review_evidence": "modeling-acceptance.md"
       },
-      "reason": "Local Windows official self_check/Atlas/layout checks PASSED at 341f952. Desktop screenshot review provided. Browser viewport 390px, 200% zoom, keyboard/link functional evidence still required before claiming full Modeling Gate PASS."
+      "reason": "Diagram-modeling verification completed: user Windows self_check/Atlas/layout PASS, user Edge desktop screenshots reviewed, exact-blob Chromium 390px and keyboard focus tested; CSS 200% zoom simulation only. Full implementation and real browser navigation acceptance remain pending."
     }
   }
 }
