@@ -80,6 +80,8 @@ class ReleaseDesignChecks(unittest.TestCase):
         original, candidate = build(ROOT)
         self.assertEqual(git_blob(original.encode("utf-8")), "6acb098a4e8513d50527bfb615a6561bf3520e16")
         self.assertEqual((ROOT / PREVIEW).read_text(encoding="utf-8"), candidate)
+        self.assertIn("revision=0.1.0 fingerprint=2e8e64f6edc41a3c", candidate)
+        self.assertIn("themes=light,dark", candidate)
         import re
         trim = lambda s: re.sub(r"<style>[\s\S]*?</style>", "<style>STYLE</style>", s)
         self.assertEqual(trim(original), trim(candidate))

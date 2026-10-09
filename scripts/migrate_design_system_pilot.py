@@ -6,7 +6,7 @@ import hashlib
 import re
 from pathlib import Path
 from verify_design_system import ROOT, TokenError, load_tokens
-from export_design_tokens import write_atomic
+from export_design_tokens import write_atomic, canonical
 
 BACKUP = Path("tests/fixtures/design-system/pilot/original-spec002.html")
 PREVIEW = Path("tests/fixtures/design-system/pilot/migrated-spec002.html")
@@ -42,7 +42,9 @@ def build(root: Path = ROOT) -> tuple[str, str]:
     template = (root / TEMPLATE).read_text(encoding="utf-8")
     if template.count("{{THEMES}}") != 1:
         raise TokenError("migration style needs exactly one theme placeholder")
-    declarations = palette_css(token, "light") + "@media(prefers-color-scheme:dark){\n" + palette_css(token, "dark") + "}\n"
+    fingerprint = hashlib.sha256(canonical(token)).hexdigest()[:16]
+    stamp = f"/* ppmax-design-system revision={token['revision']} fingerprint={fingerprint} surface=diagram themes=light,dark; generated */\n"
+    declarations = stamp + palette_css(token, "light") + "@media(prefers-color-scheme:dark){\n" + palette_css(token, "dark") + "}\n"
     return old, replace_css(old, template.replace("{{THEMES}}", declarations))
 
 def run(root: Path, action: str) -> None:
