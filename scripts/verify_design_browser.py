@@ -66,10 +66,33 @@ def run(output: Path, source: Path = CANDIDATE) -> list[dict]:
                             if focused != "A":
                                 raise RuntimeError(f"keyboard Tab did not focus navigation link: {focused}")
                             metric["keyboardFirstTab"] = focused
+                            if source == ORIGINAL:
+                                from urllib.parse import unquote
+                                for link in metric["links"]:
+                                    href = link["href"].split("#", 1)[0]
+                                    if not (target.parent / unquote(href)).resolve().is_file():
+                                        raise RuntimeError(f"missing promoted navigation target: {href}")
+                                page.locator("nav a").first.click()
+                                if "Diagram Atlas" not in page.title():
+                                    raise RuntimeError("promoted Atlas navigation did not open")
+                                page.go_back(wait_until="load")
+                                metric["actualFileNavigation"] = "PASS"
                         # Fixture links remain based on the promoted original path, not this preview folder.
                         metric["linksArePreviewRelative"] = (source != ORIGINAL)
                     if name.startswith("specimen") and metric["nodes"] != 5:
                         raise RuntimeError(f"{name}@{width}: semantic specimen node count changed")
+                    if name in ("pilot-light", "pilot-dark", "specimen-light", "specimen-dark") and width == 1366:
+                        zoom = context.new_cdp_session(page)
+                        zoom.send("Emulation.setPageScaleFactor", {"pageScaleFactor": 2.0})
+                        scale = page.evaluate("() => window.visualViewport.scale")
+                        if abs(scale - 2.0) > 0.05:
+                            raise RuntimeError(f"{name}: 200% compositor zoom did not apply: {scale}")
+                        enlarged = zoom.send("Page.captureScreenshot",
+                                             {"format":"png","fromSurface":True,"captureBeyondViewport":False})
+                        (output / f"{name}-cdp-zoom200.png").write_bytes(base64.b64decode(enlarged["data"]))
+                        metric["compositorPinchZoom200"] = {"visualViewportScale": scale,
+                                                            "nativeBrowserCtrlPlus": "NOT_TESTED"}
+                        zoom.detach()
                     results.append({"variant": name, "viewport": [width, height],
                                     "page": str(target.relative_to(ROOT)), "metrics": metric,
                                     "browser": browser.version,
@@ -89,6 +112,7 @@ def run(output: Path, source: Path = CANDIDATE) -> list[dict]:
                              wait_until="domcontentloaded", timeout=20000)
                     img = tab.locator('img[alt*="Product Pro Max Skills"]').first
                     img.wait_for(state="visible", timeout=12000)
+                    img.scroll_into_view_if_needed()
                     img.evaluate("""node => new Promise((resolve,reject) => {
                       if(node.complete) return node.naturalWidth ? resolve() : reject(Error('image failed'));
                       node.addEventListener('load', resolve, {once:true});
