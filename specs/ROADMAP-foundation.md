@@ -14,6 +14,7 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 | 006 | `repository-governance` | Proposal, review, ownership, change-governance and product/tooling boundaries | 002, 004 | Backlog (was 005) |
 | 007 | `global-discovery-docs` | Global-first docs/catalog/navigation and agent discovery | 002, 003, 004 | Backlog (was 006; design-system dependency added) |
 | 008 | `release-lifecycle` | Tags, releases, changelog, depreciation/migration/removal flow | 004, 005 | Backlog (was 007) |
+| 009 | `shared-product-context` | Progressive shared context for research-first/idea-first work; workspace/opportunity/product scope, evidence/decision integrity and cross-skill handoff | 001, 002 | **Spec drafted 2026-10-09; implementation deferred; modeling/plan/tasks not started** |
 
 ## Dependency Graph
 
@@ -27,10 +28,15 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
         ├── 006 Repository Governance (also requires 002)
         ├── 007 Global Discovery & Docs (also requires 002, 003)
         └── 008 Release Lifecycle (also requires 005)
+
+001 + 002 (complete)
+  └── 009 Shared Product Context (specification drafted; implementation deferred)
+        ├── Compatible with existing project-state and evidence contracts
+        └── Later skills consume the context protocol only after implementation
 ```
 
 ## Execution Rule
 
 Do not mark any planned feature complete until its required upstream foundation is implemented, verified and converged. Specification, planning, modeling, code implementation and runtime/visual verification are independent states. Only promote implemented project documentation when checks justify it.
 
-**Current planned feature**: Spec 003 — Product Pro Max Design System. Convergence accepted from documented source checks, official full-checkout CI, native Chromium UI zoom, GitHub reader previews and reversible Spec 002 migration; no production publishing or screen-reader certification claimed.
+**Current specification focus**: Spec 009 — Shared Product Context (requirements recorded; implementation explicitly deferred). Spec 003 convergence remains as previously accepted from documented source checks, official full-checkout CI, native Chromium UI zoom, GitHub reader previews and reversible Spec 002 migration; no production publishing or screen-reader certification claimed.
