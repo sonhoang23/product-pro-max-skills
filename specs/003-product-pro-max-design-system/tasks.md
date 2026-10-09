@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Spec and Plan Modeling Gates `modeled`; Tasks Modeling Diagram Check `no-diagram-needed` (2026-10-09). Phase 1 T001–T003 source-inventory work completed on GitHub `main`; Phase 2–7 not started. Source-only evidence is distinct from local execution/browser QA.
+**State**: Spec/Plan/Tasks Modeling Gates pass; Phase 1 T001–T003 and Phase 2 T004–T011 implemented with isolated Python unit/contract checks on byte-verified sources (2026-10-09). Full checkout regression, browser and GitHub asset QA remain outside this execution evidence; Phase 3–7 not started.  
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -29,16 +29,16 @@
 
 ## Phase 2: Foundations — shared and blocking
 
-**Goal**: One token source, deterministic generation, independent semantic input.
+**Goal**: One token source, deterministic generation, independent semantic input. **Phase 2 source + isolated Python tests complete:** see `phase-02-evidence.md` for exact tested blob hashes and verification boundaries. No diagram was modified and no full-checkout/browser QA was claimed.
 
-- [ ] T004 [P] Define complete canonical role sets, theme values, Signal Lime brand alias, typography/fallbacks and density values in `design-system/tokens.json`; review accessible official combinations. [FR-001,002,004,006]
-- [ ] T005 [P] Define surface/role-to-primitive mapping, gate-result/decision separation and required visible labels in `design-system/components.md`. [FR-005,007,008]
-- [ ] T006 Implement deterministic JSON-to-inline-CSS / SVG-token adapter with revision stamps in `scripts/export_design_tokens.py`, with read-only check and no network access. [FR-009,017,027]
-- [ ] T007 [P] Write human-maintainer instructions and source precedence in `design-system/README.md`, linking spec/contract without duplicating token values. [FR-020,023]
-- [ ] T008 Implement token structural/type/required-role/variant/contrast validation in `scripts/verify_design_system.py`; reject unknown theme/density and invalid CSS values. [FR-014,021]
-- [ ] T009 Add deterministic generation/revision drift tests in `tests/test_design_system_tokens.py`, including no-write check mode. [FR-001,017,027]
-- [ ] T010 Add wrong-profile, missing-local-tokens and malformed-role negative fixtures in `tests/test_design_system_tokens.py`. [FR-020,021]
-- [ ] T011 Define distinct semantic-source, static-check, browser-visual, GitHub-render statuses and mandatory evidence fields in `design-system/README.md`. [FR-022]
+- [x] T004 [P] Define complete canonical role sets, theme values, Signal Lime brand alias, typography/fallbacks and density values in `design-system/tokens.json`; review accessible official combinations. [FR-001,002,004,006]
+- [x] T005 [P] Define surface/role-to-primitive mapping, gate-result/decision separation and required visible labels in `design-system/components.md`. [FR-005,007,008]
+- [x] T006 Implement deterministic JSON-to-inline-CSS / SVG-token adapter with revision stamps in `scripts/export_design_tokens.py`, with read-only check and no network access. [FR-009,017,027]
+- [x] T007 [P] Write human-maintainer instructions and source precedence in `design-system/README.md`, linking spec/contract without duplicating token values. [FR-020,023]
+- [x] T008 Implement token structural/type/required-role/variant/contrast validation in `scripts/verify_design_system.py`; reject unknown theme/density and invalid CSS values. [FR-014,021]
+- [x] T009 Add deterministic generation/revision drift tests in `tests/test_design_system_tokens.py`, including no-write check mode. [FR-001,017,027]
+- [x] T010 Add wrong-profile, missing-local-tokens and malformed-role negative fixtures in `tests/test_design_system_tokens.py`. [FR-020,021]
+- [x] T011 Define distinct semantic-source, static-check, browser-visual, GitHub-render statuses and mandatory evidence fields in `design-system/README.md`. [FR-022]
 
 **Checkpoint**: Token contract validated without touching Product Model or the existing `.agents` global profile.
 
