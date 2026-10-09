@@ -12,17 +12,24 @@
       "qa": {
         "staged_static": "passed",
         "staged_browser_render": "partial_pass_content_injected_chromium_1360_390",
-        "self_check": "not_run_no_full_repo_checkout",
-        "atlas": "not_run_no_full_repo_checkout",
-        "layout": "not_run_no_full_repo_checkout",
+        "self_check": "failed_on_tested_head_bare_desc_id_fixed_in_followup_pending_local_rerun",
+        "atlas": "passed_on_tested_head_rerun_after_svg_change_required",
+        "layout": "passed_on_tested_head_rerun_after_svg_change_required",
         "browser_navigation": "unavailable_url_loading_blocked",
         "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied",
         "remote_static_preflight": "pass_limited_scope_git_tree_html_links_svg_metadata",
         "repo_local_official_validation": "deferred_not_run",
         "browser_full": "deferred_not_run",
-        "remote_static_evidence": "remote-static-preflight.md"
+        "remote_static_evidence": "remote-static-preflight.md",
+        "local_qa_2026_10_09": "evidence in local-qa-evidence.md from user PowerShell log and desktop screenshots",
+        "local_tested_head": "1ab9a6ca26362e47e77026fefa46010bf85acd4e",
+        "registry_regression": "passed_on_tested_head_35_tests",
+        "browser_desktop": "screenshots_seen_not_full_acceptance",
+        "browser_mobile_390": "not_tested",
+        "browser_zoom_200": "not_tested",
+        "browser_keyboard_navigation": "not_tested"
       },
-      "reason": "Remote GitHub static preflight available, but official full-repository self_check, Atlas/layout and browser QA remain deferred and required. No Lazy Modeling Gate PASS."
+      "reason": "User local QA exposed self_check bare SVG desc IDs. Fixed source, but local rerun and browser QA not yet provided; Lazy Modeling Gate remains blocked."
     },
     "plan": {
       "status": "blocked",
@@ -39,17 +46,24 @@
       "qa": {
         "staged_static": "passed",
         "staged_browser_render": "partial_pass_content_injected_chromium_1360_390",
-        "self_check": "not_run_no_full_repo_checkout",
-        "atlas": "not_run_no_full_repo_checkout",
-        "layout": "not_run_no_full_repo_checkout",
+        "self_check": "failed_on_tested_head_bare_desc_id_fixed_in_followup_pending_local_rerun",
+        "atlas": "passed_on_tested_head_rerun_after_svg_change_required",
+        "layout": "passed_on_tested_head_rerun_after_svg_change_required",
         "browser_navigation": "unavailable_url_loading_blocked",
         "deferral": "User deferred local modeling QA because no local machine is available; no validator or browser PASS implied",
         "remote_static_preflight": "pass_limited_scope_git_tree_html_links_svg_metadata",
         "repo_local_official_validation": "deferred_not_run",
         "browser_full": "deferred_not_run",
-        "remote_static_evidence": "remote-static-preflight.md"
+        "remote_static_evidence": "remote-static-preflight.md",
+        "local_qa_2026_10_09": "evidence in local-qa-evidence.md from user PowerShell log and desktop screenshots",
+        "local_tested_head": "1ab9a6ca26362e47e77026fefa46010bf85acd4e",
+        "registry_regression": "passed_on_tested_head_35_tests",
+        "browser_desktop": "screenshots_seen_not_full_acceptance",
+        "browser_mobile_390": "not_tested",
+        "browser_zoom_200": "not_tested",
+        "browser_keyboard_navigation": "not_tested"
       },
-      "reason": "Remote GitHub static preflight available, but official full-repository self_check, Atlas/layout and browser QA remain deferred and required. No Lazy Modeling Gate PASS."
+      "reason": "User local QA exposed self_check bare SVG desc IDs. Fixed source, but local rerun and browser QA not yet provided; Lazy Modeling Gate remains blocked."
     }
   }
 }
