@@ -64,6 +64,8 @@ Gate results and decisions are different concepts and must not share one enum.
 
 ## Workflows
 
+**Current catalog status:** no executable workflows are published. Three former workflows remain as inactive README-only design references. A future `workflow.yaml` must reference accepted, existing skills.
+
 A workflow composes existing skills. Workflow files should orchestrate; they should not duplicate skill logic.
 
 A workflow can map the same gate result to different next steps depending on context. The Product Model defines canonical gate/decision vocabulary; each workflow defines its route.

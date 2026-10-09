@@ -50,6 +50,12 @@ def main() -> int:
     unknown = [name for name in names if name not in known]
     if unknown:
         raise SystemExit(f"Unknown skill(s): {', '.join(unknown)}")
+    if not names:
+        if not args.all:
+            raise SystemExit("No skill IDs provided")
+        print("Catalog is empty: no published skills to install.")
+        print("Selected 0 skill(s).")
+        return 0
 
     target = Path(args.target).expanduser().resolve()
 

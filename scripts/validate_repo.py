@@ -39,22 +39,6 @@ REQUIRED_SECTIONS = [
     "Example",
 ]
 
-EXPECTED_SKILLS = {
-    "ppmax-idea-pressure-test",
-    "ppmax-problem-validation",
-    "ppmax-customer-research",
-    "ppmax-market-landscape",
-    "ppmax-icp-positioning",
-    "ppmax-mvp-scope",
-    "ppmax-ux-flow",
-    "ppmax-architecture-plan",
-    "ppmax-engineering-readiness",
-    "ppmax-runtime-verification",
-    "ppmax-launch-readiness",
-    "ppmax-distribution-plan",
-    "ppmax-pricing-experiment",
-}
-
 ID_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
@@ -248,10 +232,6 @@ def main() -> int:
     if len(skill_paths) != len(actual_skills):
         errors.append("Duplicate canonical skill directory names across primary cycles")
 
-    missing = EXPECTED_SKILLS - actual_skills
-    if missing:
-        errors.append(f"Missing MVP skills: {', '.join(sorted(missing))}")
-
     for path in skill_paths:
         name = path.parent.name
         if not (path.parent / "manifest.yaml").is_file():
@@ -281,10 +261,19 @@ def main() -> int:
     product_model = validate_product_model(errors)
     validate_dependent_contracts(product_model, errors)
 
-    workflow_files = sorted(WORKFLOWS.glob("*/workflow.yaml")) if WORKFLOWS.exists() else []
-    if len(workflow_files) < 3:
-        errors.append("Expected at least three MVP workflows")
+    if not SKILLS.is_dir():
+        errors.append("Missing canonical skills/ cycle directory")
+    else:
+        expected_cycle_dirs = set(product_model.get("cycles", []))
+        actual_cycle_dirs = {p.name for p in SKILLS.iterdir() if p.is_dir()}
+        missing_cycles = expected_cycle_dirs - actual_cycle_dirs
+        extra_cycles = actual_cycle_dirs - expected_cycle_dirs
+        if missing_cycles:
+            errors.append(f"Missing Product Model cycle directories: {', '.join(sorted(missing_cycles))}")
+        if extra_cycles:
+            errors.append(f"Unknown Product Model cycle directories: {', '.join(sorted(extra_cycles))}")
 
+    workflow_files = sorted(WORKFLOWS.glob("*/workflow.yaml")) if WORKFLOWS.exists() else []
     for workflow_file in workflow_files:
         text = workflow_file.read_text(encoding="utf-8")
         refs = re.findall(r"^\s+skill:\s+([a-z0-9-]+)\s*$", text, flags=re.MULTILINE)

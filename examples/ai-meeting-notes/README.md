@@ -1,5 +1,7 @@
 # Example: AI Meeting Notes SaaS
 
+> **Conceptual illustration only.** The named steps are not currently published skills or an executable workflow. This scenario is retained to guide future native skill authoring.
+
 ## Initial idea
 
 > I want to build an AI meeting notes SaaS.
