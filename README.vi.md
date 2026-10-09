@@ -1,11 +1,7 @@
 # Product Pro Max Skills
 
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/brand/hero-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/brand/hero-light.svg">
-    <img alt="Product Pro Max Skills — Signal Path. From vibe to viable." src="./assets/brand/hero-light.svg" width="1200">
-  </picture>
+  <img src="./assets/brand/hero-process.webp" width="1200" alt="Product Pro Max Skills — From vibe to viable. An illustrative product cycle: Discover, Define, Build, Verify, Launch and Improve, with continuous learning.">
 </p>
 
 <p align="center"><strong>From vibe to viable.</strong></p>

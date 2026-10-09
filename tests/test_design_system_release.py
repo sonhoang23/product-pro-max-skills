@@ -45,16 +45,20 @@ class ReleaseDesignChecks(unittest.TestCase):
                 paths = [e.get("d") for e in root.iter() if e.tag.endswith("path")]
                 self.assertIn("M7 47 L22 32 L34 37 L52 12", paths)
 
-    def test_readmes_use_github_picture_variants_and_alt_fallback(self):
+    def test_readmes_use_approved_process_hero_with_accessible_alt(self):
         for doc in ("README.md", "README.vi.md"):
             with self.subTest(doc=doc):
                 content = (ROOT / doc).read_text(encoding="utf-8")
-                self.assertIn("<picture>", content)
-                self.assertIn("prefers-color-scheme: dark", content)
-                self.assertIn("prefers-color-scheme: light", content)
-                self.assertIn("./assets/brand/hero-dark.svg", content)
-                self.assertIn("./assets/brand/hero-light.svg", content)
-                self.assertIn('<img alt="Product Pro Max Skills', content)
+                self.assertIn('src="./assets/brand/hero-process.webp"', content)
+                self.assertIn('width="1200"', content)
+                self.assertIn('alt="Product Pro Max Skills', content)
+                for stage in ("Discover", "Define", "Build", "Verify", "Launch", "Improve"):
+                    self.assertIn(stage, content)
+        hero = (ROOT / "assets/brand/hero-process.webp").read_bytes()
+        self.assertEqual(hero[:4], b"RIFF")
+        self.assertEqual(hero[8:12], b"WEBP")
+        self.assertGreater(len(hero), 20000)
+        self.assertLess(len(hero), 200000)
 
     def test_brand_drift_check_never_writes(self):
         with tempfile.TemporaryDirectory() as td:

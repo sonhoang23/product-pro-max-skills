@@ -119,7 +119,7 @@ def run(output: Path, source: Path = CANDIDATE) -> list[dict]:
                       node.addEventListener('error', () => reject(Error('image failed')), {once:true});
                     })""", timeout=18000)
                     info = img.evaluate("node=>({url:node.currentSrc,width:node.naturalWidth,alt:node.alt})")
-                    if f"hero-{scheme}.svg" not in info["url"] or not info["width"]:
+                    if "hero-process.webp" not in info["url"] or not info["width"] or "Discover" not in info["alt"]:
                         raise RuntimeError(f"GitHub hero wrong skin/asset: {info}")
                     ss = public.new_cdp_session(tab)
                     saved = ss.send("Page.captureScreenshot",
