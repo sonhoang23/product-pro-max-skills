@@ -14,6 +14,16 @@ Có 39 loại hình trực quan. Semantic pattern mô tả hành vi độc lập
 
 ---
 
+## Product Pro Max repository-specific precedence (Spec 003 · Phase 4)
+
+When the active project root contains both `design-system/tokens.json` and `specs/003-product-pro-max-design-system/`, the **Product Pro Max repository-owned style contract takes precedence** over the generic first-run style-guide gate, `.diagram-design` marker and any `~/.diagram-design` home profile for diagram generation inside this repository. Do not copy, rewrite or install the generic profile or working `references/style-guide.md`. This rule is project-specific; other projects continue to use normal profile resolution.
+
+1. Validate `design-system/tokens.json` via `python scripts/verify_design_system.py --check-tokens`; missing/invalid/incomplete tokens are an explicit **STOP**, not fallback to VibeToolPro or a home profile.
+2. Resolve presentation aliases using `python scripts/resolve_repo_style.py --theme light --density default` and the repository mapping at [Product Pro Max adapter](references/product-pro-max-adapter.md). Only its `roles` values are style data. Do not treat marker, filenames or skin as a new semantic source.
+3. The `speckit-system-modeling-vi` skill still owns **WHAT** to model, all source labels/relations and Atlas/truth metadata. Preserve Gate result vs Decision values; color never infers a next action. Use `diagram-design-vi` existing layout rules for **HOW** and exported local CSS/SVG token styles for presentation.
+4. For new diagrams, require inlined resolved tokens, file://-safe HTML/SVG, no remote dependency, accessible title/desc, visible focus and reduced-motion safety. Verify with `self_check.py`, Atlas/layout validators and browser evidence; an unrun checker is NOT PASS.
+5. Existing legacy HTML remains readable and unchanged until an explicitly verified migration; this adapter is opt-in on generation within the Product Pro Max repo, not retroactive bulk rewriting.
+
 ## 0. Thiết lập lần đầu — cổng kiểm tra style guide
 
 **Trước khi tạo sơ đồ đầu tiên trong một project mới, hãy xác minh style guide đã được tuỳ biến.**
