@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Phases 1–4 T001–T025 source completed except T026 (native zoom and browser acceptance). Phase 5 brand and Phase 6 migration sources staged, with formal validation/preview signoff pending; Phase 7 source docs drafted, final QA/converge pending. Do not infer run-level PASS from staged source.  
+**State**: Source complete through Phase 6 and Phase 7 documentation; reviewed pilot promoted with exact CSS-only parity and rollback. Full GitHub CI validated 33/33 tests, 3 registered diagrams, official layout/self_check, 12 offline Chromium captures, actual GitHub README Light/Dark and CDP browser compositor zoom 200%. **52/55 complete**. Native Ctrl+Plus zoom acceptance (T026/T045) and final Spec Kit convergence (T055) remain unchecked; never conflate compositor zoom with native browser zoom.  
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -69,7 +69,7 @@
 - [x] T025 [US2] Validate a second environment with different `~/.diagram-design` profile still chooses Product Pro Max repo tokens; document results in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-020]
 - [ ] T026 [US2] Run visual QA of HTML diagrams at Light/Dark, 390px, 200% zoom and keyboard focus; record screenshot/test evidence and failures without force-PASS. [FR-014–016,022]
 
-**Checkpoint**: Existing modeling/Atlas authority remains unchanged.
+**Checkpoint**: Existing modeling/Atlas authority remains unchanged. T026 still pending native browser UI 200% zoom; Chromium CDP compositor scale is documented separately in `qa-evidence.md`.
 
 ## Phase 5: User Story 3 — Core + Brand Assets (P2)
 
@@ -81,10 +81,10 @@
 - [x] T030 [P] [US3] Document usage in Markdown, diagrams, docs and social variants in `design-system/README.md` without adding generic SaaS button/card chrome. [FR-012]
 - [x] T031 [US3] Integrate SVG hero variants into `README.md` and `README.vi.md` with GitHub-compatible light/dark selection and proper alt/fallback. [FR-011]
 - [x] T032 [US3] Use the same tokens for a docs specimen and a brand cover export; verify identical brand mark treatment without forcing one identical layout. [FR-012,017]
-- [ ] T033 [US3] Verify SVG and self-contained outputs offline with no remote fonts, CSS or JS; preserve proof in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-009,013]
-- [ ] T034 [US3] Inspect actual README image rendering in GitHub Light/Dark and fallback contexts; record exact coverage in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-011,022]
+- [x] T033 [US3] Verify SVG and self-contained outputs offline with no remote fonts, CSS or JS; preserve proof in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-009,013]
+- [x] T034 [US3] Inspect actual README image rendering in GitHub Light/Dark and fallback contexts; record exact coverage in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-011,022]
 
-**Checkpoint**: Brand assets compatible with GitHub and standalone use.
+**Checkpoint**: Brand assets compatible with GitHub and standalone use. GitHub Light/Dark README renders verified from live `github.com` under both color schemes (CI artifact #11592000176).
 
 ## Phase 6: User Story 4 — safe migration and compatibility (P2)
 
@@ -93,28 +93,30 @@
 - [x] T035 [P] [US4] Record original Spec 002 diagram and Atlas entry snapshot in `specs/003-product-pro-max-design-system/migration-baseline.md`. [FR-018,019]
 - [x] T036 [US4] Define reversible migration/rollback checklist in `specs/003-product-pro-max-design-system/migration-baseline.md`; no bulk migration before pilot signoff. [FR-019,025]
 - [x] T037 [US4] Produce migrated **copy** of `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html` under an isolated temporary path for side-by-side review. [FR-018,019]
-- [ ] T038 [US4] Audit source, all text/edge semantics, planned/implemented labels, Atlas/ledger/backlinks for parity using `tests/test_design_system_diagrams.py`. [FR-010,018]
-- [ ] T039 [US4] After pilot approval, promote migration to original Spec 002 diagram while keeping a restore path and an unchanged authoritative `spec.md`. [FR-018,019,025]
-- [ ] T040 [US4] Apply Atlas/Feature Ledger/registry derived presentation transaction with preserved graph integrity; run existing `scripts/verify-diagram-atlas.py`. [FR-010,018]
-- [ ] T041 [US4] Run existing `scripts/verify-diagram-layout.py` and `.agents/skills/diagram-design-vi/scripts/self_check.py` on migrated artifact with correct CLI; inspect connector collisions at browser zoom. [FR-018,019]
-- [ ] T042 [US4] Compare screenshots Light/Dark/mobile, keyboard usability, exact source labels and reversibility; document accepted pilot/failures. [FR-015,016,019,022]
-- [ ] T043 [US4] Keep all other existing diagrams unchanged until an explicit follow-up migration scope is approved; confirm old diagram HTML still opens. [FR-025]
+- [x] T038 [US4] Audit source, all text/edge semantics, planned/implemented labels, Atlas/ledger/backlinks for parity using `tests/test_design_system_diagrams.py`. [FR-010,018]
+- [x] T039 [US4] After pilot approval, promote migration to original Spec 002 diagram while keeping a restore path and an unchanged authoritative `spec.md`. [FR-018,019,025]
+- [x] T040 [US4] Apply Atlas/Feature Ledger/registry derived presentation transaction with preserved graph integrity; run existing `scripts/verify-diagram-atlas.py`. [FR-010,018]
+- [x] T041 [US4] Run existing `scripts/verify-diagram-layout.py` and `.agents/skills/diagram-design-vi/scripts/self_check.py` on migrated artifact with correct CLI; inspect connector collisions at browser zoom. [FR-018,019]
+- [x] T042 [US4] Compare screenshots Light/Dark/mobile, keyboard usability, exact source labels and reversibility; document accepted pilot/failures. [FR-015,016,019,022]
+- [x] T043 [US4] Keep all other existing diagrams unchanged until an explicit follow-up migration scope is approved; confirm old diagram HTML still opens. [FR-025]
 
-**Checkpoint**: No previously working diagram is silently reinterpreted or lost.
+**Checkpoint**: Spec 002 CSS-only pilot promoted after scoped review and CI; exact pre-migration blob retained for restore. Source/Atlas graph truth unchanged.
 
 ## Phase 7: QA, documentation and convergence preparation
 
-- [ ] T044 [P] Run per-theme contrast checks with text and meaningful non-text elements, including warning/danger/focus states; attach actual numbers and evidence in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-014]
+**Completed scope:** automated static, offline-browser/GitHub render, provenance, source diff and documentation. T045 remains pending native Edge/Chrome 200% browser UI zoom and comprehensive manual accessibility; T055 convergence cannot truthfully PASS until that acceptance is complete.
+
+- [x] T044 [P] Run per-theme contrast checks with text and meaningful non-text elements, including warning/danger/focus states; attach actual numbers and evidence in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-014]
 - [ ] T045 Run browser screenshot, responsive (390px), 200% zoom, keyboard and reduced-motion tests of target surfaces; report evidence dimensions separately from static checks. [FR-015,016,022]
-- [ ] T046 [P] Validate all standalone outputs in network-off mode and README SVG variants in GitHub-compatible rendering. [FR-009,011,013]
-- [ ] T047 [P] Run token/asset deterministic drift checks and revision audits after changes; record result. [FR-017,021,027]
-- [ ] T048 Run full diagram Atlas/layout/self_check suites against actual checkout; verify source/registry reachability and no unlisted living diagram. [FR-010,018,022]
-- [ ] T049 Compare semantic snapshot across token skin variants and final migrated pilot, proving Gate result and Decision mapping untouched. [FR-005,008,018]
-- [ ] T050 Restore originals on any pilot mismatch; do not promote implemented diagram/docs if verification is incomplete. [FR-019,022,025]
-- [ ] T051 Write `specs/003-product-pro-max-design-system/qa-evidence.md` with separately reported source/static/browser/GitHub/actual publishing state and evidence provenance. [FR-022]
-- [ ] T052 Audit final diff for scope violations (new frontend framework, DB/network service, Product Model/Registry edits, new semantics engine) before any commit. [FR-024]
-- [ ] T053 After implementation verification, promote truthful architecture guidance to `docs/ARCHITECTURE.md`, local design docs and README without claiming project-level implemented truth prematurely. [FR-023]
-- [ ] T054 Reconcile `specs/ROADMAP-foundation.md` numbering and dependencies before integration; update `.specify/feature.json` when Spec 003 is selected as active; re-check current `main` head. [FR-023]
+- [x] T046 [P] Validate all standalone outputs in network-off mode and README SVG variants in GitHub-compatible rendering. [FR-009,011,013]
+- [x] T047 [P] Run token/asset deterministic drift checks and revision audits after changes; record result. [FR-017,021,027]
+- [x] T048 Run full diagram Atlas/layout/self_check suites against actual checkout; verify source/registry reachability and no unlisted living diagram. [FR-010,018,022]
+- [x] T049 Compare semantic snapshot across token skin variants and final migrated pilot, proving Gate result and Decision mapping untouched. [FR-005,008,018]
+- [x] T050 Restore originals on any pilot mismatch; do not promote implemented diagram/docs if verification is incomplete. [FR-019,022,025]
+- [x] T051 Write `specs/003-product-pro-max-design-system/qa-evidence.md` with separately reported source/static/browser/GitHub/actual publishing state and evidence provenance. [FR-022]
+- [x] T052 Audit final diff for scope violations (new frontend framework, DB/network service, Product Model/Registry edits, new semantics engine) before any commit. [FR-024]
+- [x] T053 After implementation verification, promote truthful architecture guidance to `docs/ARCHITECTURE.md`, local design docs and README without claiming project-level implemented truth prematurely. [FR-023]
+- [x] T054 Reconcile `specs/ROADMAP-foundation.md` numbering and dependencies before integration; update `.specify/feature.json` when Spec 003 is selected as active; re-check current `main` head. [FR-023]
 - [ ] T055 Run Spec Kit analyze/converge and recheck stale design/modeling gates with real artifacts; do not label runtime/browser PASS without evidence. [FR-022,027]
 
 ## Dependencies & Execution Order

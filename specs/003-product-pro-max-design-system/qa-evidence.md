@@ -108,3 +108,56 @@ Headless Chromium in an isolated container, `page.set_content` for each generate
 | `actual_publishing` | NOT_RUN | No publishing requested |
 
 **Acceptance decision:** T018–T025 checked for their bounded source/fixture/presentation preparation deliverables. **T026 remains unchecked and Phase 4 must not be marked fully complete** until native browser zoom and relevant full navigation/validator coverage are supported by run-specific evidence. Do not start Phase 5 under Lazy Modeling Gate.
+
+
+## Phase 5–7 integrated acceptance: promoted main (2026-10-09)
+
+**Source commit verified:** `9001c5af3c82bef23fd15d85c7fe848a984504e8` (`main`). **Upstream features:** Spec 001/002 remain authoritative. **Migration:** CSS-only visual update to Spec 002 original, no graph or authority edits.
+
+### Executed CI, not inferred from staging
+
+- [Validate #37873888264](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/37873888264): **PASS** on full Ubuntu GitHub checkout, Python 3.12. **33/33 unit tests PASS** (`tests/test_design_system*.py`), repo validation/installer, token validation and brand export read-only check, Atlas 3 registered diagrams, layout 3 diagrams, and `self_check.py` on 5 HTML artifacts.
+- [Skill Registry #37873888268](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/37873888268): **PASS**; Product Model, Skill Registry, schemas, canonical skills/workflows unchanged by Spec 003 implementation diff.
+- [Validate browser job #37873888264](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/37873888264): **PASS**, Playwright Chromium **143.0.7499.4**. Downloadable GitHub Actions artifact `spec003-browser-qa`, ID `11592000176`, includes **20 files** (12 viewport screenshots, 4 CDP 200%-zoom captures, 2 actual GitHub screenshots, `metrics.json`, `github-render.json`). Live `file://` navigation from promoted Spec 002 to Diagram Atlas clicked and verified (**PASS**). Keyboard first Tab focuses a link (**PASS**). Reduced-motion rendering context used.
+
+### Scope-separated QA matrix
+
+| Dimension | Observed status | Exact limitation |
+| --- | --- | --- |
+| Semantic-source inventory | **PASS** | Original Git blob `6acb098a4e8513d50527bfb615a6561bf3520e16` and migrated `7f191bcf586c479783b925dd432c916a34a86174` are identical outside the `<style>` element; 6 nodes / 6 edges, labels, links and `planned` retained; rollback copy unchanged |
+| Unit/static on full checkout | **PASS** | 33/33 Python tests; read-only token/brand snapshots; Atlas + layout + five HTML self-checks |
+| Offline browser viewport | **PASS** | 12 Chromium captures (pilot, specimen, hero; Light/Dark; 1366×900 and 390×844), zero document overflow, no external network requests needed to render local assets |
+| Browser 200% compositor zoom | **PASS, limited** | Chromium CDP `Emulation.setPageScaleFactor=2`; `visualViewport.scale=2`; four screenshots, visually inspected promoted Dark. This is **pinch/compositor zoom, not native browser menu/keyboard zoom** |
+| Browser keyboard / navigation | **PASS, limited** | First Tab focuses anchor, click to Atlas `file://` navigation actually opens; not a full screen-reader audit |
+| GitHub README image Light | **PASS** | Actual public repo `github.com` in Light scheme chose `hero-light.svg`, image loaded `naturalWidth=300`; screenshot manually reviewed |
+| GitHub README image Dark | **PASS** | Actual public repo `github.com` in Dark scheme chose `hero-dark.svg`, image loaded `naturalWidth=300`; screenshot manually reviewed |
+| GitHub image fallback | **PASS, static fallback only** | `<img src=hero-light.svg alt=...>` exists and is asserted by tests; browser without `<picture>` support not independently tested |
+| Browser full accessibility / real 200% zoom | **NOT_RUN / pending** | Native Edge or Chrome Ctrl+Plus/menu zoom at 200%, comprehensive keyboard + screen-reader manually reviewed route not yet exercised; T026/T045 pending |
+| Actual publishing | **NOT_APPLICABLE** | Repo source/README and GitHub Pages are not a hosted product release; no site/deployment claimed |
+| Final Spec Kit converge | **BLOCKED** | T055 remains open until T026/T045 native acceptance; spec/plan/tasks modeling decisions retained without false runtime promotion |
+
+### Calculated informative contrast (WCAG formula, designated surface pairs)
+
+| Role | Light | Dark |
+| --- | ---: | ---: |
+| text-primary | 15.74:1 | 17.58:1 |
+| text-secondary | 8.04:1 | 12.69:1 |
+| link | 7.41:1 | 14.22:1 |
+| focus-ring | 7.95:1 | 15.48:1 |
+| warning | 7.12:1 | 13.37:1 |
+| danger | 7.06:1 | 9.64:1 |
+| success | 6.22:1 | 12.34:1 |
+| edge | 6.16:1 | 10.75:1 |
+| node-outline vs node-fill | 6.20:1 | 8.07:1 |
+| accent-brand vs surface | 1.17:1 | 15.48:1 |
+
+**Signal Lime guardrail:** Light accent fails informative foreground contrast; it remains decorative only, while text and role color pairings use separately verified contrasting colors. These token-role ratios do not substitute for a full browser accessibility audit.
+
+### Pilot migration and rollback
+
+- Promoted Spec 002 original at `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html` contains the candidate blob `7f191bcf586c479783b925dd432c916a34a86174`. Regression/visual checks ran on the **promoted path** in CI.
+- Reversible restore asset: `tests/fixtures/design-system/pilot/original-spec002.html` exactly preserves blob `6acb098a4e8513d50527bfb615a6561bf3520e16`. Temporary migration `preview → promote → check → restore` roundtrip test PASS; no restoration of the accepted live diagram was required (no mismatch).
+- Diagram registry JSON unchanged (`42c9004fd15aba8fbb493c626fbb965ee1f83f71`), Atlas and Feature Ledger source intact; other living diagrams unchanged.
+- Phase 5–7 implementation diff against pre-Phase 5 HEAD `fa374a44b7182a747863dc90906b62991dbf66a0`: **zero changes under** `model/`, `registry/`, `schemas/`, `skills/` or `workflows/`; no hosted runtime, DB or UI framework introduced. CI browser dependencies only in workflow test job.
+
+**Do not mark native browser 200% or convergence PASS.** Outstanding T026, T045, T055 are explicit. See [spec/plan](spec.md) and [tasks](tasks.md) for all remaining acceptance.

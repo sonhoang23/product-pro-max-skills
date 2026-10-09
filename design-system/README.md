@@ -94,3 +94,7 @@ python -m unittest discover -s tests -p 'test_design_system_*.py' -v
 A strict CSS-only candidate is stored in [tests/fixtures/design-system/pilot/migrated-spec002.html](../tests/fixtures/design-system/pilot/migrated-spec002.html). Exact rollback markup lives alongside it as `original-spec002.html`. [Migration procedure](../specs/003-product-pro-max-design-system/migration-baseline.md) checks the original Git blob and rejects any source, graph, text or backlink mutation. Styling chooses Light/Dark using media queries, no JavaScript and no external CSS/fonts.
 
 The candidate is a review fixture; links are relative to the original diagram directory and must be checked on the **promoted original path**. Promotion is conditional on independent source parity and browser/official validator results, not on CSS generation alone. The Diagram Atlas and Feature Ledger preserve existing parent/child/related, `scope`, `truth=planned` and registry filenames.
+
+## Phase 7 verification record
+
+See [integrated QA evidence](../specs/003-product-pro-max-design-system/qa-evidence.md) and [GitHub Actions Validate](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/37873888264). Brand assets passed deterministic snapshot checks and actual GitHub Light/Dark README previews. Spec 002 is an accepted reversible CSS-only pilot; its graph registry and planned truth remain unchanged. The only known open verification layer is native browser UI zoom and full convergence (T026/T045/T055), which must not be confused with Chromium CDP compositor 200% scaling.

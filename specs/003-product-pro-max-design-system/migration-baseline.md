@@ -76,3 +76,11 @@ python scripts/migrate_design_system_pilot.py restore   # restores verified base
 Do not change `docs/diagrams/diagram-index.json` or Ledger graph semantics to "implemented". A visual migration does not change feature truth (`planned`). Other diagrams remain untouched without explicit follow-up scope. On mismatch: run `restore`, compare source Git blob to pinned baseline, rerun Atlas/layout/self-check and report the actual failure, never stamp false acceptance.
 
 **Source-stage note:** A candidate/rollback implementation may exist before visual or native-zoom acceptance. This document does not assert acceptance of migration, full browser usability or any unrun CLI.
+
+## Approved pilot record
+
+- Source SHA restored from immutable fixture: `6acb098a4e8513d50527bfb615a6561bf3520e16`.
+- Promoted CSS-only original Git blob: `7f191bcf586c479783b925dd432c916a34a86174` (commit `d5493bcea3fd8786961793cfa500dad35670f40e`).
+- GitHub CI on promoted diagram: 33/33 tests, Atlas/layout/self_check, desktop/mobile Light/Dark browser and actual `file://` link-click navigation **PASS**. Browser zoom compositor 200% only; native UI 200% pending.
+- `python scripts/migrate_design_system_pilot.py check` verifies active promoted original and preview with no writes; `restore` writes pinned source only if original is an expected candidate/baseline.
+- No Atlas JSON truth, source model, Skill Registry or unrelated diagram was migrated. Further migrations require separately approved scope.
