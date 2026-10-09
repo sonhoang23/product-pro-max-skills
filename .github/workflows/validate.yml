@@ -21,3 +21,21 @@ jobs:
         run: python scripts/validate_repo.py
       - name: Check installer
         run: python scripts/install.py --target .tmp-skills --all --dry-run
+      - name: Verify Design System token and source tests
+        run: |
+          python -m unittest discover -s tests -p 'test_design_system*.py' -v
+          python scripts/verify_design_system.py --check-tokens
+          python scripts/export_brand_assets.py --check
+          python scripts/export_design_tokens.py --surface diagram --theme light --output tests/fixtures/design-system/snapshots/light.css --check
+      - name: Verify diagram Atlas and layout
+        run: |
+          python scripts/verify-diagram-atlas.py
+          python scripts/verify-diagram-layout.py
+      - name: Verify self-contained diagrams
+        run: |
+          python .agents/skills/diagram-design-vi/scripts/self_check.py \
+            specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html \
+            specs/003-product-pro-max-design-system/spec-diagram/presentation-boundary.html \
+            specs/003-product-pro-max-design-system/plan-diagram/token-resolution.html \
+            tests/fixtures/design-system/specimen-light.html \
+            tests/fixtures/design-system/specimen-dark.html

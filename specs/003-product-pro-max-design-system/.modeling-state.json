@@ -157,8 +157,8 @@
     "implementation:phase-05": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "design-system/brand-layouts.json": "e49fed9cc0264e86f099a644a744bfd9b48e7433",
-        "scripts/export_brand_assets.py": "93ace28048398ad99efbd710837de85e3ccde4db",
+        "design-system/brand-layouts.json": "27bd49d6b2c439e08503704063321babd33a670c",
+        "scripts/export_brand_assets.py": "4ccc80d631ddf553523cb26a9a6a5df30e207d86",
         "design-system/tokens.json": "bf07abd8c0e93282c9bb15727fdbe711f4cd45f9",
         "README.md": "5fb012e0fd3ef06dadcacbf6dc70fd1a0607a463",
         "README.vi.md": "5629f30f9288f86e197836db7059d1bb49591ab5"
@@ -168,7 +168,9 @@
         "diagram_check": "negative_brand_mark_and_visual_outputs_only",
         "browser": "not_run",
         "github_preview": "not_run",
-        "reproducibility": "pending_execution"
+        "reproducibility": "pending_execution",
+        "revision_stamp": "added_explicit_0.1.0_stamp_to_all_six_SVG_outputs",
+        "ci_suite": "configured_not_run_at_commit"
       },
       "reason": "Source-only implementation, no new semantic diagram; distinct GitHub and browser verification still pending."
     },

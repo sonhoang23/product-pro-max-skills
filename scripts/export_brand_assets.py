@@ -25,7 +25,7 @@ def render_assets(root: Path = ROOT) -> dict[str, str]:
                   "accent": palette["accent-brand"], "text": palette["text-primary"],
                   "muted": palette["text-secondary"], "stroke": palette["border-strong"],
                   "evidence": palette["evidence-emphasis"], "gate": palette["gate-result-emphasis"],
-                  "decision": palette["decision-emphasis"], "font": ", ".join(t["typography"]["ui"])}
+                  "decision": palette["decision-emphasis"], "revision": t["revision"], "font": ", ".join(t["typography"]["ui"])}
         try:
             result[name] = entry["body"].format_map(values)
         except KeyError as exc:
