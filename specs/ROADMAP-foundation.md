@@ -8,7 +8,7 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 | --- | --- | --- | --- | --- |
 | 001 | `canonical-product-model` | Canonical ontology for lifecycle, cycles, phases, tracks, loops, gates, decisions and status | None | Complete |
 | 002 | `skill-manifest-registry` | Canonical skill metadata, registry, discovery and authoring boundary | 001 | Complete (user-approved local acceptance) |
-| 003 | `product-pro-max-design-system` | Signal Protocol tokens, theme-flexible diagrams, README hero, docs and brand assets without changing source semantics | 001, 002 | Spec / plan / tasks drafted; implementation not started |
+| 003 | `product-pro-max-design-system` | Signal Protocol tokens, theme-flexible diagrams, README hero, docs and brand assets without changing source semantics | 001, 002 | Phases 1–4 implemented in source; Phase 5–7 source work underway, verification/convergence pending |
 | 004 | `versioning-compatibility` | Versioning, compatibility, breaking-change, migration and deprecation rules | 001 | Backlog (renumbered from 003) |
 | 005 | `quality-validation-evals` | Schema, semantic, workflow and standardized skill evaluation gates | 002, 004 | Backlog (was 004) |
 | 006 | `repository-governance` | Proposal, review, ownership, change-governance and product/tooling boundaries | 002, 004 | Backlog (was 005) |
@@ -20,7 +20,7 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 ```text
 001 Canonical Product Model (complete)
   ├── 002 Skill Manifest Registry (complete)
-  │     └── 003 Design System (design stage)
+  │     └── 003 Design System (implementation; QA pending)
   │            └── 007 Global Discovery & Docs (also requires 004)
   └── 004 Versioning & Compatibility (backlog)
         ├── 005 Quality Validation & Evals (also requires 002)
@@ -33,4 +33,4 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 
 Do not mark any planned feature complete until its required upstream foundation is implemented, verified and converged. Specification, planning, modeling, code implementation and runtime/visual verification are independent states. Only promote implemented project documentation when checks justify it.
 
-**Current planned feature**: Spec 003 — Product Pro Max Design System. Its specification/planning artifacts can be authored from verified upstream contracts; implementation still requires its own test and QA evidence.
+**Current planned feature**: Spec 003 — Product Pro Max Design System. Its implementation is staged incrementally; convergence requires run-specific static, browser, GitHub and migration evidence. Do not call complete from source changes alone.

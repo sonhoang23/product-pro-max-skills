@@ -55,3 +55,24 @@ All entries below were fetched at that ref, not inferred from a screenshot or a 
 **Verification level:** GitHub tree/blob inspection **PASS** for inventory, ID uniqueness and file presence. Actual execution of `self_check.py`, Atlas/layout Python, desktop/mobile/zoom/browser QA **NOT RUN in this session**. Earlier user-reported Windows validator evidence for modeling at `341f952` is recorded separately in `modeling-acceptance.md`; do not relabel it as a 2026-10-09 rerun of Phase 1.
 
 **Scope guard:** No changes to Product Model, Skill Registry, existing diagrams, Atlas semantics or migration pilot.
+
+## Phase 6 — isolated source migration plan and rollback (2026-10-09)
+
+**Baseline restore authority:** Git blob `6acb098a4e8513d50527bfb615a6561bf3520e16` for `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html`. The same exact source is preserved as `tests/fixtures/design-system/pilot/original-spec002.html`. `spec.md` is never modified.
+
+**Candidate:** `tests/fixtures/design-system/pilot/migrated-spec002.html`. The candidate changes **only the original `<style>` block**. After removing the CSS blocks, every other byte of original HTML equals candidate HTML. No node, connector, text, source path, planned marker, arrow geometry, navigation link or Atlas entry is rewritten.
+
+**Preflight boundary:** Before promoting, compare candidate vs source with `scripts/migrate_design_system_pilot.py check` and `tests/test_design_system_diagrams.py` migration parity checks, then run full original self-check/layout/Atlas and desktop/mobile/zoom browser visual acceptance. If any required dimension fails, refuse promotion or restore immediately.
+
+**Explicit reversible actions (safe guards included):**
+
+```bash
+python scripts/migrate_design_system_pilot.py preview   # generates copy only, leaves live diagram unchanged
+python scripts/migrate_design_system_pilot.py promote   # changes live diagram ONLY if current content is expected baseline/candidate
+python scripts/migrate_design_system_pilot.py check     # read-only deterministic preview + promoted original check
+python scripts/migrate_design_system_pilot.py restore   # restores verified baseline, refuses unexpected concurrent edits
+```
+
+Do not change `docs/diagrams/diagram-index.json` or Ledger graph semantics to "implemented". A visual migration does not change feature truth (`planned`). Other diagrams remain untouched without explicit follow-up scope. On mismatch: run `restore`, compare source Git blob to pinned baseline, rerun Atlas/layout/self-check and report the actual failure, never stamp false acceptance.
+
+**Source-stage note:** A candidate/rollback implementation may exist before visual or native-zoom acceptance. This document does not assert acceptance of migration, full browser usability or any unrun CLI.

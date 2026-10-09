@@ -1,0 +1,81 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quan hệ khái niệm skill — Spec 002</title><style>:root {
+  --ppmax-accent-brand: #A3FF47;
+  --ppmax-border-strong: #54655B;
+  --ppmax-boundary: #5A6C60;
+  --ppmax-danger: #A0262A;
+  --ppmax-decision-emphasis: #5D3B7B;
+  --ppmax-edge: #536158;
+  --ppmax-edge-emphasis: #274C37;
+  --ppmax-evidence-emphasis: #20567B;
+  --ppmax-feedback-path: #3D6655;
+  --ppmax-focus-ring: #25581E;
+  --ppmax-gate-result-emphasis: #245A39;
+  --ppmax-label-muted: #405748;
+  --ppmax-link: #1B5D3A;
+  --ppmax-neutral: #4A5B53;
+  --ppmax-node-fill: #FFFFFF;
+  --ppmax-node-outline: #54655B;
+  --ppmax-rule: #A6B3A6;
+  --ppmax-success: #1F6A3C;
+  --ppmax-surface: #F7F9F4;
+  --ppmax-surface-elevated: #FFFFFF;
+  --ppmax-text-primary: #17201B;
+  --ppmax-text-secondary: #3D5146;
+  --ppmax-warning: #7C4800;
+  --ppmax-font-ui: "Segoe UI", "Arial", sans-serif;
+}
+@media(prefers-color-scheme:dark){
+:root {
+  --ppmax-accent-brand: #A3FF47;
+  --ppmax-border-strong: #A6C1B0;
+  --ppmax-boundary: #ACC5B1;
+  --ppmax-danger: #FF9D9D;
+  --ppmax-decision-emphasis: #E2C1FF;
+  --ppmax-edge: #B3C7B8;
+  --ppmax-edge-emphasis: #B8FFB0;
+  --ppmax-evidence-emphasis: #A9D7FF;
+  --ppmax-feedback-path: #A4DBC1;
+  --ppmax-focus-ring: #A3FF47;
+  --ppmax-gate-result-emphasis: #93E8AD;
+  --ppmax-label-muted: #C0D2C3;
+  --ppmax-link: #A4EEC1;
+  --ppmax-neutral: #BCD0C0;
+  --ppmax-node-fill: #14201A;
+  --ppmax-node-outline: #A4B9AA;
+  --ppmax-rule: #42554B;
+  --ppmax-success: #7EE4A3;
+  --ppmax-surface: #0B100F;
+  --ppmax-surface-elevated: #15211D;
+  --ppmax-text-primary: #F2F6F3;
+  --ppmax-text-secondary: #C7D6CA;
+  --ppmax-warning: #FFD179;
+  --ppmax-font-ui: "Segoe UI", "Arial", sans-serif;
+}
+}
+
+body{font-family:var(--ppmax-font-ui,system-ui),system-ui,sans-serif;background:var(--ppmax-surface);color:var(--ppmax-text-primary);margin:0;padding:28px}
+main{max-width:1100px;margin:auto}
+nav{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;margin-bottom:22px}
+a{color:var(--ppmax-link)} a:focus-visible{outline:3px solid var(--ppmax-focus-ring);outline-offset:4px;border-radius:3px}
+h1{font-size:28px;line-height:1.18}
+p,footer{color:var(--ppmax-text-secondary);line-height:1.5}
+svg{display:block;width:100%;height:auto;background:var(--ppmax-node-fill);border:1px solid var(--ppmax-border-strong);border-radius:10px;overflow:visible}
+svg text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;fill:var(--ppmax-text-primary)}
+svg .node{fill:var(--ppmax-node-fill);stroke:var(--ppmax-node-outline);stroke-width:2}
+svg .focus{fill:var(--ppmax-surface-elevated);stroke:var(--ppmax-edge-emphasis);stroke-width:2.5}
+svg .edge{stroke:var(--ppmax-edge);stroke-width:2;fill:none;marker-end:url(#arr)}
+svg #arr path{fill:var(--ppmax-edge)}
+svg .small{font-size:14px;fill:var(--ppmax-label-muted)}
+svg .head{font-size:18px;font-weight:650}
+svg .label{font-size:15px;font-weight:600}
+@media(max-width:600px){body{padding:16px}nav{gap:10px}main{min-width:0}svg{min-width:820px}main{overflow-x:auto;scrollbar-gutter:stable}h1{font-size:23px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style><main><nav><a href="../../../docs/diagrams/index.html">Diagram Atlas</a><a href="../diagrams.html">Feature Ledger</a><a href="../diagrams.html">Parent: Spec 002</a></nav><h1>Quan hệ khái niệm của Skill Manifest Registry</h1><p>Feature-level · planned truth · nguồn: specs/002-skill-manifest-registry/spec.md · FR-001–FR-031</p><svg viewBox="0 0 1080 620" role="img" aria-labelledby="t d"><title id="t">Ranh giới thẩm quyền và quan hệ của skill</title><desc id="d">Skill Model định nghĩa ngữ nghĩa, Skill Contract quy định tuân thủ, manifest của từng skill là nguồn metadata canonical; registry được dẫn xuất. Product Model cung cấp ID lifecycle. Công cụ tạo skill tiêu thụ contract và không thuộc registry distributable.</desc><defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#57606a"/></marker></defs>
+<rect class="node" x="35" y="65" width="260" height="95" rx="9"/><text class="head" x="165" y="100" text-anchor="middle">Skill Model</text><text class="small" x="165" y="127" text-anchor="middle">Định nghĩa semantics</text>
+<rect class="node" x="35" y="245" width="260" height="95" rx="9"/><text class="head" x="165" y="280" text-anchor="middle">Skill Contract</text><text class="small" x="165" y="307" text-anchor="middle">Quy định compliance</text>
+<rect class="focus" x="385" y="170" width="315" height="165" rx="10"/><text class="head" x="542" y="211" text-anchor="middle">Một skill distributable</text><text class="label" x="542" y="243" text-anchor="middle">SKILL.md + manifest.yaml</text><text class="small" x="542" y="273" text-anchor="middle">ppmax-&lt;skill-slug&gt;</text><text class="small" x="542" y="299" text-anchor="middle">skills/&lt;primary-cycle&gt;/…</text>
+<rect class="node" x="785" y="195" width="265" height="112" rx="9"/><text class="head" x="917" y="230" text-anchor="middle">Skill Registry</text><text class="small" x="917" y="257" text-anchor="middle">Derived discovery view</text><text class="small" x="917" y="281" text-anchor="middle">Không là source of truth</text>
+<rect class="node" x="385" y="425" width="315" height="110" rx="9"/><text class="head" x="542" y="463" text-anchor="middle">Product Model · Spec 001</text><text class="small" x="542" y="492" text-anchor="middle">Cycle / phase / track IDs</text><text class="small" x="542" y="515" text-anchor="middle">Lifecycle many-to-many</text>
+<rect class="node" x="35" y="425" width="260" height="110" rx="9"/><text class="head" x="165" y="464" text-anchor="middle">skill-creator-vi</text><text class="small" x="165" y="492" text-anchor="middle">Development tooling</text><text class="small" x="165" y="515" text-anchor="middle">Ngoài distributable registry</text>
+<path class="edge" d="M295 112 H345 V205 H383"/><path class="edge" d="M295 291 H383"/><path class="edge" d="M700 252 H782"/><path class="edge" d="M542 425 V338"/><path class="edge" d="M165 425 V344"/><path class="edge" d="M295 479 H355 V315 H383"/>
+<text class="small" x="738" y="234" text-anchor="middle">dẫn xuất</text><text class="small" x="574" y="386">tham chiếu</text></svg><p>Quan hệ skill-to-skill và skill-to-workflow nằm trong manifest theo controlled vocabulary; workflow giữ quyền điều phối. Một <code>primary_cycle</code> chỉ phục vụ nhóm thư mục, không hạn chế các liên kết lifecycle khác.</p><footer>Children: không có · Related: Spec 001 Product Model · Trạng thái: thiết kế dự kiến, chưa triển khai.</footer></main></html>

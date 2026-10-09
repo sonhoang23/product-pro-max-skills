@@ -1,5 +1,13 @@
 # Product Pro Max Skills
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/brand/hero-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/brand/hero-light.svg">
+    <img alt="Product Pro Max Skills — Signal Path. From vibe to viable." src="./assets/brand/hero-light.svg" width="1200">
+  </picture>
+</p>
+
 <p align="center"><strong>From vibe to viable.</strong></p>
 
 <p align="center">

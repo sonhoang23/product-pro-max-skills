@@ -88,3 +88,9 @@ python scripts/render_design_system_sample.py --theme light --output tests/fixtu
 python scripts/render_design_system_sample.py --theme dark --output tests/fixtures/design-system/specimen-dark.html --check
 python -m unittest discover -s tests -p 'test_design_system_*.py' -v
 ```
+
+## Phase 6 — reversible Spec 002 CSS migration
+
+A strict CSS-only candidate is stored in [tests/fixtures/design-system/pilot/migrated-spec002.html](../tests/fixtures/design-system/pilot/migrated-spec002.html). Exact rollback markup lives alongside it as `original-spec002.html`. [Migration procedure](../specs/003-product-pro-max-design-system/migration-baseline.md) checks the original Git blob and rejects any source, graph, text or backlink mutation. Styling chooses Light/Dark using media queries, no JavaScript and no external CSS/fonts.
+
+The candidate is a review fixture; links are relative to the original diagram directory and must be checked on the **promoted original path**. Promotion is conditional on independent source parity and browser/official validator results, not on CSS generation alone. The Diagram Atlas and Feature Ledger preserve existing parent/child/related, `scope`, `truth=planned` and registry filenames.

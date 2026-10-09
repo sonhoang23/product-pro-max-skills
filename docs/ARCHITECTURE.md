@@ -109,3 +109,11 @@ Canonical logic and machine identifiers are English and ASCII-safe. User-facing 
 ## MVP exclusions
 
 The MVP intentionally excludes hosted dashboards, marketplaces, autonomous long-running orchestration, framework-specific engineering packs, and proprietary skill formats.
+
+## Presentation design boundary (Spec 003 implementation)
+
+The repository's Signal Protocol skin is a **derived presentation layer**, not a replacement for the Product Model, manifest registry or Spec Kit modeling. `design-system/tokens.json` owns colors, theme roles, typography and density. `design-system/brand-layouts.json` owns visual *composition* only. `scripts/export_design_tokens.py`, `scripts/export_brand_assets.py` and `scripts/render_design_system_sample.py` export deterministic, offline derivatives.
+
+The development skill `.agents/skills/diagram-design-vi` selects the repository-local style adapter for this repository. It never overwrites user-global `~/.diagram-design` profiles. A diagram's content, edge direction, gate results, decisions, source references and `planned`/`implemented` state continue to come from upstream authorities. A theme switch can never turn a Gate result into a Decision.
+
+Brand source and SVG exports are maintained separately from release acceptance. Static source implementation does **not** establish GitHub Light/Dark preview, screen-reader, native 200% browser zoom, Atlas regression or published outcome; these have independent evidence requirements in [Spec 003 QA evidence](../specs/003-product-pro-max-design-system/qa-evidence.md). The Spec 002 visual migration is reversible via `scripts/migrate_design_system_pilot.py` with an exact pre-migration source copy; no other diagram migrates automatically.

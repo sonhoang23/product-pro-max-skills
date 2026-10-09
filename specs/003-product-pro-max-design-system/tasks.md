@@ -1,7 +1,7 @@
 # Tasks: Product Pro Max Design System
 
 **Input**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `quickstart.md`  
-**State**: Phase 1 T001–T003, Phase 2 T004–T011, Phase 3 T012–T017 completed. Phase 4 T018–T025 source implementation and bounded local tests completed 2026-10-09; **T026 pending** real 200% browser zoom, complete navigation/browser acceptance and official full-checkout diagram validators. Do not mark Phase 4 or implementation modeling gate pass. Phase 5–7 not started.  
+**State**: Phases 1–4 T001–T025 source completed except T026 (native zoom and browser acceptance). Phase 5 brand and Phase 6 migration sources staged, with formal validation/preview signoff pending; Phase 7 source docs drafted, final QA/converge pending. Do not infer run-level PASS from staged source.  
 **Tests**: Explicitly required by FR-014–FR-022 and SC-001–SC-007; do not mark PASS without run-specific evidence.  
 **Format**: `- [ ] TNNN [P?] [US?] Action in exact path`; `[P]` denotes safe parallelism only on separate files.
 
@@ -75,12 +75,12 @@
 
 **Independent test**: Both README theme variants and standalone brand assets render offline/GitHub using approved logo and common visual roles, without JS execution.
 
-- [ ] T027 [P] [US3] Define Signal Path geometry, wordmark lockup and accessible naming/safe-area in `design-system/README.md`. [FR-003]
-- [ ] T028 [US3] Create and validate source `assets/brand/signal-path.svg` plus `assets/brand/wordmark.svg` from canonical roles; retain recognizable brand across sizes. [FR-003,012]
-- [ ] T029 [US3] Produce standalone `assets/brand/hero-light.svg` and `assets/brand/hero-dark.svg` with consistent logo and theme-specific contrast. [FR-002,011,012]
-- [ ] T030 [P] [US3] Document usage in Markdown, diagrams, docs and social variants in `design-system/README.md` without adding generic SaaS button/card chrome. [FR-012]
-- [ ] T031 [US3] Integrate SVG hero variants into `README.md` and `README.vi.md` with GitHub-compatible light/dark selection and proper alt/fallback. [FR-011]
-- [ ] T032 [US3] Use the same tokens for a docs specimen and a brand cover export; verify identical brand mark treatment without forcing one identical layout. [FR-012,017]
+- [x] T027 [P] [US3] Define Signal Path geometry, wordmark lockup and accessible naming/safe-area in `design-system/README.md`. [FR-003]
+- [x] T028 [US3] Create and validate source `assets/brand/signal-path.svg` plus `assets/brand/wordmark.svg` from canonical roles; retain recognizable brand across sizes. [FR-003,012]
+- [x] T029 [US3] Produce standalone `assets/brand/hero-light.svg` and `assets/brand/hero-dark.svg` with consistent logo and theme-specific contrast. [FR-002,011,012]
+- [x] T030 [P] [US3] Document usage in Markdown, diagrams, docs and social variants in `design-system/README.md` without adding generic SaaS button/card chrome. [FR-012]
+- [x] T031 [US3] Integrate SVG hero variants into `README.md` and `README.vi.md` with GitHub-compatible light/dark selection and proper alt/fallback. [FR-011]
+- [x] T032 [US3] Use the same tokens for a docs specimen and a brand cover export; verify identical brand mark treatment without forcing one identical layout. [FR-012,017]
 - [ ] T033 [US3] Verify SVG and self-contained outputs offline with no remote fonts, CSS or JS; preserve proof in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-009,013]
 - [ ] T034 [US3] Inspect actual README image rendering in GitHub Light/Dark and fallback contexts; record exact coverage in `specs/003-product-pro-max-design-system/qa-evidence.md`. [FR-011,022]
 
@@ -90,9 +90,9 @@
 
 **Independent test**: Spec 002 diagram can be opt-in migrated and reverted, with a full semantic/source/navigation parity report.
 
-- [ ] T035 [P] [US4] Record original Spec 002 diagram and Atlas entry snapshot in `specs/003-product-pro-max-design-system/migration-baseline.md`. [FR-018,019]
-- [ ] T036 [US4] Define reversible migration/rollback checklist in `specs/003-product-pro-max-design-system/migration-baseline.md`; no bulk migration before pilot signoff. [FR-019,025]
-- [ ] T037 [US4] Produce migrated **copy** of `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html` under an isolated temporary path for side-by-side review. [FR-018,019]
+- [x] T035 [P] [US4] Record original Spec 002 diagram and Atlas entry snapshot in `specs/003-product-pro-max-design-system/migration-baseline.md`. [FR-018,019]
+- [x] T036 [US4] Define reversible migration/rollback checklist in `specs/003-product-pro-max-design-system/migration-baseline.md`; no bulk migration before pilot signoff. [FR-019,025]
+- [x] T037 [US4] Produce migrated **copy** of `specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html` under an isolated temporary path for side-by-side review. [FR-018,019]
 - [ ] T038 [US4] Audit source, all text/edge semantics, planned/implemented labels, Atlas/ledger/backlinks for parity using `tests/test_design_system_diagrams.py`. [FR-010,018]
 - [ ] T039 [US4] After pilot approval, promote migration to original Spec 002 diagram while keeping a restore path and an unchanged authoritative `spec.md`. [FR-018,019,025]
 - [ ] T040 [US4] Apply Atlas/Feature Ledger/registry derived presentation transaction with preserved graph integrity; run existing `scripts/verify-diagram-atlas.py`. [FR-010,018]
