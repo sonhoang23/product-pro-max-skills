@@ -1,4 +1,4 @@
-# Design Quality — Author-side Review (Spec 003)
+# Design Quality — Requirements Review (Spec 003)
 
 **Reviewed against**: `spec.md`, `plan.md`, `research.md`, `data-model.md`, `contracts/tokens-and-surfaces.md`, `tasks.md` on `main`.  
 **Scope**: Requirements completeness and coherence only; no implementation, diagram gate, browser QA or GitHub-render PASS implied.  

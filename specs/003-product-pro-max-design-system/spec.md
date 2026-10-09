@@ -2,7 +2,7 @@
 
 **Feature Branch**: `main` (Spec Kit artifacts committed at `7e45f67`; implementation not started)  
 **Created**: 2026-10-08  
-**Status**: Reviewed draft — specification and planning artifacts committed; local modeling QA deferred, no implementation  
+**Status**: Requirements reviewed; Spec Modeling is `modeled` with documented QA scope; no implementation started  
 **Spec modeling**: [Semantic/presentation boundary](spec-diagram/presentation-boundary.html) · [Feature Diagram Ledger](diagrams.html) (planned truth only).
 
 **Input**: Adopt approved **C — Signal Protocol** visual direction with **Signal Lime** as the prominent accent and a **Signal Path + Wordmark** brand mark, covering **Core + Brand Assets**. Design must remain flexible, self-contained where necessary, and presentation-only.

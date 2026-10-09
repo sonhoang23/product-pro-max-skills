@@ -67,7 +67,7 @@ specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html  # 
 
 **Structure Decision**: No installed UI runtime, hosted asset service, new modeling skill or duplicated design-token authority. Keep generated outputs self-contained and source tokens centralized. Add additional files only on demonstrated repeated need.
 
-**Plan modeling**: [Technical token-resolution diagram](plan-diagram/token-resolution.html); derived from this plan, not an additional authority. **Gate remains `blocked` pending deferred local self-check, Atlas/layout and browser QA.**
+**Plan modeling**: [Technical token-resolution diagram](plan-diagram/token-resolution.html); derived from this plan, not an additional authority. **Modeling gate `modeled` after local static and focused visual QA; actual implementation/browser publishing acceptance remains pending (see `modeling-acceptance.md`).**
 
 ## Phase 0 Research
 

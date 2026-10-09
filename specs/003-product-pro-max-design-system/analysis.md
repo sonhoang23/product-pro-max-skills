@@ -13,16 +13,16 @@
 | Planned implementation tasks | 55 numbered T001–T055, contiguous; 0 implementation tasks checked |
 | Requirements-to-task tracing | 27/27 have intended task coverage; grouping plus task-level references recorded in `tasks.md` |
 | Planned runtime risks | 8 `APPLIES` with assigned prevention/verification tasks; 1 `NOT_APPLICABLE` with scope reason |
-| Custom requirements-quality checklist | 18 CHK items; independently assessed in `checklists/design-quality-review.md`, reviewer-owned markers intentionally unchecked |
+| Custom requirements-quality checklist | 18/18 reviewed and checked as requirements-quality criteria at user's explicit request (2026-10-09) |
 | Feature diagrams | 2 derived `planned` diagrams (spec boundary, plan resolution) |
 | Project-level diagram promotion | None; must wait for implementation verification |
-| QA facts | Staged local HTML structure and restricted Chromium content render checked; **full repo checks not run** |
+| QA facts | Initial staged checks were limited; Windows local self-check/Atlas/layout later passed, and focused exact-blob browser modeling QA is recorded in `modeling-acceptance.md` |
 
 ## Finding Matrix
 
 | ID | Severity | Finding | Impact | Resolution/status |
 | --- | --- | --- | --- | --- |
-| F-01 | HIGH — workflow gate, not a spec defect | The environment cannot check out GitHub `main`; official `self_check.py`, `verify-diagram-atlas.py` and `verify-diagram-layout.py` were not executed against full repo. Browser URL loading is blocked by administrator policy. | Cannot truthfully mark `ensure-model(spec)` or `ensure-model(plan)` PASS/fresh; full formal planning/tasks gate remains pending. | Mark both modeling gates `blocked` with explicit incomplete QA. Treat authored plan/tasks as **prepared drafts** until repo checkout integration and validation. |
+| F-01 | RESOLVED for diagram-modeling scope; implementation acceptance pending | Earlier GitHub-only environment could not run official validators. | Initially blocked Spec/Plan modeling; no implication of implementation testing. | Windows local self-check/Atlas/layout passed at `341f952`; exact-blob Chromium 390px, desktop zoom CSS simulation and focus checked; detailed limitations in `modeling-acceptance.md`. |
 | F-02 | RESOLVED — integration | The former 003 `versioning-compatibility` roadmap slot conflicted with the selected Design System number. | Previously risked duplicate feature numbering. | Resolved in `7e45f67`: Design System is 003, former 003 is 004, remaining backlog 005–008, and Spec 002 marked complete. Recheck on future changes. |
 | F-03 | MEDIUM — implementation design watch | Existing `diagram-design-vi` `references/style-guide.md` contains VibeToolPro-specific presentation and uses local profile resolution. | Brand leakage or shared-style drift if repo tokens do not override it deterministically. | FR-020; tasks T010, T016, T019, T025; fail visibly instead of silently selecting wrong profile. |
 | F-04 | MEDIUM — QA not yet applicable | Official GitHub README theme, offline `file://` behavior, actual 200% browser zoom, screen reader interaction and full WCAG AA audit not executed. | Brand and responsive acceptance cannot be claimed for a design not yet implemented. | Explicit T026, T033, T034, T044–T046; statuses remain pending. |
@@ -34,7 +34,7 @@
 - **No new skills**: repo scoped token adapter for `diagram-design-vi`, while `speckit-system-modeling-vi` continues to own modeling/source placement and Atlas governance.
 - **No implementation claim**: all 55 task checkboxes are empty, staged diagrams identify `planned truth`, and project-level architecture docs are promotion candidates only.
 - **Scope proportional**: one canonical `tokens.json`, a deterministic export/check adapter, minimal brand assets, a reversible pilot; no frontend framework/backend/database.
-- **Only known workflow blocker**: incomplete repository-level gate/QA evidence (F-01), not an unresolved user design decision.
+- **Current modeling assessment**: initial F-01 validation gap is resolved for Spec/Plan diagram-modeling scope. Tasks modeling, actual Edge navigation and implementation QA remain future steps.
 
 ## Diagram Modeling Decision
 
@@ -44,7 +44,7 @@
 
 ## Acceptance Decision
 
-**Planning artifacts are committed but are not gated for implementation.** No further user-facing design choices are outstanding. F-01 remains a deferred local-QA blocker: do not change `blocked` to PASS, bypass Lazy Modeling Gate or claim implementation readiness. F-02 was resolved by commit `7e45f67`. Current follow-up quality review is documented separately; reviewer-owned checklist markers remain unchecked pending reviewer approval.
+**Spec and Plan Modeling are `modeled`, with documented evidence and source freshness.** All 18 requirements-quality checklist markers were evaluated at the user's explicit request and checked; F-02 roadmap conflict was resolved in `7e45f67`. Tasks Modeling Gate is still outstanding; this is not permission to bypass `ensure-model(tasks)` or claim Design System implementation, real Edge navigation or publishing verification.
 
 ## Remote preflight update (2026-10-08)
 
@@ -52,3 +52,7 @@
 - Corrected an unescaped `&` in planned Plan diagram SVG; fixed the stale `research.md` SHA in blocked Plan modeling state. These are source-quality corrections, not implementation or gate completion.
 - WCAG caution: Signal Lime has insufficient text contrast against proposed Light background (about 1.17:1); contract now requires a high-contrast informative role. Full theme-pair/browser testing remains pending.
 - Reviewer checklist remains unchecked, all 55 implementation tasks remain unchecked, and both modeling gates remain `blocked`.
+
+## Current QA and checklist decision (2026-10-09)
+
+Prior blocked/unchecked findings in this report describe earlier snapshots. Current authoritative state is `.modeling-state.json` plus `modeling-acceptance.md`. Spec/Plan source semantics and derived diagrams have been reviewed, local official static validators passed, and Chromium scope-limited visual review completed on Git-blob-matched HTML. Headless `file://` link activation, exact browser zoom, screen reader and Design System implementation tests remain unverified. No task T001–T055 was checked.
