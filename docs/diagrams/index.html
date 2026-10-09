@@ -1,1 +1,51 @@
-<!doctype html><html data-ppmax-token-revision="0.1.0" lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Diagram Atlas</title><style>body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#f7f7f5;color:#1f2328;margin:0;padding:28px}main{max-width:1100px;margin:auto}a{color:#0969da}h1{font-size:28px}p,footer{color:#57606a}li{margin:12px 0}a:focus-visible{outline:3px solid #2563eb;outline-offset:3px}@media(max-width:600px){body{padding:16px}}:root{--ppmax-surface:#F7F9F4;--ppmax-text:#17201B;--ppmax-muted:#3D5146;--ppmax-link:#1B5D3A;--ppmax-strong:#54655B;--ppmax-elevated:#FFFFFF;--ppmax-brand:#A3FF47;--ppmax-focus:#25581E;}body{background:var(--ppmax-surface);color:var(--ppmax-text)}p,footer{color:var(--ppmax-muted)}a{color:var(--ppmax-link)}a:focus-visible{outline:3px solid var(--ppmax-focus);outline-offset:3px}strong{color:var(--ppmax-text)}li{background:var(--ppmax-elevated);border-color:var(--ppmax-brand)}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}</style></head><body><main><h1>Repo Diagram Atlas</h1><p>Navigation cho living diagrams. <strong>Planned</strong> khác <strong>implemented</strong>. Việc đăng ký Spec 003 không có nghĩa Design System đã implement.</p><ul><li><a href="../../specs/002-skill-manifest-registry/diagrams.html">Spec 002 — Skill Manifest Registry</a> · planned / spec</li><li><a href="../../specs/003-product-pro-max-design-system/diagrams.html">Spec 003 — Product Pro Max Design System</a> · planned / spec + plan</li></ul></main></body></html>
+<!doctype html><html data-ppmax-token-revision="0.1.0" lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Diagram Atlas</title><style>/* ppmax-navigation revision=0.1.0 derived from design-system/tokens.json */
+:root{
+  color-scheme: light;
+  --ppmax-surface: #F7F9F4;
+  --ppmax-surface-elevated: #FFFFFF;
+  --ppmax-text-primary: #17201B;
+  --ppmax-text-secondary: #3D5146;
+  --ppmax-accent-brand: #A3FF47;
+  --ppmax-focus-ring: #25581E;
+  --ppmax-link: #1B5D3A;
+  --ppmax-border-strong: #54655B;
+  --ppmax-node-fill: #FFFFFF;
+  --ppmax-node-outline: #54655B;
+  --ppmax-edge: #536158;
+  --ppmax-label-muted: #405748;
+  --ppmax-font-ui: "Segoe UI", "Arial", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root{
+  color-scheme: dark;
+  --ppmax-surface: #0B100F;
+  --ppmax-surface-elevated: #15211D;
+  --ppmax-text-primary: #F2F6F3;
+  --ppmax-text-secondary: #C7D6CA;
+  --ppmax-accent-brand: #A3FF47;
+  --ppmax-focus-ring: #A3FF47;
+  --ppmax-link: #A4EEC1;
+  --ppmax-border-strong: #A6C1B0;
+  --ppmax-node-fill: #14201A;
+  --ppmax-node-outline: #A4B9AA;
+  --ppmax-edge: #B3C7B8;
+  --ppmax-label-muted: #C0D2C3;
+  --ppmax-font-ui: "Segoe UI", "Arial", sans-serif;
+}}
+body{font:16px/1.6 var(--ppmax-font-ui);background:var(--ppmax-surface);color:var(--ppmax-text-primary);margin:0;padding:28px}
+main{max-width:1100px;margin:auto;min-width:0}
+nav{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;margin-bottom:22px}
+a{color:var(--ppmax-link);text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--ppmax-focus-ring);outline-offset:4px;border-radius:3px}
+h1{font-size:28px;line-height:1.2}
+p,footer{color:var(--ppmax-text-secondary);line-height:1.5}
+strong{color:var(--ppmax-text-primary)}
+ul{list-style:none;padding:0}
+li{margin:12px 0;padding:10px 14px;border-left:4px solid var(--ppmax-accent-brand);background:var(--ppmax-surface-elevated);border-radius:6px}
+svg{display:block;width:100%;height:auto;background:var(--ppmax-node-fill);border:1px solid var(--ppmax-border-strong);border-radius:10px}
+svg text{font-family:var(--ppmax-font-ui);fill:var(--ppmax-text-primary)}
+svg .node{fill:var(--ppmax-node-fill);stroke:var(--ppmax-node-outline);stroke-width:2}
+svg .edge{stroke:var(--ppmax-edge);stroke-width:2;fill:none}
+svg .small{font-size:14px;fill:var(--ppmax-label-muted)}
+@media(max-width:600px){body{padding:16px}h1{font-size:24px}nav{gap:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style></head><body><main><h1>Repo Diagram Atlas</h1><p>Navigation cho living diagrams. <strong>Planned</strong> khác <strong>implemented</strong>. Nhãn planned của diagram mô tả ý định tại thời điểm lập spec, không phải trạng thái triển khai hiện tại; xem Spec 003 QA evidence.</p><ul><li><a href="../../specs/002-skill-manifest-registry/diagrams.html">Spec 002 — Skill Manifest Registry</a> · planned / spec</li><li><a href="../../specs/003-product-pro-max-design-system/diagrams.html">Spec 003 — Product Pro Max Design System</a> · planned / spec + plan</li></ul></main></body></html>

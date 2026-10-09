@@ -98,3 +98,14 @@ The candidate is a review fixture; links are relative to the original diagram di
 ## Phase 7 verification record
 
 See [integrated QA evidence](../specs/003-product-pro-max-design-system/qa-evidence.md) and [GitHub Actions Validate](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/37873888264). Brand assets passed deterministic snapshot checks and actual GitHub Light/Dark README previews. Spec 002 is an accepted reversible CSS-only pilot; its graph registry and planned truth remain unchanged. The only known open verification layer is native browser UI zoom and full convergence (T026/T045/T055), which must not be confused with Chromium CDP compositor 200% scaling.
+
+## Atlas and Feature Ledger skin synchronization
+
+`scripts/export_navigation_styles.py` deterministically resolves Light/Dark styles for `docs/diagrams/index.html`, Spec 002 and Spec 003 Feature Ledgers. All role values come from `design-system/tokens.json`; token revision is recorded on each HTML root, while existing source/graph links, labels, and `planned` diagram truth stay unchanged. `--check` is read-only and detects token-value/style drift before publishing.
+
+```bash
+python scripts/export_navigation_styles.py --check
+python scripts/export_navigation_styles.py          # explicit regeneration if canonical tokens change
+```
+
+The Atlas/ledgers are navigation surfaces, not semantic sources or product-status monitors. They may show `planned` for a spec-time diagram even when an implementation has since been committed and verified.

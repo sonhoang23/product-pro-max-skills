@@ -26,6 +26,7 @@ jobs:
           python -m unittest discover -s tests -p 'test_design_system*.py' -v
           python scripts/verify_design_system.py --check-tokens
           python scripts/export_brand_assets.py --check
+          python scripts/export_navigation_styles.py --check
           python scripts/export_design_tokens.py --surface diagram --theme light --output tests/fixtures/design-system/snapshots/light.css --check
       - name: Verify diagram Atlas and layout
         run: |

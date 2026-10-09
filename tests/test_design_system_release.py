@@ -126,6 +126,22 @@ class ReleaseDesignChecks(unittest.TestCase):
         self.assertEqual(entries[0]["phase"], "spec")
         self.assertEqual(entries[0]["path"], str(ORIGINAL).replace("\\", "/"))
 
+    def test_navigation_atlas_and_ledgers_derive_light_dark_from_repo_tokens(self):
+        from export_navigation_styles import SURFACES, render_html
+        tokens = load_tokens(ROOT)
+        for rel in SURFACES:
+            with self.subTest(surface=rel):
+                text = (ROOT / rel).read_text(encoding="utf-8")
+                self.assertEqual(text, render_html(text, tokens))
+                self.assertIn('data-ppmax-token-revision="0.1.0"', text)
+                self.assertIn("ppmax-navigation revision=0.1.0", text)
+                self.assertIn("prefers-color-scheme: dark", text)
+                self.assertIn(f'--ppmax-surface: {tokens["themes"]["light"]["surface"]}', text)
+                self.assertIn(f'--ppmax-surface: {tokens["themes"]["dark"]["surface"]}', text)
+                self.assertIn('href=', text)
+                self.assertIn("planned", text.lower())
+
+
 
 if __name__ == "__main__":
     unittest.main()
