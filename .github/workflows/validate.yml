@@ -56,6 +56,15 @@ jobs:
           python -m playwright install chromium
       - name: Capture offline browser QA
         run: python scripts/verify_design_browser.py --output .tmp-spec003-browser --promoted
+      - name: Verify Spec 004 planned diagram in Chromium
+        run: python scripts/verify_spec004_modeling_browser.py --output .tmp-spec004-browser
+      - name: Archive Spec 004 diagram screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spec004-modeling-browser-qa
+          path: .tmp-spec004-browser/
+          if-no-files-found: warn
       - name: Archive exact browser screenshots and metrics
         if: always()
         uses: actions/upload-artifact@v4
