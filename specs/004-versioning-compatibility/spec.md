@@ -2,7 +2,7 @@
 
 **Feature Branch**: `main` (specification only; no implementation authorized)
 **Created**: 2026-10-10
-**Status**: Clarification reviewed (no blocking questions); conceptual Spec Modeling diagram drafted, verification pending; planning, tasks, implementation and runtime verification not started
+**Status**: Clarify completed (no blocking questions); Spec Modeling Gate modeled with scoped static and Chromium evidence; plan, tasks, implementation and product runtime verification not started
 **Spec modeling (planned truth)**: [Compatibility assessment boundary](spec-diagram/compatibility-assessment.html) · [Feature Diagram Ledger](diagrams.html). Visual is derived from this specification and does not demonstrate an implemented compatibility checker.
 
 **Clarify review (2026-10-10)**: No unanswered behavior/domain question requiring user choice. The supported-baseline policy, strict-reader compatibility, migration safety and evidence distinctions are specified by FR-005, FR-007–FR-009, FR-012–FR-014 and FR-017–FR-029; exact metadata/schema/checker mechanics remain planning decisions. No new user decision was inferred.

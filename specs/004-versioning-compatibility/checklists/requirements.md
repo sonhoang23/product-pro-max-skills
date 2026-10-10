@@ -39,5 +39,5 @@
 ## Notes
 
 - Self-reviewed for requirements quality on 2026-10-10; checked boxes reflect wording/completeness, not executable test outcomes.
-- **Deferred**: clarification, Spec Modeling Gate, plan, tasks, implementation, automated checker, consumer fixture runs, migration test runs and runtime QA.
+- **Completed**: clarification review (no blocking questions) and Spec Modeling Gate with evidence recorded in `.modeling-state.json` and `modeling-acceptance.md`. **Deferred**: plan, tasks, compatibility checker implementation, consumer fixture runs, migration tests and product runtime QA.
 - All existing product/skill/schema authorities and Spec 009 remain unchanged at this stage.

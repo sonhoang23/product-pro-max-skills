@@ -2,24 +2,50 @@
   "schema_version": 1,
   "gates": {
     "spec": {
-      "status": "blocked",
+      "status": "modeled",
       "source_hashes": {
-        "spec.md": "7164847f971e459d48d3647fbf35160ddf7ab135"
+        "spec.md": "cf92fc9801e0f34d72c7861df8a03225d93a0170"
       },
       "outputs": [
         "spec-diagram/compatibility-assessment.html"
       ],
       "qa": {
-        "diagram_check": "positive_conceptual_compatibility_classification_8_nodes",
-        "source_traceability": "passed_manual_static_review_US1_US2_US4_FR001_FR014_FR024_FR029",
-        "navigation_registry": "updated_remote_static_inspection",
-        "self_check": "NOT_RUN_official_script_requires_repo_checkout",
-        "atlas": "NOT_RUN_official_repo_validator",
-        "layout": "NOT_RUN_official_repo_validator",
-        "browser_visual": "NOT_RUN",
-        "gate_verdict": "BLOCKED_pending_required_QA_not_false_PASS"
+        "diagram_check": "positive_conceptual_compatibility_boundary_8_nodes_7_arrows",
+        "source_traceability": "PASS_manual_source_inventory_US1_US2_US4_FR001_FR014_FR024_FR029",
+        "self_check": "PASS GitHub Validate #38010054539 repository job, includes spec004 diagram exact committed HTML",
+        "atlas": "PASS GitHub Validate #38010054539 python scripts/verify-diagram-atlas.py",
+        "layout": "PASS GitHub Validate #38010054539 python scripts/verify-diagram-layout.py",
+        "browser_render": "PASS GitHub Validate #38010054539 browser job / verify_spec004_modeling_browser.py / four captures",
+        "browser_evidence": "https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38010054539/artifacts/11652992825",
+        "browser_metrics": {
+          "desktop_1366": {
+            "document_width": 1366,
+            "panel_scroll_width": 1178,
+            "diagram_nodes": 8,
+            "diagram_edges": 7
+          },
+          "mobile_390": {
+            "document_width": 390,
+            "panel_client_width": 360,
+            "panel_scroll_width": 866,
+            "diagram_nodes": 8,
+            "diagram_edges": 7
+          },
+          "variants": [
+            "light",
+            "dark"
+          ],
+          "color_scheme_behavior": "light-first static diagram; dark system preference does not mean theme switches",
+          "keyboard": "PASS first-link Tab, focusable horizontally-scrollable region, Atlas file navigation",
+          "external_network": "blocked in Chromium checks"
+        },
+        "browser_visual": "PASS assistant visual review of exact captured 1366px and 390px light screenshots; no visible collision, orphaned connectors or accidental page overflow; remaining content accessible through panel horizontal scroll",
+        "manual_visual_scope": "Only representative light desktop/mobile screenshots inspected; dark screenshots captured and numerically identical-sized; no claim of separate dark-theme implementation",
+        "publishing": "NOT_RUN",
+        "feature_runtime_compatibility": "NOT_IMPLEMENTED_NOT_TESTED",
+        "review_evidence": "modeling-acceptance.md"
       },
-      "reason": "Planned conceptual diagram authored and indexed; official self_check and Atlas/layout validation plus visual review not yet evidenced. Do not treat modeling gate as PASS."
+      "reason": "Spec conceptual model diagram passed official self_check, Atlas, layout and Chromium 1366px/390px navigation/keyboard/scroll checks; reviewed screenshot for geometry. Gate is modeled for planned diagram only; no compatibility checker or data migration implementation claimed."
     }
   }
 }
