@@ -9,7 +9,7 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 | 001 | `canonical-product-model` | Canonical ontology for lifecycle, cycles, phases, tracks, loops, gates, decisions and status | None | Complete |
 | 002 | `skill-manifest-registry` | Canonical skill metadata, registry, discovery and authoring boundary | 001 | Complete (user-approved local acceptance) |
 | 003 | `product-pro-max-design-system` | Signal Protocol tokens, theme-flexible diagrams, README hero, docs and brand assets without changing source semantics | 001, 002 | Phases 1–7 implemented, 55/55 tasks complete, native Chromium keyboard 200% zoom verified; final convergence gate checked |
-| 004 | `versioning-compatibility` | Versioning, compatibility, breaking-change, migration and deprecation rules | 001 | Backlog (renumbered from 003) |
+| 004 | `versioning-compatibility` | Versioning, compatibility, breaking-change, migration and deprecation rules | 001 | **Spec drafted 2026-10-10; requirements self-reviewed; modeling/plan/implementation not started** |
 | 005 | `quality-validation-evals` | Schema, semantic, workflow and standardized skill evaluation gates | 002, 004 | Backlog (was 004) |
 | 006 | `repository-governance` | Proposal, review, ownership, change-governance and product/tooling boundaries | 002, 004 | Backlog (was 005) |
 | 007 | `global-discovery-docs` | Global-first docs/catalog/navigation and agent discovery | 002, 003, 004 | Backlog (was 006; design-system dependency added) |
@@ -39,4 +39,4 @@ This backlog decomposes repository-foundation work into dependency-aware Spec Ki
 
 Do not mark any planned feature complete until its required upstream foundation is implemented, verified and converged. Specification, planning, modeling, code implementation and runtime/visual verification are independent states. Only promote implemented project documentation when checks justify it.
 
-**Current specification focus**: Spec 009 — Shared Product Context (requirements recorded; implementation explicitly deferred). Spec 003 convergence remains as previously accepted from documented source checks, official full-checkout CI, native Chromium UI zoom, GitHub reader previews and reversible Spec 002 migration; no production publishing or screen-reader certification claimed.
+**Current specification focus**: Spec 004 — Versioning & Compatibility (requirements recorded; implementation not started). Spec 009 remains drafted with implementation explicitly deferred. Spec 003 convergence remains as previously accepted from documented source checks, official full-checkout CI, native Chromium UI zoom, GitHub reader previews and reversible Spec 002 migration; no production publishing or screen-reader certification claimed.
