@@ -60,8 +60,12 @@ class Spec003Convergence(unittest.TestCase):
 
     def test_project_authority_and_presentation_revision_boundaries(self):
         feature = json.loads((ROOT / ".specify/feature.json").read_text(encoding="utf-8"))
-        self.assertEqual(feature["feature_directory"],
-                         "specs/003-product-pro-max-design-system")
+        current_feature = ROOT / feature["feature_directory"]
+        self.assertEqual(current_feature.parent, ROOT / "specs")
+        self.assertTrue((current_feature / "spec.md").is_file(),
+                        f"active Spec Kit feature missing: {current_feature}")
+        # Spec 003 convergence is historical; a new active feature must not
+        # invalidate independently verified design-system source semantics.
         registry = json.loads((ROOT / "docs/diagrams/diagram-index.json").read_text(encoding="utf-8"))
         entry = next(x for x in registry["diagrams"]
                      if x["id"] == "feature-002-skill-metadata-relations")

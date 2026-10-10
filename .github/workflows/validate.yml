@@ -38,6 +38,7 @@ jobs:
             specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html \
             specs/003-product-pro-max-design-system/spec-diagram/presentation-boundary.html \
             specs/003-product-pro-max-design-system/plan-diagram/token-resolution.html \
+            specs/004-versioning-compatibility/spec-diagram/compatibility-assessment.html \
             tests/fixtures/design-system/specimen-light.html \
             tests/fixtures/design-system/specimen-dark.html
 
