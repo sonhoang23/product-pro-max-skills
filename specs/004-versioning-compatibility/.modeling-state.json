@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "spec": {
+      "status": "blocked",
+      "source_hashes": {
+        "spec.md": "7164847f971e459d48d3647fbf35160ddf7ab135"
+      },
+      "outputs": [
+        "spec-diagram/compatibility-assessment.html"
+      ],
+      "qa": {
+        "diagram_check": "positive_conceptual_compatibility_classification_8_nodes",
+        "source_traceability": "passed_manual_static_review_US1_US2_US4_FR001_FR014_FR024_FR029",
+        "navigation_registry": "updated_remote_static_inspection",
+        "self_check": "NOT_RUN_official_script_requires_repo_checkout",
+        "atlas": "NOT_RUN_official_repo_validator",
+        "layout": "NOT_RUN_official_repo_validator",
+        "browser_visual": "NOT_RUN",
+        "gate_verdict": "BLOCKED_pending_required_QA_not_false_PASS"
+      },
+      "reason": "Planned conceptual diagram authored and indexed; official self_check and Atlas/layout validation plus visual review not yet evidenced. Do not treat modeling gate as PASS."
+    }
+  }
+}

@@ -26,8 +26,12 @@
       "path": "specs/003-product-pro-max-design-system/spec-diagram/presentation-boundary.html",
       "source": "specs/003-product-pro-max-design-system/spec.md",
       "parent": "feature-003-ledger",
-      "children": ["feature-003-token-resolution"],
-      "related": ["feature-002-skill-metadata-relations"]
+      "children": [
+        "feature-003-token-resolution"
+      ],
+      "related": [
+        "feature-002-skill-metadata-relations"
+      ]
     },
     {
       "id": "feature-003-token-resolution",
@@ -42,6 +46,22 @@
       "parent": "feature-003-presentation-boundary",
       "children": [],
       "related": []
+    },
+    {
+      "id": "feature-004-compatibility-assessment",
+      "title": "Đánh giá tương thích dựa trên bằng chứng",
+      "scope": "feature",
+      "truth": "planned",
+      "phase": "spec",
+      "topic": "feature",
+      "feature": "004-versioning-compatibility",
+      "path": "specs/004-versioning-compatibility/spec-diagram/compatibility-assessment.html",
+      "source": "specs/004-versioning-compatibility/spec.md",
+      "parent": "feature-004-ledger",
+      "children": [],
+      "related": [
+        "feature-002-skill-metadata-relations"
+      ]
     }
   ]
 }
