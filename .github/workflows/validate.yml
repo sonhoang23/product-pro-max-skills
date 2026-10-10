@@ -64,7 +64,8 @@ jobs:
         with:
           name: spec004-modeling-browser-qa
           path: .tmp-spec004-browser/
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true
       - name: Archive exact browser screenshots and metrics
         if: always()
         uses: actions/upload-artifact@v4
