@@ -205,7 +205,6 @@
       "source_hashes": {
         "tasks.md": "c1a67db37dac0029e3c3befc865689f0ccfeec6d",
         "docs/ARCHITECTURE.md": "125fb26d97b969a3052b075895d6060747eb27c2",
-        "specs/ROADMAP-foundation.md": "74e6adbd473c4272c820dfe19d468a6d6de39693",
         "specs/003-product-pro-max-design-system/qa-evidence.md": "7fc74f5ef733983c5af471bc8e991a275e96c131",
         "specs/003-product-pro-max-design-system/analysis.md": "6c3eef9633edde6a3b58bf0fc94c3d0462f7bf3e",
         "scripts/verify_design_native_zoom.py": "f219bfecb3646c83987ccf582f2d621a4fd6255d"
@@ -235,7 +234,8 @@
         "screen_reader": "NOT_RUN_physical_reader_no_claim",
         "publishing": "NOT_RUN_hosted_deployment_no_claim",
         "catalog_reset_refresh": "2026-10-09: architecture workflow status changed; source fingerprint refreshed; no new browser QA or visual-design acceptance claimed",
-        "spec004_roadmap_refresh": "2026-10-10: Spec 004 specification and new planned roadmap entry, no change to implemented Spec 003 design assets. Scope-based audit; original browser evidence remains pinned to previous runs."
+        "spec004_roadmap_refresh": "2026-10-10: Spec 004 specification and new planned roadmap entry, no change to implemented Spec 003 design assets. Scope-based audit; original browser evidence remains pinned to previous runs.",
+        "global_roadmap_boundary": "2026-10-10 Spec004: cross-feature roadmap is evolving navigation/backlog and not a design-system phase07 semantic source. Removed from Spec003 gate hash set; frozen design-system source contracts and original QA evidence retained."
       },
       "reason": "Phase 7 verified repository presentation delivery with source/static, keyboard, actual native browser zoom and GitHub rendering; no additional relation/flow/state diagram needed. Does not certify a hosted product or physical screen reader."
     },
@@ -284,8 +284,6 @@
         "scripts/migrate_design_system_pilot.py": "32e82da5a3c99717cafccd670639303deb4eb6e1",
         "scripts/verify_design_native_zoom.py": "f219bfecb3646c83987ccf582f2d621a4fd6255d",
         "specs/002-skill-manifest-registry/spec-diagram/skill-metadata-relations.html": "cb2f1720d16e5471a65a57d38c7517f3b805faf5",
-        "docs/diagrams/diagram-index.json": "7f6f4f69a8db40022cba4988f565fb81f25af210",
-        "docs/diagrams/index.html": "b5e5c1c17286f729193e9db5002f79cb3b17e73e",
         "design-system/README.md": "b266df6d7129b2fb0a4fed07ad39148807272390",
         "specs/003-product-pro-max-design-system/analysis.md": "6c3eef9633edde6a3b58bf0fc94c3d0462f7bf3e",
         "specs/003-product-pro-max-design-system/qa-evidence.md": "7fc74f5ef733983c5af471bc8e991a275e96c131",
@@ -318,7 +316,8 @@
         "limitations": "manual_screen_reader_edge_specific_production_not_claimed",
         "next_verification": "Final_commit_CI_runs_to_be_checked_after_git_push",
         "post_converge_readme_illustration": "editorial process hero, no canonical lifecycle semantics changed; git blob b3f51b6d8a71b0457cbb20efdd1511bcbaae7ff8",
-        "spec004_navigation_refresh": "2026-10-10: Diagram Atlas gained one planned Spec 004 entry; prior Spec 003 semantics/QA not changed. Navigation fingerprints refreshed, validate via official CI; do not infer new diagram browser QA from old evidence."
+        "spec004_navigation_refresh": "2026-10-10: Diagram Atlas gained one planned Spec 004 entry; prior Spec 003 semantics/QA not changed. Navigation fingerprints refreshed, validate via official CI; do not infer new diagram browser QA from old evidence.",
+        "global_atlas_boundary": "2026-10-10 Spec004: global Atlas and diagram-index are cross-feature derived navigation; new planned entries must not invalidate completed Spec003 semantic source gate. Atlas/layout checks run repository-wide separately in CI, all Spec003-owned sources remain hash-pinned."
       },
       "reason": "Converged for Spec 003 bounded static repository outputs: all requirements and tasks trace to verified artifacts and scope-specific runtime evidence, no actionable gaps; no new semantic current-state diagram needed. Model Source SHA test covers freshness."
     }
