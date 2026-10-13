@@ -27,7 +27,7 @@
 - [x] Out-of-scope Spec 005/006/008/009 responsibilities are explicitly separated.
 - [x] Canonical Product Model, Skill Model, manifest and derived registry boundaries are preserved.
 - [x] Project documentation impact is specified as planned, not prematurely promoted.
-- [x] No runtime-verification skill found at .agents/skills/runtime-verification/SKILL.md; runtime-sensitive negative cases are covered without technical overreach.
+- [x] Canonical `runtime-verification` v1.12.0 is now synced at `.agents/skills/runtime-verification/`; prevention design and evidence tasks belong to Plan/Tasks, not this requirements checklist.
 
 ## Feature Readiness
 
@@ -39,5 +39,5 @@
 ## Notes
 
 - Self-reviewed for requirements quality on 2026-10-10; checked boxes reflect wording/completeness, not executable test outcomes.
-- **Completed**: clarification review (no blocking questions) and Spec Modeling Gate with evidence recorded in `.modeling-state.json` and `modeling-acceptance.md`. **Deferred**: plan, tasks, compatibility checker implementation, consumer fixture runs, migration tests and product runtime QA.
+- **Completed**: clarification, Spec Modeling Gate, Plan, Plan Modeling Gate (`no-diagram-needed`), Tasks and pre-implementation Analyze. **Deferred**: compatibility implementation, fixtures, migration tests and product runtime QA.
 - All existing product/skill/schema authorities and Spec 009 remain unchanged at this stage.

@@ -25,4 +25,4 @@
 
 ## Gate
 
-`spec = modeled` after the above scoped checks. Gate source fingerprint is stored in `.modeling-state.json`. Further spec edits require freshness reassessment. Plan, tasks and implementation remain deferred.
+`spec = modeled` after the above scoped checks. Gate source fingerprint is stored in `.modeling-state.json`. Further spec edits require freshness reassessment. Plan and Tasks were subsequently created; only implementation, compatibility fixtures, migration proof and product runtime QA remain deferred. Diagram evidence is scoped to the original conceptual model.

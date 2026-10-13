@@ -8,7 +8,7 @@
 
 ## Format: `[ID] [P?] [Story] Description`
 
-Tasks follow consecutive Tnnn identifiers and explicit paths. `[P]` means independent file/setup work within the named phase, not permission to bypass prerequisite phases.
+Task IDs are append-only (`T001`–`T075`); T074/T075 are added to Phase 5 without renumbering previous tasks. Execute by dependency/phase, not ID order alone. `[P]` means independent work within a phase, not permission to bypass prerequisites.
 
 ## Runtime Risk Coverage
 
@@ -16,10 +16,10 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 
 | Risk ID | Status | Requirement refs | Prevention design | Task IDs / N/A | Required evidence |
 |---|---|---|---|---|---|
-| ENV-003 | APPLIES | FR-025–028 | Normalize paths across Windows and Linux | T049 | Required fixture evidence at mapped tasks; not yet run |
-| VERIFY-003 | APPLIES | FR-007–008, FR-027–029 | Bind evidence to commit/digests; rerun stale proof | T047, T071 | Required fixture evidence at mapped tasks; not yet run |
-| VERIFY-008 | APPLIES | FR-024–028 | Fail fast on invalid setup/fixture baseline | T028, T048 | Required fixture evidence at mapped tasks; not yet run |
-| VERIFY-004 | APPLIES | FR-025–027 | Unexpected warnings never count as clean PASS | T050 | Required fixture evidence at mapped tasks; not yet run |
+| ENV-003 | APPLIES | FR-025–028 | Normalize paths across Windows and Linux | T049, T052 | Native Windows + Linux Python 3.12 path/diagnostic parity, with OS, command, revision and exit proof; NOT_RUN |
+| VERIFY-003 | APPLIES | FR-007–008, FR-027–029 | Bind evidence to commit/digests; rerun stale proof | T047, T071 | Source revision/digest mutation invalidates prior PASS; evidence refreshed on final commit; NOT_RUN |
+| VERIFY-008 | APPLIES | FR-024–028 | Fail fast on invalid setup/fixture baseline | T028, T048 | Invalid fixture prerequisites fail fast with root-cause path before evaluating impact; NOT_RUN |
+| VERIFY-004 | APPLIES | FR-025–027 | Unexpected warnings never count as clean PASS | T050 | Inject unexpected warning with child exit 0; no clean verified claim without scoped classification; NOT_RUN |
 | API-001 | NOT_APPLICABLE | No OpenAPI client | Offline file-based checker | N/A: surface absent | Boundary does not exist |
 | DB-002 | NOT_APPLICABLE | No database migration journal | Explicit file-level data migration | N/A: surface absent | Boundary does not exist |
 | STARTUP-001 | NOT_APPLICABLE | No service/port | Offline CLI | N/A: surface absent | Boundary does not exist |
@@ -108,14 +108,16 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 - [ ] T030 [P] [US3] Create isolated legacy/mixed, interrupted and missing-data scenarios in `tests/fixtures/compatibility/migration/README.md`.
 - [ ] T031 [US3] Define migration source/target/receipt/status/recovery schema in `schemas/compatibility-migration.schema.json`.
 - [ ] T032 [US3] Test legacy record parse and no loss of decision history or provenance in `tests/test_compatibility_migrations.py`.
-- [ ] T033 [US3] Implement explicit source/target preflight and safe default dry-run in `scripts/migrate_project_contract.py`.
+- [ ] T033 [US3] After T031/T074/T075, implement source/target preflight, explicit legacy-unversioned classification and default dry-run in `scripts/migrate_project_contract.py`.
 - [ ] T034 [US3] Implement backups/copy-on-write/atomic replacement with reviewed irreversibility exception in `scripts/migrate_project_contract.py`.
 - [ ] T035 [US3] Implement idempotency key, repeated input detection and applied/already_applied/partial/failed receipts in `scripts/migrate_project_contract.py`.
 - [ ] T036 [US3] Verify canonical evidence provenance, assumptions and decision histories after transform in `scripts/migrate_project_contract.py`.
 - [ ] T037 [US3] Inject interrupted-write, retry, out-of-order, mutated-source and partial failure tests in `tests/test_compatibility_migrations.py`.
 - [ ] T038 [US3] Assert assess and dry-run never mutate originals; apply requires explicit command in `tests/test_compatibility_migrations.py`.
 - [ ] T039 [US3] Document recovery, legacy support and never-mass-rewrite guidance in `compatibility/migrations/README.md`.
-- [ ] T040 [US3] After US3 tests and fresh `implementation:phase-05` Modeling Gate, promote implemented durable-data behavior to `docs/ARCHITECTURE.md`.
+- [ ] T074 [US3] After T012/T031, add opt-in `contract_version` to `schemas/project-state.schema.json` and `templates/project-state/project.yaml` for newly created state; preserve unversioned legacy reads, history and source authority (FR-017–020, FR-031).
+- [ ] T075 [US3] After T074, test new/legacy/mixed-version template/schema behavior and no silent rewrite in `tests/test_compatibility_migrations.py`; include `scripts/validate_repo.py` contract integrity evidence before T033/T040.
+- [ ] T040 [US3] After T074/T075 and US3 tests plus fresh `implementation:phase-05` Modeling Gate, promote implemented durable-data behavior to `docs/ARCHITECTURE.md`.
 
 **Checkpoint:** Finish story tests and confirm fresh implementation modeling before any project-doc promotion.
 
@@ -135,10 +137,10 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 - [ ] T046 [US4] Emit deterministic human/JSON reports and machine-readable error codes without touching source files in `scripts/check_compatibility.py`.
 - [ ] T047 [US4] Test stale baseline/candidate commit/hash invalidation and evidence refresh (VERIFY-003) in `tests/test_compatibility_gate.py`.
 - [ ] T048 [US4] Test invalid source/consumer fixture setup fails fast (VERIFY-008) in `tests/test_compatibility_gate.py`.
-- [ ] T049 [US4] Test path separator normalization on Windows/POSIX targets (ENV-003) in `tests/test_compatibility_gate.py`.
+- [ ] T049 [US4] Test diagnostics and path equivalence on native Windows and Linux Python 3.12 (not simulated-only separators; ENV-003) in `tests/test_compatibility_gate.py`.
 - [ ] T050 [US4] Test unexpected warning prevents clean PASS despite exit 0 (VERIFY-004) in `tests/test_compatibility_gate.py`.
 - [ ] T051 [US4] Check read-only integrity using source/registry/project-fixture pre/post hashes in `tests/test_compatibility_gate.py`.
-- [ ] T052 [US4] Integrate negative/positive compatibility checks in Python 3.12 CI `.github/workflows/validate.yml` after fixture validation.
+- [ ] T052 [US4] Integrate positive/negative compatibility checks in Python 3.12 CI `.github/workflows/validate.yml` after fixture validation, including native `windows-latest` parity for T049/ENV-003 alongside Linux.
 - [ ] T053 [US4] After US4 CI and fresh `implementation:phase-06` Modeling Gate, promote verified checker vs Product Model gate semantics to `QUALITY-GATES.md`.
 
 **Checkpoint:** Finish story tests and confirm fresh implementation modeling before any project-doc promotion.
@@ -200,10 +202,10 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 
 - Phase 1 → Phase 2 blocks all stories.
 - US1 independently establishes version owners and SemVer; MVP = Phase 1–3.
-- US2 depends on US1 component identities; US3 depends on version/legacy contract but can parallelize US2 on separate migration script.
-- US4 needs US1/US2 and US3 migration-disposition interfaces before enforcing gate.
+- US2 depends on US1 component identities; US3 can run in parallel after US1 version owners. Explicit US3 path: T012/T031 → T074 → T075 → T033/T040; earlier T032 test scaffolding cannot claim PASS without T075.
+- US4 needs US1/US2 and US3 migration-disposition interfaces before enforcing gate. T045 relies on T031/T033/T074/T075 proof, and T049/T052 need native Windows/Linux evidence.
 - US5 needs US1 support/version and US2 consumer impact; US6 integrates supported baselines, proof status and published/unpublished distinctions.
-- Final Phase 9 follows selected completed story set, full tests, fresh implementation modeling and convergence.
+- Final Phase 9 follows selected completed story set, full tests, fresh implementation modeling and convergence. T071 invalidates affected earlier proof after later edits.
 - Project docs promotion tasks follow each story's verification and fresh `implementation:phase-XX` gate; no planned truth promoted as implemented.
 
 ## Parallel Examples
@@ -220,12 +222,12 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 |---|---|---|
 | US1 / FR-001–006, FR-031 | 2–3 | Per-component version ownership and bump matrix |
 | US2 / FR-007–016, FR-029 | 4 | Strict-reader and dependency-impact scenarios |
-| US3 / FR-017–020 | 5 | Legacy/migration safety and preservation |
-| US4 / FR-024–028 | 6 | CLI classification/diagnostics/exit and CI gate |
+| US3 / FR-017–020, FR-031 | 5 (includes T074/T075) | Legacy migration, versioned project-state schema/template, preservation |
+| US4 / FR-024–028 | 6 | CLI diagnostics/exit and native Windows/Linux CI parity |
 | US5 / FR-021–023 | 7 | Deprecation/removal/exception fixtures |
 | US6 / FR-027, FR-029–032 | 8 | Honest support and documentation discovery |
 | SC-001–010 | 3–9 | Recorded acceptance matrix and proof in `verification.md` |
 
 ## Delivery Strategy
 
-MVP = T001–T019 (Setup → Foundation → US1). Then US2/US3 (consumer and durable-data safety), US4 checker enforcement, US5 lifecycle, US6 discovery, final integration/convergence. Spec 005 evals, Spec 006 governance, Spec 008 release automation and Spec 009 shared-context implementation are excluded.
+MVP = T001–T019. Then US2/US3 (T074/T075 appended), US4, US5, US6 and final convergence. Total: 75 unchecked tasks. Spec 005 evals, Spec 006 governance, Spec 008 release automation and Spec 009 shared-context implementation are excluded.

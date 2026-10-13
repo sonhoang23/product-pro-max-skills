@@ -88,4 +88,4 @@
 
 - **Future:** Spec 005 standardizes evals; Spec 006 approval governance; Spec 008 packaging/releases; Spec 009 consumes saved project context.
 - **No remaining behavioral `NEEDS CLARIFICATION`** from Spec 004; implementation may still discover constraints requiring an upstream amendment. Do not re-interpret evidence/history in technical artifacts.
-- **Operational prerequisite:** satisfied: local canonical `runtime-verification` v1.12.0 synced to `.agents/skills/runtime-verification/` and design risk inventory refreshed from the installed catalog. Continue with Plan Modeling Gate before downstream Tasks. Upstream reference: `sonhoang23/oh-my-skill@fcd9a5b8db9c37673b9bb92d69bf6056af30ec3a:skills/runtime-verification`.
+- **Operational prerequisite:** satisfied: local canonical `runtime-verification` v1.12.0 synced to `.agents/skills/runtime-verification/` and design risk inventory refreshed from the installed catalog. Plan Modeling Gate is `no-diagram-needed`; Tasks and Analyze remediation followed with unchanged technical topology. Upstream reference: `sonhoang23/oh-my-skill@fcd9a5b8db9c37673b9bb92d69bf6056af30ec3a:skills/runtime-verification`.

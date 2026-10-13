@@ -89,6 +89,6 @@ The examples describe a proposed CLI; no execution can pass until the checker, b
 | Proof level | Static / behavior / migrated-in-test / runtime / published, without conflation |
 | Artifact | Stored report/test log link and post-run source revision |
 
-## Handoff to Tasks
+## Post-Tasks Analyze handoff
 
-Run `speckit-tasks-vi` after checking synced runtime-verification and `ensure-model(plan)`. Tasks must trace US1–US6 and FR-001–FR-032, plus ENV-003, VERIFY-003/004/008. Do not generate tasks or implement during this Plan-only request.
+Tasks now include 75 unchecked IDs, six stories, FR-001–032, SC-001–010 and ENV-003/VERIFY-003/004/008. T074/T075 add explicit project-state `contract_version` schema/template rollout and legacy regression checks; T049/T052 require native Windows/Linux parity proof. This document remains expected behavior only; no feature implementation or compatibility runtime PASS claimed.

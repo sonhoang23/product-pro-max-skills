@@ -24,7 +24,7 @@ Define independently owned component versions and a fail-closed, evidence-scoped
 
 **Pre-design:** PASS (design intent). Evidence boundaries, preservation of gate vs decision, canonical Product Model/Skill Model ownership, English machine IDs, minimal surface area, and no promotion of planned truth follow the constitution.
 
-**Post-design:** PASS (design consistency only). No business behavior/ontology rewrite; projections remain derived; CI verdict is not Product Model gate or a publication state; incomplete assessments are non-green. Implementation/runtime compliance remains pending; missing local runtime-verification skill must be synced before downstream tasks.
+**Post-design:** PASS (design consistency only). No business behavior/ontology rewrite; projections remain derived; CI verdict is not Product Model gate or a publication state; incomplete assessments are non-green. Implementation/runtime compliance remains pending; local `runtime-verification` v1.12.0 was synced before Tasks.
 
 ## Project Structure
 
@@ -42,7 +42,7 @@ specs/004-versioning-compatibility/
   contracts/
     compatibility-assessment.md
   quickstart.md           # planned validation; not runnable proof yet
-  tasks.md                # NOT created by Plan
+  tasks.md                # created in Tasks stage; 75 tasks after Analyze remediation
 ```
 
 ### Proposed implementation locations (NOT created in Plan)
@@ -125,5 +125,5 @@ After implementation plus relevant static/runtime evidence and fresh implementat
 
 - Spec 001/002 contracts remain authoritative; Spec 003 design is unrelated; Spec 009 is future consumer.
 - This spec implements compatibility policy/checker only. Spec 005 owns broad evals; Spec 006 owns governance/reviewer workflow; Spec 008 owns release/tag/changelog automation.
-- **Before Tasks:** local `runtime-verification` is synced and design risk inventory rechecked; ensure Plan Modeling Gate via `speckit-system-modeling-vi`, then create tasks and analyze. No claim of having invoked a filesystem-local script or of implementation evidence.
+- **Post-Tasks/Analyze:** local `runtime-verification` is synced, Plan Modeling Gate is `no-diagram-needed`, and 75 tasks are cross-checked. Project-state migration rollout and native OS parity are task obligations, not a new deployment topology. No local PowerShell prerequisite or feature runtime test execution claimed.
 - No implementation or CI execution is claimed by these artifacts.
