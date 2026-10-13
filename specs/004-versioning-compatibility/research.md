@@ -10,7 +10,7 @@
 - `schemas/project-state.schema.json` requires project/cycle/phase/status/updated_at, allows additional top-level properties, but has no explicit persisted contract-version marker. Durable evidence/decision semantics also live in their own schemas/templates.
 - `skills-lock.json.version: 1` is a lock representation marker; `registry/skills.json.registry_version: 1` is a registry format marker, not SemVer proof.
 - Existing CI uses Python 3.12; `requirements-registry.txt` pins PyYAML 6.0.2 and existing scripts perform repository and registry validation. No new service, database or release mechanism is needed.
-- Spec Modeling Gate is fresh, and `.specify/extensions.yml` is absent. Companion `*-template-guardrails` is absent. Local runtime-verification skill is absent; upstream canonical v1.12.0 was inspected as a design reference, not invoked locally.
+- Spec Modeling Gate is fresh, and `.specify/extensions.yml` is absent. Companion `*-template-guardrails` is absent. Local runtime-verification consumer copy is now synced (16 canonical source files from `sonhoang23/oh-my-skill` commit `fcd9a5b8db9c37673b9bb92d69bf6056af30ec3a`, v1.12.0); local design risk inventory references the installed catalog. No actual product runtime verification is implied.
 
 ## R1 — Component-specific version owners
 
@@ -88,4 +88,4 @@
 
 - **Future:** Spec 005 standardizes evals; Spec 006 approval governance; Spec 008 packaging/releases; Spec 009 consumes saved project context.
 - **No remaining behavioral `NEEDS CLARIFICATION`** from Spec 004; implementation may still discover constraints requiring an upstream amendment. Do not re-interpret evidence/history in technical artifacts.
-- **Operational prerequisite:** install/sync canonical `runtime-verification` to `.agents/skills/runtime-verification/` and run `design` mode before downstream tasks. Its absence is not a license to invent canonical Risk IDs. Upstream reference: `sonhoang23/oh-my-skill@main:skills/runtime-verification` v1.12.0.
+- **Operational prerequisite:** satisfied: local canonical `runtime-verification` v1.12.0 synced to `.agents/skills/runtime-verification/` and design risk inventory refreshed from the installed catalog. Continue with Plan Modeling Gate before downstream Tasks. Upstream reference: `sonhoang23/oh-my-skill@fcd9a5b8db9c37673b9bb92d69bf6056af30ec3a:skills/runtime-verification`.

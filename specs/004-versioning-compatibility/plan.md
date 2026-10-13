@@ -92,7 +92,7 @@ See [research.md](research.md). Records decisions and rejected alternatives abou
 
 ## Runtime Risk Design
 
-**Catalog source:** reviewed `sonhoang23/oh-my-skill@main:skills/runtime-verification` v1.12.0, `references/lifecycle-profile.md`, `catalog-index.md`, relevant `environment.md` and `verification-tooling.md`. The consumer path `.agents/skills/runtime-verification/SKILL.md` is **ABSENT** in this repo; assessment below is manually derived from upstream, **not** a claim of local skill invocation. Sync canonical skill before Tasks and refresh inventory in the supported runtime-verification design mode.
+**Catalog source:** reviewed `sonhoang23/oh-my-skill@main:skills/runtime-verification` v1.12.0, `references/lifecycle-profile.md`, `catalog-index.md`, relevant `environment.md` and `verification-tooling.md`. The consumer path `.agents/skills/runtime-verification/SKILL.md` is now **PRESENT**, synced from canonical `oh-my-skill` at commit `fcd9a5b8db9c37673b9bb92d69bf6056af30ec3a` (v1.12.0). Design inventory below was rechecked against installed `lifecycle-profile.md`, `catalog-index.md`, `environment.md`, and `verification-tooling.md`. This is a read-only design-mode evaluation, **not** runtime execution or acceptance.
 
 | Risk ID | Status | Requirement refs | Evidence/trigger | Prevention design | Verification strategy |
 |---|---|---|---|---|---|
@@ -106,7 +106,7 @@ See [research.md](research.md). Records decisions and rejected alternatives abou
 
 **Feature-specific risks (not canonical catalog IDs):** strict YAML unknown-field rejection during version-field rollout; closed-enum additivity; human semantic approval incorrectly treated as machine-proof; migration interrupted after file replacement; absent externally deployed consumer inventory; conflicting support lifecycle and version range. Each has a named fixture/negative path in the contract and quickstart.
 
-**Catalog freshness condition:** upstream may change; before Tasks re-read canonical version and sync `.agents/skills/runtime-verification/`; preserve canonical Risk IDs and re-evaluate false-N/A. No `NEEDS_UPSTREAM` domain ambiguity identified in Spec 004; missing **local tooling** is recorded as downstream prerequisite rather than invented requirements.
+**Catalog freshness condition:** local canonical consumer copy was synced before Tasks (16 files); before task generation check its installed version/source and re-evaluate false-N/A, preserving canonical Risk IDs. No `NEEDS_UPSTREAM` domain ambiguity identified in Spec 004; missing **local tooling** is recorded as downstream prerequisite rather than invented requirements.
 
 ## Verification and evidence gates (planned, not run)
 
@@ -125,5 +125,5 @@ After implementation plus relevant static/runtime evidence and fresh implementat
 
 - Spec 001/002 contracts remain authoritative; Spec 003 design is unrelated; Spec 009 is future consumer.
 - This spec implements compatibility policy/checker only. Spec 005 owns broad evals; Spec 006 owns governance/reviewer workflow; Spec 008 owns release/tag/changelog automation.
-- **Before Tasks:** sync local `runtime-verification`, refresh design risk inventory; ensure Plan Modeling Gate via `speckit-system-modeling-vi`, then create tasks and analyze. Avoid declaring task readiness while local dependency absent.
+- **Before Tasks:** local `runtime-verification` is synced and design risk inventory rechecked; ensure Plan Modeling Gate via `speckit-system-modeling-vi`, then create tasks and analyze. No claim of having invoked a filesystem-local script or of implementation evidence.
 - No implementation or CI execution is claimed by these artifacts.

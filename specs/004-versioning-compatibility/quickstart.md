@@ -7,7 +7,7 @@
 1. Work from a pinned clean checkout on `main`; record final commit/revision and modified paths.
 2. Verify Spec 004 `spec = modeled` state remains fresh; the diagram's CI QA covers only the diagram.
 3. Python 3.12 available. Existing `requirements-registry.txt` pins PyYAML 6.0.2; installation is a separate environment mutation, not an implicit step of read-only assessment.
-4. Sync `sonhoang23/oh-my-skill@main:skills/runtime-verification` into local `.agents/skills/runtime-verification/` before Tasks, read canonical catalog in `design` mode and refresh the Risk ID inventory. At Plan time it is missing locally.
+4. Canonical `runtime-verification` v1.12.0 is synced at `.agents/skills/runtime-verification/` from upstream commit `fcd9a5b8db9c37673b9bb92d69bf6056af30ec3a`; recheck inventory freshness at Tasks time. This is a repo skill copy, not product test evidence.
 5. No production project data; use disposable fixture directories with backups.
 
 ## Planned implementation entrypoints
@@ -91,4 +91,4 @@ The examples describe a proposed CLI; no execution can pass until the checker, b
 
 ## Handoff to Tasks
 
-Run `speckit-tasks-vi` only after local runtime-verification sync and `ensure-model(plan)`. Tasks must trace US1–US6 and FR-001–FR-032, plus ENV-003, VERIFY-003/004/008. Do not generate tasks or implement during this Plan-only request.
+Run `speckit-tasks-vi` after checking synced runtime-verification and `ensure-model(plan)`. Tasks must trace US1–US6 and FR-001–FR-032, plus ENV-003, VERIFY-003/004/008. Do not generate tasks or implement during this Plan-only request.
