@@ -79,7 +79,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "ccb2199d556fef4dc4379a2fafa109d647bfff2c"
+        "tasks.md": "f2d63546d9b846d95f9289f817f34a9a94eaa8a4"
       },
       "outputs": [],
       "diagram_check": {
@@ -97,7 +97,7 @@
     "implementation:phase-01": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "ccb2199d556fef4dc4379a2fafa109d647bfff2c",
+        "tasks.md": "f2d63546d9b846d95f9289f817f34a9a94eaa8a4",
         "specs/004-versioning-compatibility/implementation-inventory.md": "b83a7f5f7ef82377f17037d7bb3f94e24d489353",
         "tests/fixtures/compatibility/README.md": "ff0d93f44a5a7dc97e837ba54432e04795530ac0",
         "compatibility/README.md": "af4da9741421cf5c80477ce724edcd70ce688cc4",
@@ -120,7 +120,7 @@
     "implementation:phase-02": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "ccb2199d556fef4dc4379a2fafa109d647bfff2c",
+        "tasks.md": "f2d63546d9b846d95f9289f817f34a9a94eaa8a4",
         "schemas/supported-baselines.schema.json": "212d7910e7cd5d29243d8f03222ed2a22f8de9b4",
         "scripts/compatibility_common.py": "918b9510c5e95a81b0e71b5b4ec51896ea97abc4",
         "compatibility/supported-baselines.json": "10b2cad2693a493b1e06023eceaea022de897c4b",
@@ -146,7 +146,7 @@
     "implementation:phase-03": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "ccb2199d556fef4dc4379a2fafa109d647bfff2c",
+        "tasks.md": "f2d63546d9b846d95f9289f817f34a9a94eaa8a4",
         "scripts/compatibility_common.py": "92a60683179974a358032d550296ef96398f4680",
         "scripts/skill_registry_common.py": "ca69bc35cca28970227bfc009492caf96b23475f",
         "scripts/generate_skill_registry.py": "e76e5c84ba39d781d248cd9c4b82f68a131616db",
@@ -168,7 +168,13 @@
         "repository": "PASS Validate #38375925767",
         "feature_runtime": "NOT_RUN",
         "scope": "US1 T010-T017 verified; T018/T019 promotion pending",
-        "evidence": "verification.md"
+        "evidence": "verification.md",
+        "post_promotion": "Promoted source-backed Product/Skill Model + strict parser contract docs; final revision CI pending",
+        "project_docs": [
+          "PRODUCT-MODEL.md",
+          "SKILL-MODEL.md",
+          "SKILL-CONTRACT.md"
+        ]
       },
       "reason": "US1 technical implementation source verified; no additional implementation diagram needed before project documentation promotion."
     }

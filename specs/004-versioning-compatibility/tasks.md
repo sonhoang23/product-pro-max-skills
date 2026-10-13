@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T017 CI verified (17/75 checked); documentation promotion T018/T019 pending.
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (19/75 checked); final docs-revision CI pending.
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -71,8 +71,8 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 - [x] T015 [US1] Check future workflow version semantics without fabricating a published workflow in `tests/test_compatibility_versions.py`.
 - [x] T016 [US1] Author versioning, 0.x, first-baseline and publication evidence policy in `VERSIONING.md`.
 - [x] T017 [US1] Test higher-precedence bump and unrelated `registry_version`/`skills-lock.json.version`/README differences in `tests/test_compatibility_versions.py`.
-- [ ] T018 [US1] After US1 tests and fresh `implementation:phase-03` Modeling Gate, promote implemented model version policy in `PRODUCT-MODEL.md`.
-- [ ] T019 [US1] After US1 tests and fresh `implementation:phase-03` Modeling Gate, promote implemented skill authority rules in `SKILL-MODEL.md`.
+- [x] T018 [US1] After US1 tests and fresh `implementation:phase-03` Modeling Gate, promote implemented model version policy in `PRODUCT-MODEL.md`.
+- [x] T019 [US1] After US1 tests and fresh `implementation:phase-03` Modeling Gate, promote implemented skill authority rules in `SKILL-MODEL.md`.
 
 **Checkpoint:** Finish story tests and confirm fresh implementation modeling before any project-doc promotion.
 

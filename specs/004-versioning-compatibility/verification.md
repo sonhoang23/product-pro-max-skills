@@ -39,3 +39,10 @@ Phase 2 T004–T009 remains pending. All feature runtime risk evidence for ENV-0
 - **Boundaries:** command outputs prove only parser/owner/recommendation semantics and registry backward compatibility; **no** consumer impact checker, publication, migration, end-user runtime execution or Windows native proof. Risk ENV-003 and VERIFY-003/004/008 remain scheduled at later phases.
 - **Modeling assessment:** `implementation:phase-03 = no-diagram-needed`: single offline Python module + existing manifest/registry reader; canonical authority unchanged, relationship/implementation scope already captured by plan and data-model. No runtime topology or actor interactions newly created.
 - **Promotion checkpoint:** T018/T019 still unchecked pending fresh implementation modeling gate. Only promote verified ownership/legacy source-reading behavior, not future consumer graph/compatibility gate.
+
+### US1 project-documentation promotion (T018–T019)
+
+- Phase 3 source/test gate at `c135315` was `implementation:phase-03 = no-diagram-needed`, derived from passed technical checks at `a7c43b3`. This gate was checked before project documentation changes.
+- Promoted only implemented source-owned version semantics to `PRODUCT-MODEL.md`, `SKILL-MODEL.md`, and affected strict-parser field contract `SKILL-CONTRACT.md`. No release/publication, consumer graph or migration functionality is presented as implemented.
+- `VERSIONING.md` distinguishes implemented US1 code from planned migration/compatibility/deprecation. No new diagram needed; the existing conceptual diagram remains planned.
+- Documentation-commit aggregate CI must be checked before final Phase 3 PASS claim; this section does not claim it has already passed.

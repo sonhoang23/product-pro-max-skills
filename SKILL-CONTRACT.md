@@ -16,6 +16,7 @@ Every canonical distributable skill lives at `skills/<primary_cycle>/ppmax-<slug
 | `id` | required, unique `ppmax-<slug>`, lowercase ASCII kebab-case |
 | `namespace` | exactly `product-pro-max` |
 | `slug` | required, unique unprefixed lowercase ASCII kebab-case |
+| `version` | optional while legacy manifests remain supported; when present, strict SemVer 2.0.0; owned by manifest, not SKILL.md or registry |
 | `description` | required nonempty English summary |
 | `primary_cycle` | exactly one valid Product Model cycle; path grouping matches |
 | `lifecycle` | nonempty list of `{cycle, phase?}`; primary cycle included, phase belongs to cycle |
@@ -26,13 +27,13 @@ Every canonical distributable skill lives at `skills/<primary_cycle>/ppmax-<slug
 | `related_skills` | list of unique `{skill_id, type}`, target must exist |
 | `workflows` | list of unique `{workflow_id, role}`, workflow ID must exist |
 
-Unknown fields and wrong types must be rejected rather than silently ignored. Duplicate YAML keys and unsafe tags must fail safe parsing; errors must identify a path and reason. Canonical skill directory, manifest ID and `SKILL.md` frontmatter name must be identical. `semantic_kind` vocabulary for Spec 002 is `evidence`, `gate`, `decision`; gates and decisions stay distinct and canonical IDs (if referenced) come from Product Model.
+Unknown fields (other than the newly recognized optional `version`) and wrong types must be rejected rather than silently ignored. Duplicate YAML keys and unsafe tags must fail safe parsing; errors must identify a path and reason. Canonical skill directory, manifest ID and `SKILL.md` frontmatter name must be identical. `semantic_kind` vocabulary for Spec 002 is `evidence`, `gate`, `decision`; gates and decisions stay distinct and canonical IDs (if referenced) come from Product Model.
 
 Relation types are only `prerequisite`, `complements`, `produces-input-for` as defined in `SKILL-MODEL.md`. Self-links, unknown references, duplicates and contradictory relations fail. Workflow membership is discovery-only, not orchestration.
 
 Only `skills/` is distributable. `.agents/` development skills are excluded. `registry/skills.json` is generated deterministically from all valid manifests, sorted by ID. `generate` validates everything before an atomic write; `check` compares byte-for-byte without writing. Missing manifests and incomplete coverage fail validation.
 
-General compatibility/deprecation/version policy, evaluations, release policy, catalog UI and ranking are outside Spec 002.
+Compatibility/deprecation policy is now scoped in Spec 004 [VERSIONING.md](VERSIONING.md); full compatibility assessor and release enforcement remain unimplemented. Evaluations, release automation, catalog UI and ranking are outside Spec 002.
 
 ## Required sections
 

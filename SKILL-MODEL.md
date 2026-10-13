@@ -12,6 +12,13 @@
 - **Product Model:** authoritative lifecycle and evidence gate/decision vocabulary; a skill cannot invent canonical cycles, phases, tracks, gates or decisions.
 - **Workflow:** `workflows/<workflow-id>/workflow.yaml` owns orchestration and transition order. A skill may reference workflow membership for discovery, but cannot redefine its steps or transitions.
 
+
+## Component version ownership (Spec 004 US1)
+
+Each distributable skill's stable `ppmax-<slug>` identity is distinct from its version. The sibling `manifest.yaml.version` is the canonical version metadata when supplied; the companion `SKILL.md` remains authoritative for workflow behavior, evidence obligations, trigger exclusions, output semantics and stopping rules. The registry is still a deterministic projection, and `registry_version` or `skills-lock.json.version` is not a skill version.
+
+The strict reader now recognizes **optional SemVer `version`** for new versioned manifests while retaining an explicit legacy-unversioned state when the key is missing. Invalid SemVer, unknown metadata keys, duplicate YAML keys and unsafe YAML still fail; absence of `version` is not silently interpreted as a current supported release. No distributable skills are currently published. Consumer compatibility checking and version requirement enforcement are future Spec 004 tasks, not claims made by this metadata rollout. See [VERSIONING.md](VERSIONING.md).
+
 ## Identity and placement
 
 The canonical namespace is `product-pro-max`. Each distributable skill uses `id: ppmax-<slug>`, with one unprefixed lowercase ASCII kebab-case `slug`. Folder, manifest ID and SKILL.md frontmatter `name` agree.
@@ -44,7 +51,7 @@ A `workflows` relationship names an existing canonical workflow ID and a discove
 
 ## Change discipline
 
-Changing labels, folder names or metadata for migration must preserve bounded responsibility, trigger intent, evidence requirements, outputs and workflow behavior. Versioning/deprecation, skill evaluation policy, releases, catalog UI and search ranking belong to later foundation specs.
+Changing labels, folder names or metadata for migration must preserve bounded responsibility, trigger intent, evidence requirements, outputs and workflow behavior. Versioning/deprecation policy belongs to Spec 004 ([VERSIONING.md](VERSIONING.md)); skill evaluation, releases, catalog UI and search ranking remain separate later-spec responsibilities.
 
 ## Comparable discovery contract (US2)
 

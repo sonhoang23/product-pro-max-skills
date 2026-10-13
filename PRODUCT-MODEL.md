@@ -115,3 +115,9 @@ When shared lifecycle semantics change:
 4. only then update derived documentation.
 
 Do not add a canonical lifecycle term only to README, a diagram, an example, or a dependent schema.
+
+## Component version and compatibility (Spec 004 US1)
+
+`model/product-model.json.model_version` is the **independent Product Model contract version**. The currently recorded `1.0.0` identifies this model; it does **not** establish that skills or workflows were published, or that all historical consumers are compatible. The Product Model still owns lifecycle and gate/decision semantics; registry format markers, installer locks, documentation and presentation tokens do not increment its version automatically.
+
+The implemented offline SemVer and source-owner helpers in `scripts/compatibility_common.py` validate version syntax/precedence and recommend a version increment **only from an explicitly assessed impact**. They do not yet compare model revisions or prove behavioral compatibility. Version policy and future supported-baseline/migration obligations are in [VERSIONING.md](VERSIONING.md). Existing validation requirements above remain in effect; a breaking ID/meaning change still requires assessment of known consumers before a positive compatibility claim.
