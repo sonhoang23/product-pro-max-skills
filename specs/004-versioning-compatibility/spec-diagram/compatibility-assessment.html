@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="ppmax-token-revision" content="0.1.0"><title>Spec 004 · Mô hình đánh giá tương thích</title><style>:root{color-scheme:light;--surface:#F7F9F4;--elevated:#FFFFFF;--ink:#17201B;--muted:#3D5146;--border:#54655B;--edge:#536158;--link:#1B5D3A;--focus:#25581E;--lime:#A3FF47;--accent-surface:#EAFBD6}*{box-sizing:border-box}body{background:var(--surface);color:var(--ink);font:16px/1.55 "Segoe UI",Arial,sans-serif;margin:0;padding:28px}main{max-width:1180px;margin:0 auto}h1{font-size:clamp(1.3rem,2.8vw,2rem);line-height:1.2;margin:10px 0}p,footer{color:var(--muted)}nav{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:18px;font-size:14px}a{color:var(--link);text-underline-offset:3px}a:focus-visible,.panel:focus-visible{outline:3px solid var(--focus);outline-offset:4px}.panel{background:var(--elevated);border:1px solid var(--border);border-radius:8px;padding:12px;overflow-x:auto}.panel svg{min-width:850px;display:block;width:100%;height:auto}svg text{font-family:"Segoe UI",Arial,sans-serif;fill:#17201B}svg .node{fill:#FFFFFF;stroke:#54655B;stroke-width:2}svg .node.focus{fill:#EAFBD6;stroke:#54655B;stroke-width:2.5}svg .edge{fill:none;stroke:#536158;stroke-width:2.5;marker-end:url(#ppmax004-arrow)}svg .tag{font-size:13px;letter-spacing:.7px;fill:#405748}svg .node-title{font-size:22px;font-weight:650}svg .body-text{font-size:16px;fill:#3D5146}svg .foot{font-size:14px;fill:#3D5146}footer{margin-top:16px;font-size:14px}@media(max-width:650px){body{padding:14px}.panel{padding:8px}nav{gap:10px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}</style></head><body><main>
+<nav><a href="../../../docs/diagrams/index.html">Diagram Atlas</a><a href="../diagrams.html">Feature Ledger</a><a href="../diagrams.html#spec">Parent: Spec 004</a><a href="../../002-skill-manifest-registry/diagrams.html">Related: Spec 002</a></nav>
+<h1>Đánh giá tương thích dựa trên bằng chứng</h1>
+<p>Spec 004 · <strong>planned truth</strong> · nguồn thẩm quyền: <code>specs/004-versioning-compatibility/spec.md</code> · US1, US2, US4 · FR-001–FR-014, FR-024–FR-029.</p>
+<p>Ở màn hình hẹp, cuộn ngang bên trong khung để xem đầy đủ.</p>
+<div class="panel" tabindex="0" role="region" aria-label="Sơ đồ đánh giá tương thích có thể cuộn ngang">
+
+<svg viewBox="0 0 1160 700" role="img" aria-labelledby="ppmax004-title ppmax004-desc">
+<title id="ppmax004-title">Mô hình đánh giá tương thích theo baseline và consumer</title>
+<desc id="ppmax004-desc">Ba đầu vào gồm thay đổi thành phần, baseline được hỗ trợ và consumer/dependency đã biết cùng đi vào đánh giá tương thích. Kết quả là một trong bốn loại: tương thích, breaking, cần review hoặc chưa đánh giá. Các loại phân loại này không phải Gate result pass warn fail. Nghĩa vụ migration và deprecation được quyết định theo phạm vi tác động.</desc>
+<defs><marker id="ppmax004-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#536158"/></marker></defs>
+<rect class="node" x="25" y="35" width="348" height="145" rx="7"/><text x="45" y="62" class="tag">CHANGE · FR-001–FR-010</text><text x="45" y="92" class="node-title">Thành phần đề xuất</text><text x="45" y="118" class="body-text">Version · ID · semantics</text>
+<rect class="node" x="405" y="35" width="348" height="145" rx="7"/><text x="425" y="62" class="tag">REFERENCE · FR-005–FR-009</text><text x="425" y="92" class="node-title">Baseline hỗ trợ</text><text x="425" y="118" class="body-text">Phiên bản và cam kết được biết</text>
+<rect class="node" x="785" y="35" width="348" height="145" rx="7"/><text x="805" y="62" class="tag">SCOPE · FR-012–FR-014</text><text x="805" y="92" class="node-title">Consumer / dependency</text><text x="805" y="118" class="body-text">Reader nghiêm ngặt · giới hạn biết</text>
+<path class="edge" d="M199 180 V212 H464 V247"/>
+<path class="edge" d="M579 180 V247"/>
+<path class="edge" d="M959 180 V212 H694 V247"/>
+<rect class="node focus" x="359" y="247" width="440" height="135" rx="7"/><text x="379" y="274" class="tag">ASSESS · FR-024–FR-029</text><text x="379" y="304" class="node-title">Đánh giá tương thích</text><text x="379" y="330" class="body-text">Diff cấu trúc + thay đổi ngữ nghĩa</text>
+<text x="379" y="353" class="body-text">Dẫn chứng rõ phạm vi đã kiểm chứng</text>
+<path class="edge" d="M429 382 V415 H150 V470"/>
+<path class="edge" d="M529 382 V447 H435 V470"/>
+<path class="edge" d="M629 382 V447 H725 V470"/>
+<path class="edge" d="M729 382 V415 H1010 V470"/>
+<rect class="node" x="22" y="470" width="258" height="144" rx="7"/><text x="42" y="497" class="tag">COMPATIBLE</text><text x="42" y="527" class="node-title">Tương thích</text><text x="42" y="553" class="body-text">Không phá vỡ consumer</text>
+<text x="42" y="576" class="body-text">trong phạm vi có bằng chứng</text>
+<rect class="node" x="309" y="470" width="258" height="144" rx="7"/><text x="329" y="497" class="tag">INCOMPATIBLE</text><text x="329" y="527" class="node-title">Breaking</text><text x="329" y="553" class="body-text">Nêu consumer bị ảnh hưởng</text>
+<text x="329" y="576" class="body-text">và nghĩa vụ migration</text>
+<rect class="node" x="596" y="470" width="258" height="144" rx="7"/><text x="616" y="497" class="tag">REVIEW-REQUIRED</text><text x="616" y="527" class="node-title">Cần review</text><text x="616" y="553" class="body-text">Không thể chứng minh hành vi</text>
+<text x="616" y="576" class="body-text">bằng structural diff</text>
+<rect class="node" x="883" y="470" width="258" height="144" rx="7"/><text x="903" y="497" class="tag">UNASSESSED</text><text x="903" y="527" class="node-title">Chưa đánh giá</text><text x="903" y="553" class="body-text">Thiếu baseline / dependency</text>
+<text x="903" y="576" class="body-text">không được tự nhận PASS</text>
+<text x="580" y="651" text-anchor="middle" class="foot">Migration / deprecation: nghĩa vụ được xác định theo ảnh hưởng, không phải bước tự động cho mọi thay đổi.</text>
+<text x="580" y="677" text-anchor="middle" class="foot">Change classification ≠ Product Model gate (pass / warn / fail) ≠ workflow decision.</text>
+</svg>
+</div>
+<p>Bốn phân loại phản ánh kết luận đánh giá, không phải trạng thái <code>pass/warn/fail</code> của Product Model. Một kết luận chỉ đúng với baseline, dependency và bằng chứng đã kiểm tra.</p>
+<footer>Source metadata: specs/004-versioning-compatibility/spec.md · Linked model: Spec 002 Skill Manifest Registry · QA trực quan/runtime cần được ghi nhận riêng. Không mô tả capability đã triển khai.</footer>
+</main></body></html>
