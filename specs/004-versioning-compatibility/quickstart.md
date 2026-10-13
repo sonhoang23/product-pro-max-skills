@@ -1,6 +1,6 @@
 # Quickstart — Planned Compatibility Validation
 
-**Status:** foundation and US1 SemVer/source-owner/legacy manifest parser implemented and tested; full compatibility assessor, consumer graph, migrations and deprecation checks are **not** implemented. The matrix below remains future acceptance design. See [verification.md](verification.md) for exact revision-bound Phase 1/2 evidence.
+**Status:** foundation, US1 and Phase 4 US2 offline consumer impact library implemented and tested. End-to-end compatibility assessor CLI, migrations, deprecation and release checks are **not** implemented. The matrix below remains future acceptance design. See [verification.md](verification.md) for exact revision-bound Phase 1/2 evidence.
 
 ## Preconditions
 
@@ -21,6 +21,17 @@ python -m unittest discover -s tests -p 'test_skill_manifest_contract.py' -v
 ```
 
 The 10 foundation tests cover an empty ledger, duplicate/malformed JSON, invalid IDs/paths/SemVer, source digest/ref mismatch and local Git verification. Seven US1 tests check SemVer ordering, pre-1.0 bump rules, source version owners and unrelated registry/lockfile changes. The manifest contract suite covers strict metadata plus optional `manifest.version` and legacy-unversioned classification. These checks **do not** establish compatibility of a proposed change.
+
+## Existing Phase 4 consumer impact tests (executable)
+
+```shell
+python -m unittest discover -s tests -p 'test_compatibility_consumers.py' -v
+```
+
+Fifteen synthetic tests cover strict/lenient reader evidence, output removal, canonical IDs,
+schema requiredness/shape, semantic review, constraint mismatch/cycle and invalid fixture
+preflight (VERIFY-008). The CI repository job executes this suite under Python 3.12.
+The library is not yet exposed by an end-to-end `check_compatibility.py` command.
 
 ## Future compatibility checker (NOT implemented)
 

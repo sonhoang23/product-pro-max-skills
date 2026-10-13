@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (19/75 checked); final docs-revision CI PASS at 31bfd4a (19/75 verified).
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (28/75 checked; US2 T020–T028 source verified on e3f4e71; T029 doc promotion pending post-Modeling Gate.
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -84,15 +84,15 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 
 **Independent Test:** Closed enum, added required field, removed output, changed canonical ID, unknown baseline or consumer and conflicts get bounded verdicts.
 
-- [ ] T020 [P] [US2] Add strict/lenient, closed-enum, changed-ID and missing-consumer fixture definitions in `tests/fixtures/compatibility/README.md`.
-- [ ] T021 [US2] Test tolerant/strict reader and removed output/unknown baseline expectations in `tests/test_compatibility_consumers.py`.
-- [ ] T022 [US2] Enumerate canonical known consumers and version-constrained dependency edges in `scripts/compatibility_common.py`.
-- [ ] T023 [US2] Diff schema requiredness, output names, Product Model IDs/relationships and expected file shapes in `scripts/compatibility_common.py`.
-- [ ] T024 [US2] Check strict reader support before treating additive enum, optional field or new metadata as compatible in `scripts/compatibility_common.py`.
-- [ ] T025 [US2] Check version ranges, unsupported provider, missing dependency, conflicting range and cycle in `scripts/compatibility_common.py`.
-- [ ] T026 [US2] Keep semantic trigger/exclusion, evidence rules, stopping conditions and gate/decision changes review-required without behavioral proof in `scripts/compatibility_common.py`.
-- [ ] T027 [US2] Emit impacted consumer, source path, offending change, classification and next action in `scripts/compatibility_common.py`.
-- [ ] T028 [US2] Fail-fast invalid fixture setup (VERIFY-008); assert unknown external readers remain unassessed in `tests/test_compatibility_consumers.py`.
+- [x] T020 [P] [US2] Add strict/lenient, closed-enum, changed-ID and missing-consumer fixture definitions in `tests/fixtures/compatibility/README.md`.
+- [x] T021 [US2] Test tolerant/strict reader and removed output/unknown baseline expectations in `tests/test_compatibility_consumers.py`.
+- [x] T022 [US2] Enumerate canonical known consumers and version-constrained dependency edges in `scripts/compatibility_common.py`.
+- [x] T023 [US2] Diff schema requiredness, output names, Product Model IDs/relationships and expected file shapes in `scripts/compatibility_common.py`.
+- [x] T024 [US2] Check strict reader support before treating additive enum, optional field or new metadata as compatible in `scripts/compatibility_common.py`.
+- [x] T025 [US2] Check version ranges, unsupported provider, missing dependency, conflicting range and cycle in `scripts/compatibility_common.py`.
+- [x] T026 [US2] Keep semantic trigger/exclusion, evidence rules, stopping conditions and gate/decision changes review-required without behavioral proof in `scripts/compatibility_common.py`.
+- [x] T027 [US2] Emit impacted consumer, source path, offending change, classification and next action in `scripts/compatibility_common.py`.
+- [x] T028 [US2] Fail-fast invalid fixture setup (VERIFY-008); assert unknown external readers remain unassessed in `tests/test_compatibility_consumers.py`.
 - [ ] T029 [US2] After US2 tests and fresh `implementation:phase-04` Modeling Gate, promote demonstrated strict-reader and dependency rules in `SKILL-CONTRACT.md`.
 
 **Checkpoint:** Finish story tests and confirm fresh implementation modeling before any project-doc promotion.
