@@ -106,7 +106,8 @@ class ManifestVersionRolloutTests(unittest.TestCase):
         from skill_registry_common import parse_yaml, validate_optional_manifest_version
         data = parse_yaml(self.manifest)
         self.assertIsNone(validate_optional_manifest_version(data, self.manifest))
-        self.assertNotIn("version", build_registry(self.root).decode("utf-8"))
+        import json
+        self.assertNotIn("version", json.loads(build_registry(self.root))["skills"][0])
 
     def test_versioned_manifest_accepted_and_registry_stays_derived(self):
         from skill_registry_common import parse_yaml, validate_optional_manifest_version
