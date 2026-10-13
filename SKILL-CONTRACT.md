@@ -35,6 +35,40 @@ Only `skills/` is distributable. `.agents/` development skills are excluded. `re
 
 Compatibility/deprecation policy is now scoped in Spec 004 [VERSIONING.md](VERSIONING.md); full compatibility assessor and release enforcement remain unimplemented. Evaluations, release automation, catalog UI and ranking are outside Spec 002.
 
+## Consumer compatibility checks (Spec 004 — US2)
+
+The implemented Python library in `scripts/compatibility_common.py` inspects
+**declared** consumer dependencies and compares structural/semantic snapshots.
+It is not yet an end-to-end release gate or proof of published support.
+There are still no published distributable skills.
+
+- A known consumer declares `consumer_id`, provider identity, source path,
+  version range, required outputs/features, reader strictness and scope.
+  Repo-local readers reveal code surfaces only, not accepted versions,
+  release evidence or externally deployed consumers.
+- A newly required input/field, removed required output, changed canonical
+  Product Model ID/phase owner, rejected closed-enum member or changed
+  expected file shape cannot be silently classified as compatible.
+- Additive enum, optional field, output or metadata is **not** automatically
+  MINOR-safe. Strict readers break; lenient readers require reader-specific
+  acceptance evidence. Unknown tolerance remains `unassessed`.
+- Trigger inclusion/exclusion, evidence safeguards, output meaning, quality
+  gate/decision semantics and stopping conditions require semantic review and
+  behavioral test evidence even when structural shape is unchanged.
+- Inspect version ranges and supported-provider status per declared edge.
+  Missing provider/version/range, incompatible or conflicting ranges and
+  dependency cycles produce actionable non-green diagnostics. External readers
+  absent from the inventory cannot be claimed universally compatible.
+- Findings include stable component ID, source path, JSON pointer where
+  relevant, affected consumers, classification and safe next action.
+  `compatible`, `breaking`, `review_required`, `unassessed` are distinct;
+  static checks do not imply runtime, migration or release proof.
+
+Current verification: 15 synthetic US2 tests under Python 3.12
+(GitHub Actions Validate #38388036169). Full CLI integration, project-state
+migration, deprecation/release enforcement and native Windows parity are
+future Spec 004 tasks. See `specs/004-versioning-compatibility/verification.md`.
+
 ## Required sections
 
 1. Purpose

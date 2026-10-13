@@ -182,11 +182,12 @@
     "implementation:phase-04": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "89db1b2a3c7edcb41f99e1ba12f72e2cf13f8e88",
+        "tasks.md": "23d9c6ab771ed7bda47e3d21d1b31568b31ee74c",
         "scripts/compatibility_common.py": "c729ea2fd7888fa1ed085c310431f2c5884fbf20",
         "tests/test_compatibility_consumers.py": "236e464c976cfd09db4ba95ff2c7f744bfdfcf15",
         "tests/fixtures/compatibility/README.md": "d371ad062a833bc6e753017235647db6a37bf244",
-        ".github/workflows/validate.yml": "32c6b0aedbdede666c2b3982365ba8f6c547c457"
+        ".github/workflows/validate.yml": "32c6b0aedbdede666c2b3982365ba8f6c547c457",
+        "SKILL-CONTRACT.md": "28baaf1755f522fc12918bf3bd74b528654962f4"
       },
       "outputs": [],
       "diagram_check": {
@@ -206,8 +207,10 @@
         "external_readers": "UNASSESSED",
         "native_windows": "NOT_RUN scheduled T049/T052",
         "runtime_feature": "NOT_IMPLEMENTED CLI, NOT_RUN",
-        "project_docs": "T029 pending gate before promotion",
-        "evidence": "verification.md"
+        "project_docs": "PASS T029 post-modeling promotion of tested reader/graph policy into SKILL-CONTRACT.md",
+        "evidence": "verification.md",
+        "pre_promotion_modeling_revision": "bbddbf431cc6062e33c846f5c0b75cc5e1650bf7",
+        "full_pre_promotion_ci": "PASS Validate #38388036169 and Skill Registry #38388036189 at e3f4e71"
       },
       "reason": "US2 offline library and diagnostics verified against 15 bounded synthetic cases. Reused conceptual diagram and existing plan; no new diagram adds independent model value."
     }

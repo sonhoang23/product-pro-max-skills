@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (28/75 checked; US2 T020–T028 source verified on e3f4e71; T029 doc promotion pending post-Modeling Gate.
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (29/75 checked; Phase 4 US2 T020–T029 source+tests+Modeling Gate complete; final docs-revision CI verification pending.
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -93,7 +93,7 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 - [x] T026 [US2] Keep semantic trigger/exclusion, evidence rules, stopping conditions and gate/decision changes review-required without behavioral proof in `scripts/compatibility_common.py`.
 - [x] T027 [US2] Emit impacted consumer, source path, offending change, classification and next action in `scripts/compatibility_common.py`.
 - [x] T028 [US2] Fail-fast invalid fixture setup (VERIFY-008); assert unknown external readers remain unassessed in `tests/test_compatibility_consumers.py`.
-- [ ] T029 [US2] After US2 tests and fresh `implementation:phase-04` Modeling Gate, promote demonstrated strict-reader and dependency rules in `SKILL-CONTRACT.md`.
+- [x] T029 [US2] After US2 tests and fresh `implementation:phase-04` Modeling Gate, promote demonstrated strict-reader and dependency rules in `SKILL-CONTRACT.md`.
 
 **Checkpoint:** Finish story tests and confirm fresh implementation modeling before any project-doc promotion.
 

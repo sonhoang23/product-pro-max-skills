@@ -65,3 +65,17 @@ Phase 2 T004–T009 remains pending. All feature runtime risk evidence for ENV-0
 - **Regressions:** foundation 10, version-owner 7, manifest 7, design-system tests 37 PASS in same repository job. [Skill Registry #38388036189](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388036189) success on exact source revision.
 - **Scope and limits:** code is a reusable offline library, *not* an end-to-end CLI assessment, user migration, native-Windows proof, external-reader certification, product runtime PASS or publication. Unknown readers and support remain unassessed by default. Semantics changes require review.
 - **Phase-04 Modeling Gate:** no-diagram-needed after source test evidence; existing plan and conceptual diagram describe the single offline comparison boundary. No new actor, deployment/process lifecycle or data flow requiring a distinct diagram. Promote only verified strict-reader and dependency constraints in T029 after gate entry is recorded.
+
+## Phase 4 — project docs promotion (T029)
+
+- **Pre-promotion Modeling Gate:** `implementation:phase-04 = no-diagram-needed`,
+  committed at `bbddbf431cc6062e33c846f5c0b75cc5e1650bf7` after
+  15/15 US2 unit tests and repository job PASS.
+- **Pre-promotion aggregate CI:** [Validate #38388036169](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388036169)
+  and [Skill Registry #38388036189](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388036189)
+  both `success` at `e3f4e71ed72b9131b9ab89965439122ccbad3ae6`.
+- **Promoted contract:** `SKILL-CONTRACT.md` now describes only demonstrated
+  US2 reader strictness, constraints and bounded diagnostics. It does
+  not claim end-to-end checker, external consumers, migration or publication.
+- **Next:** final docs-revision CI confirmation, then Phase 5 T030–T039,
+  T074–T075, preserving migration and recovery boundaries.
