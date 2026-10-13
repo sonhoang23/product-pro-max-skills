@@ -91,6 +91,7 @@ class Diagnostic:
     baseline_version: str | None = None
     candidate_version: str | None = None
     affected_consumer_ids: tuple[str, ...] = ()
+    json_pointer: str | None = None
 
 
 @dataclass(frozen=True)
