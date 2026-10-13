@@ -846,6 +846,17 @@ def assess_consumer_impact(
                        "removed outputs without declared consumers",
                        "Inventory consumers before classifying output changes", ())
             additions("/outputs", new_outputs - old_outputs, "STRICT_READER_NEW_OUTPUT")
+            before_inputs = {i["name"]: i for i in baseline.get("inputs", [])
+                             if isinstance(i, dict) and isinstance(i.get("name"), str)}
+            after_inputs = {i["name"]: i for i in candidate.get("inputs", [])
+                            if isinstance(i, dict) and isinstance(i.get("name"), str)}
+            for name, item in after_inputs.items():
+                if item.get("required") is True and (
+                    name not in before_inputs or before_inputs[name].get("required") is not True
+                ):
+                    report("REQUIRED_INPUT_ADDED", "breaking", _pointer("/inputs", name),
+                           "new required input or optional input made required",
+                           "Preserve old callers or version breaking input contract")
 
         def walk(old: Any, new: Any, pointer: str = "") -> None:
             if type(old) is not type(new):
@@ -870,6 +881,15 @@ def assess_consumer_impact(
                 for value in sorted(set(map(str, old["enum"])) - set(map(str, new["enum"]))):
                     report("ENUM_VALUE_REMOVED", "breaking", _pointer(pointer + "/enum", value),
                            "accepted enum value removed", "Migrate stored values/readers")
+            for key in sorted(new.keys() - old.keys()):
+                if key in ("description", "title", "label", "examples", "model_version", "version"):
+                    continue
+                if key in ("properties", "$defs", "definitions") and isinstance(new[key], dict):
+                    additions(_pointer(pointer, key), set(new[key]), "STRICT_READER_NEW_FIELD")
+                elif key != "required":
+                    report("CONTRACT_KEY_ADDED_REVIEW", "review_required", _pointer(pointer, key),
+                           "new unclassified contract constraint or metadata key",
+                           "Review old reader acceptance and behavior before compatible claim")
             for key in sorted(old.keys() - new.keys()):
                 if key in ("description", "title", "examples"):
                     continue
@@ -906,7 +926,22 @@ def assess_consumer_impact(
                     report("EXPECTED_SHAPE_CHANGED", "breaking", position,
                            "schema type or additionalProperties policy changed",
                            "Review all readers and version breaking shape")
+                elif old_value != new_value and key not in (
+                    "description", "title", "label", "examples", "model_version", "version"
+                ):
+                    report("UNCLASSIFIED_CONTRACT_CHANGE", "review_required", position,
+                           "changed contract value not statically proven equivalent",
+                           "Review semantics and verify all scoped readers")
         walk(baseline, candidate)
+    if not applicable:
+        report("NO_KNOWN_READERS", "unassessed", "",
+               "no declared consumers for this provider",
+               "Inventory known readers before scoped compatibility verdict", ())
+    for edge in applicable:
+        if edge.strict_reader is None:
+            report("UNKNOWN_READER_STRICTNESS", "unassessed", "",
+                   "reader strictness not declared",
+                   "Classify reader behavior and provide fixture proof", (edge.consumer_id,))
     if unknown_external_consumers:
         report("EXTERNAL_READERS_UNASSESSED", "unassessed", "",
                "external readers not inventoried; universal compatibility unproven",

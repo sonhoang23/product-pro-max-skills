@@ -181,6 +181,27 @@ class ConsumerImpactTests(unittest.TestCase):
             with self.assertRaisesRegex(CompatibilityValidationError, "cannot read consumers"):
                 load_consumer_dependencies(path)
 
+    def test_unknown_reader_and_empty_inventory_not_green(self):
+        old = {"properties": {"a": {"type": "string"}}}
+        result = self.check(old, old, [consumer(strict=None)])
+        self.assertEqual(result.classification, "unassessed")
+        self.assertIn("UNKNOWN_READER_STRICTNESS", self.codes(result))
+        missing = self.check(old, old, [])
+        self.assertEqual(missing.classification, "unassessed")
+        self.assertIn("NO_KNOWN_READERS", self.codes(missing))
+
+    def test_new_required_input_and_schema_format_never_green(self):
+        old = {"inputs": [{"name": "optional", "required": False}]}
+        new = {"inputs": [{"name": "optional", "required": True}]}
+        result = self.check(old, new, [consumer(strict=False)])
+        self.assertIn("REQUIRED_INPUT_ADDED", self.codes(result))
+        self.assertEqual(result.classification, "breaking")
+        prior = {"properties": {"date": {"type": "string", "format": "date"}}}
+        proposed = {"properties": {"date": {"type": "string", "format": "date-time"}}}
+        assessed = self.check(prior, proposed, [consumer(strict=False)])
+        self.assertIn("UNCLASSIFIED_CONTRACT_CHANGE", self.codes(assessed))
+        self.assertEqual(assessed.classification, "review_required")
+
     def test_local_reader_inventory_does_not_invent_support(self):
         readers = enumerate_known_consumers(ROOT)
         self.assertTrue(any(x.consumer_id == "repo:manifest-parser" for x in readers))
