@@ -27,6 +27,8 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_compatibility_versions.py' -v
           python -m unittest discover -s tests -p 'test_skill_manifest_contract.py' -v
+      - name: Verify Spec 004 US2 consumer compatibility contracts
+        run: python -m unittest discover -s tests -p 'test_compatibility_consumers.py' -v
       - name: Check installer
         run: python scripts/install.py --target .tmp-skills --all --dry-run
       - name: Verify Design System token and source tests

@@ -453,3 +453,471 @@ def inspect_version_owner(
         authority_path=authority, version_owner=owner, version=version,
         digest=digest, publication_status="unknown"
     )
+
+
+# Phase 4 / US2: offline, evidence-bounded consumer impact evaluation.
+# The support ledger never becomes an authority for behavior or publication.
+
+@dataclass(frozen=True)
+class ConsumerImpact:
+    classification: str
+    findings: tuple[Diagnostic, ...]
+    covered_consumers: tuple[str, ...]
+    unassessed_consumers: tuple[str, ...]
+
+
+def load_consumer_dependencies(path: Path) -> tuple[ConsumerDependency, ...]:
+    """Read explicit consumer->provider edges. No network or inferred external readers.
+
+    Expected fixture/consumer declaration: {"consumers": [{consumer_id,
+    provider_component_id, range, required_outputs, required_features,
+    strict_reader, declared_by, scope}]}. A null range/strict_reader is unknown.
+    """
+    try:
+        raw = json.loads(Path(path).read_text(encoding="utf-8"),
+                         object_pairs_hook=_no_duplicate_keys)
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise CompatibilityValidationError(f"{path}: cannot read consumers: {exc}") from exc
+    root = _expect_mapping(raw, str(path), {"consumers"}, {"consumers"})
+    if not isinstance(root["consumers"], list):
+        _fail(str(path), "consumers must be a list")
+    edges: list[ConsumerDependency] = []
+    seen: set[tuple[str, str]] = set()
+    keys = {"consumer_id", "provider_component_id", "range", "required_outputs",
+            "required_features", "strict_reader", "declared_by", "scope"}
+    for i, entry in enumerate(root["consumers"]):
+        where = f"{path}:consumers[{i}]"
+        d = _expect_mapping(entry, where, keys, keys)
+        cid = _string(d["consumer_id"], where + ".consumer_id")
+        provider = _string(d["provider_component_id"], where + ".provider_component_id")
+        if not COMPONENT_ID_RE.fullmatch(cid) or not COMPONENT_ID_RE.fullmatch(provider):
+            _fail(where, "invalid consumer/provider component ID")
+        if (cid, provider) in seen:
+            _fail(where, f"duplicate edge {cid} -> {provider}")
+        seen.add((cid, provider))
+        version_range = d["range"]
+        if version_range is not None:
+            _string(version_range, where + ".range")
+            _parse_version_range(version_range)
+        strict = d["strict_reader"]
+        if strict is not None and type(strict) is not bool:
+            _fail(where, "strict_reader must be boolean or null")
+        strings = []
+        for key in ("required_outputs", "required_features"):
+            values = d[key]
+            if not isinstance(values, list) or any(
+                not isinstance(x, str) or not x for x in values
+            ) or len(set(values)) != len(values):
+                _fail(where + "." + key, "must contain unique nonempty strings")
+            strings.append(tuple(values))
+        edges.append(ConsumerDependency(
+            consumer_id=cid, provider_component_id=provider,
+            version_range=version_range, required_outputs=strings[0],
+            required_features=strings[1], strict_reader=strict,
+            declared_by=normalized_relative_path(d["declared_by"], source=where + ".declared_by"),
+            scope=_string(d["scope"], where + ".scope")))
+    return tuple(edges)
+
+
+def enumerate_known_consumers(root: Path) -> tuple[ConsumerDependency, ...]:
+    """Enumerate only real local reader sources; do not invent support versions.
+
+    These reader paths are audited source surfaces, NOT proof that their version
+    ranges or external deployed copies are known. Unknowns remain explicit.
+    """
+    candidates = (
+        ("repo:manifest-parser", "schema:skill-manifest",
+         "scripts/skill_registry_common.py", True),
+        ("repo:registry-builder", "schema:skill-manifest",
+         "scripts/generate_skill_registry.py", True),
+        ("repo:model-validator", "product-model",
+         "scripts/validate_repo.py", True),
+    )
+    return tuple(ConsumerDependency(
+        consumer_id=cid, provider_component_id=provider, version_range=None,
+        required_outputs=(), required_features=(), strict_reader=strict,
+        declared_by=source, scope="repo-local-reader; version acceptance unassessed")
+        for cid, provider, source, strict in candidates
+        if (Path(root) / source).is_file())
+
+
+def _parse_version_range(expr: str) -> tuple[tuple[str, str], ...]:
+    """Conservative SemVer subset: exact, comparators, caret and tilde.
+
+    A space-separated intersection is supported. OR, wildcards and partial
+    versions are rejected rather than silently expanded.
+    """
+    if not isinstance(expr, str) or not expr.strip() or "||" in expr:
+        raise CompatibilityValidationError(f"invalid version range: {expr!r}")
+    tokens = expr.split()
+    parts: list[tuple[str, str]] = []
+    for token in tokens:
+        match = re.fullmatch(r"(>=|<=|>|<|=|\^|~)?(.+)", token)
+        if not match:
+            raise CompatibilityValidationError(f"invalid version range: {expr!r}")
+        operator, version = match.groups()
+        parse_semver(version)
+        operator = operator or "="
+        if operator in ("^", "~"):
+            v = parse_semver(version)
+            parts.append((">=", version))
+            if operator == "~":
+                upper = f"{v.major}.{v.minor + 1}.0"
+            elif v.major > 0:
+                upper = f"{v.major + 1}.0.0"
+            elif v.minor > 0:
+                upper = f"0.{v.minor + 1}.0"
+            else:
+                upper = f"0.0.{v.patch + 1}"
+            parts.append(("<", upper))
+        else:
+            parts.append((operator, version))
+    return tuple(parts)
+
+
+def semver_in_range(version: str, expression: str) -> bool:
+    parse_semver(version)
+    for operator, expected in _parse_version_range(expression):
+        cmp = compare_semver(version, expected)
+        if not {
+            "=": cmp == 0, ">=": cmp >= 0, "<=": cmp <= 0,
+            ">": cmp > 0, "<": cmp < 0
+        }[operator]:
+            return False
+    return True
+
+
+def _ranges_overlap(expressions: list[str]) -> bool:
+    """Compare finite interval bounds; detect impossible strict/equal intersections."""
+    lower: str | None = None
+    upper: str | None = None
+    lower_inclusive = upper_inclusive = True
+    for expression in expressions:
+        for op, ver in _parse_version_range(expression):
+            if op == "=":
+                bounds = ((">=", ver), ("<=", ver))
+            else:
+                bounds = ((op, ver),)
+            for relation, value in bounds:
+                inclusive = relation in (">=", "<=")
+                if relation in (">", ">="):
+                    if lower is None or compare_semver(value, lower) > 0:
+                        lower, lower_inclusive = value, inclusive
+                    elif compare_semver(value, lower) == 0:
+                        lower_inclusive &= inclusive
+                else:
+                    if upper is None or compare_semver(value, upper) < 0:
+                        upper, upper_inclusive = value, inclusive
+                    elif compare_semver(value, upper) == 0:
+                        upper_inclusive &= inclusive
+    if lower is None or upper is None:
+        return True
+    cmp = compare_semver(lower, upper)
+    return cmp < 0 or (cmp == 0 and lower_inclusive and upper_inclusive)
+
+
+def check_consumer_dependencies(
+    consumers: tuple[ConsumerDependency, ...],
+    providers: dict[str, tuple[str | None, str]],
+) -> tuple[Diagnostic, ...]:
+    """Fail closed on unsupported/unknown/missing providers, constraints, cycles.
+
+    Providers map component_id -> (current version, support_status). Status is
+    from explicit ledger/snapshot, never inferred from a source version alone.
+    """
+    findings: list[Diagnostic] = []
+    by_provider: dict[str, list[ConsumerDependency]] = {}
+    graph: dict[str, set[str]] = {}
+    for edge in consumers:
+        by_provider.setdefault(edge.provider_component_id, []).append(edge)
+        graph.setdefault(edge.consumer_id, set()).add(edge.provider_component_id)
+
+        def flag(code: str, classification: str, detail: str, action: str) -> None:
+            findings.append(Diagnostic(
+                code=code, severity="error" if classification == "breaking" else "warning",
+                component_id=edge.provider_component_id, authority_path=edge.declared_by,
+                classification=classification, message=detail, required_action=action,
+                affected_consumer_ids=(edge.consumer_id,)))
+
+        if edge.provider_component_id not in providers:
+            flag("MISSING_PROVIDER", "unassessed", "dependency provider not declared",
+                 "Declare source component and immutable supported baseline")
+            continue
+        version, status = providers[edge.provider_component_id]
+        if status not in {"active", "deprecated", "unsupported", "removed", "unknown", "unpublished"}:
+            raise CompatibilityValidationError(f"{edge.provider_component_id}: invalid support status")
+        if status in {"unsupported", "removed"}:
+            flag("UNSUPPORTED_PROVIDER", "breaking", f"provider is {status}",
+                 "Upgrade or migrate consumer to a supported dependency")
+        elif status in {"unknown", "unpublished"}:
+            flag("UNKNOWN_PROVIDER_SUPPORT", "unassessed", f"provider support is {status}",
+                 "Declare supported scope and provenance; do not assume publication")
+        if version is None:
+            flag("UNKNOWN_PROVIDER_VERSION", "unassessed", "provider version unknown",
+                 "Declare provider version and supported source")
+        elif edge.version_range is None:
+            flag("UNKNOWN_DEPENDENCY_RANGE", "unassessed", "consumer version range unknown",
+                 "Declare consumer version constraint")
+        else:
+            try:
+                satisfied = semver_in_range(version, edge.version_range)
+            except CompatibilityValidationError:
+                flag("INVALID_VERSION_RANGE", "unassessed",
+                     f"invalid version constraint {edge.version_range!r}",
+                     "Fix invalid constraint before assessment")
+            else:
+                if not satisfied:
+                    flag("VERSION_RANGE_MISMATCH", "breaking",
+                         f"{version} not accepted by {edge.version_range}",
+                         "Upgrade provider or adjust consumer after compatibility review")
+    for provider, edges in by_provider.items():
+        ranges = [e.version_range for e in edges if e.version_range is not None]
+        try:
+            overlap = _ranges_overlap(ranges)
+        except CompatibilityValidationError:
+            overlap = True  # separately surfaced invalid-range diagnostic
+        if len(ranges) > 1 and not overlap:
+            findings.append(Diagnostic(
+                code="CONFLICTING_RANGES", severity="error", component_id=provider,
+                authority_path=edges[0].declared_by, classification="breaking",
+                message=f"no version satisfies all declared constraints: {ranges}",
+                required_action="Resolve incompatible consumer constraints",
+                affected_consumer_ids=tuple(sorted(e.consumer_id for e in edges))))
+    visited: set[str] = set()
+    active: list[str] = []
+    emitted: set[tuple[str, ...]] = set()
+
+    def visit(node: str) -> None:
+        if node in active:
+            cycle = tuple(active[active.index(node):] + [node])
+            if cycle not in emitted:
+                emitted.add(cycle)
+                findings.append(Diagnostic(
+                    code="DEPENDENCY_CYCLE", severity="error", component_id=node,
+                    authority_path="<dependency-graph>", classification="breaking",
+                    message=" -> ".join(cycle),
+                    required_action="Break consumer/provider dependency cycle",
+                    affected_consumer_ids=tuple(cycle)))
+            return
+        if node in visited:
+            return
+        active.append(node)
+        for target in sorted(graph.get(node, ())):
+            visit(target)
+        active.pop()
+        visited.add(node)
+
+    for node in sorted(graph):
+        visit(node)
+    return tuple(findings)
+
+
+def _pointer(path: str, part: str) -> str:
+    escaped = str(part).replace("~", "~0").replace("/", "~1")
+    return path + "/" + escaped
+
+
+def _model_index(model: dict[str, Any]) -> dict[str, Any]:
+    """Flatten canonical IDs with ownership, never compare labels as identity."""
+    index: dict[str, Any] = {}
+    cycles = model.get("lifecycle", {}).get("cycles", [])
+    if not isinstance(cycles, list):
+        raise CompatibilityValidationError("product-model:/lifecycle/cycles: expected array")
+    for cycle in cycles:
+        if not isinstance(cycle, dict) or not isinstance(cycle.get("id"), str):
+            raise CompatibilityValidationError("product-model:/lifecycle/cycles: invalid ID")
+        cid = cycle["id"]
+        if f"cycle:{cid}" in index:
+            raise CompatibilityValidationError(f"product-model: duplicate cycle {cid}")
+        index[f"cycle:{cid}"] = True
+        for phase in cycle.get("phases", []):
+            if not isinstance(phase, dict) or not isinstance(phase.get("id"), str):
+                raise CompatibilityValidationError(f"product-model: invalid phase in {cid}")
+            pid = phase["id"]
+            if any(k.endswith(":" + pid) and k.startswith("phase:") for k in index):
+                raise CompatibilityValidationError(f"product-model: duplicate phase {pid}")
+            index[f"phase:{cid}:{pid}"] = True
+    for section in ("tracks", "gates", "decisions", "project_statuses"):
+        values = model.get(section, [])
+        if not isinstance(values, list):
+            raise CompatibilityValidationError(f"product-model:/{section}: expected array")
+        for obj in values:
+            if not isinstance(obj, dict) or not isinstance(obj.get("id"), str):
+                raise CompatibilityValidationError(f"product-model:/{section}: invalid ID")
+            key = f"{section}:{obj['id']}"
+            if key in index:
+                raise CompatibilityValidationError(f"product-model: duplicate {key}")
+            index[key] = obj.get("meaning", obj.get("description"))
+    return index
+
+
+def assess_consumer_impact(
+    baseline: dict[str, Any] | None,
+    candidate: dict[str, Any],
+    component_id: str,
+    authority_path: str,
+    consumers: tuple[ConsumerDependency, ...],
+    *,
+    component_type: str,
+    reader_evidence: frozenset[str] = frozenset(),
+    unknown_external_consumers: bool = True,
+) -> ConsumerImpact:
+    """Static, scope-bounded comparison. Never upgrades static findings to runtime PASS.
+
+    Reader evidence is explicitly supplied per known consumer. A declared
+    non-strict reader alone is not verification of enum/metadata tolerance.
+    """
+    path = normalized_relative_path(authority_path)
+    if not isinstance(candidate, dict):
+        raise CompatibilityValidationError(f"{path}: candidate must be object")
+    if baseline is not None and not isinstance(baseline, dict):
+        raise CompatibilityValidationError(f"{path}: baseline must be object")
+    applicable = tuple(c for c in consumers if c.provider_component_id == component_id)
+    affected = tuple(sorted({c.consumer_id for c in applicable}))
+    findings: list[Diagnostic] = []
+
+    def report(code: str, classification: str, pointer: str, message: str,
+               action: str, targets: tuple[str, ...] = affected) -> None:
+        findings.append(Diagnostic(
+            code=code, severity="error" if classification == "breaking" else "warning",
+            component_id=component_id, authority_path=path, json_pointer=pointer,
+            classification=classification, message=message,
+            required_action=action, affected_consumer_ids=targets))
+
+    if baseline is None:
+        report("UNKNOWN_BASELINE", "unassessed", "",
+               "no supported baseline available", "Declare and verify immutable baseline")
+    else:
+        def additions(pointer: str, names: set[str], code: str) -> None:
+            if not names:
+                return
+            for name in sorted(names):
+                for consumer in applicable:
+                    if consumer.strict_reader is True:
+                        report(code, "breaking", _pointer(pointer, name),
+                               "new value rejected by strict/closed reader",
+                               "Migrate reader or use breaking version boundary",
+                               (consumer.consumer_id,))
+                    elif consumer.strict_reader is None or consumer.consumer_id not in reader_evidence:
+                        report("READER_TOLERANCE_UNVERIFIED", "unassessed",
+                               _pointer(pointer, name),
+                               "reader tolerance not proven for additive change",
+                               "Supply reader-specific acceptance test proof",
+                               (consumer.consumer_id,))
+            if not applicable:
+                report("NO_DECLARED_CONSUMER", "unassessed", pointer,
+                       "no declared reader for additive change",
+                       "Declare scoped readers and verification evidence", ())
+
+        if component_type == "product_model":
+            old_ids = _model_index(baseline)
+            new_ids = _model_index(candidate)
+            for key in sorted(old_ids.keys() - new_ids.keys()):
+                report("CANONICAL_ID_REMOVED", "breaking", _pointer("/canonical", key),
+                       f"removed or changed canonical ID/phase owner {key}",
+                       "Migrate impacted consumers and review canonical identity")
+            additions("/canonical", new_ids.keys() - old_ids.keys(),
+                      "STRICT_READER_NEW_CANONICAL_ID")
+            for key in sorted(old_ids.keys() & new_ids.keys()):
+                if old_ids[key] != new_ids[key]:
+                    report("CANONICAL_MEANING_CHANGED", "review_required",
+                           _pointer("/canonical", key),
+                           "gate/decision/status meaning changed",
+                           "Obtain semantic reviewer and behavior-test evidence")
+            if baseline.get("lifecycle", {}).get("ordered") != candidate.get("lifecycle", {}).get("ordered"):
+                report("LIFECYCLE_ORDER_CHANGED", "review_required", "/lifecycle/ordered",
+                       "canonical lifecycle order semantics changed",
+                       "Review downstream lifecycle assumptions")
+        else:
+            old_outputs = {x["name"] for x in baseline.get("outputs", [])
+                           if isinstance(x, dict) and isinstance(x.get("name"), str)}
+            new_outputs = {x["name"] for x in candidate.get("outputs", [])
+                           if isinstance(x, dict) and isinstance(x.get("name"), str)}
+            for consumer in applicable:
+                removed = (old_outputs - new_outputs) & set(consumer.required_outputs)
+                for name in sorted(removed):
+                    report("REQUIRED_OUTPUT_REMOVED", "breaking", _pointer("/outputs", name),
+                           "consumer required output removed or renamed",
+                           "Restore output or declare breaking migration",
+                           (consumer.consumer_id,))
+            if old_outputs - new_outputs and not applicable:
+                report("OUTPUT_REMOVAL_UNASSESSED", "unassessed", "/outputs",
+                       "removed outputs without declared consumers",
+                       "Inventory consumers before classifying output changes", ())
+            additions("/outputs", new_outputs - old_outputs, "STRICT_READER_NEW_OUTPUT")
+
+        def walk(old: Any, new: Any, pointer: str = "") -> None:
+            if type(old) is not type(new):
+                report("FIELD_SHAPE_CHANGED", "breaking", pointer,
+                       "field type or expected file shape changed",
+                       "Version breaking contract and migrate readers")
+                return
+            if not isinstance(old, dict):
+                return
+            old_required = old.get("required", [])
+            new_required = new.get("required", [])
+            if isinstance(old_required, list) and isinstance(new_required, list):
+                for key in sorted(set(new_required) - set(old_required)):
+                    report("REQUIRED_FIELD_ADDED", "breaking",
+                           _pointer(pointer + "/required", key),
+                           "required field newly added",
+                           "Migrate old writers/fixtures or make field optional")
+            if "enum" in old and "enum" in new and isinstance(old["enum"], list) and isinstance(new["enum"], list):
+                additions(pointer + "/enum",
+                          set(map(str, new["enum"])) - set(map(str, old["enum"])),
+                          "STRICT_READER_NEW_ENUM")
+                for value in sorted(set(map(str, old["enum"])) - set(map(str, new["enum"]))):
+                    report("ENUM_VALUE_REMOVED", "breaking", _pointer(pointer + "/enum", value),
+                           "accepted enum value removed", "Migrate stored values/readers")
+            for key in sorted(old.keys() - new.keys()):
+                if key in ("description", "title", "examples"):
+                    continue
+                if key in ("properties", "$defs", "definitions"):
+                    report("CONTRACT_MAP_REMOVED", "breaking", _pointer(pointer, key),
+                           "contract properties/definitions removed",
+                           "Restore shape or migrate consumers")
+                elif key not in ("required", "enum"):
+                    report("CONTRACT_FIELD_REMOVED", "review_required", _pointer(pointer, key),
+                           "contract field removed", "Review readers and semantics")
+            semantic = {"triggers", "include", "exclude", "evidence_rules",
+                        "evidence", "stop_conditions", "stopping_conditions",
+                        "quality_gate", "behavior", "side_effects",
+                        "meaning", "decision", "gate"}
+            for key in sorted(old.keys() & new.keys()):
+                old_value, new_value = old[key], new[key]
+                position = _pointer(pointer, key)
+                if key in semantic and old_value != new_value:
+                    report("SEMANTIC_CHANGE_REVIEW", "review_required", position,
+                           "semantic trigger/evidence/gate/decision/stop rule changed",
+                           "Require behavioral review and scoped test proof")
+                elif key in ("properties", "$defs", "definitions") and isinstance(old_value, dict) and isinstance(new_value, dict):
+                    for removed in sorted(old_value.keys() - new_value.keys()):
+                        report("SCHEMA_PROPERTY_REMOVED", "breaking",
+                               _pointer(position, removed), "schema property removed",
+                               "Migrate readers and stored contracts")
+                    additions(position, new_value.keys() - old_value.keys(),
+                              "STRICT_READER_NEW_FIELD")
+                    for child in sorted(old_value.keys() & new_value.keys()):
+                        walk(old_value[child], new_value[child], _pointer(position, child))
+                elif isinstance(old_value, dict) and isinstance(new_value, dict):
+                    walk(old_value, new_value, position)
+                elif key in ("type", "additionalProperties") and old_value != new_value:
+                    report("EXPECTED_SHAPE_CHANGED", "breaking", position,
+                           "schema type or additionalProperties policy changed",
+                           "Review all readers and version breaking shape")
+        walk(baseline, candidate)
+    if unknown_external_consumers:
+        report("EXTERNAL_READERS_UNASSESSED", "unassessed", "",
+               "external readers not inventoried; universal compatibility unproven",
+               "Publish limited coverage; obtain external reader inventory", ())
+    unassessed = {c.consumer_id for c in applicable
+                  if c.strict_reader is None}
+    unassessed.update(x for f in findings if f.classification == "unassessed"
+                      for x in f.affected_consumer_ids)
+    rank = {"compatible": 0, "review_required": 1, "unassessed": 2, "breaking": 3}
+    classification = max(("compatible", *(f.classification for f in findings)), key=rank.__getitem__)
+    return ConsumerImpact(
+        classification=classification, findings=tuple(findings),
+        covered_consumers=tuple(sorted(set(affected) - unassessed)),
+        unassessed_consumers=tuple(sorted(unassessed |
+                              ({"external:unknown"} if unknown_external_consumers else set()))))

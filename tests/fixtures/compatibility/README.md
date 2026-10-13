@@ -36,3 +36,34 @@
 | environment/path normalization | Same canonical diagnostic paths on native Windows and Linux |
 
 The official post-implementation acceptance matrix is in `specs/004-versioning-compatibility/quickstart.md`. As of setup, no fixture test has run.
+
+
+## Phase 4 / US2 reader and dependency scenarios (synthetic only)
+
+Consumers are declared in disposable JSON documents with a root "consumers" list.
+Each edge requires: consumer_id, provider_component_id, range (SemVer expression
+or null), required_outputs, required_features, strict_reader (true/false/null),
+declared_by (safe repository-relative path), scope. Duplicate edges, malformed
+ranges, missing fields, duplicate JSON keys and traversal paths fail *fixture
+preflight*, before any downstream compatibility result (VERIFY-008).
+
+- Closed reader: adding a gate/decision/enum value, metadata property or output
+  yields a breaking consumer-specific diagnostic and source JSON pointer.
+- Declared lenient reader: an additive change is only compatible when the
+  exact consumer is explicitly included in reader-specific test evidence;
+  otherwise it is unassessed. "Lenient" alone is not runtime proof.
+- Removed output: requires a known consumer whose required_outputs lists that
+  output; removal is breaking and lists the affected consumer.
+- Canonical identity: changing a phase owner is removal + addition of a
+  qualified identity; gate/decision *meaning* change still requires human review.
+- Semantic-only changes: trigger exclusions, evidence, stopping conditions and
+  gate/decision semantics remain review_required without behavior evidence.
+- Unresolved coverage: missing immutable baseline, unknown external reader,
+  absent range/version and unpublished/unsupported provider remain non-green.
+- Graph: conflicting intervals, cycle, missing provider and invalid constraint
+  get distinct diagnostics. Accept only exact SemVer or whitespace-separated
+  comparators, caret or tilde; no wildcard/OR inference.
+
+The repo-local known-reader inventory is a boundary list, not a historical
+release/consumer compatibility promise. Native Windows/Linux parity and actual
+external reader verification are deferred to T049/T052 and later integration.
