@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://product-pro-max.dev/schemas/supported-baselines.schema.json",
+  "title": "Product Pro Max Declared Supported Baselines",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "ledger_version",
+    "policy_ref",
+    "baselines"
+  ],
+  "properties": {
+    "ledger_version": {
+      "const": 1
+    },
+    "policy_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "baselines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/baseline"
+      }
+    }
+  },
+  "$defs": {
+    "semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9][0-9]*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*))*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref",
+        "commit_sha",
+        "authority_path",
+        "sha256"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "authority_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_id",
+        "component_id",
+        "version",
+        "source",
+        "support_status",
+        "support_scope",
+        "support_policy_ref"
+      ],
+      "properties": {
+        "baseline_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[-.][a-z0-9]+)*$"
+        },
+        "component_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*(?::[a-z0-9-]+)*$"
+        },
+        "version": {
+          "$ref": "#/$defs/semver"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "support_status": {
+          "enum": [
+            "active",
+            "deprecated",
+            "unsupported",
+            "removed"
+          ]
+        },
+        "support_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "support_policy_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_from": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effective_until": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "release_evidence": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "record_revision": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

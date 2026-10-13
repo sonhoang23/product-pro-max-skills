@@ -19,6 +19,8 @@ jobs:
           python-version: "3.12"
       - name: Validate repository contracts
         run: python scripts/validate_repo.py
+      - name: Verify Spec 004 supported-baseline foundation
+        run: python -m unittest discover -s tests -p 'test_compatibility_foundation.py' -v
       - name: Check installer
         run: python scripts/install.py --target .tmp-skills --all --dry-run
       - name: Verify Design System token and source tests
