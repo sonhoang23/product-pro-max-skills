@@ -1,6 +1,6 @@
 # Quickstart — Planned Compatibility Validation
 
-**Status:** validation design / expected outcomes only. None of the Spec 004 commands or fixtures below exist yet. This document does not claim executable test PASS.
+**Status:** foundation ledger/parser/tests are implemented; full compatibility assessor, migrations, consumer impact and deprecation checks are **not** implemented. The matrix below remains future acceptance design. See [verification.md](verification.md) for exact revision-bound Phase 1/2 evidence.
 
 ## Preconditions
 
@@ -10,13 +10,20 @@
 4. Canonical `runtime-verification` v1.12.0 is synced at `.agents/skills/runtime-verification/` from upstream commit `fcd9a5b8db9c37673b9bb92d69bf6056af30ec3a`; recheck inventory freshness at Tasks time. This is a repo skill copy, not product test evidence.
 5. No production project data; use disposable fixture directories with backups.
 
-## Planned implementation entrypoints
+## Existing foundation checks (executable)
 
 ```shell
-# Once scripts and fixtures have been implemented:
 python scripts/validate_repo.py
-python -m unittest discover -s tests -p 'test_compatibility*.py' -v
+python -m unittest discover -s tests -p 'test_compatibility_foundation.py' -v
+```
 
+The 10 foundation tests cover an empty ledger, duplicate/malformed JSON, invalid IDs/paths/SemVer, source digest/ref mismatch and local Git verification. These **do not** establish compatibility of a proposed change.
+
+## Future compatibility checker (NOT implemented)
+
+```shell
+# Only after later Phase 3–6 implementation and representative fixtures:
+python -m unittest discover -s tests -p 'test_compatibility*.py' -v
 python scripts/check_compatibility.py assess \
   --baseline-ledger compatibility/supported-baselines.json \
   --baseline-id fixture-supported-model \
@@ -24,7 +31,7 @@ python scripts/check_compatibility.py assess \
   --report-json .tmp-compatibility/report.json
 ```
 
-The examples describe a proposed CLI; no execution can pass until the checker, baselines and fixtures are committed. Actual implementation must reconcile accepted CLI syntax with [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md).
+The `check_compatibility.py assess` example is still **planned** and must not be executed or described as passing. The existing foundation tests only prove offline ledger and pinned Git blob validation. Actual checker implementation must reconcile CLI syntax with [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md).
 
 ## Acceptance matrix (must create representative fixtures)
 
@@ -91,4 +98,4 @@ The examples describe a proposed CLI; no execution can pass until the checker, b
 
 ## Post-Tasks Analyze handoff
 
-Tasks now include 75 unchecked IDs, six stories, FR-001–032, SC-001–010 and ENV-003/VERIFY-003/004/008. T074/T075 add explicit project-state `contract_version` schema/template rollout and legacy regression checks; T049/T052 require native Windows/Linux parity proof. This document remains expected behavior only; no feature implementation or compatibility runtime PASS claimed.
+Tasks include 75 IDs and are progressing by phase; check `tasks.md` for exact checked status. US1–US6, FR-001–032, SC-001–010 and ENV-003/VERIFY-003/004/008 traceability remain in scope. T074/T075 add explicit project-state `contract_version` schema/template rollout and legacy regression checks; T049/T052 require native Windows/Linux parity proof. This document remains expected behavior only; no feature implementation or compatibility runtime PASS claimed.
