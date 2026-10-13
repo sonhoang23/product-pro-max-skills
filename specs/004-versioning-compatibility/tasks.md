@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** planning only; 0 checked.
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phase 1 verified (3/75 checked).
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -32,9 +32,9 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 
 **Independent Test:** Source inventory and fixture conventions are explicit.
 
-- [ ] T001 Inventory existing model/skill/workflow/schema/project-state owners, `registry_version` and lockfile marker in `specs/004-versioning-compatibility/implementation-inventory.md`.
-- [ ] T002 [P] Define synthetic supported/unsupported fixtures and immutable-ref conventions in `tests/fixtures/compatibility/README.md`.
-- [ ] T003 [P] Document offline read-only source/ledger scope in `compatibility/README.md`.
+- [x] T001 Inventory existing model/skill/workflow/schema/project-state owners, `registry_version` and lockfile marker in `specs/004-versioning-compatibility/implementation-inventory.md`.
+- [x] T002 [P] Define synthetic supported/unsupported fixtures and immutable-ref conventions in `tests/fixtures/compatibility/README.md`.
+- [x] T003 [P] Document offline read-only source/ledger scope in `compatibility/README.md`.
 
 **Checkpoint:** Record actual evidence; no automated PASS inferred.
 

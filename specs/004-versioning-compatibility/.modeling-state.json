@@ -78,7 +78,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "407459cecd249792409f417b060f482c9cf1889b"
+        "tasks.md": "1fcf73d768c3ea655a08641b28327b2584d5ec43"
       },
       "outputs": [],
       "diagram_check": {
@@ -86,12 +86,35 @@
         "reason": "Explicit Phase 1–9, US1–US6, append-only T074/T075, dependency table and independent/parallel markers already show execution graph. A new diagram would duplicate text and add Atlas maintenance without clarifying an unresolved dependency."
       },
       "qa": {
-        "source_traceability": "PASS source review of 75 unchecked tasks and Phase 1–9 dependency order",
+        "source_traceability": "PASS 75 tasks / 3 completed setup tasks; depends on latest tasks.md state",
         "checklist": "PASS requirements checklist all checked",
         "review_scope": "PLAN_ONLY; no implementation/runtime PASS",
-        "source_revision": "dfdd6475d386677ac443f0bc11d5dd638357e96f"
+        "source_revision": "9475d9b4aa0ec04e5dd9da39119c6e7e88c4e35c"
       },
       "reason": "Tasks execution flow is adequately navigable in tasks.md; no new semantic model or diagram adds value."
+    },
+    "implementation:phase-01": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "1fcf73d768c3ea655a08641b28327b2584d5ec43",
+        "specs/004-versioning-compatibility/implementation-inventory.md": "b83a7f5f7ef82377f17037d7bb3f94e24d489353",
+        "tests/fixtures/compatibility/README.md": "ff0d93f44a5a7dc97e837ba54432e04795530ac0",
+        "compatibility/README.md": "af4da9741421cf5c80477ce724edcd70ce688cc4",
+        ".gitignore": "ae7b708159fb9e8cc87b3d4fbdec48d45ad30857"
+      },
+      "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "Phase 1 only records repository inventory, synthetic fixture conventions and non-mutating CLI boundary. No new runtime topology or cross-actor flow to render."
+      },
+      "qa": {
+        "documentation": "PASS checked three source docs and exact committed paths",
+        "repository_ci": "PASS Validate #38372344799 (at source revision 9475d9b4aa0ec04e5dd9da39119c6e7e88c4e35c)",
+        "registry_ci": "PASS Skill Registry #38372344804 (at source revision 9475d9b4aa0ec04e5dd9da39119c6e7e88c4e35c)",
+        "runtime_feature": "NOT_IMPLEMENTED_NOT_RUN",
+        "evidence": "verification.md"
+      },
+      "reason": "Phase 1 docs-only current state, no diagram needed; no project docs promotion."
     }
   }
 }
