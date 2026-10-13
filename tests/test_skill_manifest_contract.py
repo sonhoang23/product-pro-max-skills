@@ -93,3 +93,37 @@ class DiscoveryContractTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ManifestVersionRolloutTests(unittest.TestCase):
+    """Exercise strict existing readers with legacy and versioned synthetic skills."""
+
+    def setUp(self):
+        import test_skill_registry
+        test_skill_registry.RegistryTest.setUp(self)
+
+    def test_unversioned_legacy_is_detected_without_inventing_version(self):
+        from skill_registry_common import parse_yaml, validate_optional_manifest_version
+        data = parse_yaml(self.manifest)
+        self.assertIsNone(validate_optional_manifest_version(data, self.manifest))
+        self.assertNotIn("version", build_registry(self.root).decode("utf-8"))
+
+    def test_versioned_manifest_accepted_and_registry_stays_derived(self):
+        from skill_registry_common import parse_yaml, validate_optional_manifest_version
+        self.manifest.write_text(self.manifest.read_text(encoding="utf-8") + "version: 0.2.0\n", encoding="utf-8")
+        self.assertEqual(validate_optional_manifest_version(parse_yaml(self.manifest), self.manifest), "0.2.0")
+        import json
+        skill = json.loads(build_registry(self.root))["skills"][0]
+        self.assertEqual(skill["version"], "0.2.0")
+
+    def test_invalid_version_and_unknown_field_fail_closed(self):
+        for extra in ("version: 1.02.0\n", "version: true\n",
+                      "version: 1.0.0\nversion: 2.0.0\n",
+                      "random_unreviewed_field: yes\n",
+                      "version: !!python/object/apply:os.system ['echo bad']\n"):
+            with self.subTest(extra=extra):
+                original = self.manifest.read_text(encoding="utf-8")
+                self.manifest.write_text(original + extra, encoding="utf-8")
+                with self.assertRaises(RegistryValidationError):
+                    build_registry(self.root)
+                self.manifest.write_text(original, encoding="utf-8")

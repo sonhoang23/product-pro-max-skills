@@ -19,7 +19,7 @@ SEMVER_RE = re.compile(
     r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
     r"(?:-(?:0|[1-9]\d*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*)"
     r"(?:\.(?:0|[1-9]\d*|[0-9A-Za-z-]*[A-Za-z-][0-9A-Za-z-]*))*)?"
-    r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$"
+    r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$", re.ASCII
 )
 COMPONENT_ID_RE = re.compile(r"^[a-z][a-z0-9-]*(?::[a-z0-9-]+)*$")
 BASELINE_ID_RE = re.compile(r"^[a-z0-9]+(?:[-.][a-z0-9]+)*$")
@@ -278,3 +278,178 @@ def verify_local_baseline_source(baseline: SupportedBaseline, checkout: Path) ->
         _fail(source.authority_path,
               f"SHA-256 mismatch: expected {source.sha256}, actual {digest}")
     return digest
+
+
+@dataclass(frozen=True)
+class ParsedVersion:
+    """SemVer 2.0.0 identity; build metadata does not change precedence."""
+    major: int
+    minor: int
+    patch: int
+    prerelease: tuple[str, ...] = ()
+    build: tuple[str, ...] = ()
+
+
+def parse_semver(value: str) -> ParsedVersion:
+    """Strict ASCII SemVer; reject leading zero in numeric prerelease fields."""
+    if not isinstance(value, str) or not SEMVER_RE.fullmatch(value):
+        raise CompatibilityValidationError(f"invalid SemVer: {value!r}")
+    core_and_pre, _, build = value.partition("+")
+    core, sep, pre = core_and_pre.partition("-")
+    major, minor, patch = (int(part) for part in core.split("."))
+    return ParsedVersion(
+        major, minor, patch,
+        tuple(pre.split(".")) if sep else (),
+        tuple(build.split(".")) if build else ()
+    )
+
+
+def compare_semver(left: str, right: str) -> int:
+    """Compare precedence without treating build metadata as a release bump."""
+    a, b = parse_semver(left), parse_semver(right)
+    for av, bv in zip((a.major, a.minor, a.patch), (b.major, b.minor, b.patch)):
+        if av != bv:
+            return (av > bv) - (av < bv)
+    if not a.prerelease or not b.prerelease:
+        return (bool(b.prerelease) > bool(a.prerelease)) - (
+            bool(b.prerelease) < bool(a.prerelease))
+    for av, bv in zip(a.prerelease, b.prerelease):
+        if av == bv:
+            continue
+        anum, bnum = av.isascii() and av.isdecimal(), bv.isascii() and bv.isdecimal()
+        if anum and bnum:
+            return (int(av) > int(bv)) - (int(av) < int(bv))
+        if anum != bnum:
+            return -1 if anum else 1
+        return (av > bv) - (av < bv)
+    return (len(a.prerelease) > len(b.prerelease)) - (
+        len(a.prerelease) < len(b.prerelease))
+
+
+def minimum_version_increment(change: str, baseline: str | None) -> str | None:
+    """Recommend a floor for an independently reviewed change.
+
+    Input is a declared/reviewed impact, never inferred from a source diff.
+    No historical supported baseline => no compatibility/bump conclusion.
+    """
+    if baseline is None:
+        return None
+    v = parse_semver(baseline)
+    if change == "breaking":
+        return "minor" if v.major == 0 else "major"
+    if change == "feature":
+        return "minor"
+    if change == "fix":
+        return "patch"
+    if change == "none":
+        return "none"
+    raise CompatibilityValidationError(f"unsupported change impact: {change!r}")
+
+
+def sufficient_version_increment(
+    baseline: str | None, candidate: str, change: str
+) -> bool | None:
+    """Only checks a declared bump against a reviewed impact.
+
+    None means unassessed (no supported baseline), not PASS. An unchanged
+    major/minor/patch with only a new build/prerelease cannot satisfy a stable
+    public change. This function does not prove semantic compatibility.
+    """
+    proposed = parse_semver(candidate)
+    floor = minimum_version_increment(change, baseline)
+    if floor is None:
+        return None
+    prior = parse_semver(baseline)
+    if floor == "none":
+        return compare_semver(candidate, baseline) >= 0
+    if compare_semver(candidate, baseline) <= 0:
+        return False
+    if proposed.major > prior.major:
+        return True
+    if proposed.major < prior.major:
+        return False
+    if floor == "major":
+        return False
+    if proposed.minor > prior.minor:
+        return True
+    if proposed.minor < prior.minor:
+        return False
+    if floor == "minor":
+        return False
+    return proposed.patch > prior.patch
+
+
+def inspect_version_owner(
+    root: Path, component_type: str, relative_path: str,
+    *, declared_schema_version: str | None = None
+) -> VersionedComponent:
+    """Read the owning source, not its registry/lock projection.
+
+    No source version is invented for legacy manifests/project state or schemas.
+    Machine schema versions exist only when independently declared by policy
+    against the source $id/digest; the declaration is not publication evidence.
+    """
+    root = Path(root).resolve()
+    relative = normalized_relative_path(relative_path)
+    path = (root / relative).resolve()
+    try:
+        path.relative_to(root)
+    except ValueError as exc:
+        raise CompatibilityValidationError(f"{relative}: source path escapes root") from exc
+    try:
+        raw = path.read_bytes()
+    except OSError as exc:
+        raise CompatibilityValidationError(f"{relative}: source missing or unreadable: {exc}") from exc
+    digest = hashlib.sha256(raw).hexdigest()
+    from_json = component_type in {"product_model", "machine_schema"}
+    if from_json:
+        try:
+            data = json.loads(raw.decode("utf-8"), object_pairs_hook=_no_duplicate_keys)
+        except (UnicodeError, json.JSONDecodeError) as exc:
+            raise CompatibilityValidationError(f"{relative}: invalid source JSON: {exc}") from exc
+        if not isinstance(data, dict):
+            raise CompatibilityValidationError(f"{relative}: source must be object")
+    else:
+        try:
+            from skill_registry_common import parse_yaml
+            data = parse_yaml(path)
+        except ImportError as exc:
+            raise CompatibilityValidationError("pinned PyYAML parser not installed") from exc
+    version: str | None
+    if component_type == "product_model":
+        version = _string(data.get("model_version"), relative + ".model_version")
+        component_id, owner, authority = "product-model", "model_version", relative
+    elif component_type == "skill":
+        from skill_registry_common import validate_optional_manifest_version
+        version = validate_optional_manifest_version(data, path)
+        sid = _string(data.get("id"), relative + ".id")
+        if not COMPONENT_ID_RE.fullmatch("skill:" + sid):
+            _fail(relative, "invalid skill component identity")
+        sibling = path.with_name("SKILL.md")
+        if not sibling.is_file():
+            _fail(relative, "missing behavioral authority SKILL.md")
+        component_id, owner = "skill:" + sid, "manifest.version"
+        authority = sibling.relative_to(root).as_posix()
+    elif component_type == "workflow":
+        version = _string(data.get("version"), relative + ".version")
+        component_id = "workflow:" + _string(data.get("name"), relative + ".name")
+        owner, authority = "workflow.version", relative
+    elif component_type == "machine_schema":
+        if not isinstance(data.get("$id"), str) or not data["$id"]:
+            _fail(relative, "schema missing $id authority")
+        version = declared_schema_version
+        component_id, owner, authority = "schema:" + path.name.removesuffix(".schema.json"), "support-ledger.version", relative
+    elif component_type == "project_data":
+        version = data.get("contract_version")
+        if version is not None:
+            version = _string(version, relative + ".contract_version")
+        component_id, owner, authority = "project-data:project-state", "contract_version", relative
+    else:
+        raise CompatibilityValidationError(f"unsupported component type: {component_type!r}")
+    if version is not None:
+        parse_semver(version)
+    return VersionedComponent(
+        component_id=component_id, component_type=component_type,
+        authority_path=authority, version_owner=owner, version=version,
+        digest=digest, publication_status="unknown"
+    )

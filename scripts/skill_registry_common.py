@@ -253,3 +253,16 @@ def validate_output_semantics(data: dict[str, Any], vocabulary: dict[str, Any], 
             )
     if not vocabulary["gates"] or not vocabulary["decisions"]:
         raise RegistryValidationError(f"{source}: Product Model gate/decision vocabulary missing")
+
+
+def validate_optional_manifest_version(data: dict[str, Any], source: Path) -> str | None:
+    """Read new canonical version metadata without inventing a legacy value."""
+    value = data.get("version")
+    if "version" not in data:
+        return None  # explicit legacy-unversioned classification
+    from compatibility_common import CompatibilityValidationError, parse_semver
+    try:
+        parse_semver(value)
+    except CompatibilityValidationError as exc:
+        raise RegistryValidationError(f"{source}: invalid manifest.version: {exc}") from exc
+    return value

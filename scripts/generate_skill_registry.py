@@ -17,6 +17,7 @@ from skill_registry_common import (
     ROOT, SKILL_ID_RE, RegistryValidationError, parse_yaml,
     product_vocabulary, skill_inventory, validate_cycle_association,
     workflow_inventory, validate_discovery_metadata, validate_output_semantics,
+    validate_optional_manifest_version,
 )
 
 FIELDS = (
@@ -52,8 +53,9 @@ def build_registry(root: Path) -> bytes:
     seen_slugs = set()
     for skill_path, path in skill_inventory(root):
         data = parse_yaml(path)
-        if set(data) != set(FIELDS):
-            _fail(path, f"manifest keys mismatch: missing {sorted(set(FIELDS)-set(data))}; unexpected {sorted(set(data)-set(FIELDS))}")
+        if not set(FIELDS) <= set(data) or set(data) - (set(FIELDS) | {"version"}):
+            _fail(path, f"manifest keys mismatch: missing {sorted(set(FIELDS)-set(data))}; unexpected {sorted(set(data)-(set(FIELDS) | {'version'}))}")
+        validate_optional_manifest_version(data, path)
         sid, slug, cycle = data["id"], data["slug"], data["primary_cycle"]
         if not isinstance(sid, str) or not SKILL_ID_RE.fullmatch(sid):
             _fail(path, "invalid canonical skill ID")
