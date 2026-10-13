@@ -74,6 +74,24 @@
         "post_tasks_analyze_evidence": "preimplementation-analysis.md"
       },
       "reason": "Plan diagram check negative; exact source set registered; existing spec diagram stays separate as planned conceptual view."
+    },
+    "tasks": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "407459cecd249792409f417b060f482c9cf1889b"
+      },
+      "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "Explicit Phase 1–9, US1–US6, append-only T074/T075, dependency table and independent/parallel markers already show execution graph. A new diagram would duplicate text and add Atlas maintenance without clarifying an unresolved dependency."
+      },
+      "qa": {
+        "source_traceability": "PASS source review of 75 unchecked tasks and Phase 1–9 dependency order",
+        "checklist": "PASS requirements checklist all checked",
+        "review_scope": "PLAN_ONLY; no implementation/runtime PASS",
+        "source_revision": "dfdd6475d386677ac443f0bc11d5dd638357e96f"
+      },
+      "reason": "Tasks execution flow is adequately navigable in tasks.md; no new semantic model or diagram adds value."
     }
   }
 }
