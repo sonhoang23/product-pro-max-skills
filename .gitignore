@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .tmp-skills/
 .product-pro-max/private/
+.venv/
+venv/
+*.egg-info/
+.tmp-compatibility/
