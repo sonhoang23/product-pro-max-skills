@@ -1,6 +1,6 @@
 # Quickstart — Planned Compatibility Validation
 
-**Status:** foundation ledger/parser/tests are implemented; full compatibility assessor, migrations, consumer impact and deprecation checks are **not** implemented. The matrix below remains future acceptance design. See [verification.md](verification.md) for exact revision-bound Phase 1/2 evidence.
+**Status:** foundation and US1 SemVer/source-owner/legacy manifest parser implemented and tested; full compatibility assessor, consumer graph, migrations and deprecation checks are **not** implemented. The matrix below remains future acceptance design. See [verification.md](verification.md) for exact revision-bound Phase 1/2 evidence.
 
 ## Preconditions
 
@@ -15,9 +15,12 @@
 ```shell
 python scripts/validate_repo.py
 python -m unittest discover -s tests -p 'test_compatibility_foundation.py' -v
+python -m unittest discover -s tests -p 'test_compatibility_versions.py' -v
+# Requires pinned PyYAML from requirements-registry.txt:
+python -m unittest discover -s tests -p 'test_skill_manifest_contract.py' -v
 ```
 
-The 10 foundation tests cover an empty ledger, duplicate/malformed JSON, invalid IDs/paths/SemVer, source digest/ref mismatch and local Git verification. These **do not** establish compatibility of a proposed change.
+The 10 foundation tests cover an empty ledger, duplicate/malformed JSON, invalid IDs/paths/SemVer, source digest/ref mismatch and local Git verification. Seven US1 tests check SemVer ordering, pre-1.0 bump rules, source version owners and unrelated registry/lockfile changes. The manifest contract suite covers strict metadata plus optional `manifest.version` and legacy-unversioned classification. These checks **do not** establish compatibility of a proposed change.
 
 ## Future compatibility checker (NOT implemented)
 

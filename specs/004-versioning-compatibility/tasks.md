@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 verified (9/75 checked).
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T017 CI verified (17/75 checked); documentation promotion T018/T019 pending.
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -63,14 +63,14 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 
 **Independent Test:** PATCH/MINOR/MAJOR/pre-1.0/initial examples pass; style/lock/version marker changes do not bump unrelated components.
 
-- [ ] T010 [P] [US1] Define stable/pre-1.0/initial version cases and expected bump matrix in `tests/test_compatibility_versions.py`.
-- [ ] T011 [US1] Implement SemVer validation, precedence and incompatible/compatible/patch recommendation in `scripts/compatibility_common.py`.
-- [ ] T012 [US1] Implement owner lookup for model, manifest, workflow, schema and project-data versions in `scripts/compatibility_common.py`.
-- [ ] T013 [US1] Extend strict manifest parser for a planned canonical `version` field while detecting unversioned legacy manifests in `scripts/skill_registry_common.py`.
-- [ ] T014 [US1] Test duplicate YAML keys, unknown keys, added version and legacy readers in `tests/test_skill_manifest_contract.py`.
-- [ ] T015 [US1] Check future workflow version semantics without fabricating a published workflow in `tests/test_compatibility_versions.py`.
-- [ ] T016 [US1] Author versioning, 0.x, first-baseline and publication evidence policy in `VERSIONING.md`.
-- [ ] T017 [US1] Test higher-precedence bump and unrelated `registry_version`/`skills-lock.json.version`/README differences in `tests/test_compatibility_versions.py`.
+- [x] T010 [P] [US1] Define stable/pre-1.0/initial version cases and expected bump matrix in `tests/test_compatibility_versions.py`.
+- [x] T011 [US1] Implement SemVer validation, precedence and incompatible/compatible/patch recommendation in `scripts/compatibility_common.py`.
+- [x] T012 [US1] Implement owner lookup for model, manifest, workflow, schema and project-data versions in `scripts/compatibility_common.py`.
+- [x] T013 [US1] Extend strict manifest parser for a planned canonical `version` field while detecting unversioned legacy manifests in `scripts/skill_registry_common.py`.
+- [x] T014 [US1] Test duplicate YAML keys, unknown keys, added version and legacy readers in `tests/test_skill_manifest_contract.py`.
+- [x] T015 [US1] Check future workflow version semantics without fabricating a published workflow in `tests/test_compatibility_versions.py`.
+- [x] T016 [US1] Author versioning, 0.x, first-baseline and publication evidence policy in `VERSIONING.md`.
+- [x] T017 [US1] Test higher-precedence bump and unrelated `registry_version`/`skills-lock.json.version`/README differences in `tests/test_compatibility_versions.py`.
 - [ ] T018 [US1] After US1 tests and fresh `implementation:phase-03` Modeling Gate, promote implemented model version policy in `PRODUCT-MODEL.md`.
 - [ ] T019 [US1] After US1 tests and fresh `implementation:phase-03` Modeling Gate, promote implemented skill authority rules in `SKILL-MODEL.md`.
 

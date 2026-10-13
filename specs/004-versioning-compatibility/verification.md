@@ -25,3 +25,17 @@ Phase 2 T004–T009 remains pending. All feature runtime risk evidence for ENV-0
 - **Environment/target:** GitHub Actions Ubuntu, Python 3.12, local Git only; no remote Git fetch or external service started by the parser. Windows parity is **NOT_RUN**, scheduled T049/T052.
 - **Claim limit:** Source parsing and immutable Git blob integrity tested. This is **not** a compatibility classification verdict, behavioral skill proof, migration execution, hosted runtime or published release.
 - **Modeling:** `implementation:phase-02 = no-diagram-needed`. New code boundary is one offline module reading a declared ledger, local Git source and Python fixtures; the existing plan/model and typed data-model capture this flow. No new multi-service topology to visualize; no project-level docs promotion.
+
+## Phase 3 — US1 technical checks before project docs promotion
+
+- **Source revision tested:** `a7c43b3cb3afe29028f62ac2290dae0b57933b22`.
+- **T010/T011:** stable/pre-1.0/first-version and precedence matrix; strict SemVer parser, prerelease comparison, independent required-bump floor (input = reviewed impact; no static behavior proof).
+- **T012:** owner inspection for Product Model, skill manifest + SKILL.md, future workflow, declared schema-format support version and legacy/project data; no version inferred from registry, lockfile or docs.
+- **T013/T014:** strict manifest parser allows optional valid `manifest.version` while preserving legacy missing field, rejects duplicates/unknown fields/unsafe YAML. No mass manifest rewrite or inferred publication.
+- **T015/T017:** synthetic future workflow version and unrelated README/registry/lock marker tests; no executable workflow published.
+- **T016:** new `VERSIONING.md` explicitly scopes policy vs checked implementation vs future compatibility/deprecation/migration/release.
+- **CI:** [Validate #38375925767](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38375925767) and [Skill Registry #38375925770](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38375925770) both `success` at `a7c43b3cb3afe29028f62ac2290dae0b57933b22`; GitHub repository job executed Python 3.12 with pinned PyYAML; `10 foundation + 7 US1 + 7 manifest tests = 24` relevant tests passed (the manifest suite also contains existing Spec 002 tests).
+- **Prior failure:** `2f4f428` CI failed because one assertion matched `registry_version` as substring of `version`; corrected to parse JSON skill entry in `a7c43b3cb3afe29028f62ac2290dae0b57933b22`, rerun green. No silent waiver of failed evidence.
+- **Boundaries:** command outputs prove only parser/owner/recommendation semantics and registry backward compatibility; **no** consumer impact checker, publication, migration, end-user runtime execution or Windows native proof. Risk ENV-003 and VERIFY-003/004/008 remain scheduled at later phases.
+- **Modeling assessment:** `implementation:phase-03 = no-diagram-needed`: single offline Python module + existing manifest/registry reader; canonical authority unchanged, relationship/implementation scope already captured by plan and data-model. No runtime topology or actor interactions newly created.
+- **Promotion checkpoint:** T018/T019 still unchecked pending fresh implementation modeling gate. Only promote verified ownership/legacy source-reading behavior, not future consumer graph/compatibility gate.
