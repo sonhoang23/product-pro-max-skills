@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (29/75 checked; Phase 4 US2 T020–T029 source+tests+Modeling Gate complete; final docs-revision CI verification pending.
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (29/75 checked; Phase 4 US2 T020–T029 source+tests+Modeling Gate complete; docs-promotion CI PASS at fc43559 (Validate + Skill Registry).
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 

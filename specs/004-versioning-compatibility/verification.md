@@ -57,11 +57,11 @@ Phase 2 T004–T009 remains pending. All feature runtime risk evidence for ENV-0
 
 ## Phase 4 — US2 consumer impact (pre-promotion evidence)
 
-- **Source revision:** \`e3f4e71ed72b9131b9ab89965439122ccbad3ae6\` on main, before project-doc promotion T029.
+- **Source revision:** `e3f4e71ed72b9131b9ab89965439122ccbad3ae6` on main, before project-doc promotion T029.
 - **T020:** Synthetic strict/tolerant/closed-enum/changed-ID/absent-consumer/readers and immutable baseline scenario definitions recorded in fixture README; no released providers invented.
 - **T021–T027:** 15 offline unit fixtures covering declared known readers, reader-specific acceptance proof, output removal, schema requiredness/shape, model identity/meaning, semantic review, SemVer constraints, conflict/missing/unsupported provider and cycle, bounded actionable diagnostics.
-- **T028 / VERIFY-008:** Explicit invalid precondition fixtures (missing reader file, malformed range, duplicate output/JSON key, traversal, missing keys) raise root-cause \`CompatibilityValidationError\` before downstream impact classification. **PASS for this synthetic offline boundary only**.
-- **Command:** \`python -m unittest discover -s tests -p 'test_compatibility_consumers.py' -v\`, Python 3.12, pinned PyYAML; **15 tests PASS** at revision above, GitHub Actions [Validate #38388036169](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388036169), repository job \`115264559964\`, exit 0. Source test output logged 2026-10-13 11:07 UTC.
+- **T028 / VERIFY-008:** Explicit invalid precondition fixtures (missing reader file, malformed range, duplicate output/JSON key, traversal, missing keys) raise root-cause `CompatibilityValidationError` before downstream impact classification. **PASS for this synthetic offline boundary only**.
+- **Command:** `python -m unittest discover -s tests -p 'test_compatibility_consumers.py' -v`, Python 3.12, pinned PyYAML; **15 tests PASS** at revision above, GitHub Actions [Validate #38388036169](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388036169), repository job `115264559964`, exit 0. Source test output logged 2026-10-13 11:07 UTC.
 - **Regressions:** foundation 10, version-owner 7, manifest 7, design-system tests 37 PASS in same repository job. [Skill Registry #38388036189](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388036189) success on exact source revision.
 - **Scope and limits:** code is a reusable offline library, *not* an end-to-end CLI assessment, user migration, native-Windows proof, external-reader certification, product runtime PASS or publication. Unknown readers and support remain unassessed by default. Semantics changes require review.
 - **Phase-04 Modeling Gate:** no-diagram-needed after source test evidence; existing plan and conceptual diagram describe the single offline comparison boundary. No new actor, deployment/process lifecycle or data flow requiring a distinct diagram. Promote only verified strict-reader and dependency constraints in T029 after gate entry is recorded.
@@ -77,5 +77,5 @@ Phase 2 T004–T009 remains pending. All feature runtime risk evidence for ENV-0
 - **Promoted contract:** `SKILL-CONTRACT.md` now describes only demonstrated
   US2 reader strictness, constraints and bounded diagnostics. It does
   not claim end-to-end checker, external consumers, migration or publication.
-- **Next:** final docs-revision CI confirmation, then Phase 5 T030–T039,
-  T074–T075, preserving migration and recovery boundaries.
+- **Post-promotion aggregate CI:** [Validate #38388437254](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388437254) and [Skill Registry #38388437153](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38388437153) both `success` at `fc43559c8f27283c31a469ea8d11aa861d87b28f` (Phase 4 docs, task state and Modeling Gate recorded).
+- **Next:** Phase 5 T030–T039, T074–T075 (US3 migration). No user data migration/runtime proof has yet been executed.

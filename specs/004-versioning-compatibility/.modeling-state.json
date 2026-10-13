@@ -182,7 +182,7 @@
     "implementation:phase-04": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "23d9c6ab771ed7bda47e3d21d1b31568b31ee74c",
+        "tasks.md": "51311a53d1ffdfa84af08be9248ffc0def9909c6",
         "scripts/compatibility_common.py": "c729ea2fd7888fa1ed085c310431f2c5884fbf20",
         "tests/test_compatibility_consumers.py": "236e464c976cfd09db4ba95ff2c7f744bfdfcf15",
         "tests/fixtures/compatibility/README.md": "d371ad062a833bc6e753017235647db6a37bf244",
@@ -210,7 +210,9 @@
         "project_docs": "PASS T029 post-modeling promotion of tested reader/graph policy into SKILL-CONTRACT.md",
         "evidence": "verification.md",
         "pre_promotion_modeling_revision": "bbddbf431cc6062e33c846f5c0b75cc5e1650bf7",
-        "full_pre_promotion_ci": "PASS Validate #38388036169 and Skill Registry #38388036189 at e3f4e71"
+        "full_pre_promotion_ci": "PASS Validate #38388036169 and Skill Registry #38388036189 at e3f4e71",
+        "post_promotion_ci": "PASS Validate #38388437254 and Skill Registry #38388437153 at fc43559c8f27283c31a469ea8d11aa861d87b28f",
+        "post_promotion_revision": "fc43559c8f27283c31a469ea8d11aa861d87b28f"
       },
       "reason": "US2 offline library and diagnostics verified against 15 bounded synthetic cases. Reused conceptual diagram and existing plan; no new diagram adds independent model value."
     }
