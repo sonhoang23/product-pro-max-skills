@@ -1,0 +1,323 @@
+{
+  "skill_name": "runtime-verification",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Tôi đang vibe code một repo Next.js. Test đều pass nhưng mở app thật thì URL gốc trả 404 vì chỉ có /projects. Lỗi này có vẻ có thể gặp lại ở nhiều repo. Hãy xử lý theo runtime-verification.",
+      "expected_output": "Nhận diện đây là reusable runtime lesson, match hoặc đề xuất WEB-ROUTE pattern, chọn routing category, không tạo duplicate nếu WEB-ROUTE-001 đã tồn tại; nếu cần cải thiện canonical thì update upstream main, bump version và yêu cầu sync consumer.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Repo hiện tại lỗi vì tôi gõ nhầm tên biến APP_PROJETC_ID trong đúng một file local. Sau khi sửa typo thì app chạy bình thường. Hãy cập nhật runtime-verification để các repo khác tránh lỗi này.",
+      "expected_output": "Phân loại LOCAL_INCIDENT vì chưa có failure pattern đủ tổng quát; không thêm Risk ID mới và không update canonical catalog chỉ để lưu typo cục bộ.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Frontend gọi protected API và nhận 401 dù API E2E pass. Catalog canonical đã có AUTH-INTEGRATION-001 với cùng root cause. Hãy học lỗi này và cập nhật catalog.",
+      "expected_output": "Phân loại KNOWN_PATTERN; tái sử dụng AUTH-INTEGRATION-001, không tạo ID mới. Chỉ sửa canonical nếu incident cung cấp lesson thực sự cải thiện Applies when/Task-generation rule/Required evidence.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Tôi đã ủy quyền direct-to-main cho runtime-verification nhưng phiên làm việc này không có quyền push vào sonhoang23/oh-my-skill. Lỗi mới đủ điều kiện reusable. Hãy xử lý.",
+      "expected_output": "Trả promotion BLOCKED, giữ Runtime Lesson Candidate và báo canonical chưa được cập nhật; tuyệt đối không fallback sang sửa bản .agents/skills/runtime-verification local như source of truth.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Full E2E suite dùng chung một PostgreSQL. Test Overview đếm toàn bộ class nên lúc pass 102/102, lúc khác fail expected 7 nhưng nhận 8 vì suite khác đang INSERT class song song. Chạy riêng file Overview thì pass. Hãy xử lý theo runtime-verification.",
+      "expected_output": "Nhận diện DB-003: cross-test contamination do parallel E2E trên shared mutable database. Không nới assertion để né race. Đề xuất isolation bằng DB/schema/transaction/query scope hoặc serialize file; required evidence phải là full-suite deterministic rerun, không chỉ rerun riêng một file.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Frontend tests đã pass. Sau đó tôi refactor Button thành Link và sửa vài import. Agent vẫn muốn giữ frontend_tests=passed vì 'đã pass ở lượt trước'. Hãy đánh giá.",
+      "expected_output": "Nhận diện VERIFY-003: evidence bị stale sau source mutation. Chỉ các gate bị ảnh hưởng phải quay về STALE/PENDING và rerun; gate độc lập có thể giữ PASS nếu dependency không đổi. Final completion phải dựa trên revision cuối.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Vitest báo 56/56 tests pass và exit 0, nhưng log có MSW unhandled request và warning accessibility nói anchor đang có role=button. Có được coi frontend verification sạch không?",
+      "expected_output": "Nhận diện VERIFY-004: exit 0 chưa đủ nếu còn unexpected runtime/test warning. Phải phân loại warning; unhandled request và semantic/accessibility warning thuộc scope verification nên cần fix hoặc ghi rõ blocked, không gọi clean PASS chỉ vì suite xanh.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Tôi dùng một component Button polymorphic để render Next Link. UI nhìn như nút và click được, nhưng Testing Library không tìm thấy role=link; DOM là <a role=\"button\">. Nên sửa test hay sửa component composition?",
+      "expected_output": "Nhận diện UI-001. Navigation phải giữ semantic Link/anchor thật; style bằng buttonVariants/class thay vì ép Button semantics lên anchor. Không sửa test để chấp nhận role sai. Required evidence gồm role link, href, keyboard/focus và không còn accessibility warning.",
+      "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Trong package.json script test là vitest. Tôi chạy `pnpm --filter admin-shadcn test -- --run` nhưng Vitest vào DEV watch mode; thử `pnpm --filter admin-shadcn exec vitest run` thì suite chạy xong nhưng wrapper cuối cùng báo Command \"vitest\" not found. Hãy rút runtime lesson.",
+      "expected_output": "Match VERIFY-001 và cải thiện command-resolution semantics: phải đọc script thật, xác minh forwarding/binary resolution, runner mode và final wrapper exit. Không coi inner test summary xanh là PASS nếu wrapper cuối fail; ưu tiên canonical package-script invocation đã verify.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Tôi chỉ chạy lệnh cài thêm dependency frontend, nhưng postinstall/setup-env đã ghi đè .env đang dùng tốt; E2E sau đó auth/database 500. Đây có phải lesson reusable không?",
+      "expected_output": "Match ENV-001. Install/setup phải được coi potentially mutating vì lifecycle script có thể sửa env; task cần đọc lifecycle, snapshot env trước/sau và smoke check dependency sau install. Không tạo pattern mới nếu ENV-001 đã bao phủ.",
+      "files": []
+    },
+    {
+      "id": 11,
+      "prompt": "Repo pin `pnpm@10.32.1`, nhưng agent host đang chạy pnpm 11. `pnpm --filter app exec vitest run` báo không tìm thấy vitest trong khi package script/direct Node runner có behavior khác. Hãy xử lý theo runtime-verification.",
+      "expected_output": "Match VERIFY-001, không tạo Risk ID mới chỉ cho pnpm. Evidence phải ghi configured package-manager version, actual version/path, target runner/binary resolution, runner mode và final wrapper exit. Direct fallback chỉ là diagnostic evidence, không thay canonical-command PASS nếu canonical command vẫn fail.",
+      "files": []
+    },
+    {
+      "id": 12,
+      "prompt": "Tôi chỉ thêm một dependency browser-test nhưng install/relink làm node_modules/.bin tạm mất runner và lockfile đổi hàng nghìn dòng peer/transitive. Sau đó canonical test command không chạy được. Đây là lỗi app hay runtime lesson nào?",
+      "expected_output": "Nhận diện ENV-004. Install/relink là environment mutation: snapshot pre/post diff, xác minh package-manager version, install exit, review manifest/lockfile scope, runner tồn tại sau relink và rerun canonical verification. Không quy lỗi cho app trước khi environment integrity được chứng minh.",
+      "files": []
+    },
+    {
+      "id": 13,
+      "prompt": "User login thành công với role USER nhưng trang admin dùng guard `RequireRole('ADMIN')` và cố ý gọi notFound(), nên browser hiện 404. Với admin account thì cùng URL mở được. Hãy phân loại.",
+      "expected_output": "Nhận diện AUTH-002. 404 này là authorization fail-closed chứ không phải missing route. Phải ghi principal role/permission, test authorized và authenticated-but-unauthorized behavior, đồng thời phân biệt unauthenticated/authorization/routing failure trước khi sửa route.",
+      "files": []
+    },
+    {
+      "id": 14,
+      "prompt": "@playwright/test import/typecheck được nhưng chạy E2E fail ngay vì chromium_headless_shell executable chưa tồn tại. App chưa được mở lần nào. Có được đánh UI FAIL không?",
+      "expected_output": "Nhận diện BROWSER-001. Browser executable/payload thiếu là environment BLOCKED, không phải UI product FAIL. Cần materialize browser runtime, launch smoke pass, rồi mới đánh giá app journey.",
+      "files": []
+    },
+    {
+      "id": 15,
+      "prompt": "Playwright báo 8 passed vì 2 smoke tests chạy trên 4 projects locale/viewport. Nhưng acceptance journey gồm Subject → Class → Student → Enrollment → Session → Attendance → Tuition → Payment → Overview và suite mới chỉ mở Create Class + validation + overflow. Có thể gọi full browser QA PASS không?",
+      "expected_output": "Nhận diện BROWSER-002. Test/project count không đồng nghĩa business-step coverage. Phải map từng acceptance step tới test/assertion, tách locale/device matrix khỏi journey coverage và giữ các bước chưa chạy là NOT_COVERED/unavailable; không gọi full journey PASS.",
+      "files": []
+    },
+    {
+      "id": 16,
+      "prompt": "Ứng dụng vận hành theo Asia/Ho_Chi_Minh. Trên máy dev cùng timezone mọi timestamp đúng, nhưng tôi lo `datetime-local` và formatter đang vô tình dùng device timezone. Nên verify thế nào?",
+      "expected_output": "Nhận diện BROWSER-003. Chạy cùng business instant trên browser timezone khác operating timezone, kiểm presentation và datetime-local → ISO conversion, probe timezone authority thật và không dùng locale như proxy cho timezone. Civil date cần kiểm riêng.",
+      "files": []
+    },
+    {
+      "id": 17,
+      "prompt": "Vitest/jsdom dùng fireEvent.change làm input hiển thị `12.5`, nhưng React Hook Form vẫn giữ state cũ nên validation/mutation không đổi. Base UI Select cũng không được tìm như native select; browser Playwright interaction lại chạy đúng. Hãy xử lý.",
+      "expected_output": "Nhận diện VERIFY-005. Ưu tiên user-level/library interaction, query theo accessible role/name thực, assert cả DOM value + form/validation state + mutation payload và giữ browser smoke cho primitive nhạy browser. Không sửa business logic chỉ từ jsdom-only failure khi browser chưa reproduce.",
+      "files": []
+    },
+    {
+      "id": 18,
+      "prompt": "API `/health` timeout vì nó chạm database, nhưng capability tôi cần verify là `/api/meta` vẫn trả đúng schema từ process/revision vừa start. Tôi nên coi startup fail hoàn toàn không?",
+      "expected_output": "Match STARTUP-001 refinement: generic health là supporting evidence, không thay capability-specific probe. Phải xác minh process identity/revision và probe capability mục tiêu; health failure do dependency ngoài scope phải phân loại riêng thay vì tự động kết luận target capability broken.",
+      "files": []
+    },
+    {
+      "id": 19,
+      "prompt": "MoneyInput có formatter đúng khi gọi trực tiếp và paste `55.000` cũng đúng, nhưng userEvent.type('55000') cho kết quả `5.500`; gõ `130000` thành `1.300`. Hãy phân loại và đề xuất proof.",
+      "expected_output": "Nhận diện UI-002. Live formatting đang làm lệch caret/sequential typing; không sửa test thành paste để né lỗi. Phải verify sequential keyboard typing, caret/selection semantics, displayed value, canonical form state và submit payload.",
+      "files": []
+    },
+    {
+      "id": 20,
+      "prompt": "Test helper render component bên trong QueryClientProvider. Sau `view.rerender(<Workspace />)` unsaved date/payment state reset về fixture, nhưng browser locale switch giữ state. Root cause nên kiểm ở đâu?",
+      "expected_output": "Nhận diện VERIFY-006. Kiểm custom render/rerender có giữ cùng provider tree và cùng QueryClient/store/router instance hay không trước khi sửa production state logic. Rerender phải khác remount theo contract.",
+      "files": []
+    },
+    {
+      "id": 21,
+      "prompt": "StudentsList render desktop table và mobile cards cùng lúc, CSS breakpoint chỉ ẩn một branch. jsdom `getAllByText('Nguyễn Minh Anh')` trả 4 thay vì 2, trong browser desktop chỉ thấy 2. Có nên xóa mobile branch hoặc nới business assertion không?",
+      "expected_output": "Nhận diện VERIFY-007. jsdom không phải proof của responsive visibility; scope unit assertion bằng within(table/region) và dùng browser viewport evidence cho visible branch. Không xóa responsive UI chỉ để global DOM count unique.",
+      "files": []
+    },
+    {
+      "id": 22,
+      "prompt": "Sau khi tạo Subject mới API trả `{id:'subject-2', code:'MATH', name:'Toán'}`. Form set selected ID ngay nhưng options đang refetch, nên Select trigger tạm hiển thị `subject-2`. Hãy rút runtime lesson.",
+      "expected_output": "Nhận diện UI-003. Async Select phải giữ stable human-readable label/optimistic option trong pending/success/failure window, trong khi canonical form value vẫn là ID. Không được leak internal ID ra UI.",
+      "files": []
+    },
+    {
+      "id": 23,
+      "prompt": "RHF test mock mutation gọi options.onError ngay trong cùng call stack; field error không xuất hiện hoặc bị submit lifecycle ghi đè. Một test khác dùng getByRole('alert') nhưng form hợp lệ có 3 alert. Nên xử lý thế nào?",
+      "expected_output": "Match VERIFY-005 refinement. Mutation mock/callback phải phản ánh lifecycle runtime và chờ submit/state transition; role không unique phải scope hoặc assert đúng text/name. Không sửa production logic chỉ để thỏa timing/query giả định của jsdom.",
+      "files": []
+    },
+    {
+      "id": 24,
+      "prompt": "Testing Library `getByLabelText('fields.startDate')` fail vì accessible label có thêm required marker `*`, trong khi input/label association đúng. Có cần sửa component không?",
+      "expected_output": "Match VERIFY-005 refinement. Ưu tiên query theo accessible role/name hoặc matcher phản ánh accessible name thực tế; không sửa production semantics chỉ để exact rendered-label string match. Nếu marker là aria-hidden thì kiểm accessible tree trước khi kết luận component lỗi.",
+      "files": []
+    },
+    {
+      "id": 25,
+      "prompt": "Form có nhóm guardian optional. Người dùng nhập guardian name nhưng bỏ phone; payload builder dùng điều kiện và biến cả nhóm thành `guardians: []`. API trả success, UI báo đã lưu nhưng sau refetch tên guardian biến mất. Hãy phân loại theo runtime-verification.",
+      "expected_output": "Nhận diện UI-006. Partial non-empty user input không được silently transform thành empty state. Task phải định nghĩa empty/partial/complete, chặn partial với field/group error hoặc persist theo contract, giữ input, assert payload và round-trip/refetch; success status một mình không đủ proof.",
+      "files": []
+    },
+    {
+      "id": 26,
+      "prompt": "API trả Problem Details chỉ rõ `allocations.0.amount` không hợp lệ nhưng frontend catch error rồi chỉ toast 'Có lỗi xảy ra'; user không biết ô nào cần sửa dù backend contract đúng. Đây là UI copy bug hay integration lesson?",
+      "expected_output": "Nhận diện INTEGRATION-001. Structured server field identity/code/path phải được giữ qua transport/adaptor và map về đúng editable control; generic form error chỉ dùng khi không map được. Verification phải assert field error, input preservation và retry-success, không chỉ backend E2E.",
+      "files": []
+    },
+    {
+      "id": 27,
+      "prompt": "API create class returns success, then redirect detail page crashes with `Operating date is not a valid calendar date`. Database contains `effective_from = 0002-09-08`; DTO only checks `YYYY-MM-DD` regex. Classify this with runtime-verification.",
+      "expected_output": "Recognize API-005: shape-valid but semantic-invalid date passed API and database, then crashed UI formatter. Require semantic date validation at DTO and service boundaries, database read-back verification, and browser proof for create → redirect → GET detail → render. Distinguish primary API/data failure from collateral UI crash; POST success alone is insufficient evidence.",
+      "files": []
+    },
+    {
+      "id": 28,
+      "prompt": "Create Class trả 201 và UI báo thành công, nhưng quay về danh sách vẫn không thấy lớp mới cho đến khi user gõ search hoặc refresh. Detail page thì đúng. Hãy phân loại theo runtime-verification.",
+      "expected_output": "Nhận diện UI-007. Mutation phải map dependency family và verify initiating + dependent surfaces hội tụ sau confirmed write, prime reads trước mutation, không dùng manual refresh/search workaround làm acceptance. Nếu quá convergence window phải có syncing/retry state.",
+      "files": []
+    },
+    {
+      "id": 29,
+      "prompt": "PATCH Enrollment đã 200 và DB đã lưu, nhưng refetch roster lỗi 500. UI lại báo 'Lưu thất bại' và cho bấm Save lại, gây nguy cơ duplicate. Runtime lesson nào?",
+      "expected_output": "Nhận diện UI-008. Write state và read-sync state phải tách riêng; confirmed write không được biến thành write failure. Hiển thị đã lưu nhưng chưa đồng bộ, Retry chỉ refetch/read-sync và không gửi lại mutation.",
+      "files": []
+    },
+    {
+      "id": 30,
+      "prompt": "User sửa cùng entity hai lần nhanh. Refetch của lần 2 về trước hiển thị đúng, sau đó refetch của lần 1 về muộn làm UI quay về giá trị cũ. Hãy tạo obligation.",
+      "expected_output": "Nhận diện UI-009. Latest server-confirmed truth phải thắng completion order; dùng request identity/version/cancellation/cache semantics phù hợp và test out-of-order response có chủ đích.",
+      "files": []
+    },
+    {
+      "id": 31,
+      "prompt": "API đã có PATCH Class/Student nhưng detail UI chỉ read-only. Một số field thực ra bị khóa do history nhưng UI cũng không giải thích. Backend tests đều xanh. Hãy xử lý.",
+      "expected_output": "Nhận diện UI-010. Inventory capability phải map mỗi field thành editable với affordance/validation hoặc intentionally locked với reason; history-sensitive race phải giữ draft field khác, reload editability và retry phần còn editable.",
+      "files": []
+    },
+    {
+      "id": 32,
+      "prompt": "API có 57 students, pageSize 20. UI chỉ fetch page 1 nên student 35 chỉ xuất hiện nếu biết tên để search; selector class cũng chỉ lấy 20 option đầu. Đây có phải pagination feature riêng không?",
+      "expected_output": "Nhận diện UI-011. Fixed-page collection làm record/option không discoverable; task phải dùng dataset > pageSize, pagination/load-more/server search, clear-search reset, deterministic ordering và selected label không phụ thuộc current page.",
+      "files": []
+    },
+    {
+      "id": 33,
+      "prompt": "Confirm đóng lớp gọi mutation thành công và success status đã render, nhưng AlertDialog vẫn mở nên phần page phía sau còn inert và Testing Library/browser không truy cập được status. Hãy phân loại.",
+      "expected_output": "Nhận diện UI-012. Confirm action phải giải phóng dialog/focus/inert boundary đúng lifecycle; browser evidence cần dialog closed, background active, focus recovery hợp lý và feedback accessible.",
+      "files": []
+    },
+    {
+      "id": 34,
+      "prompt": "Desktop Playwright full journey pass nhưng mobile 360x800 sheet không scroll tới Save, một action chỉ lộ khi hover và class list overflow ngang. Có thể lấy desktop PASS đại diện mobile không?",
+      "expected_output": "Nhận diện BROWSER-004. Mobile là runtime interaction surface riêng cho flow được spec yêu cầu; chạy cùng business result trên viewport target, kiểm overflow/scroll/action visibility/touch/feedback và không suy desktop PASS sang mobile.",
+      "files": []
+    },
+    {
+      "id": 35,
+      "prompt": "E2E helper gọi register rồi login. Username fixture vượt max length nên register 400 nhưng helper bỏ qua status; vài dòng sau login 401 khiến agent tưởng auth regression. Lesson nào?",
+      "expected_output": "Nhận diện VERIFY-008. Setup/precondition phải fail fast và assert ngay result/invariant của register/seed/create; downstream symptom không được dùng để sửa auth trước khi prerequisite được chứng minh.",
+      "files": []
+    },
+    {
+      "id": 36,
+      "prompt": "Sessions tests fail 3 case vì mock module không export hook mới component vừa consume; test khác pass/fail theo thứ tự vì mutation mock của case trước không reset. Product có lỗi không?",
+      "expected_output": "Nhận diện VERIFY-009. Phân loại harness drift/mock leak trước product bug; partial mock phải mirror consumed exports, reset mutable state mỗi case và chạy full file để bắt order-dependence.",
+      "files": []
+    },
+    {
+      "id": 37,
+      "prompt": "Tôi start API từ clean HEAD, probe OpenAPI đúng, nhưng trong lúc watcher chạy một agent khác sửa Tuition source. api:gen vẫn success và diff lẫn field của feature khác; consumer typecheck fail. Có được dùng artifact này làm evidence không?",
+      "expected_output": "Match API-001 + VERIFY-003 refinement. Working tree phải stable xuyên probe/generation; source đổi mid-run làm artifact CONTAMINATED/STALE. Dừng, ổn định checkout, restart đúng runtime, probe lại, regenerate, review diff và consumer verify.",
+      "files": []
+    },
+    {
+      "id": 38,
+      "prompt": "Root turbo lint chạy song song làm oxlint panic OOM; admin/ui/api lint chạy riêng đều 0 lỗi và `turbo run lint --concurrency=1` pass. Có nên sửa source để root lint xanh không?",
+      "expected_output": "Match VERIFY-002 refinement. Đây là resource-pressure/runner causality, không phải lint-rule product failure. Phải phân loại primary OOM vs collateral cancellation, dùng individual/serial rerun làm canonical recovery trên máy này và không sửa source vô cớ.",
+      "files": []
+    },
+    {
+      "id": 39,
+      "prompt": "Domain parser ném InvalidMoneyError cho '-1'. Service/controller để exception leak ra thay vì canonical BadRequest Problem Details nên frontend không map validation được. Nên thêm try/catch mọi lỗi không?",
+      "expected_output": "Nhận diện API-006. Chỉ map domain validation/business exception có chủ đích sang canonical application/transport error; giữ invariant domain, không catch-all unknown/system errors thành 400.",
+      "files": []
+    },
+    {
+      "id": 40,
+      "prompt": "Feature có thao tác Save Class rồi quay về list/detail/overview. Hãy chạy runtime-verification ở requirements mode trước khi plan.",
+      "expected_output": "Phải nhận diện UI-007 ở mức Runtime Requirement Signal: yêu cầu technology-agnostic về dependent surfaces hội tụ sau confirmed write hoặc hiển thị syncing/recovery; không được đề xuất invalidateQueries/React Query/cache library trong spec.",
+      "files": []
+    },
+    {
+      "id": 41,
+      "prompt": "Spec mới chỉ nói sẽ có Playwright QA nhưng chưa biết browser executable được cài thế nào. requirements mode nên xử lý BROWSER-001 ra sao?",
+      "expected_output": "BROWSER-001 có Earliest detectable stage=tasks nên requirements mode phải DEFERRED, không tạo requirement về chromium_headless_shell/browser install và không đánh NOT_APPLICABLE chỉ vì spec thiếu technical detail.",
+      "files": []
+    },
+    {
+      "id": 42,
+      "prompt": "Plan cho feature mutation đã chốt frontend↔API và nhiều dependent read surfaces. Chạy design mode cho UI-007.",
+      "expected_output": "Phải tạo Runtime Risk Design với UI-007=APPLIES, requirement refs nếu có, trigger, prevention design về dependency family/convergence/read-sync và verification strategy; đây là inventory authoritative cho feature mới, không đợi tasks mới phát hiện lần đầu.",
+      "files": []
+    },
+    {
+      "id": 43,
+      "prompt": "plan.md đã có Runtime Risk Design cho UI-007/UI-009. Khi speckit-tasks chạy, runtime-verification nên làm gì?",
+      "expected_output": "Tasks mode phải bắt đầu từ inventory trong plan, refresh catalog để bắt drift/false-N/A, rồi map Risk→Requirement→Prevention design→Task→Required evidence. Không thiết kế lại risk từ đầu; nếu plan legacy thiếu section mới được legacy-bootstrap có provenance.",
+      "files": []
+    },
+    {
+      "id": 44,
+      "prompt": "Checklist sau plan có UI-008 APPLIES. Hãy tạo kiểm tra phù hợp.",
+      "expected_output": "Phải tạo requirement-quality checklist kiểu 'Spec đã phân biệt confirmed write failure với post-write read-sync failure chưa?' có trace [runtime:UI-008]. Không tạo mục chạy browser/refetch/invalidate cache vì checklist kiểm câu chữ requirement, không kiểm implementation.",
+      "files": []
+    },
+    {
+      "id": 45,
+      "prompt": "Analyze thấy UI-007 có task browser nhưng spec không định nghĩa dependent surfaces và plan không có prevention design. Task vẫn ghi smoke test cuối phase.",
+      "expected_output": "Phải báo runtime trace gap: thiếu Requirement/AC và plan prevention design, task generic/sai placement không đủ coverage. Analyze phải kiểm Risk→Requirement→Design→Task chứ không chỉ Risk→Task.",
+      "files": []
+    },
+    {
+      "id": 46,
+      "prompt": "Implement task UI-009 nhưng developer đổi behavior thành 'response về sau cùng thắng' trái với plan 'latest server-confirmed truth thắng'. Test hiện tại xanh. Có được đánh task xong không?",
+      "expected_output": "Không. implementation mode phải phát hiện semantic drift với prevention design; cập nhật artifact có thẩm quyền trước hoặc sửa implementation. Test xanh không cho phép code âm thầm rewrite intended design.",
+      "files": []
+    },
+    {
+      "id": 47,
+      "prompt": "speckit-taskstoissues gặp task 'T044 Verify out-of-order response (runtime:UI-009)'. Có cần chạy lại runtime catalog không?",
+      "expected_output": "Không. taskstoissues là mechanical transformation: bảo toàn runtime:UI-009/required-evidence trace trong issue và không re-evaluate catalog.",
+      "files": []
+    },
+    {
+      "id": 48,
+      "prompt": "Caller cũ gọi runtime-verification mà không truyền lifecycle mode. Sau nâng cấp 1.10.0 phải xử lý thế nào?",
+      "expected_output": "Giữ backward compatibility: mặc định mode=tasks theo contract cũ, không bắt consumer hiện tại đổi invocation ngay.",
+      "files": []
+    },
+    {
+      "id": 49,
+      "prompt": "Playwright webServer vừa start API từ checkout hiện tại, nhưng provenance helper so process start time với `.git/index` mtime và một worker khác chạy `git status`, làm API bị báo stale dù không đổi HEAD. Nên học lesson gì?",
+      "expected_output": "Match STARTUP-001 refinement. Freshness marker phải ổn định trước read-only verification/parallel worker; không dùng mutable Git index mtime có thể bị chính verification refresh. Dùng checkout/HEAD movement marker hoặc explicit runtime revision token, rồi probe process identity + capability.",
+      "files": []
+    },
+    {
+      "id": 50,
+      "prompt": "Runtime helper sinh PowerShell `[pscustomobject]@{ ... }` bằng cách join mọi dòng bằng `;`, khiến parser báo IncompleteHashLiteral trên Windows. Có cần pattern mới không?",
+      "expected_output": "Không tạo duplicate. Bổ sung ENV-003 cross-platform verification: generated shell program phải bảo toàn block/multiline syntax của shell đích, smoke parse/execute trên target OS và trả output machine-readable trước khi dùng làm evidence.",
+      "files": []
+    },
+    {
+      "id": 51,
+      "prompt": "Hai API E2E case chạy tuần tự cùng một class. Case trước đổi default price, case sau giả định baseline cũ và fail; chạy riêng case sau thì pass. Không có parallel worker. Phân loại thế nào?",
+      "expected_output": "Match DB-003 refinement cho shared mutable E2E database/fixture dù không parallel. Mỗi stateful case phải own/reset prerequisite hoặc dùng fixture riêng; required evidence gồm chạy riêng, full file và rerun/reorder nhóm stateful, không chỉ serialize worker.",
+      "files": []
+    },
+    {
+      "id": 52,
+      "prompt": "Browser journey cần verify tuition flow nhưng shared helper bắt buộc class vừa tạo phải xuất hiện ngay ở default class list; assertion list-cache fail trước tuition step dù acceptance tuition không yêu cầu điều đó. Có sửa product list không?",
+      "expected_output": "Match VERIFY-009 refinement. Shared helper đang conflating acceptance surfaces. Parameterize/opt-out unrelated assertion và giữ behavior đó ở suite chuyên trách; targeted journey phải tới được boundary nghiệp vụ cần verify trước khi kết luận product regression.",
+      "files": []
+    },
+    {
+      "id": 53,
+      "prompt": "Nest PATCH DTO có optional `note`. Client không gửi note nhưng class-transformer materialize `note: undefined`; service dùng hasOwnProperty và coi như note được gửi, khiến stale replay 409. Runtime lesson nào?",
+      "expected_output": "Nhận diện API-008. Partial update phải bảo toàn semantics omitted/null/value qua DTO transform; không suy raw field presence từ property ownership của transformed DTO. API E2E phải cover omitted, explicit null, explicit value và replay/stale behavior.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "runtime-verification",
+  "version": "1.12.0",
+  "canonical": {
+    "repository": "sonhoang23/oh-my-skill",
+    "branch": "main",
+    "path": "skills/runtime-verification"
+  },
+  "install": {
+    "default_target": ".agents/skills/runtime-verification",
+    "strategy": "replace-from-canonical"
+  },
+  "learning": {
+    "promotion": "direct-to-main",
+    "local_copy_is_source_of_truth": false,
+    "require_reusable_pattern": true,
+    "write_policy": {
+      "when_authorized": "direct-to-main",
+      "on_missing_upstream_write_access": "blocked",
+      "never_fallback_to_local_as_canonical": true
+    }
+  },
+  "versioning": {
+    "major": "Breaking change to risk IDs, catalog schema, evidence semantics, or consumer contract.",
+    "minor": "New failure pattern/category or backward-compatible workflow capability.",
+    "patch": "Clarification/fix that does not add a new pattern or change consumer behavior."
+  },
+  "lifecycle": {
+    "default_mode": "tasks",
+    "backward_compatible_default": true,
+    "modes": [
+      "requirements",
+      "design",
+      "tasks",
+      "implementation",
+      "audit"
+    ],
+    "traceability": [
+      "risk",
+      "requirement",
+      "design",
+      "task",
+      "evidence"
+    ],
+    "progressive_disclosure": true,
+    "plan_inventory_authoritative_for_new_features": true,
+    "legacy_plan_bootstrap_in_tasks": true,
+    "profile": "references/lifecycle-profile.md"
+  }
+}
