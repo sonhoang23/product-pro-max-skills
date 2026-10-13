@@ -15,3 +15,13 @@
 ## Next phase
 
 Phase 2 T004–T009 remains pending. All feature runtime risk evidence for ENV-003 and VERIFY-003/004/008 remains NOT_RUN.
+
+## Phase 2 — Foundational source ledger
+
+- **Final code + quickstart revision:** `c8ac745a21168a070c0ec89fa64476e621e39ac9`.
+- **Tasks:** T004 strict `schemas/supported-baselines.schema.json`; T005 typed immutable source/component/dependency/diagnostic models; T006 offline ledger read + pinned Git ref/commit/regular-blob/SHA-256 verification; T007 explicit empty support ledger; T008 ten positive/negative tests; T009 accurate current/future commands in `quickstart.md`.
+- **Command:** `python -m unittest discover -s tests -p 'test_compatibility_foundation.py' -v` executed in GitHub Actions `repository` job, Python 3.12. `Ran 10 tests in 0.042s / OK` recorded at source revision `16ba5a6`; same foundation sources and CI command unchanged through final `c8ac745a21168a070c0ec89fa64476e621e39ac9`.
+- **Final revision CI:** [Validate #38373263344](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38373263344) = `success` (including repository/browser/native_zoom); [Skill Registry #38373263426](https://github.com/sonhoang23/product-pro-max-skills/actions/runs/38373263426) = `success`. Foundation repository job PASS includes the ten tests.
+- **Environment/target:** GitHub Actions Ubuntu, Python 3.12, local Git only; no remote Git fetch or external service started by the parser. Windows parity is **NOT_RUN**, scheduled T049/T052.
+- **Claim limit:** Source parsing and immutable Git blob integrity tested. This is **not** a compatibility classification verdict, behavioral skill proof, migration execution, hosted runtime or published release.
+- **Modeling:** `implementation:phase-02 = no-diagram-needed`. New code boundary is one offline module reading a declared ledger, local Git source and Python fixtures; the existing plan/model and typed data-model capture this flow. No new multi-service topology to visualize; no project-level docs promotion.

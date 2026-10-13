@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phase 1 verified (3/75 checked).
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 verified (9/75 checked).
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -46,12 +46,12 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 
 **Independent Test:** Invalid or missing ledger is diagnosed; empty ledger never means published.
 
-- [ ] T004 Define strict ledger and source provenance contract in `schemas/supported-baselines.schema.json`.
-- [ ] T005 Implement typed component, baseline, consumer dependency and diagnostic models in `scripts/compatibility_common.py`.
-- [ ] T006 Implement safe ledger loading, digest/ref comparison, duplicate rejection and normalized relative paths in `scripts/compatibility_common.py`.
-- [ ] T007 Create honest empty default support ledger (no published skills) in `compatibility/supported-baselines.json`.
-- [ ] T008 Test missing/malformed baseline, path traversal, duplicate ID, bad SHA and empty ledger in `tests/test_compatibility_foundation.py`.
-- [ ] T009 Align expected validation commands without claimed PASS in `specs/004-versioning-compatibility/quickstart.md`.
+- [x] T004 Define strict ledger and source provenance contract in `schemas/supported-baselines.schema.json`.
+- [x] T005 Implement typed component, baseline, consumer dependency and diagnostic models in `scripts/compatibility_common.py`.
+- [x] T006 Implement safe ledger loading, digest/ref comparison, duplicate rejection and normalized relative paths in `scripts/compatibility_common.py`.
+- [x] T007 Create honest empty default support ledger (no published skills) in `compatibility/supported-baselines.json`.
+- [x] T008 Test missing/malformed baseline, path traversal, duplicate ID, bad SHA and empty ledger in `tests/test_compatibility_foundation.py`.
+- [x] T009 Align expected validation commands without claimed PASS in `specs/004-versioning-compatibility/quickstart.md`.
 
 **Checkpoint:** Record actual evidence; no automated PASS inferred.
 
