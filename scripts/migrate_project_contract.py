@@ -204,6 +204,11 @@ def _retry_existing(details: dict[str, Any]) -> dict[str, Any] | None:
     if receipt_path is None or not receipt_path.exists():
         return None
     saved = _load_receipt(receipt_path)
+    recorded_key = digest(f"{MIGRATION_ID}\0{saved.get('input_digest')}\0{CURRENT_VERSION}".encode("utf-8"))
+    if (saved.get("component_id") != COMPONENT_ID or
+            saved.get("target_version") != CURRENT_VERSION or
+            saved.get("idempotency_key") != recorded_key):
+        raise CompatibilityValidationError(f"{receipt_path}: invalid migration provenance/idempotency key")
     same_paths = (saved.get("input_path") == str(details["source"]) and
                   saved.get("output_path") == str(details["target"]) and
                   saved.get("backup_path") == str(details["backup"]))

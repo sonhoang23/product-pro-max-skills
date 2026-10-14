@@ -238,6 +238,14 @@ class MigrationCLIIntegrationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate"):
             self.details()
 
+    def test_rejects_forged_idempotency_receipt(self):
+        self.migration.apply(self.details())
+        receipt = json.loads(self.receipt.read_text(encoding="utf-8"))
+        receipt["idempotency_key"] = "0" * 64
+        self.receipt.write_text(json.dumps(receipt), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "invalid migration provenance"):
+            self.migration.apply(self.details())
+
     def test_prevents_symlink_redirect_and_output_collision(self):
         self.output.write_text("external", encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "already exists"):
