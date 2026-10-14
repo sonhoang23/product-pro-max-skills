@@ -172,7 +172,7 @@ def preflight(input_path: Path, output_path: Path, *,
     sha = digest(raw)
     key = digest(f"{MIGRATION_ID}\0{sha}\0{CURRENT_VERSION}".encode("utf-8"))
     return {
-        "source": src, "target": dst, "raw": raw, "output": output,
+        "source": src, "target": dst, "raw": raw, "output": output, "document": document,
         "source_version": None if status == "legacy-unversioned" else status,
         "classification": status, "input_digest": sha,
         "output_digest": digest(output), "idempotency_key": key,
@@ -262,7 +262,7 @@ def apply(details: dict[str, Any]) -> dict[str, Any]:
         checked, _, version = _load_source(dst)
         if version != CURRENT_VERSION:
             raise CompatibilityValidationError(f"{dst}: invalid migrated contract")
-        orig = _load_source(backup)[0]
+        orig = details["document"]
         for key, value in orig.items():
             if checked.get(key) != value:
                 raise CompatibilityValidationError(f"{dst}: original field changed: {key}")
