@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://product-pro-max.dev/schemas/compatibility-migration.schema.json",
+  "title": "Explicit, per-file project-state migration receipt and recovery contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "migration_id",
+    "component_id",
+    "source_version",
+    "target_version",
+    "input_path",
+    "output_path",
+    "input_digest",
+    "output_digest",
+    "idempotency_key",
+    "status",
+    "backup_path",
+    "checkpoint",
+    "errors",
+    "recovery_action",
+    "exception"
+  ],
+  "properties": {
+    "migration_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "component_id": {
+      "const": "project-data:project-state"
+    },
+    "source_version": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "null means explicitly legacy-unversioned"
+    },
+    "target_version": {
+      "type": "string",
+      "pattern": "^1\\.0\\.0$"
+    },
+    "input_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "output_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "enum": [
+        "not_started",
+        "applied",
+        "already_applied",
+        "partially_applied",
+        "failed",
+        "recovered"
+      ]
+    },
+    "backup_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "checkpoint": {
+      "enum": [
+        "preflight",
+        "backup_saved",
+        "output_replaced",
+        "receipt_saved",
+        "recovered"
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recovery_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "exception": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "Explicit human-reviewed irreversible exception, never automatically generated"
+    },
+    "history_invariants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

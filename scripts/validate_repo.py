@@ -192,6 +192,14 @@ def validate_dependent_contracts(model: dict[str, object], errors: list[str]) ->
             "schemas/project-state.schema.json: cycle/phase ownership drift from Product Model"
         )
 
+    # Version metadata is optional for legacy input but mandatory in NEW templates.
+    # Keep Product Model vocab and durable project history otherwise unchanged.
+    version_contract = state_props.get("contract_version", {})
+    if version_contract.get("type") != "string" or not version_contract.get("pattern"):
+        errors.append("schemas/project-state.schema.json: optional SemVer contract_version declaration missing")
+    if "contract_version" in project_state.get("required", []):
+        errors.append("schemas/project-state.schema.json: legacy contract_version must remain optional")
+
     template_path = ROOT / "templates" / "project-state" / "project.yaml"
     if not template_path.exists():
         errors.append("Missing required file: templates/project-state/project.yaml")
@@ -202,6 +210,8 @@ def validate_dependent_contracts(model: dict[str, object], errors: list[str]) ->
             if ":" in line and not line.lstrip().startswith("#"):
                 key, value = line.split(":", 1)
                 values[key.strip()] = value.strip()
+        if values.get("contract_version") != "1.0.0":
+            errors.append("templates/project-state/project.yaml: new state must declare contract_version 1.0.0")
         if "stage" in values:
             errors.append("templates/project-state/project.yaml: legacy 'stage' field is not canonical")
         for key in ("cycle", "phase", "status"):
