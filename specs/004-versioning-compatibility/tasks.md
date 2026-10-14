@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (29/75 checked; Phase 4 US2 T020–T029 source+tests+Modeling Gate complete; docs-promotion CI PASS at fc43559 (Validate + Skill Registry).
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (41/75 checked; Phase 5 US3 T030–T039/T074/T075 verified f05c33b; T040 awaits phase-05 Modeling Gate and promotion.
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -105,18 +105,18 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 
 **Independent Test:** Legacy/repeated/interrupted/missing-source fixtures preserve assumptions, provenance and decision history.
 
-- [ ] T030 [P] [US3] Create isolated legacy/mixed, interrupted and missing-data scenarios in `tests/fixtures/compatibility/migration/README.md`.
-- [ ] T031 [US3] Define migration source/target/receipt/status/recovery schema in `schemas/compatibility-migration.schema.json`.
-- [ ] T032 [US3] Test legacy record parse and no loss of decision history or provenance in `tests/test_compatibility_migrations.py`.
-- [ ] T033 [US3] After T031/T074/T075, implement source/target preflight, explicit legacy-unversioned classification and default dry-run in `scripts/migrate_project_contract.py`.
-- [ ] T034 [US3] Implement backups/copy-on-write/atomic replacement with reviewed irreversibility exception in `scripts/migrate_project_contract.py`.
-- [ ] T035 [US3] Implement idempotency key, repeated input detection and applied/already_applied/partial/failed receipts in `scripts/migrate_project_contract.py`.
-- [ ] T036 [US3] Verify canonical evidence provenance, assumptions and decision histories after transform in `scripts/migrate_project_contract.py`.
-- [ ] T037 [US3] Inject interrupted-write, retry, out-of-order, mutated-source and partial failure tests in `tests/test_compatibility_migrations.py`.
-- [ ] T038 [US3] Assert assess and dry-run never mutate originals; apply requires explicit command in `tests/test_compatibility_migrations.py`.
-- [ ] T039 [US3] Document recovery, legacy support and never-mass-rewrite guidance in `compatibility/migrations/README.md`.
-- [ ] T074 [US3] After T012/T031, add opt-in `contract_version` to `schemas/project-state.schema.json` and `templates/project-state/project.yaml` for newly created state; preserve unversioned legacy reads, history and source authority (FR-017–020, FR-031).
-- [ ] T075 [US3] After T074, test new/legacy/mixed-version template/schema behavior and no silent rewrite in `tests/test_compatibility_migrations.py`; include `scripts/validate_repo.py` contract integrity evidence before T033/T040.
+- [x] T030 [P] [US3] Create isolated legacy/mixed, interrupted and missing-data scenarios in `tests/fixtures/compatibility/migration/README.md`.
+- [x] T031 [US3] Define migration source/target/receipt/status/recovery schema in `schemas/compatibility-migration.schema.json`.
+- [x] T032 [US3] Test legacy record parse and no loss of decision history or provenance in `tests/test_compatibility_migrations.py`.
+- [x] T033 [US3] After T031/T074/T075, implement source/target preflight, explicit legacy-unversioned classification and default dry-run in `scripts/migrate_project_contract.py`.
+- [x] T034 [US3] Implement backups/copy-on-write/atomic replacement with reviewed irreversibility exception in `scripts/migrate_project_contract.py`.
+- [x] T035 [US3] Implement idempotency key, repeated input detection and applied/already_applied/partial/failed receipts in `scripts/migrate_project_contract.py`.
+- [x] T036 [US3] Verify canonical evidence provenance, assumptions and decision histories after transform in `scripts/migrate_project_contract.py`.
+- [x] T037 [US3] Inject interrupted-write, retry, out-of-order, mutated-source and partial failure tests in `tests/test_compatibility_migrations.py`.
+- [x] T038 [US3] Assert assess and dry-run never mutate originals; apply requires explicit command in `tests/test_compatibility_migrations.py`.
+- [x] T039 [US3] Document recovery, legacy support and never-mass-rewrite guidance in `compatibility/migrations/README.md`.
+- [x] T074 [US3] After T012/T031, add opt-in `contract_version` to `schemas/project-state.schema.json` and `templates/project-state/project.yaml` for newly created state; preserve unversioned legacy reads, history and source authority (FR-017–020, FR-031).
+- [x] T075 [US3] After T074, test new/legacy/mixed-version template/schema behavior and no silent rewrite in `tests/test_compatibility_migrations.py`; include `scripts/validate_repo.py` contract integrity evidence before T033/T040.
 - [ ] T040 [US3] After T074/T075 and US3 tests plus fresh `implementation:phase-05` Modeling Gate, promote implemented durable-data behavior to `docs/ARCHITECTURE.md`.
 
 **Checkpoint:** Finish story tests and confirm fresh implementation modeling before any project-doc promotion.

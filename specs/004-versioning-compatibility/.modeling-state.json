@@ -79,7 +79,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "1f22f63e4e8fd65ca03c452afd749ca226838bcd"
+        "tasks.md": "45c9754568c3be67af992084c5e62c422ffc8eca"
       },
       "outputs": [],
       "diagram_check": {
@@ -90,7 +90,8 @@
         "source_traceability": "PASS 75 tasks / 3 completed setup tasks; depends on latest tasks.md state",
         "checklist": "PASS requirements checklist all checked",
         "review_scope": "PLAN_ONLY; no implementation/runtime PASS",
-        "source_revision": "9475d9b4aa0ec04e5dd9da39119c6e7e88c4e35c"
+        "source_revision": "9475d9b4aa0ec04e5dd9da39119c6e7e88c4e35c",
+        "implementation_checkbox_refresh": "Only checked markers and progress summary changed; original task dependencies unchanged."
       },
       "reason": "Tasks execution flow is adequately navigable in tasks.md; no new semantic model or diagram adds value."
     },
@@ -182,7 +183,7 @@
     "implementation:phase-04": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "51311a53d1ffdfa84af08be9248ffc0def9909c6",
+        "tasks.md": "45c9754568c3be67af992084c5e62c422ffc8eca",
         "scripts/compatibility_common.py": "c729ea2fd7888fa1ed085c310431f2c5884fbf20",
         "tests/test_compatibility_consumers.py": "236e464c976cfd09db4ba95ff2c7f744bfdfcf15",
         "tests/fixtures/compatibility/README.md": "d371ad062a833bc6e753017235647db6a37bf244",
@@ -215,6 +216,39 @@
         "post_promotion_revision": "fc43559c8f27283c31a469ea8d11aa861d87b28f"
       },
       "reason": "US2 offline library and diagnostics verified against 15 bounded synthetic cases. Reused conceptual diagram and existing plan; no new diagram adds independent model value."
+    },
+    "implementation:phase-05": {
+      "status": "no-diagram-needed",
+      "source_hashes": {
+        "tasks.md": "45c9754568c3be67af992084c5e62c422ffc8eca",
+        "scripts/migrate_project_contract.py": "336644c17559d0c4098d5293c15b7a54f45e673a",
+        "schemas/compatibility-migration.schema.json": "a20c2fd78bf0e70dc2a75d3d48e48545032bfca1",
+        "schemas/project-state.schema.json": "2b66f1c8e347eb2292c7636a4a2d9a4de6e6520d",
+        "templates/project-state/project.yaml": "5c0b1f82dece59275fe4883622188f1ea17dd2ba",
+        "scripts/validate_repo.py": "3ca89388330f366b26d26eb27a0709122ea65473",
+        "tests/test_compatibility_migrations.py": "8968df1ea8132ff21c6104ff88cbfe13cd66866d",
+        "tests/fixtures/compatibility/migration/README.md": "c4d96e90a3b37262b4ddf7eade289330ce938e4a",
+        "compatibility/migrations/README.md": "094c47bf006fe7ed0b4812e814f155001889f255",
+        ".github/workflows/validate.yml": "02c793afe54b4d2c5778f4e985387a219204f590"
+      },
+      "outputs": [],
+      "diagram_check": {
+        "result": "negative",
+        "reason": "Single-file offline transaction: preflight, backup, atomic replace, receipt, explicit restore. The existing data-model, migration contract, code and fault-injection tests explicitly represent the branches/checkpoints; a diagram adds no independent topology or semantic precision."
+      },
+      "qa": {
+        "source_revision": "f05c33bed619a3d38c7d4f22492eb63b3c53c3fd",
+        "migration_tests": "PASS 15 synthetic unit cases (Python 3.12, Validate #38493630188 repository)",
+        "regressions": "PASS foundation 10, version 7, manifest 7, consumer 15, design 37",
+        "repository_validator": "PASS scripts/validate_repo.py (#38493630188)",
+        "full_ci": "PASS Validate #38493630188 repository, browser, native_zoom",
+        "registry": "PASS Skill Registry #38493630321",
+        "verify_008": "PASS synthetic failure/preflight checks only",
+        "runtime": "NOT_RUN real user-data migration",
+        "native_windows": "NOT_RUN T049/T052",
+        "project_docs": "T040 pending post-modeling promotion"
+      },
+      "reason": "Tested opt-in one-file migration matches FR-017–020 with no new services/actors; recovery flow already explicit in contract and tests."
     }
   }
 }
