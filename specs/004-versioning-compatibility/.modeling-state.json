@@ -79,7 +79,7 @@
     "tasks": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "45c9754568c3be67af992084c5e62c422ffc8eca"
+        "tasks.md": "dc17d033d8d741799126b91fcf6f716567ae681d"
       },
       "outputs": [],
       "diagram_check": {
@@ -183,7 +183,7 @@
     "implementation:phase-04": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "45c9754568c3be67af992084c5e62c422ffc8eca",
+        "tasks.md": "dc17d033d8d741799126b91fcf6f716567ae681d",
         "scripts/compatibility_common.py": "c729ea2fd7888fa1ed085c310431f2c5884fbf20",
         "tests/test_compatibility_consumers.py": "236e464c976cfd09db4ba95ff2c7f744bfdfcf15",
         "tests/fixtures/compatibility/README.md": "d371ad062a833bc6e753017235647db6a37bf244",
@@ -220,7 +220,7 @@
     "implementation:phase-05": {
       "status": "no-diagram-needed",
       "source_hashes": {
-        "tasks.md": "45c9754568c3be67af992084c5e62c422ffc8eca",
+        "tasks.md": "dc17d033d8d741799126b91fcf6f716567ae681d",
         "scripts/migrate_project_contract.py": "336644c17559d0c4098d5293c15b7a54f45e673a",
         "schemas/compatibility-migration.schema.json": "a20c2fd78bf0e70dc2a75d3d48e48545032bfca1",
         "schemas/project-state.schema.json": "2b66f1c8e347eb2292c7636a4a2d9a4de6e6520d",
@@ -229,7 +229,8 @@
         "tests/test_compatibility_migrations.py": "8968df1ea8132ff21c6104ff88cbfe13cd66866d",
         "tests/fixtures/compatibility/migration/README.md": "c4d96e90a3b37262b4ddf7eade289330ce938e4a",
         "compatibility/migrations/README.md": "094c47bf006fe7ed0b4812e814f155001889f255",
-        ".github/workflows/validate.yml": "02c793afe54b4d2c5778f4e985387a219204f590"
+        ".github/workflows/validate.yml": "02c793afe54b4d2c5778f4e985387a219204f590",
+        "docs/ARCHITECTURE.md": "20063313d6f609335e7d789db069fe25059eefe6"
       },
       "outputs": [],
       "diagram_check": {
@@ -246,7 +247,8 @@
         "verify_008": "PASS synthetic failure/preflight checks only",
         "runtime": "NOT_RUN real user-data migration",
         "native_windows": "NOT_RUN T049/T052",
-        "project_docs": "T040 pending post-modeling promotion"
+        "project_docs": "PASS T040 source-tested behavior promoted after phase-05 gate at e4537be",
+        "pre_promotion_gate_revision": "e4537be462467ea41b8a04de3667f5354a913693"
       },
       "reason": "Tested opt-in one-file migration matches FR-017–020 with no new services/actors; recovery flow already explicit in contract and tests."
     }

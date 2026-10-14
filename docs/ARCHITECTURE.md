@@ -84,6 +84,43 @@ Canonical lifecycle state uses:
 
 The project-state schema rejects a phase paired with a cycle that does not own it.
 
+## Durable project-contract evolution (Spec 004, US3 implemented)
+
+The schema `schemas/project-state.schema.json` accepts legacy project-state
+records **without** `contract_version`; it does not auto-assign a version or
+reclassify historical evidence. Newly generated
+`templates/project-state/project.yaml` declares `contract_version: 1.0.0`.
+Source-owned Product Model cycle/phase/status values remain unchanged.
+
+The offline `scripts/migrate_project_contract.py` provides a **single-file**
+JSON/YAML migration for explicitly accepted legacy-unversioned project state.
+Default and `assess` modes are read-only and show source classification and
+SHA-256 digests. Explicit `apply` requires an output destination, separate
+backup and receipt paths, plus `--accept-legacy`; replacing the original
+also requires `--in-place`. No directory recursion or implicit migration
+runs during validation, registry generation or skill installation.
+
+The transaction stages the destination file, saves an original-byte backup,
+uses atomic replacement, verifies data and history preservation, then writes
+an execution receipt with input/output digests, idempotency key, checkpoint
+and status. A matching repeat reports `already_applied` without rewriting
+output; changed sources, missing backups, unsupported versions or forged
+receipts fail closed. Interrupted operations report `failed` or
+`partially_applied`; restoring original bytes is an explicit operation
+requiring the current output digest to match, not a silent rollback.
+
+`evidence`, `critical_assumptions`, `provenance`, `decision_history`, gates
+and decisions retain their original meanings. This migration only adds
+`contract_version`; it does **not** infer publication support for legacy
+data, rewrite history, authorize irreversible exceptions, or establish
+full compatibility of unknown external consumers.
+
+Recovery and scoped commands: [migration guide](../compatibility/migrations/README.md).
+Test provenance: [Spec 004 verification](../specs/004-versioning-compatibility/verification.md).
+Python 3.12 disposable-file fixtures demonstrate dry-run, atomic copy,
+repeat, failure injection and restore; actual user migrations and native
+Windows parity have **not** been verified.
+
 ## Repository boundaries
 
 - `skills/`: canonical distributable Product Pro Max skills.

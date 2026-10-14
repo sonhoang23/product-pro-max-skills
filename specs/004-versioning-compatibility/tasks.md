@@ -1,6 +1,6 @@
 # Tasks: Versioning & Compatibility
 
-**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (41/75 checked; Phase 5 US3 T030–T039/T074/T075 verified f05c33b; T040 awaits phase-05 Modeling Gate and promotion.
+**Branch:** `main` | **Feature:** `specs/004-versioning-compatibility` | **State:** implementation in progress; Phases 1–2 complete; US1 T010–T019 source complete, Modeling Gate verified before docs promotion (42/75 checked; Phase 5 US3 T030–T040/T074/T075 complete, tested and modeled; final docs-revision CI pending.
 
 **Inputs:** [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md), [quickstart.md](quickstart.md).
 
@@ -117,7 +117,7 @@ Source: synced `.agents/skills/runtime-verification/` from `oh-my-skill` commit 
 - [x] T039 [US3] Document recovery, legacy support and never-mass-rewrite guidance in `compatibility/migrations/README.md`.
 - [x] T074 [US3] After T012/T031, add opt-in `contract_version` to `schemas/project-state.schema.json` and `templates/project-state/project.yaml` for newly created state; preserve unversioned legacy reads, history and source authority (FR-017–020, FR-031).
 - [x] T075 [US3] After T074, test new/legacy/mixed-version template/schema behavior and no silent rewrite in `tests/test_compatibility_migrations.py`; include `scripts/validate_repo.py` contract integrity evidence before T033/T040.
-- [ ] T040 [US3] After T074/T075 and US3 tests plus fresh `implementation:phase-05` Modeling Gate, promote implemented durable-data behavior to `docs/ARCHITECTURE.md`.
+- [x] T040 [US3] After T074/T075 and US3 tests plus fresh `implementation:phase-05` Modeling Gate, promote implemented durable-data behavior to `docs/ARCHITECTURE.md`.
 
 **Checkpoint:** Finish story tests and confirm fresh implementation modeling before any project-doc promotion.
 
