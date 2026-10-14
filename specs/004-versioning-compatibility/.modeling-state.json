@@ -53,7 +53,7 @@
         "plan.md": "3dd37ba93091d0448602eb41a9a3f9b6af14db07",
         "research.md": "09b491de6a7ce242d1821f77faa920d5396a2c69",
         "data-model.md": "6d4b3a293d97af66a393b2490b2f46b5fd7b59cf",
-        "quickstart.md": "fe03daead7ca4eb707a770416af890b5dbd3ed34",
+        "quickstart.md": "0c454941fc77c42fc930c59067ce20741c9d66de",
         "contracts/compatibility-assessment.md": "cb151d37829fe613e7314f089d945682ece512ab"
       },
       "outputs": [],
@@ -72,7 +72,8 @@
         "source_commit": "577cff0144a7b5873887506bce262ae22112a73c",
         "post_tasks_analyze": "PASS document trace review for 75 unchecked tasks, no new topology; no feature runtime claim",
         "post_tasks_analyze_evidence": "preimplementation-analysis.md",
-        "implementation_status": "Phase 1–2 foundation implemented; plan architecture unchanged; full assessor/migration pending"
+        "implementation_status": "Phase 1–2 foundation implemented; plan architecture unchanged; full assessor/migration pending",
+        "implementation_quickstart_refresh": "2026-10-14: quickstart evidence matrix updated to distinguish implemented US3 CLI from future general compatibility assessor; plan's intended technical architecture unchanged; fresh plan QA beyond scoped document change not asserted."
       },
       "reason": "Plan diagram check negative; exact source set registered; existing spec diagram stays separate as planned conceptual view."
     },
@@ -127,7 +128,7 @@
         "compatibility/supported-baselines.json": "10b2cad2693a493b1e06023eceaea022de897c4b",
         "tests/test_compatibility_foundation.py": "8dfea8efe51bc2a7b553558c864f6d1e5fef46c3",
         ".github/workflows/validate.yml": "243fda4ab5493852ff27f0bf272183105567681f",
-        "specs/004-versioning-compatibility/quickstart.md": "2e1bb4ecbf94848fd50f3f36151a470c460e98c1"
+        "specs/004-versioning-compatibility/quickstart.md": "0c454941fc77c42fc930c59067ce20741c9d66de"
       },
       "outputs": [],
       "diagram_check": {
@@ -140,7 +141,8 @@
         "registry": "PASS #38373263426",
         "windows": "NOT_RUN scheduled T049/T052",
         "assessor_feature": "NOT_IMPLEMENTED_NOT_RUN",
-        "evidence": "verification.md"
+        "evidence": "verification.md",
+        "quickstart_source_refresh": "2026-10-14: file status/commands now show US3 implemented truth; original Phase 2 baseline tests retained as revision-scoped evidence."
       },
       "reason": "Phase 2 foundation implemented and CI-tested for source/ref/format checks; no plan diagram needed."
     },

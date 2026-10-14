@@ -1,6 +1,6 @@
 # Quickstart — Planned Compatibility Validation
 
-**Status:** foundation, US1 and Phase 4 US2 offline consumer impact library implemented and tested. End-to-end compatibility assessor CLI, migrations, deprecation and release checks are **not** implemented. The matrix below remains future acceptance design. See [verification.md](verification.md) for exact revision-bound Phase 1/2 evidence.
+**Status:** US1 version owners, US2 offline consumer comparison and US3 opt-in **single-file** migration are implemented and tested. End-to-end compatibility assessor CLI, general migration compatibility enforcement, deprecation and release checks remain **not implemented**. The full acceptance matrix below is still future convergence scope. See [verification.md](verification.md) for revision-bound proof.
 
 ## Preconditions
 
@@ -33,6 +33,21 @@ schema requiredness/shape, semantic review, constraint mismatch/cycle and invali
 preflight (VERIFY-008). The CI repository job executes this suite under Python 3.12.
 The library is not yet exposed by an end-to-end `check_compatibility.py` command.
 
+## Implemented Phase 5 project-state migration (opt-in, offline)
+
+```shell
+python -m unittest discover -s tests -p 'test_compatibility_migrations.py' -v
+python scripts/migrate_project_contract.py --input ./project.yaml --output ./project-next.yaml
+```
+
+The preview is read-only by default. The source pathname above is illustrative;
+do not assume it exists in this checkout. For an authorized single-file write:
+`apply --input ... --output ... --backup ... --receipt ... --accept-legacy`;
+add `--in-place` only when output equals input. See
+`compatibility/migrations/README.md` for integrity checks, repeat behavior,
+partial failures, explicit recovery and scope limits. CI executed 15 synthetic
+fixtures; no real user project migration or native-Windows parity is claimed.
+
 ## Future compatibility checker (NOT implemented)
 
 ```shell
@@ -45,7 +60,7 @@ python scripts/check_compatibility.py assess \
   --report-json .tmp-compatibility/report.json
 ```
 
-The `check_compatibility.py assess` example is still **planned** and must not be executed or described as passing. The existing foundation tests only prove offline ledger and pinned Git blob validation. Actual checker implementation must reconcile CLI syntax with [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md).
+The `check_compatibility.py assess` example is still **planned** and must not be executed or described as passing. Current US1–US3 tests separately prove ledger integrity, version ownership, consumer impact and synthetic single-file migration; they do not constitute the full compatibility gate. Actual checker implementation must reconcile CLI syntax with [contracts/compatibility-assessment.md](contracts/compatibility-assessment.md).
 
 ## Acceptance matrix (must create representative fixtures)
 
