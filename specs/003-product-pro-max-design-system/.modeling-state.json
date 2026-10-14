@@ -204,7 +204,7 @@
       "status": "no-diagram-needed",
       "source_hashes": {
         "tasks.md": "c1a67db37dac0029e3c3befc865689f0ccfeec6d",
-        "docs/ARCHITECTURE.md": "125fb26d97b969a3052b075895d6060747eb27c2",
+        "docs/ARCHITECTURE.md": "20063313d6f609335e7d789db069fe25059eefe6",
         "specs/003-product-pro-max-design-system/qa-evidence.md": "7fc74f5ef733983c5af471bc8e991a275e96c131",
         "specs/003-product-pro-max-design-system/analysis.md": "6c3eef9633edde6a3b58bf0fc94c3d0462f7bf3e",
         "scripts/verify_design_native_zoom.py": "f219bfecb3646c83987ccf582f2d621a4fd6255d"
@@ -235,7 +235,8 @@
         "publishing": "NOT_RUN_hosted_deployment_no_claim",
         "catalog_reset_refresh": "2026-10-09: architecture workflow status changed; source fingerprint refreshed; no new browser QA or visual-design acceptance claimed",
         "spec004_roadmap_refresh": "2026-10-10: Spec 004 specification and new planned roadmap entry, no change to implemented Spec 003 design assets. Scope-based audit; original browser evidence remains pinned to previous runs.",
-        "global_roadmap_boundary": "2026-10-10 Spec004: cross-feature roadmap is evolving navigation/backlog and not a design-system phase07 semantic source. Removed from Spec003 gate hash set; frozen design-system source contracts and original QA evidence retained."
+        "global_roadmap_boundary": "2026-10-10 Spec004: cross-feature roadmap is evolving navigation/backlog and not a design-system phase07 semantic source. Removed from Spec003 gate hash set; frozen design-system source contracts and original QA evidence retained.",
+        "spec004_us3_architecture_refresh": "2026-10-14: reviewed additive Spec 004 US3 durable-migration section in docs/ARCHITECTURE.md. Existing Spec 003 presentation boundary, diagram/model semantics, and original browser proof are unchanged. Fingerprint refresh is source-scope audit, not new browser QA."
       },
       "reason": "Phase 7 verified repository presentation delivery with source/static, keyboard, actual native browser zoom and GitHub rendering; no additional relation/flow/state diagram needed. Does not certify a hosted product or physical screen reader."
     },
